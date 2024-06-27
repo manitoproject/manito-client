@@ -1,4 +1,7 @@
 {
+  "compilerOptions": {
+    "jsxImportSource": "@emotion/react"
+  },
   "files": [],
   "references": [
     {
