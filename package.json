@@ -11,12 +11,15 @@
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
+    "@tanstack/react-query": "^5.48.0",
+    "@tanstack/react-query-devtools": "^5.48.0",
     "axios": "^1.7.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.24.0"
   },
   "devDependencies": {
+    "@tanstack/eslint-plugin-query": "^5.47.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^7.13.1",
@@ -29,5 +32,10 @@
     "msw": "^2.3.1",
     "typescript": "^5.2.2",
     "vite": "^5.3.1"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
   }
 }
