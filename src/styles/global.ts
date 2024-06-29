@@ -1,13 +1,12 @@
-import { css, Global } from '@emotion/react';
+import { css } from '@emotion/react';
 
-export default function GlobalStyle() {
-  return <Global styles={style} />;
-}
+import fonts from './fonts';
 
-const style = css`
+const global = css`
+  ${fonts}
   *,
-  ::before,
-  ::after {
+::before,
+::after {
     box-sizing: border-box;
     border-width: 0;
     border-style: solid;
@@ -235,3 +234,5 @@ const style = css`
     display: none;
   }
 `;
+
+export default global;
