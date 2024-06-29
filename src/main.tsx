@@ -7,8 +7,9 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import ErrorPage from './error-page';
 import { enableMocking } from './mocks/browser';
+import Index from './routes';
+import Home from './routes/home';
 import Layout from './routes/layout';
-import Root from './routes/root';
 import global from './styles/global';
 import theme from './styles/theme';
 
@@ -17,15 +18,19 @@ const queryClient = new QueryClient();
 const router = () =>
   createBrowserRouter([
     {
-      element: <Layout />,
+      path: '/',
+      element: <Index />,
       errorElement: <ErrorPage />,
+    },
+    {
+      element: <Layout />,
       children: [
         {
           errorElement: <ErrorPage />,
           children: [
             {
-              path: '/',
-              element: <Root />,
+              path: '/home',
+              element: <Home />,
             },
           ],
         },

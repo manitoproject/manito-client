@@ -14,6 +14,7 @@ const theme = {
   },
   fontFamily: {
     SpoqaHanSansNeo: 'SpoqaHanSansNeo',
+    AppleSDGothicNeo: 'AppleSDGothicNeo',
   },
   sizes: {
     mobile: '480px',
@@ -58,6 +59,7 @@ const theme = {
     },
     white: '#FFFFFF',
     black: '#000000',
+    kakao: '#FEE500',
   },
 };
 
