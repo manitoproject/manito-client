@@ -4,9 +4,7 @@ import fonts from './fonts';
 
 const global = css`
   ${fonts}
-  *,
-::before,
-::after {
+  * {
     box-sizing: border-box;
     border-width: 0;
     border-style: solid;
