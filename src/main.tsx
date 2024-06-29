@@ -9,6 +9,7 @@ import ErrorPage from './error-page';
 import { enableMocking } from './mocks/browser';
 import Index from './routes';
 import Home from './routes/home';
+import Join from './routes/join';
 import Layout from './routes/layout';
 import global from './styles/global';
 import theme from './styles/theme';
@@ -28,6 +29,10 @@ const router = () =>
         {
           errorElement: <ErrorPage />,
           children: [
+            {
+              path: '/join',
+              element: <Join />,
+            },
             {
               path: '/home',
               element: <Home />,

@@ -60,6 +60,7 @@ const theme = {
     white: '#FFFFFF',
     black: '#000000',
     kakao: '#FEE500',
+    error: '#F04747',
   },
 };
 

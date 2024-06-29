@@ -4,7 +4,6 @@ import { Outlet } from 'react-router-dom';
 
 import Hamburger from '../assets/svg/hamburger-menu.svg';
 import { getFontSizeAndWeight } from '../styles/utils';
-
 export default function Layout() {
   return (
     <StyledWrapper>
@@ -66,6 +65,7 @@ const StyledMain = styled.main`
   background-color: ${(props) => props.theme.colors.white};
   width: 100%;
   flex: 1;
+  display: flex;
   ${({ theme }) => css`
     padding: ${theme.sizes.padding};
     max-width: ${theme.sizes.mobile};

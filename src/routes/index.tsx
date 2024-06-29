@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { Button, KakaoLoginButton } from '../components/Buttons';
+import { Button, KakaoLoginButton } from '../components/common/buttons';
 import { getFontSizeAndWeight } from '../styles/utils';
 
 export default function Index() {
@@ -12,9 +12,11 @@ export default function Index() {
     <StyledWrapper>
       <div>작업 예정</div>
       {isButtonClicked ? (
-        <KakaoLoginButton onClick={() => navigate('/join')} />
+        <KakaoLoginButton mb={50} onClick={() => navigate('/join')} />
       ) : (
-        <Button onClick={() => setIsButtonClicked(true)}>시작하기</Button>
+        <Button mb={50} onClick={() => setIsButtonClicked(true)}>
+          시작하기
+        </Button>
       )}
     </StyledWrapper>
   );
@@ -37,7 +39,4 @@ const StyledWrapper = styled.div`
   display: flex;
   height: 100vh;
   align-items: flex-end;
-  button {
-    margin-bottom: 50px;
-  }
 `;

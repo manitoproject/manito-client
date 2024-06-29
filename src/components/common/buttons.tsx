@@ -1,8 +1,9 @@
 import styled from '@emotion/styled';
-import { ButtonHTMLAttributes } from 'react';
 
-import KakaoLogo from '../assets/svg/kakao-logo.svg';
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {}
+import KakaoLogo from '../../assets/svg/kakao-logo.svg';
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  mb?: number;
+}
 
 export function KakaoLoginButton({ ...props }: ButtonProps) {
   return (
@@ -17,7 +18,8 @@ export function Button({ children, ...props }: ButtonProps) {
   return <StyledButton {...props}>{children}</StyledButton>;
 }
 
-const StyledButton = styled.button`
+const StyledButton = styled.button<{ mb?: number }>`
+  margin-bottom: ${(props) => (props.mb ? `${props.mb}px` : 0)};
   &:disabled {
     background-color: ${(props) => props.theme.colors.gray[200]};
     color: ${(props) => props.theme.colors.gray[500]};
