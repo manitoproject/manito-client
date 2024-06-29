@@ -8,9 +8,9 @@ const theme = {
     body3: '11px',
   },
   fontWeight: {
-    b: 700,
-    m: 500,
-    r: 400,
+    bold: 700,
+    medium: 500,
+    regular: 400,
   },
   fontFamily: {
     SpoqaHanSansNeo: 'SpoqaHanSansNeo',
