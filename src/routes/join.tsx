@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Button } from '../components/common/buttons';
@@ -12,22 +12,27 @@ export default function Join() {
   const [nickname, setNickname] = useState('');
   const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const handleNicknameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    const isSuccess = /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{1,10}$/.test(value);
+    const isSuccess = /^(?=.*[a-z가-힣])[a-z가-힣]{1,10}$/.test(value);
     setIsError(!isSuccess);
     setNickname(e.target.value);
   };
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
 
   return (
     <StyledWrapper>
       <section>
         <div>
           <p>마니또에 오신 걸 환영합니다.</p>
-          <h2>
+          <p>
             사용하실 <strong>이름</strong>을 입력해주세요.
-          </h2>
+          </p>
         </div>
         <Input
           isError={isError}
@@ -65,15 +70,14 @@ const StyledWrapper = styled.div`
     gap: 40px;
 
     & > div:first-child {
-      margin-top: 24px;
       display: flex;
       gap: 4px;
       flex-direction: column;
-      p {
+      p:nth-child(1) {
         ${getFontSizeAndWeight('heading3', 'regular')}
         color: ${(props) => props.theme.colors.gray[800]};
       }
-      h2 {
+      p:nth-child(2) {
         ${getFontSizeAndWeight('heading1', 'bold')}
         color: ${(props) => props.theme.colors.gray[900]};
         strong {

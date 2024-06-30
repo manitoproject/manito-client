@@ -1,32 +1,23 @@
 import styled from '@emotion/styled';
-import { useEffect, useRef } from 'react';
 
 import Close from '../../assets/svg/close.svg';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   isError?: boolean;
   children: React.ReactNode;
-  isFocus?: boolean;
   onClick: () => void;
 }
 
 export default function Input({
   children,
   onClick,
-  isFocus = true,
   isError = false,
   ...props
 }: InputProps) {
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (isFocus) inputRef.current?.focus();
-  }, [isFocus]);
-
   return (
     <StyledWrapper isError={isError}>
       <div>
-        <input {...props} ref={inputRef} />
+        <input {...props} />
         <button type="button" onClick={onClick}>
           <Close />
         </button>
@@ -72,6 +63,7 @@ const StyledWrapper = styled.div<{ isError: boolean }>`
   }
 
   span {
+    margin-left: 12px;
     font-size: 12px;
     color: ${({ theme, isError }) =>
       isError ? theme.colors.error : theme.colors.gray[600]};

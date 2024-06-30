@@ -18,7 +18,7 @@ const theme = {
   },
   sizes: {
     mobile: '480px',
-    padding: '0 24px',
+    padding: '24px',
   },
   colors: {
     purple: {

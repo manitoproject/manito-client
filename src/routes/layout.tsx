@@ -1,18 +1,62 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 import Hamburger from '../assets/svg/hamburger-menu.svg';
+import LeftChevron from '../assets/svg/left-chevron.svg';
 import { getFontSizeAndWeight } from '../styles/utils';
+
+const HEADER_OPTIONS = {
+  join: {
+    pathname: '/join',
+    title: '회원 가입',
+    isShowLeftBtn: true,
+    isShowMenuBtn: false,
+  },
+  home: {
+    pathname: '/home',
+    title: '메인 페이지',
+    isShowLeftBtn: false,
+    isShowMenuBtn: true,
+  },
+  'home/rolling-paper': {
+    pathname: '/home/rolling-paper',
+    title: 'Hello Roling',
+    isShowLeftBtn: true,
+    isShowMenuBtn: false,
+  },
+  index: {
+    pathname: '',
+    title: '마니또',
+    isShowLeftBtn: true,
+    isShowMenuBtn: false,
+  },
+};
+
 export default function Layout() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const pathname = location.pathname.slice(1);
+  console.log(location);
+  const header =
+    pathname in HEADER_OPTIONS
+      ? HEADER_OPTIONS[pathname as keyof typeof HEADER_OPTIONS]
+      : HEADER_OPTIONS['index'];
   return (
     <StyledWrapper>
       <StyledHeader>
         <div>
-          <div>메인 페이지</div>
-          <button>
-            <Hamburger />
-          </button>
+          {header.isShowLeftBtn && (
+            <button onClick={() => navigate(-1)}>
+              <LeftChevron />
+            </button>
+          )}
+          <div>{header.title}</div>
+          {header.isShowMenuBtn && (
+            <MenuButton>
+              <Hamburger />
+            </MenuButton>
+          )}
         </div>
       </StyledHeader>
       <StyledMain>{<Outlet />}</StyledMain>
@@ -44,14 +88,11 @@ const StyledHeader = styled.header`
       transform: translateX(-50%);
       position: absolute;
     }
-    button {
-      margin-left: 90px;
-    }
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     color: ${({ theme }) => theme.colors.gray[800]};
-    padding: ${({ theme }) => theme.sizes.padding};
+    padding: ${({ theme }) => `0 ${theme.sizes.padding}`};
     padding-top: 14px;
     padding-bottom: 14px;
     ${getFontSizeAndWeight('heading3', 'medium')}
@@ -67,8 +108,12 @@ const StyledMain = styled.main`
   flex: 1;
   display: flex;
   ${({ theme }) => css`
-    padding: ${theme.sizes.padding};
+    padding: ${theme.sizes.padding} ${theme.sizes.padding} 0;
     max-width: ${theme.sizes.mobile};
   `}
   margin: 0 auto;
+`;
+
+const MenuButton = styled.button`
+  margin-left: auto;
 `;

@@ -8,9 +8,11 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ErrorPage from './error-page';
 import { enableMocking } from './mocks/browser';
 import Index from './routes';
+import ContentHome from './routes/content-home';
 import Home from './routes/home';
 import Join from './routes/join';
 import Layout from './routes/layout';
+import RollingPaper from './routes/rolling-paper';
 import global from './styles/global';
 import theme from './styles/theme';
 
@@ -36,6 +38,14 @@ const router = () =>
             {
               path: '/home',
               element: <Home />,
+            },
+            {
+              path: '/home/:content',
+              element: <ContentHome />,
+            },
+            {
+              path: '/rolling-paper/:id',
+              element: <RollingPaper />,
             },
           ],
         },

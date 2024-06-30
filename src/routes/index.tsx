@@ -10,7 +10,7 @@ export default function Index() {
   const navigate = useNavigate();
   return (
     <StyledWrapper>
-      <div>작업 예정</div>
+      <StyledUpcoming>작업 예정</StyledUpcoming>
       {isButtonClicked ? (
         <KakaoLoginButton mb={50} onClick={() => navigate('/join')} />
       ) : (
@@ -25,18 +25,19 @@ export default function Index() {
 const StyledWrapper = styled.div`
   max-width: ${(props) => props.theme.sizes.mobile};
   margin: 0 auto;
-  padding: ${(props) => props.theme.sizes.padding};
+  padding: ${(props) => `0 ${props.theme.sizes.padding}`};
   box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
     0 8px 10px -6px rgb(0 0 0 / 0.1);
-
-  & > div:first-child {
-    ${getFontSizeAndWeight('heading1', 'bold')}
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translateX(-50%);
-  }
+  flex-direction: column;
   display: flex;
-  height: 100vh;
-  align-items: flex-end;
+  min-height: 100vh;
+  button {
+    margin-top: auto;
+  }
+`;
+
+export const StyledUpcoming = styled.div`
+  margin-top: 150px;
+  text-align: center;
+  ${getFontSizeAndWeight('heading1', 'bold')}
 `;
