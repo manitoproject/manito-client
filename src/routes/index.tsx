@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Logo } from '../assets/svg';
 import { Button, KakaoLoginButton } from '../components/common/buttons';
+import { routes } from '../router';
 import { getFontSizeAndWeight } from '../styles/utils';
 
 export default function Index() {
@@ -15,7 +16,10 @@ export default function Index() {
         <Logo />
       </StyledLogoWrapper>
       {isButtonClicked ? (
-        <KakaoLoginButton hasMarginBottom onClick={() => navigate('/join')} />
+        <KakaoLoginButton
+          hasMarginBottom
+          onClick={() => navigate(routes.join)}
+        />
       ) : (
         <Button hasMarginBottom onClick={() => setIsButtonClicked(true)}>
           시작하기

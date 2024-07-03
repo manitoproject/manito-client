@@ -17,8 +17,8 @@ const HEADER_OPTIONS = {
     isShowLeftBtn: false,
     isShowMenuBtn: true,
   },
-  'home/rolling-paper': {
-    pathname: '/home/rolling-paper',
+  'home/setup/rolling': {
+    pathname: 'home/setup/rolling',
     title: 'Hello Roling',
     isShowLeftBtn: true,
     isShowMenuBtn: false,
