@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { ForwardedRef, forwardRef } from 'react';
 
 import { Close } from '../../assets/svg';
 
@@ -8,16 +9,14 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   onClick: () => void;
 }
 
-export default function Input({
-  children,
-  onClick,
-  isError = false,
-  ...props
-}: InputProps) {
+export default forwardRef(function Input(
+  { children, onClick, isError = false, ...props }: InputProps,
+  ref: ForwardedRef<HTMLInputElement>,
+) {
   return (
     <StyledWrapper isError={isError}>
       <div>
-        <input {...props} />
+        <input ref={ref} {...props} />
         <button type="button" onClick={onClick}>
           <Close />
         </button>
@@ -25,7 +24,7 @@ export default function Input({
       {children}
     </StyledWrapper>
   );
-}
+});
 
 const StyledWrapper = styled.div<{ isError: boolean }>`
   display: flex;

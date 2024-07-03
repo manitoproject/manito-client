@@ -1,9 +1,11 @@
 import styled from '@emotion/styled';
 
 import { KakaoLogo } from '../../assets/svg';
-
+import { BackGroundColor } from '../../styles/theme';
+import { getBackgroundColor } from '../../styles/utils';
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  mb?: number;
+  hasMarginBottom?: boolean;
+  backgroundColor?: BackGroundColor;
 }
 
 export function KakaoLoginButton({ ...props }: ButtonProps) {
@@ -18,9 +20,11 @@ export function KakaoLoginButton({ ...props }: ButtonProps) {
 export function Button({ children, ...props }: ButtonProps) {
   return <StyledButton {...props}>{children}</StyledButton>;
 }
-
-const StyledButton = styled.button<{ mb?: number }>`
-  margin-bottom: ${(props) => (props.mb ? `${props.mb}px` : 0)};
+const StyledButton = styled.button<{
+  hasMarginBottom?: boolean;
+  backgroundColor?: BackGroundColor;
+}>`
+  margin-bottom: ${(props) => (props.hasMarginBottom ? `50px` : 0)};
   &:disabled {
     background-color: ${(props) => props.theme.colors.gray[200]};
     color: ${(props) => props.theme.colors.gray[500]};
@@ -33,7 +37,7 @@ const StyledButton = styled.button<{ mb?: number }>`
   justify-content: center;
   width: 100%;
   color: ${(props) => props.theme.colors.white};
-  background-color: ${(props) => props.theme.colors.black};
+  background-color: ${(props) => getBackgroundColor(props.backgroundColor)};
 `;
 
 const StyledKakaoButton = styled(StyledButton)`

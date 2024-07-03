@@ -62,7 +62,7 @@ export default function ContentHome() {
       )}
       <Button
         disabled={(showDetail && !title.length) || isError}
-        mb={50}
+        hasMarginBottom
         onClick={handleButtonClick}
       >
         시작하기

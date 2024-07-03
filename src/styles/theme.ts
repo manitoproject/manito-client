@@ -21,18 +21,6 @@ const theme = {
     padding: '24px',
   },
   colors: {
-    purple: {
-      50: '#F1F1FC',
-      100: '#ECECFE',
-      200: '#E5E5FF',
-      300: '#DADAFF',
-      400: '#CACAFC',
-      500: '#A2A2FC',
-      600: '#7979F7',
-      700: '#5F5FED',
-      800: '#4E54E1',
-      900: '#3C42DE',
-    },
     powderBlue: {
       50: '#F7F8FB',
       100: '#EEF2FB',
@@ -65,4 +53,11 @@ const theme = {
 };
 
 export type ThemeType = typeof theme;
+export type Colors = ThemeType['colors'];
+export type NestedColors = keyof Colors['powderBlue'] | keyof Colors['gray'];
+export type BackGroundColor =
+  | keyof Omit<Colors, 'powderBlue'>
+  | `powderBlue-${NestedColors}`
+  | `gray-${NestedColors}`;
+
 export default theme;

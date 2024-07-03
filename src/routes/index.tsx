@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Logo } from '../assets/svg';
 import { Button, KakaoLoginButton } from '../components/common/buttons';
 import { getFontSizeAndWeight } from '../styles/utils';
+
 export default function Index() {
   const [isButtonClicked, setIsButtonClicked] = useState(false);
   const navigate = useNavigate();
@@ -14,9 +15,9 @@ export default function Index() {
         <Logo />
       </StyledLogoWrapper>
       {isButtonClicked ? (
-        <KakaoLoginButton mb={50} onClick={() => navigate('/join')} />
+        <KakaoLoginButton hasMarginBottom onClick={() => navigate('/join')} />
       ) : (
-        <Button mb={50} onClick={() => setIsButtonClicked(true)}>
+        <Button hasMarginBottom onClick={() => setIsButtonClicked(true)}>
           시작하기
         </Button>
       )}
@@ -38,7 +39,6 @@ const StyledWrapper = styled.div`
 const StyledLogoWrapper = styled.div`
   align-items: center;
   flex: 1;
-
   display: flex;
   justify-content: center;
   ${getFontSizeAndWeight('heading1', 'bold')}
