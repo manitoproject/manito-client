@@ -2,8 +2,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
-import Hamburger from '../assets/svg/hamburger-menu.svg';
-import LeftChevron from '../assets/svg/left-chevron.svg';
+import { HamburgerMenu, LeftChevron } from '../assets/svg';
 import { getFontSizeAndWeight } from '../styles/utils';
 
 const HEADER_OPTIONS = {
@@ -54,7 +53,7 @@ export default function Layout() {
           <div>{header.title}</div>
           {header.isShowMenuBtn && (
             <MenuButton>
-              <Hamburger />
+              <HamburgerMenu />
             </MenuButton>
           )}
         </div>

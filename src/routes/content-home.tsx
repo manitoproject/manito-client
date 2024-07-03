@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/common/buttons';
 import Input from '../components/common/input';
 import { getFontSizeAndWeight } from '../styles/utils';
-import { StyledUpcoming } from '.';
 
 const MAX_LENGTH = 10;
 
@@ -33,7 +32,7 @@ export default function ContentHome() {
   return (
     <StyledWrapper>
       {!showDetail ? (
-        <StyledUpcoming>작업 예정</StyledUpcoming>
+        <div>작업 예정</div>
       ) : (
         <StyledSectionWrapper>
           <section>

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import Close from '../../assets/svg/close.svg';
+import { Close } from '../../assets/svg';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   isError?: boolean;

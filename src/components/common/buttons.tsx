@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import KakaoLogo from '../../assets/svg/kakao-logo.svg';
+import KakaoLogo from '../../assets/svg/icons/kakao-logo.svg';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   mb?: number;

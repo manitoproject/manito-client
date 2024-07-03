@@ -17,7 +17,7 @@ const theme = {
     AppleSDGothicNeo: 'AppleSDGothicNeo',
   },
   sizes: {
-    mobile: '480px',
+    mobile: '430px',
     padding: '24px',
   },
   colors: {

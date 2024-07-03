@@ -1,8 +1,7 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 
-import AddCircle from '../assets/svg/add-circle.svg';
-import Link from '../assets/svg/link.svg';
+import { AddCircle, Link } from '../assets/svg';
 import { Button } from '../components/common/buttons';
 import { getFontSizeAndWeight } from '../styles/utils';
 export default function RollingPaper() {

@@ -2,15 +2,17 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { Logo } from '../assets/svg';
 import { Button, KakaoLoginButton } from '../components/common/buttons';
 import { getFontSizeAndWeight } from '../styles/utils';
-
 export default function Index() {
   const [isButtonClicked, setIsButtonClicked] = useState(false);
   const navigate = useNavigate();
   return (
     <StyledWrapper>
-      <StyledUpcoming>작업 예정</StyledUpcoming>
+      <StyledLogoWrapper>
+        <Logo />
+      </StyledLogoWrapper>
       {isButtonClicked ? (
         <KakaoLoginButton mb={50} onClick={() => navigate('/join')} />
       ) : (
@@ -31,13 +33,13 @@ const StyledWrapper = styled.div`
   flex-direction: column;
   display: flex;
   min-height: 100vh;
-  button {
-    margin-top: auto;
-  }
 `;
 
-export const StyledUpcoming = styled.div`
-  margin-top: 150px;
-  text-align: center;
+const StyledLogoWrapper = styled.div`
+  align-items: center;
+  flex: 1;
+
+  display: flex;
+  justify-content: center;
   ${getFontSizeAndWeight('heading1', 'bold')}
 `;
