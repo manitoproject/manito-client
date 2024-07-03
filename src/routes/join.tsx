@@ -4,9 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/common/buttons';
 import NameForm from '../components/common/name-form';
 import { useNameForm } from '../hooks';
+import { nicknameMaxLength } from '../lib/regexPatterns';
 import { routes } from '../router';
 import { getFontSizeAndWeight } from '../styles/utils';
-import { nicknameMaxLength } from '../utils/regexPatterns';
 
 export default function Join() {
   const { handleNameChange, handleNameReset, isError, name, nameRef } =

@@ -2,43 +2,16 @@ import styled from '@emotion/styled';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { HamburgerMenu, LeftChevron } from '../assets/svg';
+import headerNavigation from '../lib/headerNavigation';
 import { getFontSizeAndWeight } from '../styles/utils';
-
-const HEADER_OPTIONS = {
-  join: {
-    pathname: '/join',
-    title: '회원 가입',
-    isShowLeftBtn: true,
-    isShowMenuBtn: false,
-  },
-  home: {
-    pathname: '/home',
-    title: '메인 페이지',
-    isShowLeftBtn: false,
-    isShowMenuBtn: true,
-  },
-  'home/setup/rolling': {
-    pathname: 'home/setup/rolling',
-    title: 'Hello Roling',
-    isShowLeftBtn: true,
-    isShowMenuBtn: false,
-  },
-  index: {
-    pathname: '',
-    title: '마니또',
-    isShowLeftBtn: true,
-    isShowMenuBtn: false,
-  },
-};
 
 export default function Header() {
   const navigate = useNavigate();
   const location = useLocation();
-  const pathname = location.pathname.slice(1);
   const header =
-    pathname in HEADER_OPTIONS
-      ? HEADER_OPTIONS[pathname as keyof typeof HEADER_OPTIONS]
-      : HEADER_OPTIONS['index'];
+    headerNavigation.find(
+      (header) => location.pathname === header.pathname(),
+    ) ?? headerNavigation[headerNavigation.length - 1];
   return (
     <StyledHeader>
       <div>

@@ -7,9 +7,9 @@ import RollingIntroScreen from '../components/common/intro-screen';
 import NameForm from '../components/common/name-form';
 import ThemeCarousel from '../components/common/theme-carousel';
 import { useNameForm } from '../hooks';
+import { titleMaxLength } from '../lib/regexPatterns';
 import { routes } from '../router';
 import { getFontSizeAndWeight } from '../styles/utils';
-import { titleMaxLength } from '../utils/regexPatterns';
 
 export default function RollingSetup() {
   const { handleNameChange, handleNameReset, isError, name, nameRef } =
