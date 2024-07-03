@@ -6,7 +6,8 @@ import { Button } from '../components/common/buttons';
 import Input from '../components/common/input';
 import { getFontSizeAndWeight } from '../styles/utils';
 
-const MAX_LENGTH = 10;
+const MAX_LENGTH = 20;
+const NICKNAME_REGEX = /^(?=.*[a-z가-힣])[a-z가-힣]{1,20}$/;
 
 export default function Join() {
   const [nickname, setNickname] = useState('');
@@ -16,9 +17,20 @@ export default function Join() {
 
   const handleNicknameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    const isSuccess = /^(?=.*[a-z가-힣])[a-z가-힣]{1,10}$/.test(value);
+    const isSuccess = NICKNAME_REGEX.test(value);
     setIsError(!isSuccess);
     setNickname(e.target.value);
+  };
+
+  const handleNicknameReset = () => {
+    setNickname('');
+    if (isError) setIsError(false);
+    inputRef.current?.focus();
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    navigate('/home');
   };
 
   useEffect(() => {
@@ -28,33 +40,37 @@ export default function Join() {
   return (
     <StyledWrapper>
       <section>
-        <div>
-          <p>마니또에 오신 걸 환영합니다.</p>
-          <p>
+        <StyeldTitle>
+          <h2>마니또에 오신 걸 환영합니다.</h2>
+          <h3>
             사용하실 <strong>이름</strong>을 입력해주세요.
-          </p>
-        </div>
-        <Input
-          isError={isError}
-          onClick={() => setNickname('')}
-          placeholder="이름을 입력해주세요."
-          value={nickname}
-          onChange={handleNicknameChange}
-        >
-          <span>
-            {nickname.length} /<strong> {MAX_LENGTH}</strong>
-          </span>
-        </Input>
+          </h3>
+        </StyeldTitle>
+        <StyledForm onSubmit={handleSubmit}>
+          <Input
+            ref={inputRef}
+            isError={isError}
+            onClick={handleNicknameReset}
+            placeholder="이름을 입력해주세요."
+            value={nickname}
+            onChange={handleNicknameChange}
+          >
+            <span>
+              {nickname.length} /<strong> {MAX_LENGTH}</strong>
+            </span>
+          </Input>
+          <div>
+            <Button
+              backgroundColor="powderBlue-800"
+              hasMarginBottom
+              type="submit"
+              disabled={!nickname.length || isError}
+            >
+              가입완료
+            </Button>
+          </div>
+        </StyledForm>
       </section>
-      <div>
-        <Button
-          onClick={() => navigate('/home')}
-          mb={50}
-          disabled={!nickname.length || isError}
-        >
-          가입완료
-        </Button>
-      </div>
     </StyledWrapper>
   );
 }
@@ -67,28 +83,33 @@ const StyledWrapper = styled.div`
   section {
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 16px;
+    flex: 1;
+  }
+`;
 
-    & > div:first-child {
-      display: flex;
-      gap: 4px;
-      flex-direction: column;
-      p:nth-child(1) {
-        ${getFontSizeAndWeight('heading3', 'regular')}
-        color: ${(props) => props.theme.colors.gray[800]};
-      }
-      p:nth-child(2) {
-        ${getFontSizeAndWeight('heading1', 'bold')}
-        color: ${(props) => props.theme.colors.gray[900]};
-        strong {
-          color: ${(props) => props.theme.colors.powderBlue[900]};
-        }
-      }
+const StyeldTitle = styled.div`
+  display: flex;
+  gap: 4px;
+  flex-direction: column;
+  h2 {
+    ${getFontSizeAndWeight('heading3', 'regular')}
+    color: ${(props) => props.theme.colors.gray[800]};
+  }
+  h3 {
+    ${getFontSizeAndWeight('heading1', 'bold')}
+    color: ${(props) => props.theme.colors.gray[900]};
+    strong {
+      color: ${(props) => props.theme.colors.powderBlue[900]};
     }
   }
-  & > div:last-child {
+`;
+
+const StyledForm = styled.form`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  & > div:first-child {
     flex: 1;
-    display: flex;
-    align-items: end;
   }
 `;
