@@ -41,8 +41,9 @@ const StyledHeader = styled.header`
   width: 100%;
   background-color: ${(props) => props.theme.colors.white};
   border-bottom: 1px solid ${(props) => props.theme.colors.gray[300]};
+  /* z-index: 50;
   box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
-    0 8px 10px -6px rgb(0 0 0 / 0.1);
+    0 8px 10px -6px rgb(0 0 0 / 0.1); */
   & > div:first-child {
     position: relative;
     h1 {

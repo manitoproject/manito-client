@@ -8,9 +8,19 @@ export default function Layout() {
     <StyledWrapper>
       <Header />
       <StyledMain>{<Outlet />}</StyledMain>
+      <Backdrop />
     </StyledWrapper>
   );
 }
+
+export const Backdrop = styled.div`
+  background-color: ${(props) => props.theme.colors.gray[100]};
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  z-index: -1;
+  position: fixed;
+`;
 
 const StyledWrapper = styled.div`
   position: relative;
@@ -26,9 +36,10 @@ const StyledWrapper = styled.div`
 `;
 
 const StyledMain = styled.main`
+  /* z-index: 50;
   box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
-    0 8px 10px -6px rgb(0 0 0 / 0.1);
-  background-image: url('/src/assets/imgs/space-theme.png');
+    0 8px 10px -6px rgb(0 0 0 / 0.1); */
+  /* background-image: url('/src/assets/imgs/space-theme.png'); */
   background-size: cover;
   background-color: ${(props) => props.theme.colors.white};
   width: 100%;
