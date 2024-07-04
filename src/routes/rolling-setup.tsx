@@ -3,9 +3,9 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Button } from '../components/common/buttons';
-import RollingIntroScreen from '../components/common/intro-screen';
 import NameForm from '../components/common/name-form';
-import ThemeCarousel from '../components/common/theme-carousel';
+import RollingIntroScreen from '../components/intro-screen';
+import ThemeCarousel from '../components/theme/theme-carousel';
 import { useNameForm } from '../hooks';
 import { titleMaxLength } from '../lib/regexPatterns';
 import { routes } from '../router';

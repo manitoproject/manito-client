@@ -54,10 +54,10 @@ const theme = {
 
 export type ThemeType = typeof theme;
 export type Colors = ThemeType['colors'];
-export type NestedColors = keyof Colors['powderBlue'] | keyof Colors['gray'];
+export type ColorNumber = keyof Colors['powderBlue'] | keyof Colors['gray'];
 export type BackGroundColor =
   | keyof Omit<Colors, 'powderBlue'>
-  | `powderBlue-${NestedColors}`
-  | `gray-${NestedColors}`;
+  | `powderBlue-${ColorNumber}`
+  | `gray-${ColorNumber}`;
 
 export default theme;
