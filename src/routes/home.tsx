@@ -3,22 +3,24 @@ import { Link } from 'react-router-dom';
 
 import { routes } from '../router';
 import { getFontSizeAndWeight } from '../styles/utils';
-
 const CONTENTS = [
   {
     name: '롤링 페이퍼',
     isActive: true,
     href: () => routes.rolling.setup(),
+    img: 'src/assets/imgs/rolling.png',
   },
   {
     name: '케이크 꾸미기',
     isActive: false,
     href: () => '',
+    img: 'src/assets/imgs/rolling.png',
   },
   {
     name: '보물상자 채우기',
     isActive: false,
     href: () => '',
+    img: 'src/assets/imgs/rolling.png',
   },
 ];
 
@@ -37,7 +39,9 @@ export default function Home() {
           {CONTENTS.map((content) => (
             <StyledContentItem key={content.name}>
               {content.isActive ? (
-                <Link to={content.href()}>{content.name}</Link>
+                <Link to={content.href()}>
+                  <img src={content.img} alt={content.name} />
+                </Link>
               ) : (
                 <div>{content.name}</div>
               )}
@@ -82,7 +86,7 @@ const StyeldBanner = styled.div`
 `;
 const StyeldContents = styled.ul`
   display: grid;
-  gap: 10px;
+  gap: 16px;
   grid-template-columns: repeat(2, 1fr);
 `;
 const StyledContentItem = styled.li`
@@ -94,6 +98,11 @@ const StyledContentItem = styled.li`
     justify-content: center;
     background-color: ${(props) => props.theme.colors.powderBlue[100]};
     border-radius: 10px;
-    height: 148px;
+    aspect-ratio: 1;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
   }
 `;

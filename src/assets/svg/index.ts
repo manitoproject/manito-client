@@ -4,6 +4,5 @@ export { default as HamburgerMenu } from './hamburger-menu.svg';
 export { default as KakaoLogo } from './kakao-logo.svg';
 export { default as LeftChevron } from './left-chevron.svg';
 export { default as Link } from './link.svg';
-export { default as Logo } from './logo.svg';
 export { default as RadioButton } from './radio-button.svg';
 export { default as RadioButtonActive } from './radio-button-active.svg';
