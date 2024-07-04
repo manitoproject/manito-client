@@ -1,11 +1,14 @@
 import styled from '@emotion/styled';
+import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { HamburgerMenu, LeftChevron } from '../assets/svg';
 import headerNavigation from '../lib/headerNavigation';
 import { getFontSizeAndWeight } from '../styles/utils';
+import Sidebar from './sidebar';
 
 export default function Header() {
+  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const header =
@@ -22,24 +25,25 @@ export default function Header() {
         )}
         <h1>{header.title}</h1>
         {header.isShowMenuBtn && (
-          <MenuButton>
+          <MenuButton onClick={() => setIsSideMenuOpen(true)}>
             <HamburgerMenu />
           </MenuButton>
         )}
       </div>
+      <Sidebar
+        isOpen={isSideMenuOpen}
+        onClose={() => setIsSideMenuOpen(false)}
+      />
     </StyledHeader>
   );
 }
 const StyledHeader = styled.header`
   width: 100%;
-  max-width: ${({ theme }) => theme.sizes.mobile};
-  margin: 0 auto;
   background-color: ${(props) => props.theme.colors.white};
   border-bottom: 1px solid ${(props) => props.theme.colors.gray[300]};
   box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
     0 8px 10px -6px rgb(0 0 0 / 0.1);
-  z-index: 50;
-  div {
+  & > div:first-child {
     position: relative;
     h1 {
       left: 50%;
