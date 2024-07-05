@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { ForwardedRef, forwardRef } from 'react';
+import { ForwardedRef, forwardRef, useEffect } from 'react';
 
 import { Close } from '../../assets/svg';
 
@@ -13,6 +13,10 @@ export default forwardRef(function Input(
   { children, onClick, isError = false, ...props }: InputProps,
   ref: ForwardedRef<HTMLInputElement>,
 ) {
+  useEffect(() => {
+    if (typeof ref !== 'function') ref?.current?.focus();
+  }, [ref]);
+
   return (
     <StyledWrapper isError={isError}>
       <div>

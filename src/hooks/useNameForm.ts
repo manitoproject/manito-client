@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 
 import regex, { RegexType } from '../lib/regexPatterns';
 
@@ -20,10 +20,6 @@ export default function useNameForm(type: RegexType) {
   const handleNameReset = useCallback(() => {
     setName('');
     setIsError(false);
-    nameRef.current?.focus();
-  }, []);
-
-  useEffect(() => {
     nameRef.current?.focus();
   }, []);
 
