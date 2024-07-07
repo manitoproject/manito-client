@@ -1,20 +1,38 @@
 import 'swiper/css';
 
 import styled from '@emotion/styled';
-import { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { getFontSizeAndWeight } from '../../styles/utils';
 import ThemeItem from './theme-item';
 
-const themeList = [
-  { theme: '우주', img: '/src/assets/imgs/space-theme.png' },
-  { theme: '학교', img: '/src/assets/imgs/space-theme.png' },
-  { theme: '자연', img: '/src/assets/imgs/space-theme.png' },
+export const themeList = [
+  {
+    themeKor: '우주',
+    themeEng: 'space',
+    img: '/src/assets/imgs/theme/space.png',
+  },
+  {
+    themeKor: '자연',
+    themeEng: 'nature',
+    img: '/src/assets/imgs/theme/nature.png',
+  },
+  {
+    themeKor: '회사',
+    themeEng: 'office',
+    img: '/src/assets/imgs/theme/space.png',
+  },
 ];
 
-export default function ThemeCarousel() {
-  const [activeIndex, setActiveIndex] = useState(0);
+interface ThemeCarouselProps {
+  activeIndex: number;
+  onActiveIndexChange: (i: number) => void;
+}
+
+export default function ThemeCarousel({
+  activeIndex,
+  onActiveIndexChange,
+}: ThemeCarouselProps) {
   return (
     <StyledWrapper>
       <h2>원하는 테마를 선택해주세요.</h2>
@@ -24,13 +42,13 @@ export default function ThemeCarousel() {
           slidesPerView="auto"
           slideToClickedSlide
         >
-          {themeList.map(({ theme, img }, i) => (
-            <SwiperSlide key={theme}>
+          {themeList.map(({ themeKor, img }, i) => (
+            <SwiperSlide key={themeKor}>
               <ThemeItem
-                onClick={() => setActiveIndex(i)}
+                onClick={() => onActiveIndexChange(i)}
                 isActive={i === activeIndex}
                 img={img}
-                theme={theme}
+                theme={themeKor}
               />
             </SwiperSlide>
           ))}

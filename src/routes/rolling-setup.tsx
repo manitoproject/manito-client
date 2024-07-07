@@ -1,25 +1,48 @@
 import styled from '@emotion/styled';
+import { useMutation } from '@tanstack/react-query';
+import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Button } from '../components/common/buttons';
 import NameForm from '../components/common/name-form';
 import RollingIntroScreen from '../components/intro-screen';
-import ThemeCarousel from '../components/theme/theme-carousel';
+import ThemeCarousel, { themeList } from '../components/theme/theme-carousel';
 import { useNameForm } from '../hooks';
 import { titleMaxLength } from '../lib/regexPatterns';
 import { routes } from '../router';
 import { getFontSizeAndWeight } from '../styles/utils';
 
+const createBoard = async ({
+  subject,
+  theme,
+}: {
+  subject: string;
+  theme: string;
+}) => {
+  const { data } = await axios.post<Board>('/rolling/create', {
+    subject,
+    theme,
+  });
+  return data;
+};
+
 export default function RollingSetup() {
   const { handleNameChange, handleNameReset, isError, name, nameRef } =
     useNameForm('title');
+  const [selectedThemeIndex, setSelectedThemeIndex] = useState(0);
   const [isFirstPage, setIsFirstPage] = useState(true);
   const navigate = useNavigate();
-
+  const { mutate, isPending } = useMutation({
+    mutationFn: createBoard,
+    onSuccess: (data) => {
+      navigate(routes.rolling.detail(data.id));
+      console.log(data);
+    },
+  });
   const handleSubmit = () => {
     if (isFirstPage) return setIsFirstPage(false);
-    navigate(routes.rolling.detail(Math.random().toString(36).slice(2, 9)));
+    mutate({ subject: name, theme: themeList[selectedThemeIndex].themeEng });
   };
 
   return (
@@ -44,11 +67,14 @@ export default function RollingSetup() {
               </h2>
             </StyledHeading>
           </NameForm>
-          <ThemeCarousel />
+          <ThemeCarousel
+            onActiveIndexChange={(i) => setSelectedThemeIndex(i)}
+            activeIndex={selectedThemeIndex}
+          />
         </StyledSectionWrapper>
       )}
       <Button
-        disabled={(!isFirstPage && !name.length) || isError}
+        disabled={(!isFirstPage && !name.length) || isError || isPending}
         hasMarginBottom
         onClick={handleSubmit}
       >

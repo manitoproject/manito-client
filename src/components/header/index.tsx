@@ -3,29 +3,39 @@ import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { HamburgerMenu, LeftChevron } from '../../assets/svg';
-import headerNavigation from '../../lib/headerNavigation';
+import headerNavigation, { HeaderNavigation } from '../../lib/headerNavigation';
 import { getFontSizeAndWeight } from '../../styles/utils';
 import Sidebar from './sidebar';
 
-export default function Header() {
+interface HeaderProps {
+  header: HeaderNavigation | null;
+}
+
+export default function Header({ header }: HeaderProps) {
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const header =
+  const headerInfo =
     headerNavigation.find(
       (header) => location.pathname === header.pathname(),
     ) ?? headerNavigation[headerNavigation.length - 1];
   return (
-    <StyledHeader>
+    <StyledHeader bgColor={header?.bgColor} textColor={header?.textColor}>
       <div>
-        {header.isShowLeftBtn && (
-          <button onClick={() => navigate(-1)}>
+        {(header?.isShowLeftBtn ?? headerInfo.isShowLeftBtn) && (
+          <LeftButton
+            textColor={header?.textColor}
+            onClick={() => navigate(-1)}
+          >
             <LeftChevron />
-          </button>
+          </LeftButton>
         )}
-        <h1>{header.title}</h1>
-        {header.isShowMenuBtn && (
-          <MenuButton onClick={() => setIsSideMenuOpen(true)}>
+        <h1>{header?.title ?? headerInfo.title}</h1>
+        {(header?.isShowMenuBtn ?? headerInfo.isShowMenuBtn) && (
+          <MenuButton
+            textColor={header?.textColor}
+            onClick={() => setIsSideMenuOpen(true)}
+          >
             <HamburgerMenu />
           </MenuButton>
         )}
@@ -37,10 +47,13 @@ export default function Header() {
     </StyledHeader>
   );
 }
-const StyledHeader = styled.header`
+const StyledHeader = styled.header<{ bgColor?: string; textColor?: string }>`
   width: 100%;
-  background-color: ${(props) => props.theme.colors.white};
-  border-bottom: 1px solid ${(props) => props.theme.colors.gray[300]};
+  background-color: ${(props) => props.bgColor ?? props.theme.colors.white};
+  border-bottom: ${(props) =>
+    props.bgColor
+      ? props.bgColor
+      : `1px solid ${props.theme.colors.gray[300]}`};
   /* z-index: 50;
   box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
     0 8px 10px -6px rgb(0 0 0 / 0.1); */
@@ -54,13 +67,31 @@ const StyledHeader = styled.header`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: ${({ theme }) => theme.colors.gray[800]};
-    padding: ${({ theme }) => `0 ${theme.sizes.padding}`};
+    color: ${(props) => props.textColor ?? props.theme.colors.gray[800]};
+    padding: ${(props) => `0 ${props.theme.sizes.padding}`};
     padding-top: 14px;
     padding-bottom: 14px;
     ${getFontSizeAndWeight('heading3', 'medium')}
   }
 `;
-const MenuButton = styled.button`
+
+const LeftButton = styled.button<{ textColor?: string }>`
+  svg {
+    rect {
+      fill: ${(props) =>
+        props.textColor ? 'transparent' : props.theme.colors.white};
+    }
+    path {
+      stroke: ${(props) => props.textColor};
+    }
+  }
+`;
+
+const MenuButton = styled.button<{ textColor?: string }>`
+  svg {
+    path {
+      stroke: ${(props) => props.textColor ?? 'inherit'};
+    }
+  }
   margin-left: auto;
 `;
