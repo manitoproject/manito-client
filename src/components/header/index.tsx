@@ -2,9 +2,9 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { HamburgerMenu, LeftChevron } from '../assets/svg';
-import headerNavigation from '../lib/headerNavigation';
-import { getFontSizeAndWeight } from '../styles/utils';
+import { HamburgerMenu, LeftChevron } from '../../assets/svg';
+import headerNavigation from '../../lib/headerNavigation';
+import { getFontSizeAndWeight } from '../../styles/utils';
 import Sidebar from './sidebar';
 
 export default function Header() {

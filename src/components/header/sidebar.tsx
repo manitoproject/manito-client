@@ -1,8 +1,9 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
-import { Document, Home, Logout, Profile } from '../assets/svg';
-import useOutsideClick from '../hooks/useOutsideClick';
+import { Document, Home, Logout, My, Profile } from '../../assets/svg';
+import useOutsideClick from '../../hooks/useOutsideClick';
+import { routes } from '../../router';
 
 interface SideMenuProps {
   onClose: () => void;
@@ -11,27 +12,28 @@ interface SideMenuProps {
 
 const LINKS = [
   {
-    href: '#',
+    href: () => routes.index,
     name: '첫 화면',
     svg: <Home />,
   },
   {
-    href: '#',
+    href: () => routes.home,
     name: '컨텐츠',
     svg: <Document />,
   },
   {
-    href: '#',
+    href: () => routes.my,
     name: '마이 페이지',
-    svg: <Home />,
+    svg: <My />,
   },
 ];
 
 export default function Sidebar({ onClose, isOpen }: SideMenuProps) {
   const ref = useOutsideClick(() => onClose(), isOpen);
   return (
-    <div ref={ref}>
-      <StyledNav isOpen={isOpen}>
+    <div>
+      <StyledOverlay isOpen={isOpen} />
+      <StyledNav ref={ref} isOpen={isOpen}>
         <StyledNicknameWrapper>
           <div>
             <Profile />
@@ -42,7 +44,7 @@ export default function Sidebar({ onClose, isOpen }: SideMenuProps) {
           <StyledNavLinks>
             {LINKS.map((link) => (
               <li key={link.name}>
-                <Link to={link.href}>
+                <Link onClick={onClose} to={link.href()}>
                   {link.svg}
                   <span>{link.name}</span>
                 </Link>
@@ -58,6 +60,14 @@ export default function Sidebar({ onClose, isOpen }: SideMenuProps) {
     </div>
   );
 }
+const StyledOverlay = styled.div<{ isOpen: boolean }>`
+  display: ${(props) => (props.isOpen ? 'block' : 'none')};
+  position: absolute;
+  width: 100%;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  height: 100vh;
+`;
 
 const StyledNavLinkWrapper = styled.div`
   display: flex;
@@ -120,6 +130,7 @@ const StyledNavLinks = styled.ul`
   li {
     color: ${(props) => props.theme.colors.gray[900]};
     a {
+      align-items: center;
       padding: 6px 8px;
       gap: 4px;
       display: flex;

@@ -7,6 +7,7 @@ export { default as Home } from './home.svg';
 export { default as KakaoLogo } from './kakao-logo.svg';
 export { default as LeftChevron } from './left-chevron.svg';
 export { default as Logout } from './logout.svg';
+export { default as My } from './my.svg';
 export { default as Profile } from './profile.svg';
 export { default as RadioButton } from './radio-button.svg';
 export { default as RadioButtonActive } from './radio-button-active.svg';
