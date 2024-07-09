@@ -6,7 +6,7 @@ import { ButtonProps } from './buttons';
 type ButtonType = Pick<ButtonProps, 'backgroundColor' | 'hasMarginBottom'>;
 
 export const StyledButton = styled.button<ButtonType>`
-  margin-bottom: ${({ hasMarginBottom }) => (hasMarginBottom ? `50px` : 0)};
+  margin-bottom: ${({ hasMarginBottom }) => (hasMarginBottom ? `16px` : 0)};
   &:disabled {
     background-color: ${(props) => props.theme.colors.gray[200]};
     color: ${(props) => props.theme.colors.gray[500]};
