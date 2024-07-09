@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
+import { RollingBadge } from '../assets/imgs';
 import { routes } from '../router';
 import { getFontSizeAndWeight } from '../styles/utils';
 const CONTENTS = [
@@ -8,19 +9,19 @@ const CONTENTS = [
     name: '롤링 페이퍼',
     isActive: true,
     href: () => routes.rolling.setup(),
-    img: 'src/assets/imgs/rolling.png',
+    badge: RollingBadge,
   },
   {
     name: '케이크 꾸미기',
     isActive: false,
     href: () => '',
-    img: 'src/assets/imgs/rolling.png',
+    badge: RollingBadge,
   },
   {
     name: '보물상자 채우기',
     isActive: false,
     href: () => '',
-    img: 'src/assets/imgs/rolling.png',
+    badge: RollingBadge,
   },
 ];
 
@@ -36,17 +37,20 @@ export default function Home() {
         </StyledHeading>
         <StyeldBanner></StyeldBanner>
         <StyeldContents>
-          {CONTENTS.map((content) => (
-            <StyledContentItem key={content.name}>
-              {content.isActive ? (
-                <Link to={content.href()}>
-                  <img src={content.img} alt={content.name} />
-                </Link>
-              ) : (
-                <div>{content.name}</div>
-              )}
-            </StyledContentItem>
-          ))}
+          {CONTENTS.map((content) => {
+            const Badge = content.badge;
+            return (
+              <StyledContentItem key={content.name}>
+                {content.isActive ? (
+                  <Link to={content.href()}>
+                    <Badge />
+                  </Link>
+                ) : (
+                  <div>{content.name}</div>
+                )}
+              </StyledContentItem>
+            );
+          })}
         </StyeldContents>
       </section>
     </StyledWrapper>

@@ -72,7 +72,7 @@ const StyledWrapper = styled.div`
 
 const StyledMain = styled.main<{ bg?: string }>`
   background-image: ${(props) =>
-    props.theme ? `url('/src/assets/imgs/theme/${props.bg}.png')` : 'none'};
+    props.theme ? `url('/src/assets/imgs/bg/${props.bg}.png')` : 'none'};
   background-size: cover;
   background-color: ${(props) => props.theme.colors.white};
   width: 100%;
