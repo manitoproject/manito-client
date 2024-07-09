@@ -6,7 +6,7 @@ import { Logo } from '../assets/svg';
 import { Button, KakaoLoginButton } from '../components/common/buttons';
 import { routes } from '../router';
 import { getFontSizeAndWeight } from '../styles/utils';
-import { Backdrop } from './layout';
+import { Backdrop } from './layout.style';
 
 export default function Index() {
   const [isButtonClicked, setIsButtonClicked] = useState(false);
