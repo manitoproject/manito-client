@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { Logo } from '../assets/svg';
+import { Logo } from '../assets/svg/icons';
 import { Button, KakaoLoginButton } from '../components/common/buttons';
 import { routes } from '../router';
 import { getFontSizeAndWeight } from '../styles/utils';

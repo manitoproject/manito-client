@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { RadioButton, RadioButtonActive } from '../../assets/svg';
+import { RadioButton, RadioButtonActive } from '../../assets/svg/icons';
 
 interface ThemeItemProps {
   isActive: boolean;

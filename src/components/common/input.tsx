@@ -1,6 +1,6 @@
 import { ForwardedRef, forwardRef, useEffect } from 'react';
 
-import { Close } from '../../assets/svg';
+import { Close } from '../../assets/svg/icons';
 import { StyledWrapper } from './input.style';
 
 export interface InputProps

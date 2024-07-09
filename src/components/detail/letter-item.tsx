@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-import { AddCircle } from '../../assets/svg';
+import { AddCircle } from '../../assets/svg/icons';
 
 type Emoji = {
   id: number;

@@ -1,4 +1,4 @@
-import { KakaoLogo } from '../../assets/svg';
+import { KakaoLogo } from '../../assets/svg/icons';
 import { BackgroundColor } from '../../styles/theme';
 import { StyledButton, StyledKakaoButton } from './buttons.style';
 
