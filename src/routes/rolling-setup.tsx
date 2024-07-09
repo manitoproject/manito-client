@@ -30,7 +30,7 @@ const createBoard = async ({
 export default function RollingSetup() {
   const { handleNameChange, handleNameReset, isError, name, nameRef } =
     useNameForm('title');
-  const [selectedThemeIndex, setSelectedThemeIndex] = useState(0);
+  const [activeThemeIndex, setActiveThemeIndex] = useState(0);
   const [isFirstPage, setIsFirstPage] = useState(true);
   const navigate = useNavigate();
   const { mutate, isPending } = useMutation({
@@ -42,7 +42,7 @@ export default function RollingSetup() {
   });
   const handleSubmit = () => {
     if (isFirstPage) return setIsFirstPage(false);
-    mutate({ subject: name, theme: themeList[selectedThemeIndex].themeEng });
+    mutate({ subject: name, theme: themeList[activeThemeIndex].themeEng });
   };
 
   return (
@@ -68,8 +68,8 @@ export default function RollingSetup() {
             </StyledHeading>
           </NameForm>
           <ThemeCarousel
-            onActiveIndexChange={(i) => setSelectedThemeIndex(i)}
-            activeIndex={selectedThemeIndex}
+            onActiveIndexChange={(i) => setActiveThemeIndex(i)}
+            activeIndex={activeThemeIndex}
           />
         </StyledSectionWrapper>
       )}
