@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { Logo } from '../assets/svg';
 import { Button, KakaoLoginButton } from '../components/common/buttons';
 import { routes } from '../router';
 import { getFontSizeAndWeight } from '../styles/utils';
@@ -13,7 +14,7 @@ export default function Index() {
   return (
     <StyledWrapper>
       <StyledLogoWrapper>
-        <img src="src/assets/imgs/logo.png" alt="logo" />
+        <Logo />
       </StyledLogoWrapper>
       {isButtonClicked ? (
         <KakaoLoginButton
