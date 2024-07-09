@@ -56,7 +56,7 @@ const theme = {
 export type ThemeType = typeof theme;
 export type Colors = ThemeType['colors'];
 export type ColorNumber = keyof Colors['powderBlue'] | keyof Colors['gray'];
-export type BackGroundColor =
+export type BackgroundColor =
   | keyof Omit<Colors, 'powderBlue'>
   | `powderBlue-${ColorNumber}`
   | `gray-${ColorNumber}`;
