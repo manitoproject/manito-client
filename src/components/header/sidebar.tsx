@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
-import { Document, Home, Logout, My, Profile } from '../../assets/svg';
+import { Document, Home, Logout, Profile } from '../../assets/svg';
+import { useDisableScroll } from '../../hooks';
 import useOutsideClick from '../../hooks/useOutsideClick';
 import { routes } from '../../router';
 
@@ -21,15 +22,17 @@ const LINKS = [
     name: '컨텐츠',
     svg: <Document />,
   },
-  {
-    href: () => routes.my,
-    name: '마이 페이지',
-    svg: <My />,
-  },
+  // {
+  //   href: () => routes
+  //   name: '마이 페이지',
+  //   svg: <My />,
+  // },
 ];
 
 export default function Sidebar({ onClose, isOpen }: SideMenuProps) {
   const ref = useOutsideClick(() => onClose(), isOpen);
+  useDisableScroll(isOpen);
+
   return (
     <div>
       <StyledOverlay isOpen={isOpen} />
@@ -60,7 +63,7 @@ export default function Sidebar({ onClose, isOpen }: SideMenuProps) {
     </div>
   );
 }
-const StyledOverlay = styled.div<{ isOpen: boolean }>`
+const StyledOverlay = styled.div<Pick<SideMenuProps, 'isOpen'>>`
   display: ${(props) => (props.isOpen ? 'block' : 'none')};
   position: absolute;
   width: 100%;
@@ -82,7 +85,7 @@ const StyledNavLinkWrapper = styled.div`
   }
 `;
 
-const StyledNav = styled.nav<{ isOpen: boolean }>`
+const StyledNav = styled.nav<Pick<SideMenuProps, 'isOpen'>>`
   padding: 46px 16px;
   display: flex;
   flex-direction: column;
