@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { HamburgerMenu, LeftChevron } from '../../assets/svg';
-import headerNavigation, { HeaderNavigation } from '../../lib/headerNavigation';
+import headerNavigation, { HeaderNavigation } from '../../lib/header-map';
 import { getFontSizeAndWeight } from '../../styles/utils';
 
 interface HeaderProps {

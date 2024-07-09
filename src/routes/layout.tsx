@@ -7,7 +7,7 @@ import { Outlet, useParams } from 'react-router-dom';
 
 import Header from '../components/header';
 import Sidebar from '../components/header/sidebar';
-import { HeaderNavigation } from '../lib/headerNavigation';
+import { HeaderNavigation } from '../lib/header-map';
 import theme from '../styles/theme';
 
 const getBoard = async (id?: string) => {
