@@ -97,7 +97,7 @@ const StyledNav = styled.nav<Pick<SideMenuProps, 'isOpen'>>`
   width: 48%;
   height: 100vh;
   z-index: 999;
-  transition: right 500ms ease;
+  transition: right 300ms ease-out;
   box-shadow: ${(props) =>
     props.isOpen ? ' 0px 0px 4px 0px rgba(0, 0, 0, 0.2)' : 'none'};
 `;

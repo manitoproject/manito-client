@@ -6,8 +6,8 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button } from '../components/common/buttons';
 import NameForm from '../components/common/name-form';
-import RollingIntroScreen from '../components/intro-screen';
-import ThemeCarousel, { themeList } from '../components/theme/theme-carousel';
+import IntroScreen from '../components/setup/intro-screen';
+import ThemeCarousel, { themeList } from '../components/setup/theme-carousel';
 import { useNameForm } from '../hooks';
 import { titleMaxLength } from '../lib/regexPatterns';
 import { routes } from '../router';
@@ -48,7 +48,7 @@ export default function RollingSetup() {
   return (
     <StyledWrapper>
       {isFirstPage ? (
-        <RollingIntroScreen />
+        <IntroScreen />
       ) : (
         <StyledSectionWrapper>
           <NameForm

@@ -10,17 +10,17 @@ export const themeList = [
   {
     themeKor: '우주',
     themeEng: 'space',
-    img: '/src/assets/imgs/theme/space.png',
+    img: '/src/assets/imgs/bg/space.png',
   },
   {
     themeKor: '자연',
     themeEng: 'nature',
-    img: '/src/assets/imgs/theme/nature.png',
+    img: '/src/assets/imgs/bg/nature.png',
   },
   {
     themeKor: '회사',
     themeEng: 'office',
-    img: '/src/assets/imgs/theme/space.png',
+    img: '/src/assets/imgs/bg/space.png',
   },
 ];
 

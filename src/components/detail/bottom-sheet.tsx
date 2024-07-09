@@ -53,7 +53,7 @@ const StyledBottomSheet = styled.div<Pick<BottomSheetProps, 'isOpen'>>`
   position: fixed;
   border-top: 1px solid ${(props) => props.theme.colors.gray[300]};
   bottom: ${(props) => (props.isOpen ? '0' : '-376.5px')};
-  transition: bottom 300ms ease;
+  transition: bottom 300ms ease-out;
   max-width: ${(props) => props.theme.sizes.mobile};
   width: 100%;
   display: flex;

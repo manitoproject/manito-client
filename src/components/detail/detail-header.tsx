@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { Clip } from '../../assets/svg';
 import { getFontSizeAndWeight } from '../../styles/utils';
 
-export default function RollingHeader() {
+export default function DetailHeader() {
   return (
     <StyledRollingHeader>
       <span>

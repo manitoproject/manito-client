@@ -5,7 +5,7 @@ import Index from './routes';
 import Home from './routes/home';
 import Join from './routes/join';
 import Layout from './routes/layout';
-import Rolling from './routes/rolling';
+import RollingDetail from './routes/rolling-detail';
 import RollingSetup from './routes/rolling-setup';
 
 export const routes = {
@@ -47,7 +47,7 @@ const router = () =>
             },
             {
               path: routes.rolling.detail(),
-              element: <Rolling />,
+              element: <RollingDetail />,
             },
           ],
         },

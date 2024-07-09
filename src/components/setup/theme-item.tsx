@@ -39,7 +39,9 @@ const StyledThemeItem = styled.div<{ isActive: boolean }>`
     props.isActive
       ? props.theme.colors.powderBlue[50]
       : props.theme.colors.white};
-  border: 1px solid ${(props) => props.theme.colors.gray[300]};
+  border: 1px solid
+    ${({ isActive, theme }) =>
+      isActive ? theme.colors.powderBlue[900] : theme.colors.gray[300]};
   border-radius: 8px;
   div {
     width: 100%;

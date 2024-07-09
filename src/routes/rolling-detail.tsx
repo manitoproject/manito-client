@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 
-import RollingHeader from '../components/rolling/rolling-header';
-import RollingList from '../components/rolling/rolling-list';
-import BottomSheet from '../components/theme/bottom-sheet';
+import BottomSheet from '../components/detail/bottom-sheet';
+import RollingHeader from '../components/detail/detail-header';
+import RollingList from '../components/detail/letter-list';
 
-export default function Rolling() {
+export default function RollingDetail() {
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
   const [activeEmojiIndex, setActiveEmojiIndex] = useState<null | number>(null);
 
@@ -13,6 +13,7 @@ export default function Rolling() {
     <StyledWrapper>
       <RollingHeader />
       <RollingList
+        setActiveEmojiIndex={setActiveEmojiIndex}
         activeEmojiIndex={activeEmojiIndex}
         onBottomSheetOpen={setIsBottomSheetOpen}
       />
