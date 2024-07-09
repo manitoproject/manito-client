@@ -36,8 +36,6 @@ const StyledWrapper = styled.div`
   margin: 0 auto;
   width: 100%;
   padding: ${(props) => `0 ${props.theme.sizes.padding}`};
-  /* box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
-    0 8px 10px -6px rgb(0 0 0 / 0.1); */
   flex-direction: column;
   display: flex;
   min-height: 100vh;

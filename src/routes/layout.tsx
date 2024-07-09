@@ -1,9 +1,12 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+import { useState } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
 
 import Header from '../components/header';
+import Sidebar from '../components/header/sidebar';
 import { HeaderNavigation } from '../lib/headerNavigation';
 import theme from '../styles/theme';
 
@@ -14,6 +17,7 @@ const getBoard = async (id?: string) => {
 };
 
 export default function Layout() {
+  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const params = useParams();
   const id = params.id;
   const { data } = useQuery({
@@ -33,8 +37,12 @@ export default function Layout() {
     : null;
   return (
     <StyledWrapper>
-      <Header header={header} />
+      <Header header={header} onSidebarOpen={() => setIsSideMenuOpen(true)} />
       <StyledMain bg={header?.theme}>{<Outlet />}</StyledMain>
+      <Sidebar
+        isOpen={isSideMenuOpen}
+        onClose={() => setIsSideMenuOpen(false)}
+      />
       <Backdrop />
     </StyledWrapper>
   );
@@ -63,9 +71,6 @@ const StyledWrapper = styled.div`
 `;
 
 const StyledMain = styled.main<{ bg?: string }>`
-  /* z-index: 50;
-  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
-    0 8px 10px -6px rgb(0 0 0 / 0.1); */
   background-image: ${(props) =>
     props.theme ? `url('/src/assets/imgs/theme/${props.bg}.png')` : 'none'};
   background-size: cover;
@@ -73,9 +78,10 @@ const StyledMain = styled.main<{ bg?: string }>`
   width: 100%;
   flex: 1;
   display: flex;
-  padding: ${({
-    theme: {
-      sizes: { padding },
-    },
-  }) => `${padding} ${padding} 0`};
+  ${({ theme }) =>
+    css`
+      padding-left: ${theme.sizes.padding};
+      padding-right: ${theme.sizes.padding};
+      padding-top: calc(${theme.sizes.padding} + ${theme.sizes.header});
+    `}
 `;

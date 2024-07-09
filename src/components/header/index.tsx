@@ -1,18 +1,16 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { HamburgerMenu, LeftChevron } from '../../assets/svg';
 import headerNavigation, { HeaderNavigation } from '../../lib/headerNavigation';
 import { getFontSizeAndWeight } from '../../styles/utils';
-import Sidebar from './sidebar';
 
 interface HeaderProps {
   header: HeaderNavigation | null;
+  onSidebarOpen: () => void;
 }
 
-export default function Header({ header }: HeaderProps) {
-  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
+export default function Header({ header, onSidebarOpen }: HeaderProps) {
   const navigate = useNavigate();
   const location = useLocation();
   const headerInfo =
@@ -32,33 +30,25 @@ export default function Header({ header }: HeaderProps) {
         )}
         <h1>{header?.title ?? headerInfo.title}</h1>
         {(header?.isShowMenuBtn ?? headerInfo.isShowMenuBtn) && (
-          <MenuButton
-            textColor={header?.textColor}
-            onClick={() => setIsSideMenuOpen(true)}
-          >
+          <MenuButton textColor={header?.textColor} onClick={onSidebarOpen}>
             <HamburgerMenu />
           </MenuButton>
         )}
       </div>
-      <Sidebar
-        isOpen={isSideMenuOpen}
-        onClose={() => setIsSideMenuOpen(false)}
-      />
     </StyledHeader>
   );
 }
 const StyledHeader = styled.header<{ bgColor?: string; textColor?: string }>`
+  max-width: ${(props) => props.theme.sizes.mobile};
   width: 100%;
+  z-index: 50;
+  position: fixed;
   background-color: ${(props) => props.bgColor ?? props.theme.colors.white};
   border-bottom: ${(props) =>
     props.bgColor
       ? props.bgColor
       : `1px solid ${props.theme.colors.gray[300]}`};
-  /* z-index: 50;
-  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
-    0 8px 10px -6px rgb(0 0 0 / 0.1); */
   & > div:first-child {
-    position: relative;
     h1 {
       left: 50%;
       transform: translateX(-50%);

@@ -19,6 +19,7 @@ const theme = {
   sizes: {
     mobile: '430px',
     padding: '24px',
+    header: '54px',
   },
   colors: {
     powderBlue: {
