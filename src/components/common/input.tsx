@@ -22,7 +22,11 @@ export default forwardRef(function Input(
     <StyledWrapper isError={isError}>
       <div>
         <input ref={ref} {...props} />
-        <button type="button" onClick={onClick}>
+        <button
+          onMouseDown={(e) => e.preventDefault()}
+          type="button"
+          onClick={onClick}
+        >
           <Close />
         </button>
       </div>

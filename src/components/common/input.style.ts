@@ -14,23 +14,37 @@ export const StyledWrapper = styled.div<Pick<InputProps, 'isError'>>`
       isError ? theme.colors.error : theme.colors.black};
     font-size: 14px;
     box-sizing: border-box;
-    padding: 15px 44px 15px 12px;
+    padding: 16px 44px 16px 12px;
     width: 100%;
+    background-color: ${({ theme, isError }) =>
+      isError ? theme.colors['powderBlue-100'] : theme.colors['powderBlue-50']};
     border-radius: 4px;
-    border: 1px solid
+    outline: 1px solid
       ${({ theme, isError }) =>
-        isError ? theme.colors.error : theme.colors['gray-300']};
+        isError ? theme.colors.error : theme.colors['powderBlue-300']};
   }
   input::placeholder {
     color: ${(props) => props.theme.colors['gray-400']};
   }
   input:focus {
-    border: 1px solid
+    background-color: ${({ theme }) => theme.colors['powderBlue-100']};
+    outline: 1px solid
       ${({ theme, isError }) =>
-        isError ? theme.colors.error : theme.colors['gray-600']};
+        isError ? theme.colors.error : theme.colors['powderBlue-900']};
+  }
+
+  &:focus-within button {
+    display: block;
+  }
+
+  input:disabled {
+    color: ${({ theme }) => theme.colors['gray-500']};
+    background-color: ${({ theme }) => theme.colors['gray-100']};
     outline: none;
   }
   button {
+    display: none;
+    transition: display 0s ease 50ms;
     position: absolute;
     top: 50%;
     right: 12px;
