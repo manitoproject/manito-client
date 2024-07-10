@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
-import { useNavigate } from 'react-router-dom';
 
-import { Button } from '../components/common/buttons';
+import { LinkButton } from '../components/common/buttons';
 import NameForm from '../components/common/name-form';
 import { useNameForm } from '../hooks';
 import { nicknameMaxLength } from '../lib/regexPatterns';
@@ -11,11 +10,7 @@ import { getFontSizeAndWeight } from '../styles/utils';
 export default function Join() {
   const { handleNameChange, handleNameReset, isError, name, nameRef } =
     useNameForm('nickname');
-  const navigate = useNavigate();
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    navigate(routes.home);
-  };
+
   return (
     <StyledWrapper>
       <NameForm
@@ -34,14 +29,15 @@ export default function Join() {
         </StyledHeading>
       </NameForm>
       <div>
-        <Button
-          onClick={handleSubmit}
+        <LinkButton
+          to={routes.home}
+          onClick={(e) => (!name.length || isError) && e.preventDefault()}
           backgroundColor="powderBlue-800"
           hasMarginBottom
           disabled={!name.length || isError}
         >
           가입완료
-        </Button>
+        </LinkButton>
       </div>
     </StyledWrapper>
   );
