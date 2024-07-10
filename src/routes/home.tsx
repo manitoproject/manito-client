@@ -70,22 +70,22 @@ const StyledHeading = styled.div`
   flex-direction: column;
   gap: 4px;
   p:first-child {
-    color: ${(props) => props.theme.colors.gray[800]};
+    color: ${(props) => props.theme.colors['gray-800']};
 
     ${getFontSizeAndWeight('heading2', 'medium')}
   }
   p:last-child {
-    color: ${(props) => props.theme.colors.gray[900]};
+    color: ${(props) => props.theme.colors['gray-900']};
     ${getFontSizeAndWeight('heading1', 'bold')}
     strong {
-      color: ${(props) => props.theme.colors.powderBlue[900]};
+      color: ${(props) => props.theme.colors['powderBlue-900']};
     }
   }
 `;
 const StyeldBanner = styled.div`
   width: 100%;
   border-radius: 10px;
-  background-color: ${(props) => props.theme.colors.powderBlue[300]};
+  background-color: ${(props) => props.theme.colors['powderBlue-300']};
   height: 80px;
 `;
 const StyeldContents = styled.ul`
@@ -100,7 +100,7 @@ const StyledContentItem = styled.li`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: ${(props) => props.theme.colors.powderBlue[100]};
+    background-color: ${(props) => props.theme.colors['powderBlue-100']};
     border-radius: 10px;
     aspect-ratio: 1;
 

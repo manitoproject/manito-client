@@ -5,7 +5,7 @@ import { BottomSheetProps } from './bottom-sheet';
 type BottomSheetType = Pick<BottomSheetProps, 'isOpen'> & { height?: number };
 export const StyledBottomSheet = styled.div<BottomSheetType>`
   position: fixed;
-  border-top: 1px solid ${(props) => props.theme.colors.gray[300]};
+  border-top: 1px solid ${(props) => props.theme.colors['gray-300']};
   bottom: ${({ isOpen, height }) => (isOpen ? '0' : `-${height}px`)};
   transition: bottom 300ms ease-out;
   max-width: ${(props) => props.theme.sizes.mobile};

@@ -22,48 +22,35 @@ const theme = {
     header: '54px',
   },
   colors: {
-    powderBlue: {
-      50: '#F7F8FB',
-      100: '#EEF2FB',
-      200: '#D7E3FD',
-      300: '#CCDAFD',
-      400: '#C2D3FF',
-      500: '#B6CCFE',
-      600: '#ABC3FF',
-      700: '#88A8F8',
-      800: '#6C94F9',
-      900: '#5383FB',
-    },
-    gray: {
-      50: '#F9F9F9',
-      100: '#F5F5F5',
-      200: '#EEEEEE',
-      300: '#E0E0E0',
-      400: '#BDBDBD',
-      500: '#9E9E9E',
-      600: '#757575',
-      700: '#616161',
-      800: '#424242',
-      900: '#212121',
-    },
-    space: {
-      400: '#4E86F4',
-      500: '#3177FF',
-      600: '#0D5FFF',
-      700: '#0D5FFF',
-    },
-    green: {
-      50: '#EDF7EB',
-    },
-    olive: {
-      700: '#638C18',
-      800: '#4B7300',
-    },
-    teal: {
-      700: '#268A50',
-      800: '#187A41',
-      900: '#16592D',
-    },
+    'powderBlue-50': '#F7F8FB',
+    'powderBlue-100': '#EEF2FB',
+    'powderBlue-200': '#D7E3FD',
+    'powderBlue-300': '#CCDAFD',
+    'powderBlue-400': '#C2D3FF',
+    'powderBlue-500': '#B6CCFE',
+    'powderBlue-600': '#ABC3FF',
+    'powderBlue-700': '#88A8F8',
+    'powderBlue-800': '#6C94F9',
+    'powderBlue-900': '#5383FB',
+    'gray-50': 'F9F9F9',
+    'gray-100': '#F5F5F5',
+    'gray-200': '#EEEEEE',
+    'gray-300': '#E0E0E0',
+    'gray-400': '#BDBDBD',
+    'gray-500': '#9E9E9E',
+    'gray-600': '#757575',
+    'gray-700': '#616161',
+    'gray-800': '#424242',
+    'gray-900': '#212121',
+    'space-400': '#4E86F4',
+    'space-500': '#3177FF',
+    'space-600': '#0D5FFF',
+    'space-700': '#0E374D',
+    'green-50': '#EDF7EB',
+    'olive-700': '#638C18',
+    'teal-700': '#268A50',
+    'teal-800': '#187A41',
+    'teal-900': '#16592D',
     white: '#FFFFFF',
     black: '#000000',
     kakao: '#FEE500',
@@ -72,11 +59,6 @@ const theme = {
 };
 
 export type ThemeType = typeof theme;
-export type Colors = ThemeType['colors'];
-export type ColorNumber = keyof Colors['powderBlue'] | keyof Colors['gray'];
-export type BackgroundColor =
-  | keyof Omit<Colors, 'powderBlue'>
-  | `powderBlue-${ColorNumber}`
-  | `gray-${ColorNumber}`;
+export type ColorKey = keyof ThemeType['colors'];
 
 export default theme;

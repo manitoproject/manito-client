@@ -13,10 +13,10 @@ export const StyledThemeItem = styled.div<Pick<ThemeItemProps, 'isActive'>>`
   flex-direction: column;
   gap: 8px;
   background-color: ${({ isActive, theme }) =>
-    isActive ? theme.colors.powderBlue[50] : theme.colors.white};
+    isActive ? theme.colors['powderBlue-50'] : theme.colors.white};
   border: 1px solid
     ${({ isActive, theme }) =>
-      isActive ? theme.colors.powderBlue[900] : theme.colors.gray[300]};
+      isActive ? theme.colors['powderBlue-900'] : theme.colors['gray-300']};
   border-radius: 8px;
   div {
     width: 100%;
@@ -34,9 +34,9 @@ export const StyledTitle = styled.div<Pick<ThemeItemProps, 'isActive'>>`
   font-weight: ${({ isActive }) => (isActive ? 700 : 500)};
   width: 100%;
   color: ${({ isActive, theme }) =>
-    isActive ? theme.colors.powderBlue[900] : theme.colors.gray[600]};
+    isActive ? theme.colors['powderBlue-900'] : theme.colors['gray-600']};
   padding: 6px 0;
-  border: 1px solid ${({ theme }) => theme.colors.gray[300]};
+  border: 1px solid ${({ theme }) => theme.colors['gray-300']};
   border-radius: 99px;
   background-color: ${({ theme }) => theme.colors.white};
 `;

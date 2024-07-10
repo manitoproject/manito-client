@@ -19,15 +19,15 @@ export const StyledWrapper = styled.div<Pick<InputProps, 'isError'>>`
     border-radius: 4px;
     border: 1px solid
       ${({ theme, isError }) =>
-        isError ? theme.colors.error : theme.colors.gray[300]};
+        isError ? theme.colors.error : theme.colors['gray-300']};
   }
   input::placeholder {
-    color: ${(props) => props.theme.colors.gray[400]};
+    color: ${(props) => props.theme.colors['gray-400']};
   }
   input:focus {
     border: 1px solid
       ${({ theme, isError }) =>
-        isError ? theme.colors.error : theme.colors.gray[600]};
+        isError ? theme.colors.error : theme.colors['gray-600']};
     outline: none;
   }
   button {
@@ -41,11 +41,11 @@ export const StyledWrapper = styled.div<Pick<InputProps, 'isError'>>`
     margin-left: 12px;
     font-size: 12px;
     color: ${({ theme, isError }) =>
-      isError ? theme.colors.error : theme.colors.gray[600]};
+      isError ? theme.colors.error : theme.colors['gray-600']};
     strong {
       font-weight: 700;
       color: ${({ theme, isError }) =>
-        isError ? `inherit` : theme.colors.gray[800]};
+        isError ? `inherit` : theme.colors['gray-800']};
     }
   }
 `;

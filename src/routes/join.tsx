@@ -59,13 +59,13 @@ const StyledHeading = styled.div`
   flex-direction: column;
   h2 {
     ${getFontSizeAndWeight('heading3', 'regular')}
-    color: ${(props) => props.theme.colors.gray[800]};
+    color: ${(props) => props.theme.colors['gray-800']};
   }
   h3 {
     ${getFontSizeAndWeight('heading1', 'bold')}
-    color: ${(props) => props.theme.colors.gray[900]};
+    color: ${(props) => props.theme.colors['gray-900']};
     strong {
-      color: ${(props) => props.theme.colors.powderBlue[900]};
+      color: ${(props) => props.theme.colors['powderBlue-900']};
     }
   }
 `;

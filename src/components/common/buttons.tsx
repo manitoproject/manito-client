@@ -1,7 +1,7 @@
 import { LinkProps } from 'react-router-dom';
 
 import { KakaoLogo } from '../../assets/svg/icons';
-import { BackgroundColor } from '../../styles/theme';
+import { ColorKey } from '../../styles/theme';
 import {
   StyledButton,
   StyledKakaoButton,
@@ -10,7 +10,7 @@ import {
 
 export interface CommonButtonProps {
   hasMarginBottom?: boolean;
-  backgroundColor?: BackgroundColor;
+  backgroundColor?: ColorKey;
 }
 
 interface ButtonProps

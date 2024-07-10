@@ -28,7 +28,7 @@ export const StyledMain = styled.main`
 `;
 
 export const StyledBrowserBackdrop = styled.div`
-  background-color: ${(props) => props.theme.colors.gray[100]};
+  background-color: ${(props) => props.theme.colors['gray-100']};
   width: 100vw;
   height: 100vh;
   left: 0;

@@ -46,7 +46,7 @@ const StyledWrapper = styled.section`
   flex-direction: column;
   gap: 16px;
   h2 {
-    color: ${(props) => props.theme.colors.gray[900]};
+    color: ${(props) => props.theme.colors['gray-900']};
     ${getFontSizeAndWeight('heading3', 'medium')};
   }
 `;

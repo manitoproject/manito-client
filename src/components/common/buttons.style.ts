@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
 import { ThemeType } from '../../styles/theme';
-import { getBackgroundColor } from '../../utils/style';
 import { CommonButtonProps, LinkButtonProps } from './buttons';
 
 const commonButtonStyle = ({
@@ -20,11 +19,13 @@ const commonButtonStyle = ({
   width: 100%;
   margin-bottom: ${hasMarginBottom ? `50px` : 0};
   color: ${theme.colors.white};
-  background-color: ${getBackgroundColor(backgroundColor)};
+  background-color: ${backgroundColor
+    ? theme['colors'][backgroundColor]
+    : theme.colors.black};
   font-size: 16px;
   &:disabled {
-    background-color: ${theme.colors.gray[200]};
-    color: ${theme.colors.gray[500]};
+    background-color: ${theme.colors['gray-200']};
+    color: ${theme.colors['gray-500']};
   }
 `;
 
@@ -56,9 +57,9 @@ export const StyledLinkButton = styled(Link)<LinkButtonProps>`
   ${({ disabled, theme, backgroundColor }) =>
     css`
       background-color: ${disabled
-        ? theme.colors.gray[200]
-        : getBackgroundColor(backgroundColor)};
-      color: ${disabled ? theme.colors.gray[500] : theme.colors.white};
+        ? theme.colors['gray-200']
+        : theme['colors'][backgroundColor ?? 'black']};
+      color: ${disabled ? theme.colors['gray-500'] : theme.colors.white};
       cursor: ${disabled ? 'auto' : 'pointer'};
       display: inline-flex;
       width: 100%;

@@ -49,7 +49,7 @@ const StyledMenuItem = styled.button<{ isActive: boolean }>`
   line-height: 20px;
   font-weight: ${({ isActive }) => (isActive ? 700 : 400)};
   color: ${({ isActive, theme }) =>
-    isActive ? theme.colors.gray[900] : theme.colors.gray[600]};
+    isActive ? theme.colors['gray-900'] : theme.colors['gray-600']};
   border-bottom: ${({ isActive, theme }) =>
-    isActive ? `1px solid ${theme.colors.gray[800]}` : 'none'};
+    isActive ? `1px solid ${theme.colors['gray-800']}` : 'none'};
 `;

@@ -20,7 +20,7 @@ export const StyledNavLinkWrapper = styled.div`
     display: flex;
     gap: 4px;
     font-size: 14px;
-    color: ${(props) => props.theme.colors.gray[600]};
+    color: ${(props) => props.theme.colors['gray-600']};
   }
 `;
 
@@ -45,13 +45,13 @@ export const StyledNicknameWrapper = styled.div`
   padding: 8px 0;
   gap: 4px;
   display: flex;
-  border-bottom: 1px dashed ${(props) => props.theme.colors.powderBlue[300]};
+  border-bottom: 1px dashed ${(props) => props.theme.colors['powderBlue-300']};
   align-items: center;
   div {
     min-width: 32px;
     min-height: 32px;
     border-radius: 999px;
-    background-color: ${(props) => props.theme.colors.gray[300]};
+    background-color: ${(props) => props.theme.colors['gray-300']};
     display: flex;
     align-items: center;
     justify-content: center;
@@ -70,7 +70,7 @@ export const StyledNavLinks = styled.ul`
   flex-direction: column;
   gap: 4px;
   li {
-    color: ${(props) => props.theme.colors.gray[900]};
+    color: ${(props) => props.theme.colors['gray-900']};
     a {
       align-items: center;
       padding: 6px 8px;

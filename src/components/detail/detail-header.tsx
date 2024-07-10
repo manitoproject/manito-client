@@ -21,16 +21,16 @@ const StyledRollingHeader = styled.div`
   align-items: center;
   justify-content: space-between;
   span {
-    color: ${(props) => props.theme.colors.gray[800]};
+    color: ${(props) => props.theme.colors['gray-800']};
     ${getFontSizeAndWeight('heading3', 'regular')};
     strong {
       font-weight: 700;
-      color: ${(props) => props.theme.colors.gray[900]};
+      color: ${(props) => props.theme.colors['gray-900']};
     }
   }
   button {
     padding: 6px;
     border-radius: 4px;
-    background-color: ${(props) => props.theme.colors.gray[100]};
+    background-color: ${(props) => props.theme.colors['gray-100']};
   }
 `;

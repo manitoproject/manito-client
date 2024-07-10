@@ -90,12 +90,12 @@ const StyledWrapper = styled.div`
 
 const StyledHeading = styled.div`
   h2 {
-    color: ${(props) => props.theme.colors.gray[900]};
+    color: ${(props) => props.theme.colors['gray-900']};
     ${getFontSizeAndWeight('heading3', 'medium')};
   }
   strong {
     font-size: 18px;
-    color: ${(props) => props.theme.colors.powderBlue[900]};
+    color: ${(props) => props.theme.colors['powderBlue-900']};
     ${getFontSizeAndWeight('heading2', 'bold')};
   }
 `;
