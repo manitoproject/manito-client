@@ -9,7 +9,7 @@ import FontList from '../components/detail/bottom-sheet/font-sheet/font-list';
 import FontSelectorSheet from '../components/detail/bottom-sheet/font-sheet/font-selector-sheet';
 import { ThemeKey } from '../lib/theme-map';
 import { routes } from '../router';
-import { StyledBackdrop } from './rolling-detail';
+import { StyledBackdrop } from './rolling-detail.style';
 
 const data: { ['theme']: ThemeKey } = {
   theme: 'space',
@@ -35,9 +35,16 @@ export default function RollingNew() {
             setActiveMenuIndex={setActiveMenuIndex}
           >
             {activeMenuIndex === 0 ? (
-              <FontList setActiveFontIndex={setActiveFontIndex} />
+              <FontList
+                activeFontIndex={activeFontIndex}
+                setActiveFontIndex={setActiveFontIndex}
+              />
             ) : (
-              <ColorList />
+              <ColorList
+                theme={data.theme}
+                activeColorIndex={activeColorIndex}
+                setActiveColorIndex={setActiveColorIndex}
+              />
             )}
           </FontSelectorSheet>
           <Button

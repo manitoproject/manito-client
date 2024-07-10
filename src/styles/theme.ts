@@ -48,6 +48,7 @@ const theme = {
     'space-700': '#0E374D',
     'green-50': '#EDF7EB',
     'olive-700': '#638C18',
+    'olive-800': '#4B7300',
     'teal-700': '#268A50',
     'teal-800': '#187A41',
     'teal-900': '#16592D',

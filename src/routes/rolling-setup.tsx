@@ -1,4 +1,3 @@
-import styled from '@emotion/styled';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import { useState } from 'react';
@@ -11,7 +10,11 @@ import { useNameForm } from '../hooks';
 import { titleMaxLength } from '../lib/regexPatterns';
 import themeList from '../lib/theme-map';
 import { routes } from '../router';
-import { getFontSizeAndWeight } from '../utils/style';
+import {
+  StyledHeading,
+  StyledSectionWrapper,
+  StyledWrapper,
+} from './rolling-setup.style';
 
 const createBoard = async ({
   subject,
@@ -76,32 +79,3 @@ export default function RollingSetup() {
     </StyledWrapper>
   );
 }
-
-const StyledWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  button {
-    margin-top: auto;
-    z-index: 50;
-  }
-`;
-
-const StyledHeading = styled.div`
-  h2 {
-    color: ${(props) => props.theme.colors['gray-900']};
-    ${getFontSizeAndWeight('heading3', 'medium')};
-  }
-  strong {
-    font-size: 18px;
-    color: ${(props) => props.theme.colors['powderBlue-900']};
-    ${getFontSizeAndWeight('heading2', 'bold')};
-  }
-`;
-
-const StyledSectionWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-`;
