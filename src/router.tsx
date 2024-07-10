@@ -5,18 +5,24 @@ import Index from './routes';
 import Home from './routes/home';
 import Join from './routes/join';
 import Layout from './routes/layout';
+import My from './routes/my';
 import RollingDetail from './routes/rolling-detail';
+import RollingNew from './routes/rolling-new';
 import RollingSetup from './routes/rolling-setup';
+import SetupIntro from './routes/setup-intro';
 
 export const routes = {
   index: '/' as const,
   join: '/join' as const,
   home: '/home' as const,
+  my: '/my' as const,
+  setupIntro: (content?: string) => `/intro/${content ?? ':content'}` as const,
   rolling: {
     default: '/rolling' as const,
     setup: () => `${routes.rolling.default}/setup` as const,
     detail: (id?: string) =>
       `${routes.rolling.default}/detail/${id ?? ':id'}` as const,
+    new: () => `${routes.rolling.default}/new` as const,
   },
 };
 
@@ -42,12 +48,24 @@ const router = () =>
               element: <Home />,
             },
             {
+              path: routes.my,
+              element: <My />,
+            },
+            {
+              path: routes.setupIntro(),
+              element: <SetupIntro />,
+            },
+            {
               path: routes.rolling.setup(),
               element: <RollingSetup />,
             },
             {
               path: routes.rolling.detail(),
               element: <RollingDetail />,
+            },
+            {
+              path: routes.rolling.new(),
+              element: <RollingNew />,
             },
           ],
         },

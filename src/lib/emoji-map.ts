@@ -24,10 +24,9 @@ import {
   SpaceTablecloth,
   SpaceTableclothBright,
 } from '../assets/svg/emoji';
+import { ThemeKey } from './theme-map';
 
-export type EmojiKey = 'nature' | 'space';
-
-const emojis: { [key in EmojiKey]: { name: string; svg: string }[] } = {
+const emojis: { [key in ThemeKey]: { name: string; svg: string }[] } = {
   nature: [
     {
       name: 'NatureCircle1',
@@ -128,6 +127,7 @@ const emojis: { [key in EmojiKey]: { name: string; svg: string }[] } = {
       svg: SpaceTableclothBright,
     },
   ],
+  office: [],
 };
 
 export default emojis;

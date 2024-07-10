@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 
-import theme, { BackgroundColor, ColorNumber, Colors } from './theme';
+import theme, { BackgroundColor, ColorNumber, Colors } from '../styles/theme';
 
 export const getFontSizeAndWeight = (
   size: keyof (typeof theme)['fontSize'],

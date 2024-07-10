@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { Logo } from '../assets/svg/icons';
 import { Button, KakaoLoginButton } from '../components/common/buttons';
 import { routes } from '../router';
-import { getFontSizeAndWeight } from '../styles/utils';
-import { Backdrop } from './layout.style';
+import { getFontSizeAndWeight } from '../utils/style';
+import { StyledBrowserBackdrop } from './layout.style';
 
 export default function Index() {
   const [isButtonClicked, setIsButtonClicked] = useState(false);
@@ -26,7 +26,7 @@ export default function Index() {
           시작하기
         </Button>
       )}
-      <Backdrop />
+      <StyledBrowserBackdrop />
     </StyledWrapper>
   );
 }

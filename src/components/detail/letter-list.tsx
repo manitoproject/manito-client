@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
 import React, { useEffect, useState } from 'react';
 
-import emojis, { EmojiKey } from '../../lib/emoji-map';
+import emojis from '../../lib/emoji-map';
+import { ThemeKey } from '../../lib/theme-map';
 import LetterItem from './letter-item';
 
 interface RollingListProps {
@@ -9,7 +10,7 @@ interface RollingListProps {
   activeEmojiIndex: number | null;
   setActiveEmojiIndex: React.Dispatch<React.SetStateAction<number | null>>;
 }
-const theme: { ['theme']: EmojiKey } = {
+const theme: { ['theme']: ThemeKey } = {
   theme: 'space',
 };
 

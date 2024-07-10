@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 
 import { RollingBadge } from '../assets/imgs';
 import { routes } from '../router';
-import { getFontSizeAndWeight } from '../styles/utils';
+import { getFontSizeAndWeight } from '../utils/style';
 const CONTENTS = [
   {
     name: '롤링 페이퍼',
     isActive: true,
-    href: () => routes.rolling.setup(),
+    href: () => routes.setupIntro('rolling'),
     badge: RollingBadge,
   },
   {

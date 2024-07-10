@@ -3,26 +3,9 @@ import 'swiper/css';
 import styled from '@emotion/styled';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { getFontSizeAndWeight } from '../../styles/utils';
+import themeList from '../../lib/theme-map';
+import { getFontSizeAndWeight } from '../../utils/style';
 import ThemeItem from './theme-item';
-
-export const themeList = [
-  {
-    themeKor: '우주',
-    themeEng: 'space',
-    img: '/src/assets/imgs/bg/space.png',
-  },
-  {
-    themeKor: '자연',
-    themeEng: 'nature',
-    img: '/src/assets/imgs/bg/nature.png',
-  },
-  {
-    themeKor: '회사',
-    themeEng: 'office',
-    img: '/src/assets/imgs/bg/space.png',
-  },
-];
 
 interface ThemeCarouselProps {
   activeIndex: number;

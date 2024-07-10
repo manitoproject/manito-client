@@ -1,15 +1,6 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-export const Backdrop = styled.div`
-  background-color: ${(props) => props.theme.colors.gray[100]};
-  width: 100vw;
-  height: 100vh;
-  left: 0;
-  z-index: -1;
-  position: fixed;
-`;
-
 export const StyledWrapper = styled.div`
   position: relative;
   font-family: ${({ theme }) => theme.fontFamily.SpoqaHanSansNeo};
@@ -23,10 +14,7 @@ export const StyledWrapper = styled.div`
   overflow: hidden;
 `;
 
-export const StyledMain = styled.main<{ bg?: string }>`
-  background-image: ${(props) =>
-    props.theme ? `url('/src/assets/imgs/bg/${props.bg}.png')` : 'none'};
-  background-size: cover;
+export const StyledMain = styled.main`
   background-color: ${(props) => props.theme.colors.white};
   width: 100%;
   flex: 1;
@@ -37,4 +25,13 @@ export const StyledMain = styled.main<{ bg?: string }>`
       padding-right: ${theme.sizes.padding};
       padding-top: calc(${theme.sizes.padding} + ${theme.sizes.header});
     `}
+`;
+
+export const StyledBrowserBackdrop = styled.div`
+  background-color: ${(props) => props.theme.colors.gray[100]};
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  z-index: -1;
+  position: fixed;
 `;

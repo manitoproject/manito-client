@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
 import { ThemeType } from '../../styles/theme';
-import { getBackgroundColor } from '../../styles/utils';
+import { getBackgroundColor } from '../../utils/style';
 import { CommonButtonProps, LinkButtonProps } from './buttons';
 
 const commonButtonStyle = ({

@@ -1,56 +1,66 @@
 import { routes } from '../router';
 
-export interface HeaderNavigation {
+export interface HeaderConfig {
   pathname: () => string;
   title: string;
   isShowLeftBtn: boolean;
   isShowMenuBtn: boolean;
-  theme: string;
-  bgColor: string;
-  textColor: string;
+  hasBorder: boolean;
+  hasHeaderColor: boolean;
 }
 
-const headerNavigation: HeaderNavigation[] = [
+const headerMap: HeaderConfig[] = [
   {
-    bgColor: '',
-    textColor: '',
-    theme: '',
+    hasHeaderColor: false,
+    hasBorder: true,
     pathname: () => routes.join,
     title: '회원 가입',
     isShowLeftBtn: true,
     isShowMenuBtn: false,
   },
   {
-    bgColor: '',
-    textColor: '',
-    theme: '',
+    hasHeaderColor: false,
+    hasBorder: true,
     pathname: () => routes.home,
     title: '메인 페이지',
-    isShowLeftBtn: false,
+    isShowLeftBtn: true,
     isShowMenuBtn: true,
   },
   {
-    bgColor: '',
-    textColor: '',
-    theme: '',
+    hasHeaderColor: false,
+    hasBorder: false,
+    pathname: () => routes.setupIntro(),
+    title: 'Hello Roling',
+    isShowLeftBtn: true,
+    isShowMenuBtn: false,
+  },
+  {
+    hasHeaderColor: false,
+    hasBorder: true,
     pathname: () => routes.rolling.setup(),
     title: 'Hello Roling',
     isShowLeftBtn: true,
     isShowMenuBtn: false,
   },
   {
-    bgColor: '',
-    textColor: '',
-    theme: '',
+    hasBorder: false,
+    hasHeaderColor: true,
     pathname: () => routes.rolling.detail(),
     title: '추억의 롤링페이퍼',
     isShowLeftBtn: true,
     isShowMenuBtn: true,
   },
   {
-    bgColor: '',
-    textColor: '',
-    theme: '',
+    hasBorder: true,
+    hasHeaderColor: false,
+    pathname: () => routes.rolling.new(),
+    title: '편지 작성',
+    isShowLeftBtn: true,
+    isShowMenuBtn: true,
+  },
+  {
+    hasBorder: true,
+    hasHeaderColor: false,
     pathname: () => '',
     title: '마니또',
     isShowLeftBtn: true,
@@ -58,4 +68,4 @@ const headerNavigation: HeaderNavigation[] = [
   },
 ];
 
-export default headerNavigation;
+export default headerMap;

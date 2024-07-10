@@ -5,7 +5,7 @@ import NameForm from '../components/common/name-form';
 import { useNameForm } from '../hooks';
 import { nicknameMaxLength } from '../lib/regexPatterns';
 import { routes } from '../router';
-import { getFontSizeAndWeight } from '../styles/utils';
+import { getFontSizeAndWeight } from '../utils/style';
 
 export default function Join() {
   const { handleNameChange, handleNameReset, isError, name, nameRef } =

@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 import { Clip } from '../../assets/svg/icons';
-import { getFontSizeAndWeight } from '../../styles/utils';
+import { getFontSizeAndWeight } from '../../utils/style';
 
 export default function DetailHeader() {
   return (

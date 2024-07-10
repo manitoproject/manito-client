@@ -6,7 +6,6 @@ const board: { id: string; subject: string }[] = [];
 
 export const handlers: HttpHandler[] = [
   http.get(`/board/:id`, ({ params }) => {
-    console.log(params);
     const target = board.find((b) => b.id === params.id);
     return HttpResponse.json(target);
   }),
