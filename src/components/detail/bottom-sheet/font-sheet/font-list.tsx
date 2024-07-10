@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import { StyledFontItem, StyledFontList } from './font-list.style';
 
 const FONT_LIST = [
   {
@@ -29,13 +29,18 @@ const FONT_LIST = [
 
 interface FontListProps {
   setActiveFontIndex: React.Dispatch<React.SetStateAction<number>>;
+  activeFontIndex: number;
 }
 
-export default function FontList({ setActiveFontIndex }: FontListProps) {
+export default function FontList({
+  setActiveFontIndex,
+  activeFontIndex,
+}: FontListProps) {
   return (
     <StyledFontList>
       {FONT_LIST.map((font, i) => (
         <StyledFontItem
+          isActive={activeFontIndex === i}
           onClick={() => setActiveFontIndex(i)}
           weight={font.fontWeight}
           key={font.name}
@@ -46,15 +51,3 @@ export default function FontList({ setActiveFontIndex }: FontListProps) {
     </StyledFontList>
   );
 }
-
-const StyledFontList = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 4px;
-`;
-const StyledFontItem = styled.button<{ weight: number }>`
-  font-weight: ${({ weight }) => weight};
-  font-size: 14px;
-  padding: 12px 0;
-  line-height: 17px;
-`;

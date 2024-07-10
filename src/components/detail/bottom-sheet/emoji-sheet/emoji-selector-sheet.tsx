@@ -40,7 +40,7 @@ const StyledWrapper = styled.div`
 `;
 
 const StyledItem = styled.button<{ isActive: boolean }>`
-  border: ${({ isActive, theme }) =>
+  outline: ${({ isActive, theme }) =>
     isActive ? `1px dashed ${theme.colors['powderBlue-900']}` : 'none'};
   padding: 0;
   svg {
