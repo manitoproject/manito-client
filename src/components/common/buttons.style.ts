@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
 import { ThemeType } from '../../styles/theme';
+import { getFontSizeAndWeight } from '../../utils/style';
 import { CommonButtonProps, LinkButtonProps } from './buttons';
 
 const commonButtonStyle = ({
@@ -10,11 +11,12 @@ const commonButtonStyle = ({
   hasMarginBottom,
   theme,
 }: CommonButtonProps & { theme: ThemeType }) => css`
-  font-weight: bold;
   border-radius: 4px;
-  height: 48px;
   display: flex;
   align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  line-height: 24px;
   justify-content: center;
   width: 100%;
   margin-bottom: ${hasMarginBottom ? `50px` : 0};
@@ -22,7 +24,7 @@ const commonButtonStyle = ({
   background-color: ${backgroundColor
     ? theme['colors'][backgroundColor]
     : theme.colors.black};
-  font-size: 16px;
+  ${getFontSizeAndWeight('heading3', 'bold')}
   &:disabled {
     background-color: ${theme.colors['gray-200']};
     color: ${theme.colors['gray-500']};
