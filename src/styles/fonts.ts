@@ -1,7 +1,6 @@
 import { css } from '@emotion/react';
 
 import {
-  AppleSDGothicNeoSB,
   Cafe24Simplehae,
   Cafe24Ssurround,
   Galmuri11Bold,
@@ -31,12 +30,6 @@ const fonts = css`
     font-weight: 400;
     src: local('SpoqaHanSansNeo Regular'),
       url(${SpoqaHanSansNeoReaular}) format('woff2');
-  }
-  @font-face {
-    font-family: ${theme.fontFamily.AppleSDGothicNeo};
-    font-weight: 600;
-    src: local('Apple SD Gothic Neo Semi Bold'),
-      url(${AppleSDGothicNeoSB}) format('woff2');
   }
   @font-face {
     font-family: ${theme.fontFamily.Cafe24Simplehae};

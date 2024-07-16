@@ -19,7 +19,7 @@ const commonButtonStyle = ({
   line-height: 24px;
   justify-content: center;
   width: 100%;
-  margin-bottom: ${hasMarginBottom ? `50px` : 0};
+  margin-bottom: ${hasMarginBottom ? `40px` : 0};
   color: ${theme.colors.white};
   background-color: ${backgroundColor
     ? theme['colors'][backgroundColor]
@@ -42,9 +42,6 @@ export const StyledButton = styled.button<CommonButtonProps>`
 
 export const StyledKakaoButton = styled(StyledButton)`
   gap: 8px;
-  font-size: 15px;
-  font-weight: 600;
-  font-family: ${(props) => props.theme.fontFamily.AppleSDGothicNeo};
   background-color: ${(props) => props.theme.colors.kakao};
   color: ${(props) => props.theme.colors.black};
 `;
