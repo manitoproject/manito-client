@@ -23,7 +23,7 @@ export const StyledMain = styled.main`
     css`
       padding-left: ${theme.sizes.padding};
       padding-right: ${theme.sizes.padding};
-      padding-top: calc(${theme.sizes.padding} + ${theme.sizes.header});
+      padding-top: calc(${theme.sizes.mainMarginTop} + ${theme.sizes.header});
     `}
 `;
 

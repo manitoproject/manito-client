@@ -16,6 +16,7 @@ export const StyledHeader = styled.header<HeaderType>`
     hasBorder ? `1px solid ${theme.colors['gray-300']}` : 'none'};
   & > div:first-child {
     h1 {
+      ${getFontSizeAndWeight('heading2', 'medium')}
       left: 50%;
       transform: translateX(-50%);
       position: absolute;
@@ -26,9 +27,9 @@ export const StyledHeader = styled.header<HeaderType>`
     color: ${({ hasHeaderColor, theme }) =>
       hasHeaderColor ? theme.colors.white : theme.colors['gray-800']};
     padding: ${(props) => `0 ${props.theme.sizes.padding}`};
-    padding-top: 14px;
-    padding-bottom: 14px;
-    ${getFontSizeAndWeight('heading3', 'medium')}
+    padding-top: 16px;
+    padding-bottom: 16px;
+    ${getFontSizeAndWeight('heading2', 'medium')}
   }
 `;
 

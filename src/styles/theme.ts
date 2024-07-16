@@ -1,8 +1,9 @@
 const theme = {
   fontSize: {
-    heading1: '20px',
-    heading2: '18px',
-    heading3: '16px',
+    heading1: '24px',
+    heading2: '20px',
+    heading3: '18px',
+    heading4: '16px',
     body1: '14px',
     body2: '12px',
     body3: '11px',
@@ -24,7 +25,8 @@ const theme = {
   sizes: {
     mobile: '480px',
     padding: '24px',
-    header: '54px',
+    header: '64px',
+    mainMarginTop: '48px',
   },
   colors: {
     'powderBlue-50': '#F7F8FB',
