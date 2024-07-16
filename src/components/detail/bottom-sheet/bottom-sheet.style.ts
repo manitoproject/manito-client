@@ -11,19 +11,28 @@ export const StyledBottomSheet = styled.div<BottomSheetType>`
   max-width: ${(props) => props.theme.sizes.mobile};
   width: 100%;
   display: flex;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
   transform: ${(props) => `translateX(-${props.theme.sizes.padding})`};
-  padding: 16px 24px;
+  padding: 0 24px 40px;
   background-color: ${(props) => props.theme.colors.white};
 `;
 
-export const StyledBottomSheetHeader = styled.div`
+export const StyledBottomSheetHeader = styled.button`
   display: flex;
   justify-content: center;
-  button {
+  padding-top: 19px;
+  padding-bottom: 18px;
+  div {
     width: 66px;
-    height: 2px;
-    background-color: ${(props) => props.theme.colors.black};
+    height: 3px;
+    background-color: ${(props) => props.theme.colors['gray-800']};
   }
+`;
+
+export const StyledBottomSheetContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 `;

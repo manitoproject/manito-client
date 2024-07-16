@@ -1,3 +1,4 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 import { getFontSizeAndWeight } from '../../../../utils/style';
@@ -36,7 +37,7 @@ export default function FontSelectorSheet({
 const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
 `;
 const StyledMenuList = styled.div`
   display: flex;
@@ -44,12 +45,25 @@ const StyledMenuList = styled.div`
 `;
 const StyledMenuItem = styled.button<{ isActive: boolean }>`
   flex: 1;
+  position: relative;
   ${getFontSizeAndWeight('heading3', 'regular')};
-  padding: 11.5px 0;
+  padding: 16px 0;
   line-height: 20px;
   font-weight: ${({ isActive }) => (isActive ? 700 : 400)};
   color: ${({ isActive, theme }) =>
     isActive ? theme.colors['gray-900'] : theme.colors['gray-600']};
-  border-bottom: ${({ isActive, theme }) =>
-    isActive ? `1px solid ${theme.colors['gray-800']}` : 'none'};
+
+  ${({ isActive, theme }) =>
+    isActive &&
+    css`
+      &:before {
+        position: absolute;
+        content: '';
+        background: ${theme.colors['gray-800']};
+        width: 100%;
+        height: 1px;
+        bottom: 0;
+        display: block;
+      }
+    `}
 `;

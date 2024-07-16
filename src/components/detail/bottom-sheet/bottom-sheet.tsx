@@ -27,7 +27,7 @@ export default function BottomSheet({
   return (
     <StyledBottomSheet height={height} ref={ref} isOpen={isOpen}>
       <StyledBottomSheetHeader>
-        <button />
+        <div />
       </StyledBottomSheetHeader>
       {children}
     </StyledBottomSheet>

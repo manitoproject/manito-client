@@ -12,10 +12,12 @@ export const StyledColorItem = styled.button<{
   color: ColorKey;
   isActive: boolean;
 }>`
+  background-color: ${({ isActive, theme }) =>
+    isActive ? theme.colors['powderBlue-100'] : theme.colors.white};
   border-radius: 4px;
   outline: ${({ isActive, theme }) =>
     isActive && `1px dashed ${theme.colors['powderBlue-900']}`};
-  padding: 5px;
+  padding: 12px;
   div {
     aspect-ratio: 1;
     border: ${({ color, theme }) =>

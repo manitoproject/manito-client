@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button } from '../components/common/buttons';
 import BottomSheet from '../components/detail/bottom-sheet/bottom-sheet';
+import { StyledBottomSheetContentWrapper } from '../components/detail/bottom-sheet/bottom-sheet.style';
 import ColorList from '../components/detail/bottom-sheet/font-sheet/color-list';
 import FontList from '../components/detail/bottom-sheet/font-sheet/font-list';
 import FontSelectorSheet from '../components/detail/bottom-sheet/font-sheet/font-selector-sheet';
@@ -30,29 +31,31 @@ export default function RollingNew() {
           onClose={() => setIsBottomSheetOpen(false)}
           isOpen={isBottomSheetOpen}
         >
-          <FontSelectorSheet
-            activeMenuIndex={activeMenuIndex}
-            setActiveMenuIndex={setActiveMenuIndex}
-          >
-            {activeMenuIndex === 0 ? (
-              <FontList
-                activeFontIndex={activeFontIndex}
-                setActiveFontIndex={setActiveFontIndex}
-              />
-            ) : (
-              <ColorList
-                theme={data.theme}
-                activeColorIndex={activeColorIndex}
-                setActiveColorIndex={setActiveColorIndex}
-              />
-            )}
-          </FontSelectorSheet>
-          <Button
-            onClick={() => navigate(routes.rolling.new())}
-            // disabled={typeof activeEmojiIndex !== 'number'}
-          >
-            작성완료하기
-          </Button>
+          <StyledBottomSheetContentWrapper>
+            <FontSelectorSheet
+              activeMenuIndex={activeMenuIndex}
+              setActiveMenuIndex={setActiveMenuIndex}
+            >
+              {activeMenuIndex === 0 ? (
+                <FontList
+                  activeFontIndex={activeFontIndex}
+                  setActiveFontIndex={setActiveFontIndex}
+                />
+              ) : (
+                <ColorList
+                  theme={data.theme}
+                  activeColorIndex={activeColorIndex}
+                  setActiveColorIndex={setActiveColorIndex}
+                />
+              )}
+            </FontSelectorSheet>
+            <Button
+              onClick={() => navigate(routes.rolling.new())}
+              // disabled={typeof activeEmojiIndex !== 'number'}
+            >
+              작성완료
+            </Button>
+          </StyledBottomSheetContentWrapper>
         </BottomSheet>
       </StyledWrapper>
       <StyledOverlayBackdrop themeName="nature" />
@@ -65,7 +68,4 @@ const StyledWrapper = styled.div`
   position: relative;
   z-index: 1;
 `;
-const StyledOverlayBackdrop = styled(StyledBackdrop)`
-  background-blend-mode: overlay;
-  background-color: rgba(0, 0, 0, 0.3);
-`;
+const StyledOverlayBackdrop = styled(StyledBackdrop)``;

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button } from '../components/common/buttons';
 import BottomSheet from '../components/detail/bottom-sheet/bottom-sheet';
+import { StyledBottomSheetContentWrapper } from '../components/detail/bottom-sheet/bottom-sheet.style';
 import EmojiSelectorSheet from '../components/detail/bottom-sheet/emoji-sheet/emoji-selector-sheet';
 import DetailHeader from '../components/detail/detail-header';
 import LetterList from '../components/detail/letter-list';
@@ -36,17 +37,19 @@ export default function RollingDetail() {
           onClose={() => setIsBottomSheetOpen(false)}
           isOpen={isBottomSheetOpen}
         >
-          <EmojiSelectorSheet
-            theme={data.theme}
-            activeEmojiIndex={activeEmojiIndex}
-            onActiveEmojiChange={(i: number) => setActiveEmojiIndex(i)}
-          />
-          <Button
-            onClick={() => navigate(routes.rolling.new())}
-            disabled={typeof activeEmojiIndex !== 'number'}
-          >
-            편지 선택하기
-          </Button>
+          <StyledBottomSheetContentWrapper>
+            <EmojiSelectorSheet
+              theme={data.theme}
+              activeEmojiIndex={activeEmojiIndex}
+              onActiveEmojiChange={(i: number) => setActiveEmojiIndex(i)}
+            />
+            <Button
+              onClick={() => navigate(routes.rolling.new())}
+              disabled={typeof activeEmojiIndex !== 'number'}
+            >
+              편지 선택하기
+            </Button>
+          </StyledBottomSheetContentWrapper>
         </BottomSheet>
       </StyledWrapper>
       <StyledBackdrop themeName="nature" />
