@@ -164,7 +164,8 @@ const global = css`
     padding: 0;
   }
 
-  legend {
+  legend,
+  button {
     padding: 0;
   }
 
