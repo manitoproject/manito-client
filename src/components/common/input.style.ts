@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 
+import { getFontSizeAndWeight } from '../../utils/style';
 import { InputProps } from './input';
 
 export const StyledWrapper = styled.div<Pick<InputProps, 'isError'>>`
@@ -10,25 +11,26 @@ export const StyledWrapper = styled.div<Pick<InputProps, 'isError'>>`
     position: relative;
   }
   input {
+    outline: none;
     color: ${({ theme, isError }) =>
       isError ? theme.colors.error : theme.colors.black};
-    font-size: 14px;
     box-sizing: border-box;
-    padding: 16px 44px 16px 12px;
+    padding: 20.5px 44px 20.5px 12px;
     width: 100%;
+    ${getFontSizeAndWeight('heading3', 'regular')}
     background-color: ${({ theme, isError }) =>
       isError ? theme.colors['powderBlue-100'] : theme.colors['powderBlue-50']};
     border-radius: 4px;
-    outline: 1px solid
+    border: 1px solid
       ${({ theme, isError }) =>
         isError ? theme.colors.error : theme.colors['powderBlue-300']};
   }
   input::placeholder {
-    color: ${(props) => props.theme.colors['gray-400']};
+    color: ${(props) => props.theme.colors['gray-500']};
   }
   input:focus {
     background-color: ${({ theme }) => theme.colors['powderBlue-100']};
-    outline: 1px solid
+    border: 1px solid
       ${({ theme, isError }) =>
         isError ? theme.colors.error : theme.colors['powderBlue-900']};
   }
@@ -40,7 +42,7 @@ export const StyledWrapper = styled.div<Pick<InputProps, 'isError'>>`
   input:disabled {
     color: ${({ theme }) => theme.colors['gray-500']};
     background-color: ${({ theme }) => theme.colors['gray-100']};
-    outline: none;
+    border: none;
   }
   button {
     display: none;
@@ -52,14 +54,13 @@ export const StyledWrapper = styled.div<Pick<InputProps, 'isError'>>`
   }
 
   span {
+    ${getFontSizeAndWeight('body1', 'regular')}
     margin-left: 12px;
-    font-size: 12px;
     color: ${({ theme, isError }) =>
       isError ? theme.colors.error : theme.colors['gray-600']};
     strong {
-      font-weight: 700;
       color: ${({ theme, isError }) =>
-        isError ? `inherit` : theme.colors['gray-800']};
+        isError ? `inherit` : theme.colors['gray-900']};
     }
   }
 `;
