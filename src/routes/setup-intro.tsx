@@ -26,11 +26,12 @@ const StyledWrapper = styled.div`
 const StyledBackdrop = styled.div`
   left: 0;
   position: absolute;
-  transform: ${(props) => `translateY(-${props.theme.sizes.padding})`};
+  transform: ${(props) => `translateY(-${props.theme.sizes.mainMarginTop})`};
   right: 0;
-  z-index: 0;
-  background-image: url('/src/assets/imgs/intro/rolling-paper.svg');
-  background-size: contain;
+  left: 0;
+  right: 0;
+  background-image: url('/src/assets/imgs/intro/rollring-paper-B@4x-100.jpg');
+  background-size: cover;
   background-repeat: no-repeat;
   height: 100%;
 `;
