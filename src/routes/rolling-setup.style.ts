@@ -14,14 +14,20 @@ export const StyledWrapper = styled.div`
 `;
 
 export const StyledHeading = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
   h2 {
-    color: ${(props) => props.theme.colors['gray-900']};
-    ${getFontSizeAndWeight('heading3', 'medium')};
+    color: ${(props) => props.theme.colors['gray-800']};
+    ${getFontSizeAndWeight('heading2', 'medium')};
   }
-  strong {
-    font-size: 18px;
-    color: ${(props) => props.theme.colors['powderBlue-900']};
-    ${getFontSizeAndWeight('heading2', 'bold')};
+  h3 {
+    line-height: 30px;
+    ${getFontSizeAndWeight('heading1', 'bold')};
+    color: ${(props) => props.theme.colors['gray-900']};
+    strong {
+      color: ${(props) => props.theme.colors['powderBlue-900']};
+    }
   }
 `;
 

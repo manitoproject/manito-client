@@ -17,10 +17,10 @@ export default function ThemeItem({
   return (
     <StyledThemeItem onClick={onClick} isActive={isActive}>
       <div>{isActive ? <RadioButtonActive /> : <RadioButton />}</div>
+      <StyledTitle isActive={isActive}>{theme}</StyledTitle>
       <div>
         <img src={img} alt={theme} />
       </div>
-      <StyledTitle isActive={isActive}>{theme}</StyledTitle>
     </StyledThemeItem>
   );
 }

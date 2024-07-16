@@ -21,7 +21,7 @@ export default function ThemeCarousel({
       <h2>원하는 테마를 선택해주세요.</h2>
       <div>
         <StyledSwiper
-          spaceBetween={12}
+          spaceBetween={16}
           slidesPerView="auto"
           slideToClickedSlide
         >
@@ -47,7 +47,7 @@ const StyledWrapper = styled.section`
   gap: 16px;
   h2 {
     color: ${(props) => props.theme.colors['gray-900']};
-    ${getFontSizeAndWeight('heading3', 'medium')};
+    ${getFontSizeAndWeight('heading2', 'medium')};
   }
 `;
 

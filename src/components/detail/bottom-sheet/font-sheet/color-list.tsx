@@ -29,7 +29,7 @@ const colors: Record<ThemeKey, Array<ColorKey>> = {
     'teal-900',
     'black',
   ],
-  office: [],
+  animal: [],
 };
 
 export default function ColorList({

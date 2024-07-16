@@ -33,10 +33,11 @@ export const StyledThemeItem = styled.div<Pick<ThemeItemProps, 'isActive'>>`
 export const StyledTitle = styled.div<Pick<ThemeItemProps, 'isActive'>>`
   font-weight: ${({ isActive }) => (isActive ? 700 : 500)};
   width: 100%;
+  line-height: 20px;
   color: ${({ isActive, theme }) =>
     isActive ? theme.colors['powderBlue-900'] : theme.colors['gray-600']};
   padding: 6px 0;
-  border: 1px solid ${({ theme }) => theme.colors['gray-300']};
+  outline: 1px solid ${({ theme }) => theme.colors['gray-300']};
   border-radius: 99px;
   background-color: ${({ theme }) => theme.colors.white};
 `;

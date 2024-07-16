@@ -59,6 +59,7 @@ export const StyledWrapper = styled.div<Pick<InputProps, 'isError'>>`
     color: ${({ theme, isError }) =>
       isError ? theme.colors.error : theme.colors['gray-600']};
     strong {
+      font-weight: normal;
       color: ${({ theme, isError }) =>
         isError ? `inherit` : theme.colors['gray-900']};
     }

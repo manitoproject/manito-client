@@ -28,7 +28,7 @@ export default forwardRef(function NameForm(
           {...rest}
         >
           <span>
-            {value.length} / <strong>{maxLength}</strong>
+            {value.length}/<strong>{maxLength}</strong>
           </span>
         </Input>
       </div>

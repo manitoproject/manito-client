@@ -57,11 +57,10 @@ export default function RollingSetup() {
           onClick={handleNameReset}
         >
           <StyledHeading>
-            <h2>
-              롤링페이퍼
-              <br />
+            <h2>롤링페이퍼</h2>
+            <h3>
               <strong>제목</strong>을 입력해주세요.
-            </h2>
+            </h3>
           </StyledHeading>
         </NameForm>
         <ThemeCarousel

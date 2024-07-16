@@ -1,4 +1,4 @@
-export const titleMaxLength = 8;
+export const titleMaxLength = 20;
 export const nicknameMaxLength = 20;
 
 const nicknameRegex = new RegExp(

@@ -1,5 +1,3 @@
-<svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="radio button">
-<circle id="radio-button" cx="10" cy="10.8623" r="9.5" fill="white" stroke="#E0E0E0"/>
-</g>
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 21" fill="none">
+  <circle cx="10" cy="10.5" r="9.5" fill="white" stroke="#E0E0E0"/>
 </svg>
