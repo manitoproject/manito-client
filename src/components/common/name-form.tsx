@@ -21,7 +21,12 @@ export default forwardRef(function NameForm(
     <StyledWrapper>
       {children}
       <div>
-        <Input ref={ref} isError={isError} {...rest}>
+        <Input
+          placeholder="이름을 입력해주세요."
+          ref={ref}
+          isError={isError}
+          {...rest}
+        >
           <span>
             {value.length} / <strong>{maxLength}</strong>
           </span>
@@ -34,5 +39,5 @@ export default forwardRef(function NameForm(
 const StyledWrapper = styled.section`
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
 `;

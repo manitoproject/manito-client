@@ -58,7 +58,7 @@ const StyledHeading = styled.div`
   gap: 4px;
   flex-direction: column;
   h2 {
-    ${getFontSizeAndWeight('heading3', 'regular')}
+    ${getFontSizeAndWeight('heading2', 'medium')}
     color: ${(props) => props.theme.colors['gray-800']};
   }
   h3 {
