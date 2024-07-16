@@ -15,9 +15,14 @@ const theme = {
   fontFamily: {
     SpoqaHanSansNeo: 'SpoqaHanSansNeo',
     AppleSDGothicNeo: 'AppleSDGothicNeo',
+    Cafe24Simplehae: 'Cafe24Simplehae',
+    Cafe24Ssurround: 'Cafe24Ssurround',
+    Galmuri11: 'Galmuri11',
+    NanumPen: 'NanumPen',
+    PyeongChangPeace: 'PyeongChangPeace',
   },
   sizes: {
-    mobile: '430px',
+    mobile: '480px',
     padding: '24px',
     header: '54px',
   },
@@ -58,7 +63,7 @@ const theme = {
     error: '#F04747',
   },
 };
-
+export type FontKey = keyof ThemeType['fontFamily'];
 export type ThemeType = typeof theme;
 export type ColorKey = keyof ThemeType['colors'];
 
