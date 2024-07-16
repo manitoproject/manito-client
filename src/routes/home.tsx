@@ -62,7 +62,7 @@ const StyledWrapper = styled.div`
   section {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 32px;
   }
 `;
 const StyledHeading = styled.div`
@@ -100,7 +100,7 @@ const StyledContentItem = styled.li`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: ${(props) => props.theme.colors['powderBlue-100']};
+    background-color: ${(props) => props.theme.colors['powderBlue-50']};
     border-radius: 10px;
     aspect-ratio: 1;
 
