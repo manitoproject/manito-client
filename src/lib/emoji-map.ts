@@ -127,7 +127,7 @@ const emojis: { [key in ThemeKey]: { name: string; svg: string }[] } = {
       svg: SpaceTableclothBright,
     },
   ],
-  office: [],
+  animal: [],
 };
 
 export default emojis;

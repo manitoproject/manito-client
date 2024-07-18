@@ -69,12 +69,12 @@ const StyledHeading = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;
-  p:first-child {
+  p:nth-of-type(1) {
     color: ${(props) => props.theme.colors['gray-800']};
 
     ${getFontSizeAndWeight('heading2', 'medium')}
   }
-  p:last-child {
+  p:nth-of-type(2) {
     color: ${(props) => props.theme.colors['gray-900']};
     ${getFontSizeAndWeight('heading1', 'bold')}
     strong {

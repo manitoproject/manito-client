@@ -14,7 +14,7 @@ export const StyledHeader = styled.header<HeaderType>`
     hasHeaderColor ? theme.colors['powderBlue-900'] : theme.colors.white};
   border-bottom: ${({ hasBorder, theme }) =>
     hasBorder ? `1px solid ${theme.colors['gray-300']}` : 'none'};
-  & > div:first-child {
+  & > div {
     h1 {
       ${getFontSizeAndWeight('heading2', 'medium')}
       left: 50%;
