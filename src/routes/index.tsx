@@ -1,26 +1,27 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import { Logo } from '../assets/svg/icons';
 import { Button, KakaoLoginButton } from '../components/common/buttons';
-import { routes } from '../router';
 import { getFontSizeAndWeight } from '../utils/style';
 import { StyledBrowserBackdrop } from './layout.style';
 
 export default function Index() {
   const [isButtonClicked, setIsButtonClicked] = useState(false);
-  const navigate = useNavigate();
+  const handleSocialLoginKakao = () => {
+    const clientId = import.meta.env.VITE_KAKAO_CLIENT_ID;
+    const cleintUrl = import.meta.env.VITE_CLIENT_URL;
+    const redirectPath = import.meta.env.VITE_KAKAO_REDIRECT_PATH;
+    location.href = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${clientId}&redirect_uri=${cleintUrl}${redirectPath}`;
+  };
+
   return (
     <StyledWrapper>
       <StyledLogoWrapper>
         <Logo />
       </StyledLogoWrapper>
       {isButtonClicked ? (
-        <KakaoLoginButton
-          hasMarginBottom
-          onClick={() => navigate(routes.join)}
-        />
+        <KakaoLoginButton hasMarginBottom onClick={handleSocialLoginKakao} />
       ) : (
         <Button hasMarginBottom onClick={() => setIsButtonClicked(true)}>
           시작하기

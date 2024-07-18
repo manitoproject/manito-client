@@ -4,6 +4,7 @@ import ErrorPage from './error-page';
 import Index from './routes';
 import Home from './routes/home';
 import Join from './routes/join';
+import KakaoRedirection from './routes/kakako_redirection';
 import Layout from './routes/layout';
 import My from './routes/my';
 import RollingDetail from './routes/rolling-detail';
@@ -16,6 +17,7 @@ export const routes = {
   join: '/join' as const,
   home: '/home' as const,
   my: '/my' as const,
+  kakako_redirection: '/login/oauth/kakao/callback' as const,
   setupIntro: (content?: string) => `/intro/${content ?? ':content'}` as const,
   rolling: {
     default: '/rolling' as const,
@@ -66,6 +68,10 @@ const router = () =>
             {
               path: routes.rolling.new(),
               element: <RollingNew />,
+            },
+            {
+              path: routes.kakako_redirection,
+              element: <KakaoRedirection />,
             },
           ],
         },
