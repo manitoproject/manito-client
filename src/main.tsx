@@ -12,7 +12,9 @@ import store from './store';
 import global from './styles/global';
 import theme from './styles/theme';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: { queries: { refetchOnWindowFocus: false } },
+});
 
 enableMocking().then(() => {
   ReactDOM.createRoot(document.getElementById('root')!).render(

@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 
+import { getFontSizeAndWeight } from '../../utils/style';
 import { SideMenuProps } from './sidebar';
 
 export const StyledOverlay = styled.div<Pick<SideMenuProps, 'isOpen'>>`
@@ -17,23 +18,24 @@ export const StyledNavLinkWrapper = styled.div`
   flex: 1;
   justify-content: space-between;
   button {
+    padding: 8px 0;
+    ${getFontSizeAndWeight('heading4', 'medium')}
     display: flex;
-    gap: 4px;
-    font-size: 14px;
+    gap: 6px;
     color: ${(props) => props.theme.colors['gray-600']};
   }
 `;
 
 export const StyledNav = styled.nav<Pick<SideMenuProps, 'isOpen'>>`
-  padding: 46px 16px;
+  padding: 46px 24px;
   display: flex;
   flex-direction: column;
   gap: 12px;
   background-color: ${(props) => props.theme.colors.white};
   position: absolute;
   top: 0;
-  right: ${(props) => (props.isOpen ? 0 : '-48%')};
-  width: 48%;
+  right: ${(props) => (props.isOpen ? 0 : '-240px')};
+  width: 240px;
   height: 100vh;
   z-index: 999;
   transition: right 300ms ease-out;
@@ -45,8 +47,8 @@ export const StyledNicknameWrapper = styled.div`
   padding: 8px 0;
   gap: 4px;
   display: flex;
-  border-bottom: 1px dashed ${(props) => props.theme.colors['powderBlue-300']};
   align-items: center;
+  position: relative;
   div {
     min-width: 32px;
     min-height: 32px;
@@ -57,11 +59,20 @@ export const StyledNicknameWrapper = styled.div`
     justify-content: center;
   }
   span {
+    ${getFontSizeAndWeight('heading4', 'bold')}
     display: inline-block;
-    width: 100%;
+    max-width: 118px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    bottom: 0;
+    border-bottom: 1px dashed ${(props) => props.theme.colors['powderBlue-300']};
   }
 `;
 
@@ -70,18 +81,16 @@ export const StyledNavLinks = styled.ul`
   flex-direction: column;
   gap: 4px;
   li {
+    ${getFontSizeAndWeight('heading3', 'regular')}
     color: ${(props) => props.theme.colors['gray-900']};
     a {
       align-items: center;
       padding: 6px 8px;
-      gap: 4px;
+      gap: 6px;
       display: flex;
       svg {
         width: 18px;
         height: 18px;
-      }
-      span {
-        font-size: 14px;
       }
     }
   }

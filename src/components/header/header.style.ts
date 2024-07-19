@@ -8,7 +8,6 @@ type HeaderButtonType = Pick<HeaderConfig, 'hasHeaderColor'>;
 export const StyledHeader = styled.header<HeaderType>`
   max-width: ${(props) => props.theme.sizes.mobile};
   width: 100%;
-  z-index: 50;
   position: fixed;
   background-color: ${({ hasHeaderColor, theme }) =>
     hasHeaderColor ? theme.colors['powderBlue-900'] : theme.colors.white};

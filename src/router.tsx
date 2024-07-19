@@ -36,6 +36,11 @@ const router = () =>
       errorElement: <ErrorPage />,
     },
     {
+      path: routes.kakako_redirection,
+      element: <KakaoRedirection />,
+      errorElement: <ErrorPage />,
+    },
+    {
       element: <Layout />,
       children: [
         {
@@ -68,10 +73,6 @@ const router = () =>
             {
               path: routes.rolling.new(),
               element: <RollingNew />,
-            },
-            {
-              path: routes.kakako_redirection,
-              element: <KakaoRedirection />,
             },
           ],
         },
