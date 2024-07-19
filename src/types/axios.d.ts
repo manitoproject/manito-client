@@ -1,4 +1,5 @@
 export interface DeatultResponse<T> {
   result: 'Success' | 'Fail';
-  data: T;
+  data?: T;
+  description?: string;
 }

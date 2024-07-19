@@ -1,16 +1,21 @@
 import styled from '@emotion/styled';
 
-import { LinkButton } from '../components/common/buttons';
+import { Button } from '../components/common/buttons';
 import NameForm from '../components/common/name-form';
 import { useNameForm } from '../hooks';
 import { nicknameMaxLength } from '../lib/regexPatterns';
-import { routes } from '../router';
+import { useNicknameChange } from '../queries/users';
 import { getFontSizeAndWeight } from '../utils/style';
 
 export default function Join() {
+  const { mutate } = useNicknameChange();
   const { handleNameChange, handleNameReset, isError, name, nameRef } =
     useNameForm('nickname');
 
+  const handleNicknameChange = (e: React.MouseEvent) => {
+    e.preventDefault();
+    mutate(name);
+  };
   return (
     <StyledWrapper>
       <NameForm
@@ -29,15 +34,14 @@ export default function Join() {
         </StyledHeading>
       </NameForm>
       <div>
-        <LinkButton
-          to={routes.home}
-          onClick={(e) => (!name.length || isError) && e.preventDefault()}
+        <Button
+          onClick={handleNicknameChange}
           backgroundColor="powderBlue-800"
           hasMarginBottom
           disabled={!name.length || isError}
         >
           가입완료
-        </LinkButton>
+        </Button>
       </div>
     </StyledWrapper>
   );

@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
 import { RollingBadge } from '../assets/imgs';
+import { useUserQuery } from '../queries/users';
 import { routes } from '../router';
 import { getFontSizeAndWeight } from '../utils/style';
 const CONTENTS = [
@@ -26,11 +27,13 @@ const CONTENTS = [
 ];
 
 export default function Home() {
+  const { data } = useUserQuery();
+  console.log(data);
   return (
     <StyledWrapper>
       <section>
         <StyledHeading>
-          <p>김정윤님 안녕하세요!</p>
+          <p>{data?.data?.nickname}님 안녕하세요!</p>
           <p>
             <strong>다양한 컨텐츠</strong>를 즐겨보세요.
           </p>

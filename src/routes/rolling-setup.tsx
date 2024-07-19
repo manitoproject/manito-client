@@ -1,7 +1,4 @@
-import { useMutation } from '@tanstack/react-query';
-import axios from 'axios';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import { Button } from '../components/common/buttons';
 import NameForm from '../components/common/name-form';
@@ -9,40 +6,24 @@ import ThemeCarousel from '../components/setup/theme-carousel';
 import { useNameForm } from '../hooks';
 import { titleMaxLength } from '../lib/regexPatterns';
 import themeList from '../lib/theme-map';
-import { routes } from '../router';
+import { useCreateRollingPaper } from '../queries/paper';
 import {
   StyledHeading,
   StyledSectionWrapper,
   StyledWrapper,
 } from './rolling-setup.style';
 
-const createBoard = async ({
-  subject,
-  theme,
-}: {
-  subject: string;
-  theme: string;
-}) => {
-  const { data } = await axios.post<Board>('/rolling/create', {
-    subject,
-    theme,
-  });
-  return data;
-};
-
 export default function RollingSetup() {
   const { handleNameChange, handleNameReset, isError, name, nameRef } =
     useNameForm('title');
   const [activeThemeIndex, setActiveThemeIndex] = useState(0);
-  const navigate = useNavigate();
-  const { mutate, isPending } = useMutation({
-    mutationFn: createBoard,
-    onSuccess: (data) => {
-      navigate(routes.rolling.detail(data.id));
-    },
-  });
+  const { mutate, isPending } = useCreateRollingPaper();
   const handleSubmit = () => {
-    mutate({ subject: name, theme: themeList[activeThemeIndex].themeEng });
+    mutate({
+      category: 'ROLLING_PAPER',
+      theme: themeList[activeThemeIndex].themeEng,
+      title: name,
+    });
   };
 
   return (

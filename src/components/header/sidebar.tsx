@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Document, Home, Logout, My, Profile } from '../../assets/svg/icons';
 import { useDisableScroll } from '../../hooks';
 import useOutsideClick from '../../hooks/useOutsideClick';
+import { useUserQuery } from '../../queries/users';
 import { routes } from '../../router';
 import {
   StyledNav,
@@ -36,6 +37,7 @@ const LINKS = [
 ];
 
 export default function Sidebar({ onClose, isOpen }: SideMenuProps) {
+  const { data } = useUserQuery();
   const ref = useOutsideClick(() => onClose(), isOpen);
   useDisableScroll(isOpen);
 
@@ -47,7 +49,7 @@ export default function Sidebar({ onClose, isOpen }: SideMenuProps) {
           <div>
             <Profile />
           </div>
-          <span>아침점심저녁벽dasdasdaddddddd</span>
+          <span>{data?.data?.nickname}</span>
         </StyledNicknameWrapper>
         <StyledNavLinkWrapper>
           <StyledNavLinks>
