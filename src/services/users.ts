@@ -14,6 +14,5 @@ export const changeNickname = async (nickname: string) => {
 
 export const getUser = async () => {
   const { data } = await requester.post<DeatultResponse<User>>('/user/info');
-  console.log(data);
   return data;
 };

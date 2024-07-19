@@ -30,7 +30,7 @@ const LINKS = [
     svg: <Document />,
   },
   {
-    href: () => routes.my,
+    href: () => routes.my.default,
     name: '마이 페이지',
     svg: <My />,
   },

@@ -61,7 +61,15 @@ const headerMap: HeaderConfig[] = [
   {
     hasBorder: true,
     hasHeaderColor: false,
-    pathname: () => routes.my,
+    pathname: () => routes.my.rename(),
+    title: '프로필 수정',
+    isShowLeftBtn: true,
+    isShowMenuBtn: false,
+  },
+  {
+    hasBorder: true,
+    hasHeaderColor: false,
+    pathname: () => routes.my.default,
     title: '마이 페이지',
     isShowLeftBtn: false,
     isShowMenuBtn: true,

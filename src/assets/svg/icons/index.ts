@@ -1,4 +1,5 @@
 export { default as AddCircle } from './add-circle.svg';
+export { default as Camera } from './camera.svg';
 export { default as Clip } from './clip.svg';
 export { default as Close } from './close.svg';
 export { default as Document } from './document.svg';

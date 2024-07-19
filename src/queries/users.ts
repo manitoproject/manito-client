@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
 import { routes } from '../router';
@@ -10,16 +10,22 @@ export function useUserQuery() {
   return useQuery({
     ...queries.users.detail(),
     enabled: !!token.getAccessToken,
+    staleTime: 1000 * 60 * 10,
   });
 }
 
-export function useNicknameChange() {
+export function useNicknameChange(isMyPage = false) {
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
   return useMutation({
     mutationFn: changeNickname,
     onSuccess: (data) => {
       if (data.result === 'Success') {
-        navigate(routes.home);
+        if (isMyPage) navigate(routes.home);
+        else navigate(-1);
+        queryClient.invalidateQueries({
+          queryKey: queries.users._def,
+        });
       }
     },
   });

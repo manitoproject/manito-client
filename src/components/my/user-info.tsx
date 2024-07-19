@@ -1,7 +1,9 @@
 import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
 
 import { Setting } from '../../assets/svg/icons';
 import { useUserQuery } from '../../queries/users';
+import { routes } from '../../router';
 import { getFontSizeAndWeight } from '../../utils/style';
 
 export default function UserInfo() {
@@ -17,9 +19,9 @@ export default function UserInfo() {
         <p>{data?.data?.email}</p>
       </StyledNicknameWrapper>
       <StyledSvgWrapper>
-        <button>
+        <Link to={routes.my.rename()}>
           <Setting />
-        </button>
+        </Link>
       </StyledSvgWrapper>
     </StyledWrapper>
   );
@@ -65,7 +67,7 @@ const StyledAvatarWrapper = styled.div`
 const StyledSvgWrapper = styled.div`
   display: flex;
   align-items: center;
-  button {
+  a {
     padding: 4px;
   }
 `;
