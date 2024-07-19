@@ -8,7 +8,7 @@ import { useNicknameChange } from '../queries/users';
 import { getFontSizeAndWeight } from '../utils/style';
 
 export default function Join() {
-  const { mutate } = useNicknameChange();
+  const { mutate, isPending } = useNicknameChange();
   const { handleNameChange, handleNameReset, isError, name, nameRef } =
     useNameForm('nickname');
 
@@ -38,7 +38,7 @@ export default function Join() {
           onClick={handleNicknameChange}
           backgroundColor="powderBlue-800"
           hasMarginBottom
-          disabled={!name.length || isError}
+          disabled={!name.length || isError || isPending}
         >
           가입완료
         </Button>

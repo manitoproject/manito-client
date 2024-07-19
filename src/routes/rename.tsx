@@ -7,7 +7,7 @@ import { useNicknameChange } from '../queries/users';
 import { StyledAvartarWrapper, StyledRenameWrapper } from './rename.style';
 
 export default function Rename() {
-  const { mutate } = useNicknameChange(true);
+  const { mutate, isPending } = useNicknameChange(true);
   const { handleNameChange, handleNameReset, isError, name, nameRef } =
     useNameForm('nickname');
 
@@ -38,7 +38,7 @@ export default function Rename() {
         <Button
           onClick={handleNicknameChange}
           hasMarginBottom
-          disabled={isError || !name.length}
+          disabled={isError || !name.length || isPending}
         >
           수정하기
         </Button>
