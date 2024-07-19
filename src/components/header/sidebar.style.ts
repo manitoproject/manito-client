@@ -49,14 +49,10 @@ export const StyledNicknameWrapper = styled.div`
   display: flex;
   align-items: center;
   position: relative;
-  div {
-    min-width: 32px;
-    min-height: 32px;
+  img {
+    width: 32px;
+    height: 32px;
     border-radius: 999px;
-    background-color: ${(props) => props.theme.colors['gray-300']};
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
   span {
     ${getFontSizeAndWeight('heading4', 'bold')}

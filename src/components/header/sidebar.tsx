@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { Document, Home, Logout, My, Profile } from '../../assets/svg/icons';
+import { Document, Home, Logout, My } from '../../assets/svg/icons';
 import { useDisableScroll } from '../../hooks';
 import useOutsideClick from '../../hooks/useOutsideClick';
 import { useUserQuery } from '../../queries/users';
@@ -46,9 +46,7 @@ export default function Sidebar({ onClose, isOpen }: SideMenuProps) {
       <StyledOverlay isOpen={isOpen} />
       <StyledNav ref={ref} isOpen={isOpen}>
         <StyledNicknameWrapper>
-          <div>
-            <Profile />
-          </div>
+          <img src={'/src/assets/imgs/user/avatar.png'} alt="avatar" />
           <span>{data?.data?.nickname}</span>
         </StyledNicknameWrapper>
         <StyledNavLinkWrapper>
