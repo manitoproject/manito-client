@@ -5,6 +5,7 @@ import { RollingBadge } from '../assets/imgs';
 import { useUserQuery } from '../queries/users';
 import { routes } from '../router';
 import { getFontSizeAndWeight } from '../utils/style';
+
 const CONTENTS = [
   {
     name: '롤링 페이퍼',
