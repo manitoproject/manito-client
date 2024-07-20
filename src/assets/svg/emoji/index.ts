@@ -1,3 +1,15 @@
+export { default as AnimalCatPawsCircleLetter } from './animal/cat-paws-circle-letter.svg';
+export { default as AnimalCatPawsCloverLetter } from './animal/cat-paws-clover-letter.svg';
+export { default as AnimalCatPawsSquareLetter } from './animal/cat-paws-Square-letter.svg';
+export { default as AnimalCatSquareLetter } from './animal/cat-Square-letter.svg';
+export { default as AnimalDogCircleLetter } from './animal/dog-circle-letter.svg';
+export { default as AnimalDogPawsCircleLetter } from './animal/dog-paws-circle-letter.svg';
+export { default as AnimalDogPawsCloverLetter } from './animal/dog-paws-clover-letter.svg';
+export { default as AnimalDogPawsSquareLetter } from './animal/dog-paws-square-letter.svg';
+export { default as AnimalDogSquareLetter } from './animal/dog-Square-letter.svg';
+export { default as AnimalDogCatCircleLetter } from './animal/dogcat-circle-letter.svg';
+export { default as AnimalDogCatCloverLetter } from './animal/dogcat-clover-letter.svg';
+export { default as AnimalDogCatCloverTextLetter } from './animal/dogcat-clover-text-letter.svg';
 export { default as NatureCircle1 } from './nature/nature-circle-1.svg';
 export { default as NatureCircle2 } from './nature/nature-circle-2.svg';
 export { default as NatureCircle3 } from './nature/nature-circle-3.svg';

@@ -1,4 +1,16 @@
 import {
+  AnimalCatPawsCircleLetter,
+  AnimalCatPawsCloverLetter,
+  AnimalCatPawsSquareLetter,
+  AnimalCatSquareLetter,
+  AnimalDogCatCircleLetter,
+  AnimalDogCatCloverLetter,
+  AnimalDogCatCloverTextLetter,
+  AnimalDogCircleLetter,
+  AnimalDogPawsCircleLetter,
+  AnimalDogPawsCloverLetter,
+  AnimalDogPawsSquareLetter,
+  AnimalDogSquareLetter,
   NatureCircle1,
   NatureCircle2,
   NatureCircle3,
@@ -127,7 +139,56 @@ const emojis: { [key in ThemeKey]: { name: string; svg: string }[] } = {
       svg: SpaceTableclothBright,
     },
   ],
-  animal: [],
+  animal: [
+    {
+      name: 'AnimalDogCircleLetter',
+      svg: AnimalDogCircleLetter,
+    },
+    {
+      name: 'AnimalDogCatCircleLetter',
+      svg: AnimalDogCatCircleLetter,
+    },
+    {
+      name: 'AnimalDogPawsCircleLetter',
+      svg: AnimalDogPawsCircleLetter,
+    },
+    {
+      name: 'AnimalCatPawsCircleLetter',
+      svg: AnimalCatPawsCircleLetter,
+    },
+    {
+      name: 'AnimalCatSquareLetter',
+      svg: AnimalCatSquareLetter,
+    },
+    {
+      name: 'AnimalDogPawsSquareLetter',
+      svg: AnimalDogPawsSquareLetter,
+    },
+    {
+      name: 'AnimalDogSquareLetter',
+      svg: AnimalDogSquareLetter,
+    },
+    {
+      name: 'AnimalCatPawsSquareLetter',
+      svg: AnimalCatPawsSquareLetter,
+    },
+    {
+      name: 'AnimalCatPawsCloverLetter',
+      svg: AnimalCatPawsCloverLetter,
+    },
+    {
+      name: 'AnimalDogPawsCloverLetter',
+      svg: AnimalDogPawsCloverLetter,
+    },
+    {
+      name: 'AnimalDogCatCloverLetter',
+      svg: AnimalDogCatCloverLetter,
+    },
+    {
+      name: 'AnimalDogCatCloverTextLetter',
+      svg: AnimalDogCatCloverTextLetter,
+    },
+  ],
 };
 
 export default emojis;
