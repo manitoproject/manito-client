@@ -19,12 +19,12 @@ import {
 export default function RollingDetail() {
   const { data } = usePaperDetailQuery();
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
-  const { resetList, activeEmojiIndex } = messageStore();
+  const { reset, activeEmojiIndex } = messageStore();
   const navigate = useNavigate();
 
   useEffect(() => {
-    return () => resetList();
-  }, [resetList]);
+    return () => reset();
+  }, [reset]);
 
   return (
     <StyledRollingDetail>

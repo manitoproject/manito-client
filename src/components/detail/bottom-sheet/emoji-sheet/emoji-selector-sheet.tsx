@@ -23,7 +23,7 @@ export default function EmojiSelectorSheet({ theme }: EmojiContentProps) {
               type="button"
               onClick={() => {
                 setActiveEmojiIndex(i);
-                addList(theme, i);
+                if (activeEmojiIndex !== i) addList(theme);
               }}
             >
               <Emoji />

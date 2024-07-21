@@ -23,7 +23,7 @@ export default function MessageList({
     activeMessageIndex,
     setActiveEmojiIndex,
     list,
-    setList,
+    snycList,
   } = messageStore();
 
   const handleMessageClick = (i: number) => {
@@ -35,8 +35,8 @@ export default function MessageList({
   };
 
   useEffect(() => {
-    setList(data?.data);
-  }, [data, setList]);
+    snycList(data?.data);
+  }, [data, snycList]);
 
   return (
     <StyledList>
@@ -44,9 +44,6 @@ export default function MessageList({
         <MessageItem
           onBottomSheetOpen={onBottomSheetOpen}
           key={i}
-          // isActive={
-          //   activeLetterIndex === i && typeof activeEmojiIndex === 'number'
-          // }
           message={message}
           // emoji={emoji?.svg}
           onMessageClick={() => handleMessageClick(i)}

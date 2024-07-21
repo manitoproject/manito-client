@@ -64,6 +64,8 @@ export const StyledEmptySvg = styled.div`
 `;
 
 export const StyledItem = styled.li`
+  border: ${({ theme }) => `1px dashed ${theme.colors.white}`};
+  background: rgba(249, 249, 249, 0.5);
   border-radius: 4px;
   aspect-ratio: 1;
   button {

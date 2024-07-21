@@ -12,9 +12,9 @@ interface MessageState {
   activeMessageIndex: null | number;
   setActiveEmojiIndex: (i: number | null) => void;
   setActiveMessageIndex: (i: number | null) => void;
-  setList: (serverData?: Message[]) => void;
+  snycList: (serverData?: Message[]) => void;
   addList: (theme: ThemeKey) => void;
-  resetList: () => void;
+  reset: () => void;
   removeList: (messageId: number) => void;
 }
 
@@ -24,7 +24,7 @@ const messageStore = create<MessageState>((set) => ({
   activeMessageIndex: null,
   setActiveEmojiIndex: (i: number | null) => set({ activeEmojiIndex: i }),
   setActiveMessageIndex: (i: number | null) => set({ activeMessageIndex: i }),
-  setList: (serverData?: Message[]) =>
+  snycList: (serverData?: Message[]) =>
     set((state) => ({
       list: state.list.map((prev, i) => {
         return serverData?.[i] ?? prev;
@@ -33,21 +33,17 @@ const messageStore = create<MessageState>((set) => ({
   addList: (theme: ThemeKey) =>
     set((state) => ({
       list: state.list.map((prev, i) => {
-        if (prev?.theme && !('content' in prev)) {
-          return null;
-        }
         if (state.activeMessageIndex === i && state.activeEmojiIndex !== null) {
           return {
             theme: emojis[theme][state.activeEmojiIndex].name,
           };
         }
+        if (prev?.theme && !('content' in prev)) {
+          return null;
+        }
         return prev;
       }),
     })),
-  resetList: () =>
-    set({
-      list: INIT_LIST,
-    }),
   removeList: (messageId: number) =>
     set((state) => ({
       list: state.list.map((prev) => {
@@ -57,6 +53,12 @@ const messageStore = create<MessageState>((set) => ({
         return prev;
       }),
     })),
+  reset: () =>
+    set({
+      list: INIT_LIST,
+      activeMessageIndex: null,
+      activeEmojiIndex: null,
+    }),
 }));
 
 export default messageStore;
