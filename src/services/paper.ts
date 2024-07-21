@@ -6,11 +6,14 @@ export const createRollingPaper = async ({
   theme,
   title,
 }: PaperCreateType) => {
-  const { data } = await requester.post('/paper', {
-    title,
-    category,
-    theme,
-  });
+  const { data } = await requester.post<DeatultResponse<Pick<Paper, 'id'>>>(
+    '/paper',
+    {
+      title,
+      category,
+      theme,
+    },
+  );
   return data;
 };
 

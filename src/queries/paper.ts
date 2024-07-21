@@ -1,14 +1,16 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
+import { routes } from '../router';
 import { createRollingPaper } from '../services/paper';
 import queries from './query-key-factory';
 
 export const useCreateRollingPaper = () => {
+  const navigate = useNavigate();
   return useMutation({
     mutationFn: createRollingPaper,
     onSuccess: (data) => {
-      console.log(data);
+      navigate(routes.rolling.detail(data.data?.id));
     },
   });
 };
