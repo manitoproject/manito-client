@@ -26,3 +26,8 @@ export const deleteMessage = async (messageId: number) => {
   });
   return data;
 };
+
+export const getUserMessages = async () => {
+  const { data } = await requester.get<DeatultResponse<Message[]>>(`/message`);
+  return data;
+};

@@ -28,6 +28,13 @@ export const usePaperMessagesQuery = (paperId?: number) => {
   });
 };
 
+export const useUserMessagesQuery = () => {
+  return useQuery({
+    ...queries.messages.user(),
+    staleTime: 1000 * 60 * 60,
+  });
+};
+
 export const useDeleteMessage = ({
   paperId,
   meesageId,
@@ -44,6 +51,9 @@ export const useDeleteMessage = ({
         removeList(meesageId);
         queryClient.invalidateQueries({
           queryKey: queries.messages.paper(paperId).queryKey,
+        });
+        queryClient.invalidateQueries({
+          queryKey: queries.messages.user._def,
         });
       }
     },

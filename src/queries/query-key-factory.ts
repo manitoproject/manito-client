@@ -4,7 +4,7 @@ import {
 } from '@lukemorales/query-key-factory';
 
 import { getAccessToken } from '../services/auth';
-import { getPaperMessages } from '../services/message';
+import { getPaperMessages, getUserMessages } from '../services/message';
 import { getPaperByUserId, getPerperDetail } from '../services/paper';
 import { getUser } from '../services/users';
 
@@ -37,6 +37,10 @@ const messages = createQueryKeys('messages', {
   paper: (paperId?: number) => ({
     queryKey: [paperId],
     queryFn: () => getPaperMessages(paperId),
+  }),
+  user: () => ({
+    queryFn: getUserMessages,
+    queryKey: ['user'],
   }),
 });
 

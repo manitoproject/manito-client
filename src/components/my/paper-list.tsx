@@ -3,20 +3,22 @@ import dayjs from 'dayjs';
 import { Link } from 'react-router-dom';
 
 import { routes } from '../../router';
+import { Message } from '../../types/message';
 import { getFontSizeAndWeight } from '../../utils/style';
 
 interface PaperListProps {
-  list?: Paper[];
+  list?: Paper[] | Message[];
 }
 
 export default function PaperList({ list }: PaperListProps) {
+  console.log(list);
   return (
     <StyledList>
-      {list?.map((paper) => (
-        <StyledItem key={paper.id}>
-          <Link to={routes.rolling.detail(paper.id)}>
-            <span>{paper.title}</span>
-            <span>{dayjs(paper.regDateTime).format('YYYY.MM.DD')}</span>
+      {list?.map((item) => (
+        <StyledItem key={item.id}>
+          <Link to={routes.rolling.detail(item.id)}>
+            <span>{'title' in item ? item.title : item.content}</span>
+            <span>{dayjs(item.regDateTime).format('YYYY.MM.DD')}</span>
           </Link>
         </StyledItem>
       ))}
