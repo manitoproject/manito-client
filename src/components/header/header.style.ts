@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { HeaderConfig } from '../../lib/header-map';
+import { HeaderConfig } from '../../constants/header-config';
 import { getFontSizeAndWeight } from '../../utils/style';
 
 type HeaderType = Pick<HeaderConfig, 'hasBorder' | 'hasHeaderColor'>;
@@ -8,6 +8,7 @@ type HeaderButtonType = Pick<HeaderConfig, 'hasHeaderColor'>;
 export const StyledHeader = styled.header<HeaderType>`
   max-width: ${(props) => props.theme.sizes.mobile};
   width: 100%;
+  z-index: 51;
   position: fixed;
   background-color: ${({ hasHeaderColor, theme }) =>
     hasHeaderColor ? theme.colors['powderBlue-900'] : theme.colors.white};

@@ -1,8 +1,8 @@
 import { Camera } from '../assets/svg/icons';
 import { Button } from '../components/common/buttons';
 import NameForm from '../components/common/name-form';
+import { nicknameMaxLength } from '../constants/regexPatterns';
 import { useNameForm } from '../hooks';
-import { nicknameMaxLength } from '../lib/regexPatterns';
 import { useNicknameChange } from '../queries/users';
 import { StyledAvartarWrapper, StyledRenameWrapper } from './rename.style';
 

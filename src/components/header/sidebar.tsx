@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import { Document, Home, Logout, My } from '../../assets/svg/icons';
 import { useDisableScroll } from '../../hooks';
-import useOutsideClick from '../../hooks/useOutsideClick';
+import useOutsideClick from '../../hooks/common/useOutsideClick';
 import { useUserQuery } from '../../queries/users';
 import { routes } from '../../router';
 import {

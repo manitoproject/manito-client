@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { HamburgerMenu, LeftChevron } from '../../assets/svg/icons';
-import headerMap from '../../lib/header-map';
+import headerMap from '../../constants/header-config';
 import { routes } from '../../router';
 import {
   StyledHeader,

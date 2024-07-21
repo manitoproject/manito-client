@@ -2,8 +2,8 @@ import styled from '@emotion/styled';
 
 import { Button } from '../components/common/buttons';
 import NameForm from '../components/common/name-form';
+import { nicknameMaxLength } from '../constants/regexPatterns';
 import { useNameForm } from '../hooks';
-import { nicknameMaxLength } from '../lib/regexPatterns';
 import { useNicknameChange } from '../queries/users';
 import { getFontSizeAndWeight } from '../utils/style';
 

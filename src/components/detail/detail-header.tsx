@@ -1,13 +1,19 @@
 import styled from '@emotion/styled';
 
 import { Clip } from '../../assets/svg/icons';
+import { usePaperMessagesQuery } from '../../queries/message';
 import { getFontSizeAndWeight } from '../../utils/style';
 
-export default function DetailHeader() {
+interface DetailHeaderProps {
+  paperId?: number;
+}
+
+export default function DetailHeader({ paperId }: DetailHeaderProps) {
+  const { data } = usePaperMessagesQuery(paperId);
   return (
     <StyledRollingHeader>
       <span>
-        <strong>3</strong>개의 작성물
+        <strong>{data?.data?.length}</strong>개의 작성물
       </span>
       <button>
         <Clip />

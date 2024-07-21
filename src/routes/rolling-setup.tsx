@@ -3,9 +3,9 @@ import { useState } from 'react';
 import { Button } from '../components/common/buttons';
 import NameForm from '../components/common/name-form';
 import ThemeCarousel from '../components/setup/theme-carousel';
+import { titleMaxLength } from '../constants/regexPatterns';
+import themeList from '../constants/theme-list';
 import { useNameForm } from '../hooks';
-import { titleMaxLength } from '../lib/regexPatterns';
-import themeList from '../lib/theme-map';
 import { useCreateRollingPaper } from '../queries/paper';
 import {
   StyledHeading,

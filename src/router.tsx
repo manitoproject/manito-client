@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import ErrorPage from './error-page';
 import Index from './routes';
+import ErrorPage from './routes/error-page';
 import Home from './routes/home';
 import Join from './routes/join';
 import KakaoRedirection from './routes/kakako_redirection';
@@ -26,7 +26,7 @@ export const routes = {
   rolling: {
     default: '/rolling' as const,
     setup: () => `${routes.rolling.default}/setup` as const,
-    detail: (id?: string) =>
+    detail: (id?: number) =>
       `${routes.rolling.default}/detail/${id ?? ':id'}` as const,
     new: () => `${routes.rolling.default}/new` as const,
   },

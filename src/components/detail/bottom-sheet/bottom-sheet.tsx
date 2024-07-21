@@ -1,6 +1,4 @@
-import { useEffect, useState } from 'react';
-
-import useOutsideClick from '../../../hooks/useOutsideClick';
+import useOutsideClick from '../../../hooks/common/useOutsideClick';
 import {
   StyledBottomSheet,
   StyledBottomSheetHeader,
@@ -8,25 +6,29 @@ import {
 
 export interface BottomSheetProps {
   isOpen: boolean;
-  onClose: () => void;
+  onToggle: () => void;
   children: React.ReactNode;
+  isDetailPage?: boolean;
 }
+
+const detailPageHeight = 472;
+const newPageHeight = 436;
 
 export default function BottomSheet({
   isOpen,
-  onClose,
+  onToggle,
   children,
+  isDetailPage = false,
 }: BottomSheetProps) {
-  const ref = useOutsideClick(onClose, isOpen);
-  const [height, setHeight] = useState<number | undefined>();
-
-  useEffect(() => {
-    setHeight(ref.current?.getBoundingClientRect().height);
-  }, [ref]);
+  const ref = useOutsideClick(onToggle, isOpen);
 
   return (
-    <StyledBottomSheet height={height} ref={ref} isOpen={isOpen}>
-      <StyledBottomSheetHeader>
+    <StyledBottomSheet
+      height={isDetailPage ? detailPageHeight : newPageHeight}
+      ref={ref}
+      isOpen={isOpen}
+    >
+      <StyledBottomSheetHeader onClick={onToggle}>
         <div />
       </StyledBottomSheetHeader>
       {children}

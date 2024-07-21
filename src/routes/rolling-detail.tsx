@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Button } from '../components/common/buttons';
@@ -6,45 +6,50 @@ import BottomSheet from '../components/detail/bottom-sheet/bottom-sheet';
 import { StyledBottomSheetContentWrapper } from '../components/detail/bottom-sheet/bottom-sheet.style';
 import EmojiSelectorSheet from '../components/detail/bottom-sheet/emoji-sheet/emoji-selector-sheet';
 import DetailHeader from '../components/detail/detail-header';
-import LetterList from '../components/detail/letter-list';
-import { ThemeKey } from '../lib/theme-map';
+import MessageList from '../components/detail/message-list';
+import { usePaperDetailQuery } from '../queries/paper';
 import { routes } from '../router';
+import messageStore from '../stores/messageStore';
 import {
   StyledBackdrop,
   StyledRollingDetail,
   StyledWrapper,
 } from './rolling-detail.style';
 
-const data: { ['theme']: ThemeKey } = {
-  theme: 'space',
-};
-
 export default function RollingDetail() {
+  const { data } = usePaperDetailQuery();
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
-  const [activeEmojiIndex, setActiveEmojiIndex] = useState<null | number>(null);
+  const { resetList, activeEmojiIndex } = messageStore();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    return () => resetList();
+  }, [resetList]);
 
   return (
     <StyledRollingDetail>
       <StyledWrapper>
-        <DetailHeader />
-        <LetterList
-          setActiveEmojiIndex={setActiveEmojiIndex}
-          activeEmojiIndex={activeEmojiIndex}
+        <DetailHeader paperId={data?.data?.id} />
+        <MessageList
+          theme={data?.data?.theme}
+          paperId={data?.data?.id}
           onBottomSheetOpen={setIsBottomSheetOpen}
         />
         <BottomSheet
-          onClose={() => setIsBottomSheetOpen(false)}
+          isDetailPage
+          onToggle={() => setIsBottomSheetOpen((prev) => !prev)}
           isOpen={isBottomSheetOpen}
         >
           <StyledBottomSheetContentWrapper>
-            <EmojiSelectorSheet
-              theme={data.theme}
-              activeEmojiIndex={activeEmojiIndex}
-              onActiveEmojiChange={(i: number) => setActiveEmojiIndex(i)}
-            />
+            <EmojiSelectorSheet theme={data?.data?.theme} />
             <Button
-              onClick={() => navigate(routes.rolling.new())}
+              onClick={() =>
+                navigate(
+                  `${routes.rolling.new()}?theme=${data?.data?.theme}&paperId=${
+                    data?.data?.id
+                  }&emoji=${activeEmojiIndex}`,
+                )
+              }
               disabled={typeof activeEmojiIndex !== 'number'}
             >
               편지 선택하기
@@ -52,7 +57,7 @@ export default function RollingDetail() {
           </StyledBottomSheetContentWrapper>
         </BottomSheet>
       </StyledWrapper>
-      <StyledBackdrop themeName="nature" />
+      <StyledBackdrop themeName={data?.data?.theme} />
     </StyledRollingDetail>
   );
 }

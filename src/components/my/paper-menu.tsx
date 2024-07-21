@@ -1,4 +1,3 @@
-import { PaperType } from '../../types/paper';
 import { StyledPaper, StyledPaperWrapper } from './paper-menu.style';
 
 const PAPERS: { name: PaperType }[] = [

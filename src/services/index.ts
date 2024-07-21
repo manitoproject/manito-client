@@ -14,6 +14,7 @@ export const RequesterWithoutToken = axios.create({
 
 requester.interceptors.request.use((config) => {
   const { getAccessToken } = token;
+  console.log(getAccessToken);
   if (!getAccessToken) {
     location.href = '/';
     return config;

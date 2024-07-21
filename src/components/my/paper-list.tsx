@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import dayjs from 'dayjs';
 import { Link } from 'react-router-dom';
 
-import { Paper } from '../../types/paper';
+import { routes } from '../../router';
 import { getFontSizeAndWeight } from '../../utils/style';
 
 interface PaperListProps {
@@ -14,7 +14,7 @@ export default function PaperList({ list }: PaperListProps) {
     <StyledList>
       {list?.map((paper) => (
         <StyledItem key={paper.id}>
-          <Link to="#">
+          <Link to={routes.rolling.detail(paper.id)}>
             <span>{paper.title}</span>
             <span>{dayjs(paper.regDateTime).format('YYYY.MM.DD')}</span>
           </Link>

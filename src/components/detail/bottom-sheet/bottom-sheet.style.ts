@@ -1,13 +1,17 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 import { BottomSheetProps } from './bottom-sheet';
 
-type BottomSheetType = Pick<BottomSheetProps, 'isOpen'> & { height?: number };
+type BottomSheetType = Pick<BottomSheetProps, 'isOpen'> & { height: number };
 export const StyledBottomSheet = styled.div<BottomSheetType>`
+  ${({ isOpen, height }) =>
+    height &&
+    css`
+      bottom: ${isOpen ? 0 : `-${height - 40}px`};
+    `}
   position: fixed;
-  border-top: 1px solid ${(props) => props.theme.colors['gray-300']};
-  bottom: ${({ isOpen, height }) => (isOpen ? '0' : `-${height}px`)};
-  transition: bottom 300ms ease-out;
+  transition: bottom 300ms ease;
   max-width: ${(props) => props.theme.sizes.mobile};
   width: 100%;
   display: flex;
@@ -17,6 +21,16 @@ export const StyledBottomSheet = styled.div<BottomSheetType>`
   transform: ${(props) => `translateX(-${props.theme.sizes.padding})`};
   padding: 0 24px 40px;
   background-color: ${(props) => props.theme.colors.white};
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    top: 0;
+    left: 0;
+    border-top: 1px solid ${(props) => props.theme.colors['gray-300']};
+  }
 `;
 
 export const StyledBottomSheetHeader = styled.button`

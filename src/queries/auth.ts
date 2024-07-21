@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,6 +8,7 @@ import queries from './query-key-factory';
 
 export function useTokenQuery(code: string | null) {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const { data } = useQuery({
     ...queries.auth.token(code as string),
     enabled: !!code,
@@ -15,7 +16,8 @@ export function useTokenQuery(code: string | null) {
 
   useEffect(() => {
     if (data?.data?.accessToken) {
-      console.log('sdfdsfdsf');
+      console.log(queries.users.detail._def);
+      queryClient.invalidateQueries({ queryKey: queries.users.detail._def });
       token.setAccessToken(data.data.accessToken);
       if (data.data.isNewUser === 'Y') {
         navigate(routes.join);
@@ -23,7 +25,7 @@ export function useTokenQuery(code: string | null) {
         navigate(routes.home);
       }
     }
-  }, [data, navigate]);
+  }, [data, navigate, queryClient]);
 
   return data;
 }

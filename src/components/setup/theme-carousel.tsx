@@ -3,7 +3,7 @@ import 'swiper/css';
 import styled from '@emotion/styled';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import themeList from '../../lib/theme-map';
+import themeList from '../../constants/theme-list';
 import { getFontSizeAndWeight } from '../../utils/style';
 import ThemeItem from './theme-item';
 

@@ -1,34 +1,35 @@
 import styled from '@emotion/styled';
 
-import emojis from '../../../../lib/emoji-map';
-import { ThemeKey } from '../../../../lib/theme-map';
+import emojis from '../../../../constants/emojis';
+import { ThemeKey } from '../../../../constants/theme-list';
+import messageStore from '../../../../stores/messageStore';
 
 interface EmojiContentProps {
-  activeEmojiIndex: number | null;
-  onActiveEmojiChange: (i: number) => void;
-  theme: ThemeKey;
+  theme?: ThemeKey;
 }
 
-export default function EmojiSelectorSheet({
-  activeEmojiIndex,
-  onActiveEmojiChange,
-  theme,
-}: EmojiContentProps) {
+export default function EmojiSelectorSheet({ theme }: EmojiContentProps) {
+  const { setActiveEmojiIndex, activeEmojiIndex, addList } = messageStore();
+
   return (
     <StyledWrapper>
-      {emojis[theme].map((emoji, i) => {
-        const Emoji = emoji.svg;
-        return (
-          <StyledItem
-            isActive={activeEmojiIndex === i}
-            key={emoji.name}
-            type="button"
-            onClick={() => onActiveEmojiChange(i)}
-          >
-            <Emoji />
-          </StyledItem>
-        );
-      })}
+      {theme &&
+        emojis[theme].map((emoji, i) => {
+          const Emoji = emoji.svg;
+          return (
+            <StyledItem
+              isActive={activeEmojiIndex === i}
+              key={emoji.name}
+              type="button"
+              onClick={() => {
+                setActiveEmojiIndex(i);
+                addList(theme, i);
+              }}
+            >
+              <Emoji />
+            </StyledItem>
+          );
+        })}
     </StyledWrapper>
   );
 }

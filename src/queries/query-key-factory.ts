@@ -4,7 +4,8 @@ import {
 } from '@lukemorales/query-key-factory';
 
 import { getAccessToken } from '../services/auth';
-import { getPaperByUserId } from '../services/paper';
+import { getPaperMessages } from '../services/message';
+import { getPaperByUserId, getPerperDetail } from '../services/paper';
 import { getUser } from '../services/users';
 
 const auth = createQueryKeys('auth', {
@@ -21,13 +22,24 @@ const users = createQueryKeys('users', {
   }),
 });
 
-const paper = createQueryKeys('paper', {
-  deatil: (userId?: number) => ({
+const papers = createQueryKeys('papers', {
+  all: (userId?: number) => ({
     queryKey: [userId],
     queryFn: () => getPaperByUserId(userId),
   }),
+  detail: (paperId?: string) => ({
+    queryKey: [paperId],
+    queryFn: () => getPerperDetail(paperId),
+  }),
 });
 
-const queries = mergeQueryKeys(auth, users, paper);
+const messages = createQueryKeys('messages', {
+  paper: (paperId?: number) => ({
+    queryKey: [paperId],
+    queryFn: () => getPaperMessages(paperId),
+  }),
+});
+
+const queries = mergeQueryKeys(auth, users, papers, messages);
 
 export default queries;

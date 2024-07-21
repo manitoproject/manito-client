@@ -1,5 +1,3 @@
-import { ThemeKey } from '../lib/theme-map';
-
 interface PaperCreateType {
   category: 'ROLLING_PAPER';
   title: string;
@@ -12,7 +10,11 @@ interface Paper {
   id: number;
   category: keyof PaperCreateType['category'];
   title: string;
-  theme: string;
+  theme: ThemeKey;
   regDateTime: string;
   modDateTime?: string;
+}
+
+interface PaperDetail extends Paper {
+  userId: number;
 }

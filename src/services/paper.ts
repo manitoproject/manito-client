@@ -1,6 +1,5 @@
 import { DeatultResponse } from '../types/axios';
-import { Paper, PaperCreateType } from '../types/paper';
-import { requester } from '.';
+import { requester, RequesterWithoutToken } from '.';
 
 export const createRollingPaper = async ({
   category,
@@ -20,5 +19,13 @@ export const getPaperByUserId = async (userId?: number) => {
   const { data } = await requester.get<DeatultResponse<Paper[]>>(
     `/paper/user/${userId}`,
   );
+  return data;
+};
+
+export const getPerperDetail = async (paperId?: string) => {
+  if (!paperId) return null;
+  const { data } = await RequesterWithoutToken.get<
+    DeatultResponse<PaperDetail>
+  >(`/paper/id/${paperId}`);
   return data;
 };

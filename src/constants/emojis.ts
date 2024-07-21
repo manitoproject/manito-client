@@ -24,19 +24,19 @@ import {
   NatureSquare3,
   NatureSquare4,
   SpaceCircle,
-  SpaceMoon,
-  SpacePlanet,
-  SpacePlanetCloud,
+  SpaceCircleMoon,
+  SpacePlanetCircle,
+  SpacePlanetCircleCloud,
   SpacePlanetStar,
   SpacePlanetStarRight,
   SpacePlanetStarSquare,
   SpacePlanetStarSquareMoon,
   SpaceSquare,
   SpaceStarBright,
-  SpaceTablecloth,
-  SpaceTableclothBright,
+  SpaceTableclothPolygon,
+  SpaceTableclothPolygonBright,
 } from '../assets/svg/emoji';
-import { ThemeKey } from './theme-map';
+import { ThemeKey } from './theme-list';
 
 const emojis: { [key in ThemeKey]: { name: string; svg: string }[] } = {
   nature: [
@@ -107,20 +107,20 @@ const emojis: { [key in ThemeKey]: { name: string; svg: string }[] } = {
       svg: SpaceStarBright,
     },
     {
-      name: 'SpacePlanet',
-      svg: SpacePlanet,
+      name: 'SpacePlanetCircle',
+      svg: SpacePlanetCircle,
     },
     {
-      name: 'SpacePlanetCloud',
-      svg: SpacePlanetCloud,
+      name: 'SpacePlanetCircleCloud',
+      svg: SpacePlanetCircleCloud,
     },
     {
       name: 'SpaceCircle',
       svg: SpaceCircle,
     },
     {
-      name: 'SpaceMoon',
-      svg: SpaceMoon,
+      name: 'SpaceCircleMoon',
+      svg: SpaceCircleMoon,
     },
     {
       name: 'SpacePlanetStarRight',
@@ -131,12 +131,12 @@ const emojis: { [key in ThemeKey]: { name: string; svg: string }[] } = {
       svg: SpacePlanetStar,
     },
     {
-      name: 'SpaceTablecloth',
-      svg: SpaceTablecloth,
+      name: 'SpaceTableclothPolygon',
+      svg: SpaceTableclothPolygon,
     },
     {
-      name: 'SpaceTableclothBright',
-      svg: SpaceTableclothBright,
+      name: 'SpaceTableclothPolygonBright',
+      svg: SpaceTableclothPolygonBright,
     },
   ],
   animal: [
