@@ -15,6 +15,7 @@ interface MessageState {
   setList: (serverData?: Message[]) => void;
   addList: (theme: ThemeKey) => void;
   resetList: () => void;
+  removeList: (messageId: number) => void;
 }
 
 const messageStore = create<MessageState>((set) => ({
@@ -47,6 +48,15 @@ const messageStore = create<MessageState>((set) => ({
     set({
       list: INIT_LIST,
     }),
+  removeList: (messageId: number) =>
+    set((state) => ({
+      list: state.list.map((prev) => {
+        if (prev?.theme && 'content' in prev) {
+          return prev.id === messageId ? null : prev;
+        }
+        return prev;
+      }),
+    })),
 }));
 
 export default messageStore;

@@ -17,3 +17,12 @@ export const getPaperMessages = async (paperId?: number) => {
   );
   return data;
 };
+
+export const deleteMessage = async (messageId: number) => {
+  const { data } = await requester.delete<DeatultResponse<null>>('/message', {
+    data: {
+      id: messageId,
+    },
+  });
+  return data;
+};
