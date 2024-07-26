@@ -4,7 +4,7 @@ interface PaperCreateType {
   theme: ThemeKey;
 }
 
-type PaperType = '롤링페이퍼' | '보물찾기' | '케이크 꾸미기';
+type PaperType = '페이퍼' | '보물' | '케이크';
 
 interface Paper {
   id: number;

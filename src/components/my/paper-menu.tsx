@@ -2,13 +2,13 @@ import { StyledPaper, StyledPaperWrapper } from './paper-menu.style';
 
 const PAPERS: { name: PaperType }[] = [
   {
-    name: '롤링페이퍼',
+    name: '페이퍼',
   },
   {
-    name: '보물찾기',
+    name: '보물',
   },
   {
-    name: '케이크 꾸미기',
+    name: '케이크',
   },
 ];
 
