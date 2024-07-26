@@ -2,7 +2,7 @@ import axios, { CreateAxiosDefaults } from 'axios';
 
 import { token } from '../utils/storage';
 
-const defaultConfig: CreateAxiosDefaults = { baseURL: '/api' };
+const defaultConfig: CreateAxiosDefaults = { baseURL: '/api', timeout: 5000 };
 
 export const requester = axios.create({
   ...defaultConfig,
