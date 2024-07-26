@@ -11,7 +11,6 @@ interface PaperListProps {
 }
 
 export default function PaperList({ list }: PaperListProps) {
-  console.log(list);
   return (
     <StyledList>
       {list?.map((item) => (

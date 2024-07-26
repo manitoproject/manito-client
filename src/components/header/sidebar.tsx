@@ -46,7 +46,7 @@ export default function Sidebar({ onClose, isOpen }: SideMenuProps) {
       <StyledOverlay isOpen={isOpen} />
       <StyledNav ref={ref} isOpen={isOpen}>
         <StyledNicknameWrapper>
-          <img src={'/src/assets/imgs/user/avatar.png'} alt="avatar" />
+          <img src={data?.data?.profileImage} alt="avatar" />
           <span>{data?.data?.nickname}</span>
         </StyledNicknameWrapper>
         <StyledNavLinkWrapper>

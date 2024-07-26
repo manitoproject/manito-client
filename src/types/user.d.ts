@@ -5,4 +5,5 @@ export interface User {
   originName: string;
   provider: string;
   regDate: string;
+  profileImage: string;
 }

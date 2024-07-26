@@ -12,7 +12,7 @@ export default function UserInfo() {
   return (
     <StyledWrapper>
       <StyledAvatarWrapper>
-        <img src={'src/assets/imgs/user/avatar.png'} alt="avatar" />
+        <img src={data?.data?.profileImage} alt="avatar" />
       </StyledAvatarWrapper>
       <StyledNicknameWrapper>
         <p>{data?.data?.nickname}</p>
