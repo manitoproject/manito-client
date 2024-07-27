@@ -2,6 +2,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import { HamburgerMenu, LeftChevron } from '../../assets/svg/icons';
 import headerMap from '../../constants/header-config';
+import { usePaperDetailQuery } from '../../queries/paper';
 import { routes } from '../../router';
 import {
   StyledHeader,
@@ -13,20 +14,21 @@ interface HeaderProps {
   onSidebarOpen: () => void;
 }
 
-const data = {
-  subject: 'dhkdfsfsfs',
-};
-
 export default function Header({ onSidebarOpen }: HeaderProps) {
   const navigate = useNavigate();
   const location = useLocation();
+  const { data } = usePaperDetailQuery();
   const headerInfo =
     headerMap.find((header) => {
       let pathname = header.pathname();
-      if (pathname.includes('/:')) pathname = pathname.split('/:')[0];
-      return location.pathname.includes(pathname);
+      if (header.title.includes(data?.data?.theme)) {
+        return header;
+      }
+      if (!data?.data && pathname.includes('/:')) {
+        pathname = pathname.split('/:')[0];
+        return location.pathname.includes(pathname);
+      }
     }) ?? headerMap[headerMap.length - 1];
-  const isDetailPage = headerInfo.pathname().includes('/detail');
 
   return (
     <StyledHeader
@@ -45,7 +47,7 @@ export default function Header({ onSidebarOpen }: HeaderProps) {
             <LeftChevron />
           </StyledLeftButton>
         )}
-        <h1>{isDetailPage ? data?.subject : headerInfo.title}</h1>
+        <h1>{data?.data?.title ?? headerInfo.title}</h1>
         {headerInfo.isShowMenuBtn && (
           <StyledMenuButton
             hasHeaderColor={headerInfo.hasHeaderColor}
