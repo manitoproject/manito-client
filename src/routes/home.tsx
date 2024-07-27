@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
-import { RollingBadge } from '../assets/imgs';
+import { MainBanner, RollingBadge } from '../assets/imgs';
 import { useUserQuery } from '../queries/users';
 import { routes } from '../router';
 import { getFontSizeAndWeight } from '../utils/style';
@@ -39,7 +39,9 @@ export default function Home() {
             <strong>다양한 컨텐츠</strong>를 즐겨보세요.
           </p>
         </StyledHeading>
-        <StyeldBanner></StyeldBanner>
+        <StyeldBanner>
+          <MainBanner />
+        </StyeldBanner>
         <StyeldContents>
           {CONTENTS.map((content) => {
             const Badge = content.badge;
@@ -88,9 +90,9 @@ const StyledHeading = styled.div`
 `;
 const StyeldBanner = styled.div`
   width: 100%;
-  border-radius: 10px;
-  background-color: ${(props) => props.theme.colors['powderBlue-300']};
-  height: 80px;
+  overflow: hidden;
+  border-radius: 4px;
+  height: 96px;
 `;
 const StyeldContents = styled.ul`
   display: grid;
