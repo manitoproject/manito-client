@@ -32,3 +32,13 @@ export const getPerperDetail = async (paperId?: string) => {
   >(`/paper/id/${paperId}`);
   return data;
 };
+
+export const deletePaper = async (paperId?: number) => {
+  if (!paperId) return null;
+  const { data } = await requester.delete<DeatultResponse<null>>(`/paper`, {
+    data: {
+      id: paperId,
+    },
+  });
+  return data;
+};

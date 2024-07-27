@@ -1,8 +1,8 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { routes } from '../router';
-import { createRollingPaper } from '../services/paper';
+import { createRollingPaper, deletePaper } from '../services/paper';
 import queries from './query-key-factory';
 
 export const useCreateRollingPaper = () => {
@@ -34,4 +34,18 @@ export const usePaperDetailQuery = () => {
   if (query.isError || query.data?.result === 'Fail') throw new Error();
 
   return query;
+};
+
+export const useDeletePaper = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: deletePaper,
+    onSuccess: (data) => {
+      if (data?.result === 'Success') {
+        queryClient.invalidateQueries({
+          queryKey: queries.papers.all._def,
+        });
+      }
+    },
+  });
 };
