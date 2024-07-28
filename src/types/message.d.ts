@@ -1,4 +1,5 @@
 import { ColorKey, FontKey } from '../styles/theme';
+import { User } from './user';
 
 interface CreateMessageApiParams {
   content: string;
@@ -7,15 +8,18 @@ interface CreateMessageApiParams {
   isPublic: 'Y' | 'N';
   theme: string;
   paperId: number;
+  position: number;
 }
 
 interface Message {
   id: number;
   paperId: number;
-  userId: number;
+  user: User;
   theme: string;
   content: string;
   regDateTime: string;
   font: FontKey;
   fontColor: ColorKey;
+  isPublic: string;
+  position: number;
 }

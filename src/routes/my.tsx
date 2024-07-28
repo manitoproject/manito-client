@@ -43,7 +43,6 @@ const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
-  padding-bottom: ${({ theme }) => theme.sizes.padding};
 `;
 
 const StyledContentsWrapper = styled.section`

@@ -19,7 +19,7 @@ import {
 export default function RollingDetail() {
   const { data } = usePaperDetailQuery();
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
-  const { reset, activeEmojiIndex } = messageStore();
+  const { reset, activeEmojiIndex, activeMessageIndex } = messageStore();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -47,7 +47,7 @@ export default function RollingDetail() {
                 navigate(
                   `${routes.rolling.new()}?theme=${data?.data?.theme}&paperId=${
                     data?.data?.id
-                  }&emoji=${activeEmojiIndex}`,
+                  }&emoji=${activeEmojiIndex}&position=${activeMessageIndex}`,
                 )
               }
               disabled={typeof activeEmojiIndex !== 'number'}

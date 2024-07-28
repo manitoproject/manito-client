@@ -44,7 +44,7 @@ const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  background-color: ${({ theme }) => theme.colors['gray-100']};
+  background-color: ${({ theme }) => theme.colors['powderBlue-100']};
   & > div {
     display: flex;
     gap: 12px;

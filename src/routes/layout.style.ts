@@ -24,6 +24,7 @@ export const StyledMain = styled.main`
       padding-left: ${theme.sizes.padding};
       padding-right: ${theme.sizes.padding};
       padding-top: calc(${theme.sizes.mainMarginTop} + ${theme.sizes.header});
+      padding-bottom: ${theme.sizes.paddingBottom};
     `}
 `;
 

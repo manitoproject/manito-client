@@ -20,7 +20,7 @@ type EmojiType = 'Circle' | 'Square' | 'Rest';
 const EMOJI_TYPE: EmojiType[] = ['Circle', 'Square', 'Rest'];
 
 export default function RollingNew() {
-  const { emojiIndex, paperId, theme } = useValidationQueryString();
+  const { emojiIndex, paperId, theme, position } = useValidationQueryString();
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeMenuIndex, setActiveMenuIndex] = useState(0);
@@ -42,6 +42,7 @@ export default function RollingNew() {
       font: activeFont.name,
       content: message,
       fontColor: activeColor,
+      position: +position,
       theme: emojis[theme][+emojiIndex].name,
       isPublic: activeIndex === 0 ? 'Y' : 'N',
       paperId: +paperId,

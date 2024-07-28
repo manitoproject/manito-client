@@ -27,7 +27,8 @@ const messageStore = create<MessageState>((set) => ({
   snycList: (serverData?: Message[]) =>
     set((state) => ({
       list: state.list.map((prev, i) => {
-        return serverData?.[i] ?? prev;
+        const item = serverData?.find((item) => item.position === i);
+        return item ?? prev;
       }),
     })),
   addList: (theme: ThemeKey) =>

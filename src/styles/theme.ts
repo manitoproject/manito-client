@@ -27,6 +27,7 @@ const theme = {
     padding: '24px',
     header: '64px',
     mainMarginTop: '64px',
+    paddingBottom: '40px',
   },
   colors: {
     'powderBlue-50': '#F7F8FB',
