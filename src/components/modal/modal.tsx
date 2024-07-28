@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { RadioButton, RadioButtonActive } from '../../assets/svg/icons';
 import { nicknameMaxLength } from '../../constants/regexPatterns';
 import { useNameForm, useOutsideClick } from '../../hooks';
+import modalStore from '../../stores/modalStore';
 import Input from '../common/input';
 import {
   StyledButton,
@@ -108,8 +109,13 @@ function ModalMain({
   isOpen: boolean;
   onClick: () => void;
 }) {
-  const { isError, setIsError, activeIndex, setActiveIndex } = useModal();
+  const { isError, setIsError } = useModal();
+  const { activeIndex, setActiveIndex } = modalStore();
   const ref = useOutsideClick(onClick, isOpen);
+
+  useEffect(() => {
+    return () => setActiveIndex(0);
+  }, [setActiveIndex]);
 
   return (
     <ModalContext.Provider

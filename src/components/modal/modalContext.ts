@@ -4,7 +4,7 @@ interface ModalContextType {
   isError: boolean;
   setIsError: React.Dispatch<React.SetStateAction<boolean>>;
   activeIndex: number;
-  setActiveIndex: React.Dispatch<React.SetStateAction<number>>;
+  setActiveIndex: (i: number) => void;
 }
 
 const ModalContext = createContext<ModalContextType | null>(null);

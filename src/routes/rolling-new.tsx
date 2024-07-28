@@ -7,11 +7,13 @@ import { StyledBottomSheetContentWrapper } from '../components/detail/bottom-she
 import ColorList from '../components/detail/bottom-sheet/font-sheet/color-list';
 import FontList from '../components/detail/bottom-sheet/font-sheet/font-list';
 import FontSelectorSheet from '../components/detail/bottom-sheet/font-sheet/font-selector-sheet';
+import { Modal } from '../components/modal/modal';
 import emojis from '../constants/emojis';
 import { colors, Font, fonts } from '../constants/fonts';
 import { useValidationQueryString } from '../hooks';
 import { useCreateMessage } from '../queries/message';
-import { ColorKey } from '../styles/theme';
+import modalStore from '../stores/modalStore';
+import themeObject, { ColorKey } from '../styles/theme';
 import { StyledBackdrop } from './rolling-detail.style';
 
 type EmojiType = 'Circle' | 'Square' | 'Rest';
@@ -20,7 +22,9 @@ const EMOJI_TYPE: EmojiType[] = ['Circle', 'Square', 'Rest'];
 export default function RollingNew() {
   const { emojiIndex, paperId, theme } = useValidationQueryString();
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeMenuIndex, setActiveMenuIndex] = useState(0);
+  const { activeIndex } = modalStore();
   const [activeFontIndex, setActiveFontIndex] = useState(0);
   const [activeColorIndex, setActiveColorIndex] = useState(0);
   const [message, setMessage] = useState('');
@@ -29,7 +33,6 @@ export default function RollingNew() {
   const activeColor = colors[theme][activeColorIndex];
   const { svg: Svg, name } = emojis[theme][+emojiIndex];
   const emojiType: EmojiType = EMOJI_TYPE.filter((type, i) => {
-    console.log(name);
     if (EMOJI_TYPE.length - 1 === i) return true;
     return name.includes(type);
   })[0];
@@ -40,7 +43,7 @@ export default function RollingNew() {
       content: message,
       fontColor: activeColor,
       theme: emojis[theme][+emojiIndex].name,
-      isPublic: 'Y',
+      isPublic: activeIndex === 0 ? 'Y' : 'N',
       paperId: +paperId,
     });
   };
@@ -85,13 +88,42 @@ export default function RollingNew() {
                 />
               )}
             </FontSelectorSheet>
-            <Button onClick={handleMessageSubmit} disabled={!message.length}>
+            <Button
+              onClick={() => setIsModalOpen(true)}
+              disabled={!message.length}
+            >
               작성완료
             </Button>
           </StyledBottomSheetContentWrapper>
         </BottomSheet>
       </StyledWrapper>
       <StyledOverlayBackdrop themeName={theme} />
+      {isModalOpen && (
+        <Modal
+          isOpen={isModalOpen}
+          onClick={() => setIsModalOpen(!isModalOpen)}
+        >
+          <Modal.CheckboxForm />
+          <Modal.Buttons>
+            <Modal.Button
+              css={{ border: `1px solid ${themeObject.colors['gray-300']}` }}
+              onClick={() => setIsModalOpen(false)}
+            >
+              닫기
+            </Modal.Button>
+            <Modal.Button
+              isActionBtn
+              css={{
+                backgroundColor: themeObject.colors['gray-900'],
+                color: themeObject.colors.white,
+              }}
+              onClick={handleMessageSubmit}
+            >
+              작성하기
+            </Modal.Button>
+          </Modal.Buttons>
+        </Modal>
+      )}
     </StyledRollingNew>
   );
 }
