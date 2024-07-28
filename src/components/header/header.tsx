@@ -26,8 +26,8 @@ export default function Header({ onSidebarOpen }: HeaderProps) {
       }
       if (!data?.data && pathname.includes('/:')) {
         pathname = pathname.split('/:')[0];
-        return location.pathname.includes(pathname);
       }
+      return location.pathname.includes(pathname);
     }) ?? headerMap[headerMap.length - 1];
 
   return (
