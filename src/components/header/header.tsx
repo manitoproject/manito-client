@@ -24,10 +24,13 @@ export default function Header({ onSidebarOpen }: HeaderProps) {
       if (header.title.includes(data?.data?.theme)) {
         return header;
       }
+      if (pathname === location.pathname) {
+        return header;
+      }
       if (!data?.data && pathname.includes('/:')) {
         pathname = pathname.split('/:')[0];
+        return location.pathname.includes(pathname);
       }
-      return location.pathname.includes(pathname);
     }) ?? headerMap[headerMap.length - 1];
 
   return (
