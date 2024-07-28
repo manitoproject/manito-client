@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 import { RadioButton, RadioButtonActive } from '../../assets/svg/icons';
 import { nicknameMaxLength } from '../../constants/regexPatterns';
-import { useNameForm, useOutsideClick } from '../../hooks';
+import { useDisableScroll, useNameForm, useOutsideClick } from '../../hooks';
 import modalStore from '../../stores/modalStore';
 import Input from '../common/input';
 import {
@@ -12,14 +12,16 @@ import {
   StyledCheckboxFormWrapper,
   StyledCheckboxItem,
   StyledModalMainWrapper,
+  StyledTitleWrapper,
 } from './modal.style';
 import ModalContext, { useModalContext } from './modalContext';
+import { Portal } from './portal';
 import useModal from './useModal';
 
 const CHECKBOX_LIST = ['공개로 작성할래요.', '익명으로 작성할래요.'];
 
 function TitleWrapper({ children }: { children: React.ReactNode }) {
-  return <div>{children}</div>;
+  return <StyledTitleWrapper>{children}</StyledTitleWrapper>;
 }
 function Title({ children }: { children: React.ReactNode }) {
   return <h1>{children}</h1>;
@@ -112,19 +114,22 @@ function ModalMain({
   const { isError, setIsError } = useModal();
   const { activeIndex, setActiveIndex } = modalStore();
   const ref = useOutsideClick(onClick, isOpen);
+  useDisableScroll(isOpen);
 
   useEffect(() => {
     return () => setActiveIndex(0);
   }, [setActiveIndex]);
 
   return (
-    <ModalContext.Provider
-      value={{ isError, setIsError, activeIndex, setActiveIndex }}
-    >
-      <StyledModalMainWrapper>
-        <div ref={ref}>{children}</div>
-      </StyledModalMainWrapper>
-    </ModalContext.Provider>
+    <Portal>
+      <ModalContext.Provider
+        value={{ isError, setIsError, activeIndex, setActiveIndex }}
+      >
+        <StyledModalMainWrapper>
+          <div ref={ref}>{children}</div>
+        </StyledModalMainWrapper>
+      </ModalContext.Provider>
+    </Portal>
   );
 }
 

@@ -6,6 +6,7 @@ export { default as Document } from './document.svg';
 export { default as Edit } from './edit.svg';
 export { default as HamburgerMenu } from './hamburger-menu.svg';
 export { default as Home } from './home.svg';
+export { default as KakaoFill } from './kakao-fill.svg';
 export { default as KakaoLogo } from './kakao-logo.svg';
 export { default as LeftChevron } from './left-chevron.svg';
 export { default as Logo } from './logo.svg';

@@ -6,6 +6,7 @@ import { getFontSizeAndWeight } from '../../utils/style';
 export const StyledModalMainWrapper = styled.div`
   position: absolute;
   left: 0;
+
   right: 0;
   top: 0;
   bottom: 0;
@@ -19,9 +20,27 @@ export const StyledModalMainWrapper = styled.div`
     flex-direction: column;
     display: flex;
     gap: 24px;
+    align-items: center;
+    min-width: 400px;
     border-radius: 10px;
     border: 1px solid ${({ theme }) => theme.colors['gray-300']};
     background-color: white;
+  }
+`;
+
+export const StyledTitleWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  h1 {
+    text-align: center;
+    ${getFontSizeAndWeight('heading2', 'bold')};
+    color: ${({ theme }) => theme.colors['gray-900']};
+  }
+  p {
+    text-align: center;
+    color: ${({ theme }) => theme.colors['gray-600']};
+    ${getFontSizeAndWeight('heading4', 'regular')};
   }
 `;
 
@@ -61,6 +80,7 @@ export const StyledCheckboxItem = styled.button<{ isActive: boolean }>`
 export const StyledButtonWrapper = styled.div`
   display: flex;
   gap: 8px;
+  width: 100%;
   flex: 1;
 `;
 export const StyledButton = styled.button`
