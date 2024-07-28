@@ -57,6 +57,11 @@ const StyledItem = styled.li`
     padding: 18px 16px;
 
     & > span {
+      margin-right: 8px;
+      display: inline-block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
       flex: 1;
       ${getFontSizeAndWeight('heading4', 'medium')}
       color: ${({ theme }) => theme.colors['gray-800']};
