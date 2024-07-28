@@ -20,9 +20,13 @@ export const StyledRenameWrapper = styled.div`
 export const StyledAvartarWrapper = styled.div`
   display: flex;
   justify-content: center;
-  button {
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  button:nth-of-type(1) {
     position: relative;
     border-radius: 999px;
+    overflow: hidden;
     img {
       width: 100px;
       height: 100px;
@@ -35,5 +39,12 @@ export const StyledAvartarWrapper = styled.div`
       right: 0;
       bottom: 0;
     }
+  }
+  button:nth-of-type(2) {
+    ${getFontSizeAndWeight('body1', 'medium')};
+    border: 1px solid ${({ theme }) => theme.colors['gray-300']};
+    color: ${({ theme }) => theme.colors['gray-900']};
+    padding: 8px 16px;
+    border-radius: 4px;
   }
 `;

@@ -61,6 +61,14 @@ const headerMap: HeaderConfig[] = [
   {
     hasBorder: true,
     hasHeaderColor: false,
+    pathname: () => routes.my.setting(),
+    title: '설정',
+    isShowLeftBtn: true,
+    isShowMenuBtn: true,
+  },
+  {
+    hasBorder: true,
+    hasHeaderColor: false,
     pathname: () => routes.my.rename(),
     title: '프로필 수정',
     isShowLeftBtn: true,
@@ -74,6 +82,7 @@ const headerMap: HeaderConfig[] = [
     isShowLeftBtn: false,
     isShowMenuBtn: true,
   },
+
   {
     hasBorder: true,
     hasHeaderColor: false,

@@ -1,12 +1,12 @@
-import { Camera } from '../assets/svg/icons';
 import { Button } from '../components/common/buttons';
 import NameForm from '../components/common/name-form';
 import { nicknameMaxLength } from '../constants/regexPatterns';
 import { useNameForm } from '../hooks';
-import { useNicknameChange } from '../queries/users';
+import { useNicknameChange, useUserQuery } from '../queries/users';
 import { StyledAvartarWrapper, StyledRenameWrapper } from './rename.style';
 
 export default function Rename() {
+  const { data } = useUserQuery();
   const { mutate, isPending } = useNicknameChange(true);
   const { handleNameChange, handleNameReset, isError, name, nameRef } =
     useNameForm('nickname');
@@ -19,9 +19,9 @@ export default function Rename() {
     <StyledRenameWrapper>
       <StyledAvartarWrapper>
         <button>
-          <img src="/src/assets/imgs/user/avatar.png" alt="avartar" />
-          <Camera />
+          <img src={data?.data?.profileImage} alt="avartar" />
         </button>
+        <button>기본프로필로변경</button>
       </StyledAvartarWrapper>
       <h3>이름</h3>
       <NameForm

@@ -7,6 +7,7 @@ import Join from './routes/join';
 import KakaoRedirection from './routes/kakako_redirection';
 import Layout from './routes/layout';
 import My from './routes/my';
+import MySetting from './routes/my-setting';
 import Rename from './routes/rename';
 import RollingDetail from './routes/rolling-detail';
 import RollingNew from './routes/rolling-new';
@@ -21,7 +22,8 @@ export const routes = {
   setupIntro: (content?: string) => `/intro/${content ?? ':content'}` as const,
   my: {
     default: '/my' as const,
-    rename: () => `${routes.my.default}/rename`,
+    setting: () => `${routes.my.default}/setting` as const,
+    rename: () => `${routes.my.setting()}/rename`,
   },
   rolling: {
     default: '/rolling' as const,
@@ -61,6 +63,10 @@ const router = () =>
             {
               path: routes.my.default,
               element: <My />,
+            },
+            {
+              path: routes.my.setting(),
+              element: <MySetting />,
             },
             {
               path: routes.my.rename(),

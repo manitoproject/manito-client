@@ -19,7 +19,7 @@ export default function UserInfo() {
         <p>{data?.data?.email}</p>
       </StyledNicknameWrapper>
       <StyledSvgWrapper>
-        <Link to={routes.my.rename()}>
+        <Link to={routes.my.setting()}>
           <Setting />
         </Link>
       </StyledSvgWrapper>
