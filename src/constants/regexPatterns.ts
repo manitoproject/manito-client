@@ -1,4 +1,4 @@
-export const titleMaxLength = 20;
+export const titleMaxLength = 12;
 export const nicknameMaxLength = 20;
 export const maxMessageLength = 56;
 
