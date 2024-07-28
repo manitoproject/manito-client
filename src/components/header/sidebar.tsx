@@ -46,24 +46,35 @@ export default function Sidebar({ onClose, isOpen }: SideMenuProps) {
       <StyledOverlay isOpen={isOpen} />
       <StyledNav ref={ref} isOpen={isOpen}>
         <StyledNicknameWrapper>
-          <img src={data?.data?.profileImage} alt="avatar" />
-          <span>{data?.data?.nickname}</span>
+          {data?.data ? (
+            <>
+              <img src={data?.data?.profileImage} alt="avatar" />
+              <span>{data?.data?.nickname}</span>
+            </>
+          ) : (
+            <span>로그인이 필요합니다.</span>
+          )}
         </StyledNicknameWrapper>
         <StyledNavLinkWrapper>
           <StyledNavLinks>
-            {LINKS.map((link) => (
-              <li key={link.name}>
-                <Link onClick={onClose} to={link.href()}>
-                  {link.svg}
-                  <span>{link.name}</span>
-                </Link>
-              </li>
-            ))}
+            {LINKS.map((link) => {
+              if (!data?.data && link.name === '마이 페이지') return;
+              return (
+                <li key={link.name}>
+                  <Link onClick={onClose} to={link.href()}>
+                    {link.svg}
+                    <span>{link.name}</span>
+                  </Link>
+                </li>
+              );
+            })}
           </StyledNavLinks>
-          <button>
-            <Logout />
-            <span>로그아웃</span>
-          </button>
+          {data?.data && (
+            <button>
+              <Logout />
+              <span>로그아웃</span>
+            </button>
+          )}
         </StyledNavLinkWrapper>
       </StyledNav>
     </div>
