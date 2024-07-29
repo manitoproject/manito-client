@@ -1,10 +1,17 @@
 import styled from '@emotion/styled';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { routes } from '../router';
+import { accessToken } from '../utils/storage';
 import { getFontSizeAndWeight } from '../utils/style';
 
 export default function MySetting() {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem(accessToken);
+    navigate(routes.index);
+  };
+
   return (
     <StyledWrapper>
       <div>
@@ -20,7 +27,9 @@ export default function MySetting() {
           <div>기타</div>
           <StyledList>
             <StyledListItem>
-              <button>로그아웃</button>
+              <button type="button" onClick={handleLogout}>
+                로그아웃
+              </button>
             </StyledListItem>
             <StyledListItem>
               <button>문의하기</button>

@@ -1,10 +1,11 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { Document, Home, Logout, My } from '../../assets/svg/icons';
 import { useDisableScroll } from '../../hooks';
 import useOutsideClick from '../../hooks/common/useOutsideClick';
 import { useUserQuery } from '../../queries/users';
 import { routes } from '../../router';
+import { accessToken } from '../../utils/storage';
 import {
   StyledNav,
   StyledNavLinks,
@@ -38,8 +39,13 @@ const LINKS = [
 
 export default function Sidebar({ onClose, isOpen }: SideMenuProps) {
   const { data } = useUserQuery();
+  const navigate = useNavigate();
   const ref = useOutsideClick(() => onClose(), isOpen);
   useDisableScroll(isOpen);
+  const handleLogout = () => {
+    localStorage.removeItem(accessToken);
+    navigate(routes.index);
+  };
 
   return (
     <div>
@@ -70,7 +76,7 @@ export default function Sidebar({ onClose, isOpen }: SideMenuProps) {
             })}
           </StyledNavLinks>
           {data?.data && (
-            <button>
+            <button type="button" onClick={handleLogout}>
               <Logout />
               <span>로그아웃</span>
             </button>
