@@ -39,9 +39,10 @@ const StyledTosatItem = styled(motion.div)`
   padding: 36px 24px;
   left: 50%;
   top: 50%;
+  z-index: 999999999;
   position: fixed;
   background-color: ${({ theme }) => theme.colors.white};
   border: 1px solid ${({ theme }) => theme.colors['gray-300']};
   color: ${({ theme }) => theme.colors['gray-900']};
-  ${getFontSizeAndWeight('heading2', 'bold')};
+  ${getFontSizeAndWeight('heading3', 'bold')};
 `;

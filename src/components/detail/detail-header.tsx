@@ -5,6 +5,7 @@ import { Clip, KakaoFill } from '../../assets/svg/icons';
 import { usePaperMessagesQuery } from '../../queries/message';
 import { useUserQuery } from '../../queries/users';
 import { routes } from '../../router';
+import toastStore from '../../stores/toastStore';
 import theme from '../../styles/theme';
 import { Modal } from '../modal/modal';
 import {
@@ -19,6 +20,7 @@ interface DetailHeaderProps {
 
 export default function DetailHeader({ paperId }: DetailHeaderProps) {
   const { data: userData } = useUserQuery();
+  const toast = toastStore();
   const [isCopyModalOpen, setIsCopyModalOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const { data: messageData } = usePaperMessagesQuery(paperId);
@@ -33,6 +35,7 @@ export default function DetailHeader({ paperId }: DetailHeaderProps) {
       await navigator.clipboard.writeText(
         `${import.meta.env.VITE_CLIENT_URL}${location.pathname}`,
       );
+      toast.add('링크가 복사 되었습니다.');
     }
   };
 
