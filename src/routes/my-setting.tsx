@@ -25,9 +25,6 @@ export default function MySetting() {
             <StyledListItem>
               <button>문의하기</button>
             </StyledListItem>
-            <StyledListItem>
-              <button>탈퇴하기</button>
-            </StyledListItem>
           </StyledList>
         </StyledListWarpper>
       </div>
