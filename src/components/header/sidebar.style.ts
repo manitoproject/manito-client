@@ -1,7 +1,22 @@
+import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 
 import { getFontSizeAndWeight } from '../../utils/style';
 import { SideMenuProps } from './sidebar';
+
+const fadeIn = keyframes`
+   0% {
+     opacity: 0;
+   }
+
+   15% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+`;
 
 export const StyledOverlay = styled.div<Pick<SideMenuProps, 'isOpen'>>`
   display: ${(props) => (props.isOpen ? 'block' : 'none')};
@@ -10,14 +25,24 @@ export const StyledOverlay = styled.div<Pick<SideMenuProps, 'isOpen'>>`
   top: 0;
   z-index: 52;
   background-color: rgba(0, 0, 0, 0.2);
-  height: 100vh;
+  height: 100%;
 `;
 
 export const StyledNavLinkWrapper = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   flex: 1;
   justify-content: space-between;
+`;
+export const StyledInnerNav = styled.div<Pick<SideMenuProps, 'isOpen'>>`
+  display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
+  flex-direction: column;
+  gap: 12px;
+  width: 240px;
+  position: fixed;
+  height: 100vh;
+  padding: 46px 24px;
   button {
     padding: 8px 0;
     ${getFontSizeAndWeight('heading4', 'medium')}
@@ -25,19 +50,15 @@ export const StyledNavLinkWrapper = styled.div`
     gap: 6px;
     color: ${(props) => props.theme.colors['gray-600']};
   }
+  animation: ${fadeIn} 300ms ease-in;
 `;
-
 export const StyledNav = styled.nav<Pick<SideMenuProps, 'isOpen'>>`
-  padding: 46px 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  width: 240px;
+  height: 100%;
   background-color: ${(props) => props.theme.colors.white};
   position: absolute;
   top: 0;
   right: ${(props) => (props.isOpen ? 0 : '-240px')};
-  width: 240px;
-  height: 100vh;
   z-index: 999;
   transition: right 300ms ease;
   box-shadow: ${(props) =>
@@ -75,6 +96,7 @@ export const StyledNicknameWrapper = styled.div`
 
 export const StyledNavLinks = styled.ul`
   display: flex;
+  height: 100%;
   flex-direction: column;
   gap: 4px;
   li {

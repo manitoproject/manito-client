@@ -7,6 +7,7 @@ import { useUserQuery } from '../../queries/users';
 import { routes } from '../../router';
 import { accessToken } from '../../utils/storage';
 import {
+  StyledInnerNav,
   StyledNav,
   StyledNavLinks,
   StyledNavLinkWrapper,
@@ -41,7 +42,7 @@ export default function Sidebar({ onClose, isOpen }: SideMenuProps) {
   const { data } = useUserQuery();
   const navigate = useNavigate();
   const ref = useOutsideClick(() => onClose(), isOpen);
-  useDisableScroll(isOpen);
+  // useDisableScroll(isOpen);
   const handleLogout = () => {
     localStorage.removeItem(accessToken);
     navigate(routes.index);
@@ -51,37 +52,41 @@ export default function Sidebar({ onClose, isOpen }: SideMenuProps) {
     <div>
       <StyledOverlay isOpen={isOpen} />
       <StyledNav ref={ref} isOpen={isOpen}>
-        <StyledNicknameWrapper>
-          {data?.data ? (
-            <>
-              <img src={data?.data?.profileImage} alt="avatar" />
-              <span>{data?.data?.nickname}</span>
-            </>
-          ) : (
-            <span>로그인이 필요합니다.</span>
-          )}
-        </StyledNicknameWrapper>
-        <StyledNavLinkWrapper>
-          <StyledNavLinks>
-            {LINKS.map((link) => {
-              if (!data?.data && link.name === '마이 페이지') return;
-              return (
-                <li key={link.name}>
-                  <Link onClick={onClose} to={link.href()}>
-                    {link.svg}
-                    <span>{link.name}</span>
-                  </Link>
-                </li>
-              );
-            })}
-          </StyledNavLinks>
+        <StyledInnerNav isOpen={isOpen}>
+          <StyledNicknameWrapper>
+            {data?.data ? (
+              <>
+                <img src={data?.data?.profileImage} alt="avatar" />
+                <span>{data?.data?.nickname}</span>
+              </>
+            ) : (
+              <span>로그인이 필요합니다.</span>
+            )}
+          </StyledNicknameWrapper>
+          <StyledNavLinkWrapper>
+            <div>
+              <StyledNavLinks>
+                {LINKS.map((link) => {
+                  if (!data?.data && link.name === '마이 페이지') return;
+                  return (
+                    <li key={link.name}>
+                      <Link onClick={onClose} to={link.href()}>
+                        {link.svg}
+                        <span>{link.name}</span>
+                      </Link>
+                    </li>
+                  );
+                })}
+              </StyledNavLinks>
+            </div>
+          </StyledNavLinkWrapper>
           {data?.data && (
             <button type="button" onClick={handleLogout}>
               <Logout />
               <span>로그아웃</span>
             </button>
           )}
-        </StyledNavLinkWrapper>
+        </StyledInnerNav>
       </StyledNav>
     </div>
   );
