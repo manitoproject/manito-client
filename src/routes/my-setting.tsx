@@ -32,7 +32,7 @@ export default function MySetting() {
               </button>
             </StyledListItem>
             <StyledListItem>
-              <button>문의하기</button>
+              <Link to={routes.my.contact()}>문의하기</Link>
             </StyledListItem>
           </StyledList>
         </StyledListWarpper>
@@ -82,7 +82,8 @@ const StyledListItem = styled.li`
   color: ${({ theme }) => theme.colors['gray-800']};
   ${getFontSizeAndWeight('heading3', 'regular')}
   padding: 12px 16px;
-  button {
+  button,
+  a {
     font-size: inherit;
     font-weight: inherit;
   }

@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 
 import Index from './routes';
+import Contact from './routes/contact';
 import ErrorPage from './routes/error-page';
 import Home from './routes/home';
 import Join from './routes/join';
@@ -24,6 +25,7 @@ export const routes = {
     default: '/my' as const,
     setting: () => `${routes.my.default}/setting` as const,
     rename: () => `${routes.my.setting()}/rename`,
+    contact: () => `${routes.my.setting()}/contact`,
   },
   rolling: {
     default: '/rolling' as const,
@@ -67,6 +69,10 @@ const router = () =>
             {
               path: routes.my.setting(),
               element: <MySetting />,
+            },
+            {
+              path: routes.my.contact(),
+              element: <Contact />,
             },
             {
               path: routes.my.rename(),
