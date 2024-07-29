@@ -5,6 +5,7 @@ import { nicknameMaxLength } from '../../constants/regexPatterns';
 import { useDisableScroll, useNameForm, useOutsideClick } from '../../hooks';
 import modalStore from '../../stores/modalStore';
 import Input from '../common/input';
+import { Portal } from '../common/portal';
 import {
   StyledButton,
   StyledButtonWrapper,
@@ -15,7 +16,6 @@ import {
   StyledTitleWrapper,
 } from './modal.style';
 import ModalContext, { useModalContext } from './modalContext';
-import { Portal } from './portal';
 import useModal from './useModal';
 
 const CHECKBOX_LIST = ['공개로 작성할래요.', '익명으로 작성할래요.'];

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 
+import Toast from '../components/common/toast';
 import Header from '../components/header/header';
 import Sidebar from '../components/header/sidebar';
 import {
@@ -21,6 +22,7 @@ export default function Layout() {
         onClose={() => setIsSideMenuOpen(false)}
       />
       <StyledBrowserBackdrop />
+      <Toast />
     </StyledWrapper>
   );
 }
