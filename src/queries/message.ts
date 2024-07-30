@@ -35,20 +35,12 @@ export const useUserMessagesQuery = () => {
   });
 };
 
-export const useDeleteMessage = ({
-  paperId,
-  meesageId,
-}: {
-  meesageId: number;
-  paperId?: number;
-}) => {
+export const useDeleteMessage = ({ paperId }: { paperId: number }) => {
   const queryClient = useQueryClient();
-  const { removeList } = messageStore();
   return useMutation({
     mutationFn: deleteMessage,
     onSuccess: (data) => {
       if (data.result === 'Success') {
-        removeList(meesageId);
         queryClient.invalidateQueries({
           queryKey: queries.messages.paper(paperId).queryKey,
         });

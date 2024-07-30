@@ -31,7 +31,6 @@ export default function RollingDetail() {
       <StyledWrapper>
         <DetailHeader paperId={data?.data?.id} />
         <MessageList
-          theme={data?.data?.theme}
           paperId={data?.data?.id}
           onBottomSheetOpen={setIsBottomSheetOpen}
         />

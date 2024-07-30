@@ -1,55 +1,44 @@
-import { MenuDotsSquare, Trash } from '../../assets/svg/icons';
+import { EditSquare, Trash } from '../../assets/svg/icons';
 import emojis from '../../constants/emojis';
 import { fonts } from '../../constants/fonts';
-import { useUserMessagesQuery } from '../../queries/message';
+import { useDeleteMessage } from '../../queries/message';
+import { Message } from '../../types/message';
 import {
-  StyledDotsButton,
+  StyledEditButton,
   StyledMessageBox,
   StyledMessageItem,
   StyledTrashButton,
 } from '../detail/message-item.style';
-import { StyledList } from '../detail/message-list';
 
-export default function MyMessageList() {
-  const { data } = useUserMessagesQuery();
-  // const { mutate } = useDeleteMessage({
-  //   paperId: PaperDetailData?.data?.id,
-  //   meesageId: id,
-  // });
-  const handleMessageDelete = (id?: number) => {
-    console.log('sdfsdfs');
-    // if (id) mutate(id);
-  };
+interface MyMessageItemProps {
+  message: Message;
+}
+
+export default function MyMessageItem({ message }: MyMessageItemProps) {
+  const { mutate } = useDeleteMessage({
+    paperId: message.paperId,
+  });
   const findEmojiForTheme = (name: string) =>
     [...emojis.animal, ...emojis.nature, ...emojis.space].find(
       (item) => item.name === name,
     );
+  const Emoji = findEmojiForTheme(message.theme)?.svg;
 
   return (
-    <StyledList>
-      {data?.data?.map((message) => {
-        const Emoji = findEmojiForTheme(message.theme)?.svg;
-        return (
-          <StyledMessageItem key={message.id} isServerData>
-            <StyledDotsButton type="button" onClick={() => console.log('sdf')}>
-              <MenuDotsSquare />
-            </StyledDotsButton>
-            <StyledTrashButton
-              type="button"
-              onClick={() => handleMessageDelete(message.id)}
-            >
-              <Trash />
-            </StyledTrashButton>
-            {Emoji && <Emoji />}
-            <StyledMessageBox
-              color={message.fontColor}
-              font={fonts.find((font) => font.name === message.font)}
-            >
-              {message.content}
-            </StyledMessageBox>
-          </StyledMessageItem>
-        );
-      })}
-    </StyledList>
+    <StyledMessageItem isServerData>
+      <StyledEditButton type="button" onClick={() => console.log('sdf')}>
+        <EditSquare />
+      </StyledEditButton>
+      <StyledTrashButton type="button" onClick={() => mutate(message.id)}>
+        <Trash />
+      </StyledTrashButton>
+      {Emoji && <Emoji />}
+      <StyledMessageBox
+        color={message.fontColor}
+        font={fonts.find((font) => font.name === message.font)}
+      >
+        {message.content}
+      </StyledMessageBox>
+    </StyledMessageItem>
   );
 }

@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 import { useEffect } from 'react';
 
-import { ThemeKey } from '../../constants/theme-list';
 import { usePaperMessagesQuery } from '../../queries/message';
 import messageStore from '../../stores/messageStore';
 import MessageItem from './message-item';
@@ -9,7 +8,6 @@ import MessageItem from './message-item';
 interface MessageListProps {
   onBottomSheetOpen: (status: boolean) => void;
   paperId?: number;
-  theme: ThemeKey;
 }
 
 export default function MessageList({
@@ -17,13 +15,13 @@ export default function MessageList({
   paperId,
 }: MessageListProps) {
   const { data } = usePaperMessagesQuery(paperId);
-
   const {
     setActiveMessageIndex,
     activeMessageIndex,
     setActiveEmojiIndex,
     list,
     snycList,
+    reset,
   } = messageStore();
 
   const handleMessageClick = (i: number) => {
@@ -36,8 +34,8 @@ export default function MessageList({
 
   useEffect(() => {
     snycList(data?.data);
-  }, [data, snycList]);
-
+    return () => reset();
+  }, [data, reset, snycList]);
   return (
     <StyledList>
       {list.map((message, i) => (

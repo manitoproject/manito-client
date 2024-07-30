@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 
-import MyMessageList from '../components/my/my-message-item';
+import MyMessageList from '../components/my/my-message-list';
 import MyPaperList from '../components/my/my-paper-list';
 import PageMenu from '../components/my/page-menu';
 import PaperMenu from '../components/my/paper-menu';

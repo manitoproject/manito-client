@@ -15,7 +15,6 @@ interface MessageState {
   snycList: (serverData?: Message[]) => void;
   addList: (theme: ThemeKey) => void;
   reset: () => void;
-  removeList: (messageId: number) => void;
 }
 
 const messageStore = create<MessageState>((set) => ({
@@ -41,15 +40,6 @@ const messageStore = create<MessageState>((set) => ({
         }
         if (prev?.theme && !('content' in prev)) {
           return null;
-        }
-        return prev;
-      }),
-    })),
-  removeList: (messageId: number) =>
-    set((state) => ({
-      list: state.list.map((prev) => {
-        if (prev?.theme && 'content' in prev) {
-          return prev.id === messageId ? null : prev;
         }
         return prev;
       }),

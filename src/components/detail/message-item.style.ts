@@ -12,7 +12,6 @@ export const StyledMessageItem = styled.div<{ isServerData: boolean }>`
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
     border-radius: 4px;
     padding: 4px;
-    background-color: ${({ theme }) => theme.colors.white};
     position: absolute;
   }
 
@@ -43,16 +42,16 @@ export const StyledMessageBox = styled.p<{ color: ColorKey; font?: Font }>`
 export const StyledTrashButton = styled.button`
   top: 0;
   right: 0;
+  background-color: ${({ theme }) => theme.colors.white};
+
   svg path {
     fill: ${({ theme }) => theme.colors['gray-700']};
   }
 `;
-export const StyledDotsButton = styled.button`
+export const StyledEditButton = styled.button`
   left: 0;
   bottom: 0;
-  svg path {
-    stroke: ${({ theme }) => theme.colors['gray-600']};
-  }
+  background-color: ${({ theme }) => theme.colors['gray-200']};
 `;
 
 export const StyledEmptySvg = styled.div`

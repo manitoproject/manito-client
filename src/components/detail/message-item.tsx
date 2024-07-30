@@ -61,7 +61,8 @@ export default function MessageItem({
           </StyledMessageItem>
         )
       ) : (
-        <StyledItem isOwner={isOwner}>
+        <StyledItem isOwner={false}>
+          {/* <StyledItem isOwner={isOwner}> */}
           <button type="button" onClick={handleMessageClick}>
             {!isOwner && <AddCircle />}
           </button>
