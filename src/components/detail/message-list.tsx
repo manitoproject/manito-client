@@ -53,7 +53,7 @@ export default function MessageList({
   );
 }
 
-const StyledList = styled.ul`
+export const StyledList = styled.ul`
   display: grid;
   gap: 16px;
   grid-template-columns: repeat(2, 1fr);

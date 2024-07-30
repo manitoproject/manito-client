@@ -3,16 +3,14 @@ import dayjs from 'dayjs';
 import { Link } from 'react-router-dom';
 
 import { Trash } from '../../assets/svg/icons';
-import { useDeletePaper } from '../../queries/paper';
+import { useDeletePaper, useUserPaperQuery } from '../../queries/paper';
+import { useUserQuery } from '../../queries/users';
 import { routes } from '../../router';
-import { Message } from '../../types/message';
 import { getFontSizeAndWeight } from '../../utils/style';
 
-interface PaperListProps {
-  list?: Paper[] | Message[];
-}
-
-export default function PaperList({ list }: PaperListProps) {
+export default function MyPaperList() {
+  const { data: userData } = useUserQuery();
+  const { data } = useUserPaperQuery(userData?.data?.id);
   const { mutate } = useDeletePaper();
   const handleButtonClick = (e: React.MouseEvent, id?: number) => {
     e.preventDefault();
@@ -21,10 +19,10 @@ export default function PaperList({ list }: PaperListProps) {
 
   return (
     <StyledList>
-      {list?.map((item) => (
+      {data?.data?.map((item) => (
         <StyledItem key={item.id}>
           <Link to={routes.rolling.detail(item.id)}>
-            <span>{'title' in item ? item.title : item.content}</span>
+            <span>{item.title}</span>
             <div>
               <span>{dayjs(item.regDateTime).format('YYYY.MM.DD')}</span>
               <button

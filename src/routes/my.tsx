@@ -1,18 +1,13 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 
+import MyMessageList from '../components/my/my-message-item';
+import MyPaperList from '../components/my/my-paper-list';
 import PageMenu from '../components/my/page-menu';
-import PaperList from '../components/my/paper-list';
 import PaperMenu from '../components/my/paper-menu';
 import UserInfo from '../components/my/user-info';
-import { useUserMessagesQuery } from '../queries/message';
-import { usePaperQuery } from '../queries/paper';
-import { useUserQuery } from '../queries/users';
 
 export default function My() {
-  const { data: userData } = useUserQuery();
-  const { data: paperData } = usePaperQuery(userData?.data?.id);
-  const { data: userMesageData } = useUserMessagesQuery();
   const [activePaperMenuIndex, setActivePaperMenuIndex] = useState(0);
   const [activePageMenuIndex, setActivePageMenuIndex] = useState(0);
 
@@ -28,11 +23,7 @@ export default function My() {
           onActivePaperMenuIndex={activePaperMenuIndex}
           onActivePaperMenuChange={(i: number) => setActivePaperMenuIndex(i)}
         />
-        <PaperList
-          list={
-            activePageMenuIndex == 0 ? paperData?.data : userMesageData?.data
-          }
-        />
+        {activePageMenuIndex === 0 ? <MyPaperList /> : <MyMessageList />}
       </StyledContentsWrapper>
     </StyledWrapper>
   );

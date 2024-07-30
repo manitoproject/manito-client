@@ -15,9 +15,9 @@ export const useCreateRollingPaper = () => {
   });
 };
 
-export const usePaperQuery = (userId?: number) => {
+export const useUserPaperQuery = (userId?: number) => {
   return useQuery({
-    ...queries.papers.all(userId),
+    ...queries.papers.user(userId),
     staleTime: 1000 * 60 * 60,
     enabled: !!userId,
   });
@@ -43,7 +43,7 @@ export const useDeletePaper = () => {
     onSuccess: (data) => {
       if (data?.result === 'Success') {
         queryClient.invalidateQueries({
-          queryKey: queries.papers.all._def,
+          queryKey: queries.papers.user._def,
         });
       }
     },

@@ -1,3 +1,5 @@
+import { YerOrNo } from './auth';
+
 export interface User {
   email: string;
   id: number;
@@ -6,4 +8,5 @@ export interface User {
   provider: string;
   regDate: string;
   profileImage: string;
+  isOriginProfile: null | YerOrNo;
 }

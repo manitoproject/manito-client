@@ -23,7 +23,7 @@ export const useCreateMessage = (paperId: number) => {
 export const usePaperMessagesQuery = (paperId?: number) => {
   return useQuery({
     ...queries.messages.paper(paperId),
-    staleTime: 1000 * 60 * 60,
+    staleTime: 1000 * 60 * 60 * 6, // 삭제 바람!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     enabled: !!paperId,
   });
 };

@@ -1,11 +1,12 @@
 import { ColorKey, FontKey } from '../styles/theme';
+import { YerOrNo } from './auth';
 import { User } from './user';
 
 interface CreateMessageApiParams {
   content: string;
   font: FontKey;
   fontColor: ColorKey;
-  isPublic: 'Y' | 'N';
+  isPublic: YerOrNo;
   theme: string;
   paperId: number;
   position: number;
@@ -13,6 +14,7 @@ interface CreateMessageApiParams {
 
 interface Message {
   id: number;
+  anonymous?: string;
   paperId: number;
   user: User;
   theme: string;
@@ -20,6 +22,7 @@ interface Message {
   regDateTime: string;
   font: FontKey;
   fontColor: ColorKey;
-  isPublic: string;
+  isPublic: YerOrNo;
   position: number;
+  user: User;
 }

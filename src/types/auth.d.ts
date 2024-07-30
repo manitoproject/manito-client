@@ -1,4 +1,6 @@
+type YerOrNo = 'N' | 'Y';
+
 export interface AccessToken {
-  isNewUser: 'N' | 'Y';
+  isNewUser: YerOrNo;
   accessToken: string;
 }

@@ -40,74 +40,75 @@ export const routes = {
 const router = () =>
   createBrowserRouter([
     {
-      path: routes.index,
-      element: <Index />,
-      errorElement: <ErrorPage />,
-    },
-    {
-      path: routes.kakako_redirection,
-      element: <KakaoRedirection />,
-      errorElement: <ErrorPage />,
-    },
-    {
-      element: <AuthRouter />,
       errorElement: <ErrorPage />,
       children: [
         {
-          element: <Layout />,
+          path: routes.index,
+          element: <Index />,
+        },
+        {
+          path: routes.kakako_redirection,
+          element: <KakaoRedirection />,
+        },
+        {
+          element: <AuthRouter />,
           children: [
             {
+              element: <Layout />,
               children: [
                 {
-                  path: routes.join,
-                  element: <Join />,
-                },
-                {
-                  path: routes.home,
-                  element: <Home />,
-                },
-                {
-                  path: routes.my.default,
-                  element: <My />,
-                },
-                {
-                  path: routes.my.setting(),
-                  element: <MySetting />,
-                },
-                {
-                  path: routes.my.contact(),
-                  element: <Contact />,
-                },
-                {
-                  path: routes.my.rename(),
-                  element: <Rename />,
-                },
-                {
-                  path: routes.setupIntro(),
-                  element: <SetupIntro />,
-                },
-                {
-                  path: routes.rolling.setup(),
-                  element: <RollingSetup />,
-                },
+                  children: [
+                    {
+                      path: routes.join,
+                      element: <Join />,
+                    },
+                    {
+                      path: routes.home,
+                      element: <Home />,
+                    },
+                    {
+                      path: routes.my.default,
+                      element: <My />,
+                    },
+                    {
+                      path: routes.my.setting(),
+                      element: <MySetting />,
+                    },
+                    {
+                      path: routes.my.contact(),
+                      element: <Contact />,
+                    },
+                    {
+                      path: routes.my.rename(),
+                      element: <Rename />,
+                    },
+                    {
+                      path: routes.setupIntro(),
+                      element: <SetupIntro />,
+                    },
+                    {
+                      path: routes.rolling.setup(),
+                      element: <RollingSetup />,
+                    },
 
-                {
-                  path: routes.rolling.new(),
-                  element: <RollingNew />,
+                    {
+                      path: routes.rolling.new(),
+                      element: <RollingNew />,
+                    },
+                  ],
                 },
               ],
             },
           ],
         },
-      ],
-    },
-    {
-      element: <Layout />,
-      errorElement: <ErrorPage />,
-      children: [
         {
-          path: routes.rolling.detail(),
-          element: <RollingDetail />,
+          element: <Layout />,
+          children: [
+            {
+              path: routes.rolling.detail(),
+              element: <RollingDetail />,
+            },
+          ],
         },
       ],
     },
