@@ -51,12 +51,12 @@ const router = () =>
     },
     {
       element: <AuthRouter />,
+      errorElement: <ErrorPage />,
       children: [
         {
           element: <Layout />,
           children: [
             {
-              errorElement: <ErrorPage />,
               children: [
                 {
                   path: routes.join,
@@ -103,6 +103,7 @@ const router = () =>
     },
     {
       element: <Layout />,
+      errorElement: <ErrorPage />,
       children: [
         {
           path: routes.rolling.detail(),
