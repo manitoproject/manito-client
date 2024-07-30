@@ -2,7 +2,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
 import { routes } from '../router';
-import { changeNickname, logout } from '../services/users';
+import { changeNickname, changeProfile, logout } from '../services/users';
 import { token } from '../utils/storage';
 import queries from './query-key-factory';
 
@@ -39,6 +39,20 @@ export const useLogout = () => {
       if (data.result === 'Success') {
         token.removeToken();
         navigate(routes.index);
+      }
+    },
+  });
+};
+
+export const useProfileChange = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: changeProfile,
+    onSuccess: (data) => {
+      if (data.result === 'Success') {
+        queryClient.invalidateQueries({
+          queryKey: queries.users._def,
+        });
       }
     },
   });

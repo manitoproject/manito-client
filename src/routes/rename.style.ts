@@ -17,13 +17,14 @@ export const StyledRenameWrapper = styled.div`
   }
 `;
 
-export const StyledAvartarWrapper = styled.div`
+export const StyledAvartarWrapper = styled.div<{ isOriginProfile: boolean }>`
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
   gap: 16px;
   button:nth-of-type(1) {
+    pointer-events: none;
     position: relative;
     border-radius: 999px;
     overflow: hidden;
@@ -41,6 +42,7 @@ export const StyledAvartarWrapper = styled.div`
     }
   }
   button:nth-of-type(2) {
+    pointer-events: ${({ isOriginProfile }) => isOriginProfile && 'none'};
     ${getFontSizeAndWeight('body1', 'medium')};
     border: 1px solid ${({ theme }) => theme.colors['gray-300']};
     color: ${({ theme }) => theme.colors['gray-900']};

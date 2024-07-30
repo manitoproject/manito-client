@@ -21,3 +21,13 @@ export const logout = async () => {
   const { data } = await requester<DeatultResponse<null>>('/user/logout');
   return data;
 };
+
+export const changeProfile = async () => {
+  const { data } = await requester.post<DeatultResponse<null>>(
+    '/user/profile',
+    {
+      isOriginProfile: 'Y',
+    },
+  );
+  return data;
+};

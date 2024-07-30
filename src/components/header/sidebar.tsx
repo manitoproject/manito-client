@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import { Document, Home, Logout, My } from '../../assets/svg/icons';
+import { defaultKaKaoUserProfile } from '../../constants/profile';
 import useOutsideClick from '../../hooks/common/useOutsideClick';
 import { useLogout, useUserQuery } from '../../queries/users';
 import { routes } from '../../router';
@@ -50,7 +51,14 @@ export default function Sidebar({ onClose, isOpen }: SideMenuProps) {
           <StyledNicknameWrapper>
             {data?.data ? (
               <>
-                <img src={data?.data?.profileImage} alt="avatar" />
+                <img
+                  src={
+                    data?.data?.isOriginProfile === 'Y'
+                      ? defaultKaKaoUserProfile
+                      : data?.data?.profileImage
+                  }
+                  alt="avatar"
+                />
                 <span>{data?.data?.nickname}</span>
               </>
             ) : (

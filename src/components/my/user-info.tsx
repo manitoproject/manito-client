@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
 import { Setting } from '../../assets/svg/icons';
+import { defaultKaKaoUserProfile } from '../../constants/profile';
 import { useUserQuery } from '../../queries/users';
 import { routes } from '../../router';
 import { getFontSizeAndWeight } from '../../utils/style';
@@ -12,7 +13,14 @@ export default function UserInfo() {
   return (
     <StyledWrapper>
       <StyledAvatarWrapper>
-        <img src={data?.data?.profileImage} alt="avatar" />
+        <img
+          src={
+            data?.data?.isOriginProfile === 'Y'
+              ? defaultKaKaoUserProfile
+              : data?.data?.profileImage
+          }
+          alt="avatar"
+        />
       </StyledAvatarWrapper>
       <StyledNicknameWrapper>
         <p>{data?.data?.nickname}</p>

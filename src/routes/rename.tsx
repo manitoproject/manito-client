@@ -1,15 +1,19 @@
 import { Button } from '../components/common/buttons';
 import NameForm from '../components/common/name-form';
+import { defaultKaKaoUserProfile } from '../constants/profile';
 import { nicknameMaxLength } from '../constants/regexPatterns';
 import { useNameForm } from '../hooks';
-import { useNicknameChange, useUserQuery } from '../queries/users';
-import toastStore from '../stores/toastStore';
+import {
+  useNicknameChange,
+  useProfileChange,
+  useUserQuery,
+} from '../queries/users';
 import { StyledAvartarWrapper, StyledRenameWrapper } from './rename.style';
 
 export default function Rename() {
   const { data } = useUserQuery();
-  const toast = toastStore();
   const { mutate, isPending } = useNicknameChange(true);
+  const { mutate: profileMutate } = useProfileChange();
   const { handleNameChange, handleNameReset, isError, name, nameRef } =
     useNameForm('nickname');
 
@@ -17,13 +21,27 @@ export default function Rename() {
     mutate(name);
   };
 
+  const handleProfileChange = () => {
+    if (data?.data?.isOriginProfile === 'Y') return;
+    profileMutate();
+  };
+
   return (
     <StyledRenameWrapper>
-      <StyledAvartarWrapper>
+      <StyledAvartarWrapper
+        isOriginProfile={data?.data?.isOriginProfile === 'Y'}
+      >
         <button>
-          <img src={data?.data?.profileImage} alt="avartar" />
+          <img
+            src={
+              data?.data?.isOriginProfile === 'Y'
+                ? defaultKaKaoUserProfile
+                : data?.data?.profileImage
+            }
+            alt="avartar"
+          />
         </button>
-        <button onClick={() => toast.add('sdfdsfsfs')}>기본프로필로변경</button>
+        <button onClick={handleProfileChange}>기본프로필로변경</button>
       </StyledAvartarWrapper>
       <h3>이름</h3>
       <NameForm
