@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 
 import { routes } from '../router';
 import { createMessage, deleteMessage } from '../services/message';
-import messageStore from '../stores/messageStore';
 import queries from './query-key-factory';
 
 export const useCreateMessage = (paperId: number) => {
