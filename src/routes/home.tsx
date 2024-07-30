@@ -29,7 +29,6 @@ const CONTENTS = [
 
 export default function Home() {
   const { data } = useUserQuery();
-  console.log(data);
   return (
     <StyledWrapper>
       <section>

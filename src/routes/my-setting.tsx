@@ -2,13 +2,13 @@ import styled from '@emotion/styled';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { routes } from '../router';
-import { accessToken } from '../utils/storage';
+import { token } from '../utils/storage';
 import { getFontSizeAndWeight } from '../utils/style';
 
 export default function MySetting() {
   const navigate = useNavigate();
   const handleLogout = () => {
-    localStorage.removeItem(accessToken);
+    token.removeToken();
     navigate(routes.index);
   };
 

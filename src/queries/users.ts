@@ -9,7 +9,7 @@ import queries from './query-key-factory';
 export function useUserQuery() {
   return useQuery({
     ...queries.users.detail(),
-    enabled: !!token.getAccessToken,
+    enabled: !!token.getAccessToken(),
     staleTime: 1000 * 60 * 10,
   });
 }

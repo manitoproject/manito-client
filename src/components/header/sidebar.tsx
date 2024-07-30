@@ -4,7 +4,7 @@ import { Document, Home, Logout, My } from '../../assets/svg/icons';
 import useOutsideClick from '../../hooks/common/useOutsideClick';
 import { useUserQuery } from '../../queries/users';
 import { routes } from '../../router';
-import { accessToken } from '../../utils/storage';
+import { token } from '../../utils/storage';
 import {
   StyledInnerNav,
   StyledNav,
@@ -43,7 +43,7 @@ export default function Sidebar({ onClose, isOpen }: SideMenuProps) {
   const ref = useOutsideClick(() => onClose(), isOpen);
   // useDisableScroll(isOpen);
   const handleLogout = () => {
-    localStorage.removeItem(accessToken);
+    token.removeToken();
     navigate(routes.index);
   };
 

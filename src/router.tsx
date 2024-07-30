@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 
+import AuthRouter from './auth-router';
 import Index from './routes';
 import Contact from './routes/contact';
 import ErrorPage from './routes/error-page';
@@ -49,52 +50,63 @@ const router = () =>
       errorElement: <ErrorPage />,
     },
     {
+      element: <AuthRouter />,
+      children: [
+        {
+          element: <Layout />,
+          children: [
+            {
+              errorElement: <ErrorPage />,
+              children: [
+                {
+                  path: routes.join,
+                  element: <Join />,
+                },
+                {
+                  path: routes.home,
+                  element: <Home />,
+                },
+                {
+                  path: routes.my.default,
+                  element: <My />,
+                },
+                {
+                  path: routes.my.setting(),
+                  element: <MySetting />,
+                },
+                {
+                  path: routes.my.contact(),
+                  element: <Contact />,
+                },
+                {
+                  path: routes.my.rename(),
+                  element: <Rename />,
+                },
+                {
+                  path: routes.setupIntro(),
+                  element: <SetupIntro />,
+                },
+                {
+                  path: routes.rolling.setup(),
+                  element: <RollingSetup />,
+                },
+
+                {
+                  path: routes.rolling.new(),
+                  element: <RollingNew />,
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
       element: <Layout />,
       children: [
         {
-          errorElement: <ErrorPage />,
-          children: [
-            {
-              path: routes.join,
-              element: <Join />,
-            },
-            {
-              path: routes.home,
-              element: <Home />,
-            },
-            {
-              path: routes.my.default,
-              element: <My />,
-            },
-            {
-              path: routes.my.setting(),
-              element: <MySetting />,
-            },
-            {
-              path: routes.my.contact(),
-              element: <Contact />,
-            },
-            {
-              path: routes.my.rename(),
-              element: <Rename />,
-            },
-            {
-              path: routes.setupIntro(),
-              element: <SetupIntro />,
-            },
-            {
-              path: routes.rolling.setup(),
-              element: <RollingSetup />,
-            },
-            {
-              path: routes.rolling.detail(),
-              element: <RollingDetail />,
-            },
-            {
-              path: routes.rolling.new(),
-              element: <RollingNew />,
-            },
-          ],
+          path: routes.rolling.detail(),
+          element: <RollingDetail />,
         },
       ],
     },

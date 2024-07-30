@@ -13,12 +13,10 @@ export const RequesterWithoutToken = axios.create({
 });
 
 requester.interceptors.request.use((config) => {
-  const { getAccessToken } = token;
-  console.log(getAccessToken);
-  if (!getAccessToken) {
+  if (!token.getAccessToken()) {
     location.href = '/';
     return config;
   }
-  config.headers.Authorization = `Bearer ${getAccessToken}`;
+  config.headers.Authorization = `Bearer ${token.getAccessToken()}`;
   return config;
 });
