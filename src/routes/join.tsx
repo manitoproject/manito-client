@@ -1,21 +1,28 @@
 import styled from '@emotion/styled';
+import { Navigate, useLocation } from 'react-router-dom';
 
 import { Button } from '../components/common/buttons';
 import NameForm from '../components/common/name-form';
 import { nicknameMaxLength } from '../constants/regexPatterns';
 import { useNameForm } from '../hooks';
 import { useNicknameChange } from '../queries/users';
+import { routes } from '../router';
 import { getFontSizeAndWeight } from '../utils/style';
 
 export default function Join() {
   const { mutate, isPending } = useNicknameChange();
   const { handleNameChange, handleNameReset, isError, name, nameRef } =
     useNameForm('nickname');
-
   const handleNicknameChange = (e: React.MouseEvent) => {
     e.preventDefault();
     mutate(name);
   };
+  const location = useLocation();
+
+  if (location.state !== 'Y') {
+    Navigate({ to: routes.index });
+  }
+
   return (
     <StyledWrapper>
       <NameForm

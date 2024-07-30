@@ -21,7 +21,7 @@ export const useNicknameChange = (isMyPage = false) => {
     mutationFn: changeNickname,
     onSuccess: (data) => {
       if (data.result === 'Success') {
-        if (isMyPage) navigate(routes.home);
+        if (isMyPage) navigate(routes.my.default);
         else navigate(-1);
         queryClient.invalidateQueries({
           queryKey: queries.users._def,

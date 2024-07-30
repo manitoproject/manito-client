@@ -14,7 +14,7 @@ export default function KakaoRedirection() {
     if (data?.data) {
       token.setAccessToken(data.data.accessToken);
       if (data.data.isNewUser === 'Y') {
-        navigate(routes.join, { replace: true });
+        navigate(routes.join, { replace: true, state: data.data.isNewUser });
       } else {
         navigate(routes.home, { replace: true });
       }
