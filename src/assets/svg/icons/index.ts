@@ -11,6 +11,7 @@ export { default as KakaoLogo } from './kakao-logo.svg';
 export { default as LeftChevron } from './left-chevron.svg';
 export { default as Logo } from './logo.svg';
 export { default as Logout } from './logout.svg';
+export { default as Manito } from './manito.svg';
 export { default as MenuDotsSquare } from './menu-dots-square.svg';
 export { default as My } from './my.svg';
 export { default as Profile } from './profile.svg';
