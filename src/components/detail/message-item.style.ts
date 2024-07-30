@@ -63,11 +63,14 @@ export const StyledEmptySvg = styled.div`
   background-color: ${({ theme }) => theme.colors['powderBlue-50']};
 `;
 
-export const StyledItem = styled.li`
-  border: ${({ theme }) => `1px dashed ${theme.colors.white}`};
-  background: rgba(249, 249, 249, 0.5);
+export const StyledItem = styled.li<{ isOwner: boolean }>`
+  border: ${({ theme, isOwner }) =>
+    isOwner ? 'none' : `1px dashed ${theme.colors.white}`};
+  background: ${({ isOwner }) =>
+    isOwner ? 'transparent' : 'rgba(249, 249, 249, 0.5)'};
   border-radius: 4px;
   aspect-ratio: 1;
+  pointer-events: ${({ isOwner }) => (isOwner ? 'none' : 'auto')};
   button {
     display: flex;
     justify-content: center;

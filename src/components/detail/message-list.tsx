@@ -45,7 +45,6 @@ export default function MessageList({
           onBottomSheetOpen={onBottomSheetOpen}
           key={i}
           message={message}
-          // emoji={emoji?.svg}
           onMessageClick={() => handleMessageClick(i)}
         />
       ))}

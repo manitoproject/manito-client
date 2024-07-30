@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import { Clip, KakaoFill } from '../../assets/svg/icons';
 import { usePaperMessagesQuery } from '../../queries/message';
 import { useUserQuery } from '../../queries/users';
-import { routes } from '../../router';
 import toastStore from '../../stores/toastStore';
 import theme from '../../styles/theme';
+import LoginModal from '../modal/login-modal';
 import { Modal } from '../modal/modal';
 import {
   StyledModalLink,
@@ -24,7 +24,6 @@ export default function DetailHeader({ paperId }: DetailHeaderProps) {
   const [isCopyModalOpen, setIsCopyModalOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const { data: messageData } = usePaperMessagesQuery(paperId);
-  const navigate = useNavigate();
   const location = useLocation();
   const handleDetailView = () => {
     if (!userData?.data) setIsLoginModalOpen(true);
@@ -81,38 +80,10 @@ export default function DetailHeader({ paperId }: DetailHeaderProps) {
         </Modal>
       )}
       {isLoginModalOpen && (
-        <Modal
+        <LoginModal
           isOpen={isLoginModalOpen}
-          onClick={() => setIsLoginModalOpen((prev) => !prev)}
-        >
-          <Modal.TitleWrapper>
-            <Modal.Title>
-              로그인 후 이용할 수 있는
-              <br />
-              컨텐츠 입니다.
-            </Modal.Title>
-            <Modal.Description>
-              확인을 누르시면 로그인 페이지로 이동합니다.
-            </Modal.Description>
-          </Modal.TitleWrapper>
-          <Modal.Buttons>
-            <Modal.Button
-              onClick={() => setIsLoginModalOpen(false)}
-              css={{ border: `1px solid ${theme.colors['gray-300']}` }}
-            >
-              닫기
-            </Modal.Button>
-            <Modal.Button
-              onClick={() => navigate(routes.index)}
-              css={{
-                backgroundColor: theme.colors.black,
-                color: theme.colors.white,
-              }}
-            >
-              확인
-            </Modal.Button>
-          </Modal.Buttons>
-        </Modal>
+          onToggleModal={() => setIsLoginModalOpen((prev) => !prev)}
+        />
       )}
     </StyledRollingHeader>
   );
