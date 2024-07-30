@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
+import { ForwardedRef, forwardRef, useEffect } from 'react';
 
 import { RadioButton, RadioButtonActive } from '../../assets/svg/icons';
 import { nicknameMaxLength } from '../../constants/regexPatterns';
-import { useDisableScroll, useNameForm, useOutsideClick } from '../../hooks';
+import { useDisableScroll, useOutsideClick } from '../../hooks';
 import modalStore from '../../stores/modalStore';
 import Input from '../common/input';
 import { Portal } from '../common/portal';
@@ -20,6 +20,13 @@ import useModal from './useModal';
 
 const CHECKBOX_LIST = ['공개로 작성할래요.', '익명으로 작성할래요.'];
 
+interface CheckboxFormProps {
+  handleNameChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  isError: boolean;
+  nickname: string;
+  handleNameReset: () => void;
+}
+
 function TitleWrapper({ children }: { children: React.ReactNode }) {
   return <StyledTitleWrapper>{children}</StyledTitleWrapper>;
 }
@@ -30,15 +37,16 @@ function Description({ children }: { children: React.ReactNode }) {
   return <p>{children}</p>;
 }
 
-function CheckboxForm() {
+function CheckboxForm(
+  { handleNameChange, isError, nickname, handleNameReset }: CheckboxFormProps,
+  ref: ForwardedRef<HTMLInputElement>,
+) {
   const { activeIndex, setActiveIndex } = useModalContext();
   const { setIsError } = useModalContext();
-  const { handleNameChange, handleNameReset, isError, name, nameRef } =
-    useNameForm('nickname');
 
   useEffect(() => {
-    setIsError(isError || !name.length);
-  }, [isError, name.length, setIsError]);
+    setIsError(isError || !nickname.length);
+  }, [isError, nickname.length, setIsError]);
 
   return (
     <StyledCheckboxFormWrapper>
@@ -61,13 +69,13 @@ function CheckboxForm() {
       {activeIndex === 1 && (
         <Input
           isError={isError}
-          ref={nameRef}
-          value={name}
+          ref={ref}
+          value={nickname}
           onChange={handleNameChange}
           onClick={handleNameReset}
         >
           <span>
-            {name.length} / {nicknameMaxLength}
+            {nickname.length} / {nicknameMaxLength}
           </span>
         </Input>
       )}
@@ -139,5 +147,5 @@ export const Modal = Object.assign(ModalMain, {
   TitleWrapper: TitleWrapper,
   Title: Title,
   Description: Description,
-  CheckboxForm: CheckboxForm,
+  CheckboxForm: forwardRef(CheckboxForm),
 });

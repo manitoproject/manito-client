@@ -10,6 +10,7 @@ interface CreateMessageApiParams {
   theme: string;
   paperId: number;
   position: number;
+  anonymous?: string;
 }
 
 interface Message {

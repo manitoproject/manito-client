@@ -28,7 +28,6 @@ const messageStore = create<MessageState>((set) => ({
     set((state) => ({
       list: state.list.map((prev, i) => {
         const item = serverData?.find((item) => item.position === i);
-        console.log(serverData);
         return item ?? prev;
       }),
     })),

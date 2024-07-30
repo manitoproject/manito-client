@@ -1,4 +1,3 @@
-import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 
 import { Button } from '../components/common/buttons';
@@ -9,14 +8,19 @@ import FontList from '../components/detail/bottom-sheet/font-sheet/font-list';
 import FontSelectorSheet from '../components/detail/bottom-sheet/font-sheet/font-selector-sheet';
 import { Modal } from '../components/modal/modal';
 import emojis from '../constants/emojis';
-import { colors, Font, fonts } from '../constants/fonts';
-import { useValidationQueryString } from '../hooks';
+import { colors, fonts } from '../constants/fonts';
+import { useNameForm, useValidationQueryString } from '../hooks';
 import { useCreateMessage } from '../queries/message';
 import modalStore from '../stores/modalStore';
-import themeObject, { ColorKey } from '../styles/theme';
-import { StyledBackdrop } from './rolling-detail.style';
+import themeObject from '../styles/theme';
+import {
+  StyledEmojiWrapper,
+  StyledOverlayBackdrop,
+  StyledRollingNew,
+  StyledRollingNewWrapper,
+} from './rolling-new.style';
 
-type EmojiType = 'Circle' | 'Square' | 'Rest';
+export type EmojiType = 'Circle' | 'Square' | 'Rest';
 const EMOJI_TYPE: EmojiType[] = ['Circle', 'Square', 'Rest'];
 
 export default function RollingNew() {
@@ -28,6 +32,14 @@ export default function RollingNew() {
   const [activeFontIndex, setActiveFontIndex] = useState(0);
   const [activeColorIndex, setActiveColorIndex] = useState(0);
   const [message, setMessage] = useState('');
+  const {
+    handleNameChange,
+    handleNameReset,
+    isError,
+    name: nickname,
+    nameRef: nicknameRef,
+  } = useNameForm('nickname');
+
   const { mutate } = useCreateMessage(+paperId);
   const activeFont = fonts[activeFontIndex];
   const activeColor = colors[theme][activeColorIndex];
@@ -46,6 +58,7 @@ export default function RollingNew() {
       theme: emojis[theme][+emojiIndex].name,
       isPublic: activeIndex === 0 ? 'Y' : 'N',
       paperId: +paperId,
+      anonymous: activeIndex === 1 ? nickname : '',
     });
   };
 
@@ -55,7 +68,7 @@ export default function RollingNew() {
 
   return (
     <StyledRollingNew>
-      <StyledWrapper>
+      <StyledRollingNewWrapper>
         <StyledEmojiWrapper
           font={activeFont}
           color={activeColor}
@@ -97,14 +110,20 @@ export default function RollingNew() {
             </Button>
           </StyledBottomSheetContentWrapper>
         </BottomSheet>
-      </StyledWrapper>
+      </StyledRollingNewWrapper>
       <StyledOverlayBackdrop themeName={theme} />
       {isModalOpen && (
         <Modal
           isOpen={isModalOpen}
           onClick={() => setIsModalOpen(!isModalOpen)}
         >
-          <Modal.CheckboxForm />
+          <Modal.CheckboxForm
+            handleNameChange={handleNameChange}
+            handleNameReset={handleNameReset}
+            isError={isError}
+            nickname={nickname}
+            ref={nicknameRef}
+          />
           <Modal.Buttons>
             <Modal.Button
               css={{ border: `1px solid ${themeObject.colors['gray-300']}` }}
@@ -128,44 +147,3 @@ export default function RollingNew() {
     </StyledRollingNew>
   );
 }
-
-const StyledEmojiWrapper = styled.div<{
-  type: EmojiType;
-  color: ColorKey;
-  font: Font;
-}>`
-  width: 100%;
-  transform: translateY(-24px);
-  position: relative;
-  svg {
-    width: 100%;
-    height: 100%;
-  }
-  textarea {
-    font-size: 22px;
-    font-family: ${({ theme, font }) => theme.fontFamily[font.name]};
-    font-weight: ${({ font }) => font.fontWeight};
-    color: ${({ color, theme }) => theme.colors[color]};
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 55.5%;
-    height: 55.5%;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    resize: none;
-    outline: none;
-    background-color: transparent;
-  }
-`;
-
-const StyledRollingNew = styled.div`
-  width: 100%;
-`;
-const StyledWrapper = styled.div`
-  position: relative;
-  z-index: 1;
-`;
-const StyledOverlayBackdrop = styled(StyledBackdrop)``;
