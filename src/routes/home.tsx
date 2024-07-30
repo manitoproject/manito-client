@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Suspense } from 'react';
 import { Link } from 'react-router-dom';
 
 import { MainBanner, RollingBadge } from '../assets/imgs';
@@ -32,12 +33,14 @@ export default function Home() {
   return (
     <StyledWrapper>
       <section>
-        <StyledHeading>
-          <p>{data?.data?.nickname}님 안녕하세요!</p>
-          <p>
-            <strong>다양한 컨텐츠</strong>를 즐겨보세요.
-          </p>
-        </StyledHeading>
+        <Suspense fallback={<div>loading.....</div>}>
+          <StyledHeading>
+            <p>{data?.data?.nickname}님 안녕하세요!</p>
+            <p>
+              <strong>다양한 컨텐츠</strong>를 즐겨보세요.
+            </p>
+          </StyledHeading>
+        </Suspense>
         <StyeldBanner>
           <MainBanner />
         </StyeldBanner>

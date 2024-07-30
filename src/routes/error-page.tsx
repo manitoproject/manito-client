@@ -1,20 +1,16 @@
-import { isRouteErrorResponse, useRouteError } from 'react-router-dom';
-
 import ErrorComponent from '../components/common/error';
 
 export default function ErrorPage() {
-  const error = useRouteError();
-
-  if (!isRouteErrorResponse(error)) {
-    return (
-      <ErrorComponent>
-        <p>
-          서버에 문제가 있습니다.
-          <br /> 잠시후 다시 시도해주세요.
-        </p>
-      </ErrorComponent>
-    );
-  }
+  // if (!isRouteErrorResponse(error)) {
+  //   return (
+  //     <ErrorComponent>
+  //       <p>
+  //         서버에 문제가 있습니다.
+  //         <br /> 잠시후 다시 시도해주세요.
+  //       </p>
+  //     </ErrorComponent>
+  //   );
+  // }
   return (
     <ErrorComponent>
       <p>
