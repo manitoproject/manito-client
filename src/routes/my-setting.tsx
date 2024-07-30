@@ -1,16 +1,12 @@
 import styled from '@emotion/styled';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
+import { useLogout } from '../queries/users';
 import { routes } from '../router';
-import { token } from '../utils/storage';
 import { getFontSizeAndWeight } from '../utils/style';
 
 export default function MySetting() {
-  const navigate = useNavigate();
-  const handleLogout = () => {
-    token.removeToken();
-    navigate(routes.index);
-  };
+  const { mutate } = useLogout();
 
   return (
     <StyledWrapper>
@@ -27,7 +23,7 @@ export default function MySetting() {
           <div>기타</div>
           <StyledList>
             <StyledListItem>
-              <button type="button" onClick={handleLogout}>
+              <button type="button" onClick={() => mutate()}>
                 로그아웃
               </button>
             </StyledListItem>

@@ -16,3 +16,8 @@ export const getUser = async () => {
   const { data } = await requester.post<DeatultResponse<User>>('/user/info');
   return data;
 };
+
+export const logout = async () => {
+  const { data } = await requester<DeatultResponse<null>>('/user/logout');
+  return data;
+};
