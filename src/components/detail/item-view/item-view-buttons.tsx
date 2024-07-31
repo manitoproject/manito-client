@@ -19,7 +19,7 @@ export default function ItemViewButtons({
 }: ItemViewButtonsProps) {
   const { data: userData } = useUserQuery();
   const { mutate } = useDeleteMessage({
-    paperId: message?.paperId as number,
+    paperId: message.paperId,
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
   const user = userData?.data;
@@ -36,7 +36,7 @@ export default function ItemViewButtons({
       >
         닫기
       </Button>
-      {message.id === user?.id && (
+      {message.user?.id === user?.id && (
         <>
           <Button
             css={{ background: theme.colors['powderBlue-900'] }}

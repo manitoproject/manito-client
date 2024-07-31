@@ -17,7 +17,6 @@ interface Message {
   id: number;
   anonymous?: string;
   paperId: number;
-  user: User;
   theme: string;
   content: string;
   regDateTime: string;
@@ -25,5 +24,5 @@ interface Message {
   fontColor: ColorKey;
   isPublic: YerOrNo;
   position: number;
-  user: User;
+  user: User | null;
 }

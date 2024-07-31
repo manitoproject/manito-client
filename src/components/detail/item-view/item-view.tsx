@@ -33,7 +33,7 @@ export default function ItemView({ onCloseItemView, paperId }: ItemViewProps) {
           activeIndex={activeIndex}
         />
         <ItemViewUserForm
-          nickname={message.anonymous || message.user.nickname}
+          nickname={message.anonymous || message.user?.nickname}
           activeIndex={activeIndex}
           totalIndex={messages.length}
         />

@@ -9,22 +9,23 @@ import { getFontSizeAndWeight } from '../../styles/mixins';
 
 export default function UserInfo() {
   const { data } = useUserQuery();
+  const user = data?.data;
 
   return (
     <StyledWrapper>
       <StyledAvatarWrapper>
         <img
           src={
-            data?.data?.isOriginProfile === 'Y'
+            user?.isOriginProfile === 'Y'
               ? defaultKaKaoUserProfile
-              : data?.data?.profileImage
+              : user?.profileImage
           }
           alt="avatar"
         />
       </StyledAvatarWrapper>
       <StyledNicknameWrapper>
-        <p>{data?.data?.nickname}</p>
-        <p>{data?.data?.email}</p>
+        <p>{user?.nickname}</p>
+        <p>{user?.email}</p>
       </StyledNicknameWrapper>
       <StyledSvgWrapper>
         <Link to={routes.my.setting()}>
