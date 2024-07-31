@@ -17,5 +17,6 @@ export { default as My } from './my.svg';
 export { default as Profile } from './profile.svg';
 export { default as RadioButton } from './radio-button.svg';
 export { default as RadioButtonActive } from './radio-button-active.svg';
+export { default as RightChevron } from './right-chevron.svg';
 export { default as Setting } from './setting.svg';
 export { default as Trash } from './trash.svg';

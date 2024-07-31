@@ -38,6 +38,11 @@ import {
 } from '../assets/svg/emoji';
 import { ThemeKey } from './theme-list';
 
+export const findEmojiForTheme = (name: string) =>
+  [...emojis.animal, ...emojis.nature, ...emojis.space].find(
+    (item) => item.name === name,
+  );
+
 const emojis: { [key in ThemeKey]: { name: string; svg: string }[] } = {
   nature: [
     {

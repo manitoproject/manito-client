@@ -57,7 +57,6 @@ export default function Rename() {
       <div>
         <Button
           onClick={handleNicknameChange}
-          hasMarginBottom
           disabled={isError || !name.length || isPending}
         >
           수정하기

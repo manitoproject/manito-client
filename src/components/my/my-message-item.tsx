@@ -1,5 +1,5 @@
 import { EditSquare, Trash } from '../../assets/svg/icons';
-import emojis from '../../constants/emojis';
+import { findEmojiForTheme } from '../../constants/emojis';
 import { fonts } from '../../constants/fonts';
 import { useDeleteMessage } from '../../queries/message';
 import { Message } from '../../types/message';
@@ -18,10 +18,7 @@ export default function MyMessageItem({ message }: MyMessageItemProps) {
   const { mutate } = useDeleteMessage({
     paperId: message.paperId,
   });
-  const findEmojiForTheme = (name: string) =>
-    [...emojis.animal, ...emojis.nature, ...emojis.space].find(
-      (item) => item.name === name,
-    );
+
   const Emoji = findEmojiForTheme(message.theme)?.svg;
 
   return (

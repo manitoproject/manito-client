@@ -6,9 +6,7 @@ import { routes } from '../router';
 export default function SetupIntro() {
   return (
     <StyledWrapper>
-      <LinkButton to={routes.rolling.setup()} hasMarginBottom>
-        시작하기
-      </LinkButton>
+      <LinkButton to={routes.rolling.setup()}>시작하기</LinkButton>
       <StyledBackdrop />
     </StyledWrapper>
   );

@@ -27,6 +27,9 @@ export const useNicknameChange = (isMyPage = false) => {
         queryClient.invalidateQueries({
           queryKey: queries.users._def,
         });
+        queryClient.invalidateQueries({
+          queryKey: queries.messages._def,
+        });
       }
     },
   });
