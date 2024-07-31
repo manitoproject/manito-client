@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { useEffect } from 'react';
 
 import { usePaperMessagesQuery } from '../../queries/message';
-import useMessageStore from '../../stores/messageStore';
+import useMessageStore from '../../stores/message-store';
 import MessageItem from './message-item';
 
 interface MessageListProps {

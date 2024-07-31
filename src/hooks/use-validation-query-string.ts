@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import emojis from '../constants/emojis';
-import { maxMessageLength } from '../constants/regexPatterns';
+import { maxMessageLength } from '../constants/regex-patterns';
 import themeList, { ThemeKey } from '../constants/theme-list';
 
 export default function useValidationQueryString() {

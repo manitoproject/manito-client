@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { routes } from '../router';
 import { changeNickname, changeProfile, logout } from '../services/users';
-import useToastStore from '../stores/toastStore';
+import useToastStore from '../stores/toast-store';
 import { token } from '../utils/storage';
 import queries from './query-key-factory';
 

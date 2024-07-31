@@ -11,7 +11,7 @@ import emojis from '../constants/emojis';
 import { colors, fonts } from '../constants/fonts';
 import { useNameForm, useValidationQueryString } from '../hooks';
 import { useCreateMessage } from '../queries/message';
-import useModalStore from '../stores/modalStore';
+import useModalStore from '../stores/modal-store';
 import themeObject from '../styles/theme';
 import {
   StyledEmojiWrapper,

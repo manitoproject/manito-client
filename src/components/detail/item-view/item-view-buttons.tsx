@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 
 import { useUserQuery } from '../../../queries/users';
-import useToastStore from '../../../stores/toastStore';
+import useToastStore from '../../../stores/toast-store';
 import theme from '../../../styles/theme';
 import { Message } from '../../../types/message';
 import { Button } from '../../common/buttons';

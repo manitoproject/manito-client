@@ -10,8 +10,8 @@ import ItemView from '../components/detail/item-view/item-view';
 import MessageList from '../components/detail/message-list';
 import { usePaperDetailQuery } from '../queries/paper';
 import { routes } from '../router';
-import useMessageStore from '../stores/messageStore';
-import useToastStore from '../stores/toastStore';
+import useMessageStore from '../stores/message-store';
+import useToastStore from '../stores/toast-store';
 import {
   StyledBackdrop,
   StyledRollingDetail,

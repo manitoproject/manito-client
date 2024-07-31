@@ -1,4 +1,4 @@
-export { default as useDisableScroll } from './common/useDisableScroll';
-export { default as useOutsideClick } from './common/useOutsideClick';
-export { default as useNameForm } from './useNameForm';
-export { default as useValidationQueryString } from './useValidationQueryString';
+export { default as useDisableScroll } from './common/use-disable-scroll';
+export { default as useOutsideClick } from './common/use-outside-click';
+export { default as useNameForm } from './use-name-form';
+export { default as useValidationQueryString } from './use-validation-query-string';

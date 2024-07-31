@@ -3,7 +3,7 @@ import { Navigate, useLocation } from 'react-router-dom';
 
 import { Button } from '../components/common/buttons';
 import NameForm from '../components/common/name-form';
-import { nicknameMaxLength } from '../constants/regexPatterns';
+import { nicknameMaxLength } from '../constants/regex-patterns';
 import { useNameForm } from '../hooks';
 import { useNicknameChange } from '../queries/users';
 import { routes } from '../router';

@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 
 import { Clip, KakaoFill } from '../../assets/svg/icons';
 import { usePaperMessagesQuery } from '../../queries/message';
-import useToastStore from '../../stores/toastStore';
+import useToastStore from '../../stores/toast-store';
 import theme from '../../styles/theme';
 import LoginModal from '../modal/login-modal';
 import { Modal } from '../modal/modal';

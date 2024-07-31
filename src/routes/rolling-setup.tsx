@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Button } from '../components/common/buttons';
 import NameForm from '../components/common/name-form';
 import ThemeCarousel from '../components/setup/theme-carousel';
-import { titleMaxLength } from '../constants/regexPatterns';
+import { titleMaxLength } from '../constants/regex-patterns';
 import themeList from '../constants/theme-list';
 import { useNameForm } from '../hooks';
 import { useCreateRollingPaper } from '../queries/paper';

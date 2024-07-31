@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 
 import { Button } from '../components/common/buttons';
-import useToastStore from '../stores/toastStore';
+import useToastStore from '../stores/toast-store';
 import { getFontSizeAndWeight } from '../utils/style';
 
 export default function Contact() {

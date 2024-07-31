@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { AnimatePresence, motion } from 'framer-motion';
 import { createPortal } from 'react-dom';
 
-import useToastStore from '../../stores/toastStore';
+import useToastStore from '../../stores/toast-store';
 import { getFontSizeAndWeight } from '../../utils/style';
 
 export default function Toast() {

@@ -6,7 +6,7 @@ import Contact from './routes/contact';
 import ErrorPage from './routes/error-page';
 import Home from './routes/home';
 import Join from './routes/join';
-import KakaoRedirection from './routes/kakako_redirection';
+import KakaoRedirection from './routes/kakako-redirection';
 import Layout from './routes/layout';
 import My from './routes/my';
 import MySetting from './routes/my-setting';

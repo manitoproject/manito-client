@@ -1,9 +1,9 @@
 import { ForwardedRef, forwardRef, useEffect } from 'react';
 
 import { RadioButton, RadioButtonActive } from '../../assets/svg/icons';
-import { nicknameMaxLength } from '../../constants/regexPatterns';
+import { nicknameMaxLength } from '../../constants/regex-patterns';
 import { useDisableScroll, useOutsideClick } from '../../hooks';
-import useModalStore from '../../stores/modalStore';
+import useModalStore from '../../stores/modal-store';
 import Input from '../common/input';
 import { Portal } from '../common/portal';
 import {
@@ -15,8 +15,8 @@ import {
   StyledModalMainWrapper,
   StyledTitleWrapper,
 } from './modal.style';
-import ModalContext, { useModalContext } from './modalContext';
-import useModal from './useModal';
+import ModalContext, { useModalContext } from './modal-context';
+import useModal from './use-modal';
 
 const CHECKBOX_LIST = ['공개로 작성할래요.', '익명으로 작성할래요.'];
 
