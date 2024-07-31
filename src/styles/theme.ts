@@ -26,8 +26,9 @@ const theme = {
     mobile: '480px',
     padding: '24px',
     header: '64px',
-    mainMarginTop: '64px',
+    paddingTop: '48px',
     paddingBottom: '40px',
+    calcHeader: 'calc(100% - 64px)',
   },
   colors: {
     'powderBlue-50': '#F7F8FB',

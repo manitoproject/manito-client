@@ -55,7 +55,6 @@ export default function Join() {
 
 const StyledWrapper = styled.div`
   width: 100%;
-  flex: 1;
   display: flex;
   flex-direction: column;
   div {

@@ -6,7 +6,7 @@ import BottomSheet from '../components/detail/bottom-sheet/bottom-sheet';
 import { StyledBottomSheetContentWrapper } from '../components/detail/bottom-sheet/bottom-sheet.style';
 import EmojiSelectorSheet from '../components/detail/bottom-sheet/emoji-sheet/emoji-selector-sheet';
 import DetailHeader from '../components/detail/detail-header';
-import ItemView from '../components/detail/item-view';
+import ItemView from '../components/detail/item-view/item-view';
 import MessageList from '../components/detail/message-list';
 import { usePaperDetailQuery } from '../queries/paper';
 import { routes } from '../router';

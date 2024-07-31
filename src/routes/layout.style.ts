@@ -1,11 +1,9 @@
-import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 export const StyledWrapper = styled.div`
   position: relative;
   font-family: ${({ theme }) => theme.fontFamily.SpoqaHanSansNeo};
   line-height: normal;
-  min-height: 100vh;
   display: flex;
   width: 100%;
   max-width: ${(props) => props.theme.sizes.mobile};
@@ -15,17 +13,21 @@ export const StyledWrapper = styled.div`
 `;
 
 export const StyledMain = styled.main`
+  padding-left: ${({ theme }) => theme.sizes.padding};
+  padding-right: ${({ theme }) => theme.sizes.padding};
+  padding-bottom: ${({ theme }) => theme.sizes.paddingBottom};
   background-color: ${(props) => props.theme.colors.white};
-  width: 100%;
-  flex: 1;
   display: flex;
-  ${({ theme }) =>
-    css`
-      padding-left: ${theme.sizes.padding};
-      padding-right: ${theme.sizes.padding};
-      padding-top: calc(${theme.sizes.mainMarginTop} + ${theme.sizes.header});
-      padding-bottom: ${theme.sizes.paddingBottom};
-    `}
+  min-height: 100vh;
+  flex-direction: column;
+  & > div:nth-of-type(1) {
+    height: ${({ theme }) => theme.sizes.header};
+  }
+  & > div:nth-of-type(2) {
+    flex: 1;
+    display: flex;
+    padding-top: ${({ theme }) => theme.sizes.paddingTop};
+  }
 `;
 
 export const StyledBrowserBackdrop = styled.div`

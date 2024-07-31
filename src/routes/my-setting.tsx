@@ -10,56 +10,51 @@ export default function MySetting() {
 
   return (
     <StyledWrapper>
-      <div>
-        <StyledListWarpper>
-          <div>내 정보</div>
-          <StyledList>
-            <StyledListItem>
-              <Link to={routes.my.rename()}>내 프로필 수정</Link>
-            </StyledListItem>
-          </StyledList>
-        </StyledListWarpper>
-        <StyledListWarpper>
-          <div>기타</div>
-          <StyledList>
-            <StyledListItem>
-              <button type="button" onClick={() => mutate()}>
-                로그아웃
-              </button>
-            </StyledListItem>
-            <StyledListItem>
-              <Link to={routes.my.contact()}>문의하기</Link>
-            </StyledListItem>
-          </StyledList>
-        </StyledListWarpper>
-      </div>
+      <StyledBackdrop />
+      <StyledListWarpper>
+        <div>내 정보</div>
+        <StyledList>
+          <StyledListItem>
+            <Link to={routes.my.rename()}>내 프로필 수정</Link>
+          </StyledListItem>
+        </StyledList>
+      </StyledListWarpper>
+      <StyledListWarpper>
+        <div>기타</div>
+        <StyledList>
+          <StyledListItem>
+            <button type="button" onClick={() => mutate()}>
+              로그아웃
+            </button>
+          </StyledListItem>
+          <StyledListItem>
+            <Link to={routes.my.contact()}>문의하기</Link>
+          </StyledListItem>
+        </StyledList>
+      </StyledListWarpper>
     </StyledWrapper>
   );
 }
 
-const StyledWrapper = styled.div`
-  left: 0;
+const StyledBackdrop = styled.div`
   position: absolute;
-  right: 0;
-  top: 0;
-  height: 100%;
+  left: ${({ theme }) => `-${theme.sizes.padding}`};
+  top: ${({ theme }) => `-${theme.sizes.header}`};
+  width: ${({ theme }) => theme.sizes.mobile};
+  height: 100vh;
+  background-color: ${({ theme }) => theme.colors['powderBlue-100']};
+`;
+
+const StyledWrapper = styled.div`
+  position: relative;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 16px;
-  background-color: ${({ theme }) => theme.colors['powderBlue-100']};
-  & > div {
-    display: flex;
-    gap: 12px;
-    flex-direction: column;
-    min-height: 100%;
-    padding-left: ${({ theme }) => theme.sizes.padding};
-    padding-right: ${({ theme }) => theme.sizes.padding};
-    padding-top: ${({ theme }) =>
-      `calc(${theme.sizes.header} + ${theme.sizes.mainMarginTop})`};
-  }
 `;
 
 const StyledListWarpper = styled.div`
+  z-index: 1;
   padding: 16px 0;
   display: flex;
   flex-direction: column;
@@ -69,7 +64,6 @@ const StyledListWarpper = styled.div`
     ${getFontSizeAndWeight('heading2', 'bold')}
     padding: 0 16px;
   }
-
   background-color: ${({ theme }) => theme.colors.white};
 `;
 

@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 import { LinkButton } from '../components/common/buttons';
 import { routes } from '../router';
+import { StyledFixedBackground } from '../styles/common';
 
 export default function SetupIntro() {
   return (
@@ -22,13 +23,6 @@ const StyledWrapper = styled.div`
 `;
 
 const StyledBackdrop = styled.div`
-  position: absolute;
-  transform: ${(props) => `translateY(-${props.theme.sizes.mainMarginTop})`};
-  right: 0;
-  left: 0;
-  bottom: 0;
-  background-image: url('/src/assets/imgs/intro/rollring-paper-bg@4x-100.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 100%;
+  ${StyledFixedBackground};
+  background-image: url('/src/assets/imgs/intro/rollring-paper-B@4x-1002.jpg');
 `;

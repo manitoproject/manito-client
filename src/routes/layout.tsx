@@ -16,7 +16,10 @@ export default function Layout() {
   return (
     <StyledWrapper>
       <Header onSidebarOpen={() => setIsSideMenuOpen(true)} />
-      <StyledMain>{<Outlet />}</StyledMain>
+      <StyledMain>
+        <div />
+        <div>{<Outlet />}</div>
+      </StyledMain>
       <Sidebar
         isOpen={isSideMenuOpen}
         onClose={() => setIsSideMenuOpen(false)}
