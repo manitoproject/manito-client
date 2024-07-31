@@ -9,7 +9,6 @@ import {
 } from './buttons.style';
 
 export interface CommonButtonProps {
-  hasMarginBottom?: boolean;
   backgroundColor?: ColorKey;
 }
 

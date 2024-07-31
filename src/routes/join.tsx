@@ -44,7 +44,6 @@ export default function Join() {
         <Button
           onClick={handleNicknameChange}
           backgroundColor="powderBlue-800"
-          hasMarginBottom
           disabled={!name.length || isError || isPending}
         >
           가입완료

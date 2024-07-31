@@ -51,7 +51,6 @@ export default function RollingSetup() {
       </StyledSectionWrapper>
       <Button
         disabled={!name.length || isError || isPending}
-        hasMarginBottom
         onClick={handleSubmit}
       >
         시작하기

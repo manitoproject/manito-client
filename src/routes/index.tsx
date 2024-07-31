@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import { Logo } from '../assets/svg/icons';
 import { Button, KakaoLoginButton } from '../components/common/buttons';
+import theme from '../styles/theme';
 import { getFontSizeAndWeight } from '../utils/style';
 import { StyledBrowserBackdrop } from './layout.style';
 
@@ -21,9 +22,15 @@ export default function Index() {
         <Logo />
       </StyledLogoWrapper>
       {isButtonClicked ? (
-        <KakaoLoginButton hasMarginBottom onClick={handleSocialLoginKakao} />
+        <KakaoLoginButton
+          css={{ marginBottom: theme.sizes.paddingBottom }}
+          onClick={handleSocialLoginKakao}
+        />
       ) : (
-        <Button hasMarginBottom onClick={() => setIsButtonClicked(true)}>
+        <Button
+          css={{ marginBottom: theme.sizes.paddingBottom }}
+          onClick={() => setIsButtonClicked(true)}
+        >
           시작하기
         </Button>
       )}

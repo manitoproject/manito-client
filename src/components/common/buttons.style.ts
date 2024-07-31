@@ -8,7 +8,6 @@ import { CommonButtonProps, LinkButtonProps } from './buttons';
 
 const commonButtonStyle = ({
   backgroundColor,
-  hasMarginBottom,
   theme,
 }: CommonButtonProps & { theme: ThemeType }) => css`
   border-radius: 4px;
@@ -19,7 +18,6 @@ const commonButtonStyle = ({
   line-height: 24px;
   justify-content: center;
   width: 100%;
-  margin-bottom: ${hasMarginBottom ? `40px` : 0};
   color: ${theme.colors.white};
   background-color: ${backgroundColor
     ? theme['colors'][backgroundColor]
@@ -32,10 +30,9 @@ const commonButtonStyle = ({
 `;
 
 export const StyledButton = styled.button<CommonButtonProps>`
-  ${({ backgroundColor, hasMarginBottom, theme }) =>
+  ${({ backgroundColor, theme }) =>
     commonButtonStyle({
       backgroundColor,
-      hasMarginBottom,
       theme,
     })};
 `;
@@ -47,10 +44,9 @@ export const StyledKakaoButton = styled(StyledButton)`
 `;
 
 export const StyledLinkButton = styled(Link)<LinkButtonProps>`
-  ${({ backgroundColor, hasMarginBottom, theme }) =>
+  ${({ backgroundColor, theme }) =>
     commonButtonStyle({
       backgroundColor,
-      hasMarginBottom,
       theme,
     })};
   ${({ disabled, theme, backgroundColor }) =>
