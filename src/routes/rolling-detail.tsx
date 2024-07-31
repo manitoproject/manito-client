@@ -9,7 +9,8 @@ import DetailHeader from '../components/detail/detail-header';
 import MessageList from '../components/detail/message-list';
 import { usePaperDetailQuery } from '../queries/paper';
 import { routes } from '../router';
-import messageStore from '../stores/messageStore';
+import useMessageStore from '../stores/messageStore';
+import useToastStore from '../stores/toastStore';
 import {
   StyledBackdrop,
   StyledRollingDetail,
@@ -18,9 +19,16 @@ import {
 
 export default function RollingDetail() {
   const { data } = usePaperDetailQuery();
+  const [isShowItemView, setIsShowItemView] = useState(false);
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
-  const { reset, activeEmojiIndex, activeMessageIndex } = messageStore();
+  const { reset, activeEmojiIndex, activeMessageIndex, hasList } =
+    useMessageStore();
   const navigate = useNavigate();
+  const toast = useToastStore();
+  const handleShowItemView = () => {
+    if (hasList()) return setIsShowItemView(true);
+    toast.add('상세보기 내역이 없습니다.');
+  };
 
   useEffect(() => {
     return () => reset();
@@ -29,7 +37,10 @@ export default function RollingDetail() {
   return (
     <StyledRollingDetail>
       <StyledWrapper>
-        <DetailHeader paperId={data?.data?.id} />
+        <DetailHeader
+          onShowItemView={handleShowItemView}
+          paperId={data?.data?.id}
+        />
         <MessageList
           paperId={data?.data?.id}
           onBottomSheetOpen={setIsBottomSheetOpen}

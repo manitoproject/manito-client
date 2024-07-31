@@ -3,7 +3,7 @@ import { ForwardedRef, forwardRef, useEffect } from 'react';
 import { RadioButton, RadioButtonActive } from '../../assets/svg/icons';
 import { nicknameMaxLength } from '../../constants/regexPatterns';
 import { useDisableScroll, useOutsideClick } from '../../hooks';
-import modalStore from '../../stores/modalStore';
+import useModalStore from '../../stores/modalStore';
 import Input from '../common/input';
 import { Portal } from '../common/portal';
 import {
@@ -120,7 +120,7 @@ function ModalMain({
   onClick: () => void;
 }) {
   const { isError, setIsError } = useModal();
-  const { activeIndex, setActiveIndex } = modalStore();
+  const { activeIndex, setActiveIndex } = useModalStore();
   const ref = useOutsideClick(onClick, isOpen);
   useDisableScroll(isOpen);
 

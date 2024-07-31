@@ -2,13 +2,13 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 
 import { Button } from '../components/common/buttons';
-import toastStore from '../stores/toastStore';
+import useToastStore from '../stores/toastStore';
 import { getFontSizeAndWeight } from '../utils/style';
 
 export default function Contact() {
   const [message, setMessage] = useState('');
   const [isFocus, setIsFocus] = useState(false);
-  const toast = toastStore();
+  const toast = useToastStore();
   const handleSendMessage = () => {
     if (message.length) {
       toast.add('문의하기가 완료 되었습니다.');

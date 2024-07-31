@@ -11,7 +11,7 @@ import emojis from '../constants/emojis';
 import { colors, fonts } from '../constants/fonts';
 import { useNameForm, useValidationQueryString } from '../hooks';
 import { useCreateMessage } from '../queries/message';
-import modalStore from '../stores/modalStore';
+import useModalStore from '../stores/modalStore';
 import themeObject from '../styles/theme';
 import {
   StyledEmojiWrapper,
@@ -28,7 +28,7 @@ export default function RollingNew() {
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeMenuIndex, setActiveMenuIndex] = useState(0);
-  const { activeIndex } = modalStore();
+  const { activeIndex } = useModalStore();
   const [activeFontIndex, setActiveFontIndex] = useState(0);
   const [activeColorIndex, setActiveColorIndex] = useState(0);
   const [message, setMessage] = useState('');

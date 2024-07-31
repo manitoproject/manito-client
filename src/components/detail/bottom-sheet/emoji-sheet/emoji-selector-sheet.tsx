@@ -2,14 +2,14 @@ import styled from '@emotion/styled';
 
 import emojis from '../../../../constants/emojis';
 import { ThemeKey } from '../../../../constants/theme-list';
-import messageStore from '../../../../stores/messageStore';
+import useMessageStore from '../../../../stores/messageStore';
 
 interface EmojiContentProps {
   theme?: ThemeKey;
 }
 
 export default function EmojiSelectorSheet({ theme }: EmojiContentProps) {
-  const { setActiveEmojiIndex, activeEmojiIndex, addList } = messageStore();
+  const { setActiveEmojiIndex, activeEmojiIndex, addList } = useMessageStore();
 
   return (
     <StyledWrapper>

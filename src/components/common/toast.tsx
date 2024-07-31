@@ -2,11 +2,11 @@ import styled from '@emotion/styled';
 import { AnimatePresence, motion } from 'framer-motion';
 import { createPortal } from 'react-dom';
 
-import toastStore from '../../stores/toastStore';
+import useToastStore from '../../stores/toastStore';
 import { getFontSizeAndWeight } from '../../utils/style';
 
 export default function Toast() {
-  const { toast } = toastStore();
+  const { toast } = useToastStore();
 
   return createPortal(
     <AnimatePresence>

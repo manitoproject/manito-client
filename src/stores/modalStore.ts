@@ -1,13 +1,16 @@
 import { create } from 'zustand';
+import { devtools } from 'zustand/middleware';
 
 interface ModalStore {
   activeIndex: number;
   setActiveIndex: (i: number) => void;
 }
 
-const modalStore = create<ModalStore>((set) => ({
-  activeIndex: 0,
-  setActiveIndex: (i: number) => set({ activeIndex: i }),
-}));
+const useModalStore = create<ModalStore>()(
+  devtools((set) => ({
+    activeIndex: 0,
+    setActiveIndex: (i: number) => set({ activeIndex: i }),
+  })),
+);
 
-export default modalStore;
+export default useModalStore;

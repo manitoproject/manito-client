@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { useEffect } from 'react';
 
 import { usePaperMessagesQuery } from '../../queries/message';
-import messageStore from '../../stores/messageStore';
+import useMessageStore from '../../stores/messageStore';
 import MessageItem from './message-item';
 
 interface MessageListProps {
@@ -22,7 +22,7 @@ export default function MessageList({
     list,
     snycList,
     reset,
-  } = messageStore();
+  } = useMessageStore();
 
   const handleMessageClick = (i: number) => {
     if (i !== activeMessageIndex) {

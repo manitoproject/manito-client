@@ -3,8 +3,7 @@ import { useLocation } from 'react-router-dom';
 
 import { Clip, KakaoFill } from '../../assets/svg/icons';
 import { usePaperMessagesQuery } from '../../queries/message';
-import { useUserQuery } from '../../queries/users';
-import toastStore from '../../stores/toastStore';
+import useToastStore from '../../stores/toastStore';
 import theme from '../../styles/theme';
 import LoginModal from '../modal/login-modal';
 import { Modal } from '../modal/modal';
@@ -16,18 +15,18 @@ import {
 
 interface DetailHeaderProps {
   paperId?: number;
+  onShowItemView: () => void;
 }
 
-export default function DetailHeader({ paperId }: DetailHeaderProps) {
-  const { data: userData } = useUserQuery();
-  const toast = toastStore();
+export default function DetailHeader({
+  paperId,
+  onShowItemView,
+}: DetailHeaderProps) {
+  const toast = useToastStore();
   const [isCopyModalOpen, setIsCopyModalOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const { data: messageData } = usePaperMessagesQuery(paperId);
   const location = useLocation();
-  const handleDetailView = () => {
-    if (!userData?.data) setIsLoginModalOpen(true);
-  };
 
   const handleUrlCopy = async () => {
     if ('clipboard' in navigator) {
@@ -44,7 +43,7 @@ export default function DetailHeader({ paperId }: DetailHeaderProps) {
         <strong>{messageData?.data?.length}</strong>개의 작성물
       </span>
       <div>
-        <button onClick={handleDetailView}>상세보기</button>
+        <button onClick={onShowItemView}>상세보기</button>
         <button onClick={() => setIsCopyModalOpen(true)}>
           <Clip />
         </button>
