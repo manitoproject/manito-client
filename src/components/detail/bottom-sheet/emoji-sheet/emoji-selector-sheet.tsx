@@ -14,22 +14,19 @@ export default function EmojiSelectorSheet({ theme }: EmojiContentProps) {
   return (
     <StyledWrapper>
       {theme &&
-        emojis[theme].map((emoji, i) => {
-          const Emoji = emoji.svg;
-          return (
-            <StyledItem
-              isActive={activeEmojiIndex === i}
-              key={emoji.name}
-              type="button"
-              onClick={() => {
-                setActiveEmojiIndex(i);
-                if (activeEmojiIndex !== i) addList(theme);
-              }}
-            >
-              <Emoji />
-            </StyledItem>
-          );
-        })}
+        emojis[theme].map((emoji, i) => (
+          <StyledItem
+            isActive={activeEmojiIndex === i}
+            key={emoji.name}
+            type="button"
+            onClick={() => {
+              setActiveEmojiIndex(i);
+              if (activeEmojiIndex !== i) addList(theme);
+            }}
+          >
+            <emoji.svg />
+          </StyledItem>
+        ))}
     </StyledWrapper>
   );
 }

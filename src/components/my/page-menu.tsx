@@ -23,19 +23,16 @@ export default function PageMenu({
 }: PageMenuProps) {
   return (
     <StyledMenuWrapper>
-      {MENU.map((menu, i) => {
-        const Svg = menu.svg;
-        return (
-          <StyledMenu
-            onClick={() => onActivePageMenuChange(i)}
-            isActive={i === activePageMenuIndex}
-            key={menu.name}
-          >
-            <Svg />
-            <span>{menu.name}</span>
-          </StyledMenu>
-        );
-      })}
+      {MENU.map((menu, i) => (
+        <StyledMenu
+          onClick={() => onActivePageMenuChange(i)}
+          isActive={i === activePageMenuIndex}
+          key={menu.name}
+        >
+          <menu.svg />
+          <span>{menu.name}</span>
+        </StyledMenu>
+      ))}
     </StyledMenuWrapper>
   );
 }
