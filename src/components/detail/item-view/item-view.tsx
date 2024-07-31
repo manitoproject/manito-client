@@ -12,35 +12,33 @@ import ItemViewUserForm from './item-view-user-form';
 
 interface ItemViewProps {
   onCloseItemView: () => void;
-  paperId?: number;
+  paperId: number;
 }
 
 export default function ItemView({ onCloseItemView, paperId }: ItemViewProps) {
   const { data: messageData } = usePaperMessagesQuery(paperId);
   const [activeIndex, setActiveIndex] = useState(0);
 
+  const message = messageData?.data?.[activeIndex];
+  const messages = messageData?.data;
+
+  if (!message || !messages) throw new Error();
+
   return (
     <StyledWrapper>
       <div>
         <ItemViewSwiper
-          messages={messageData?.data}
+          messages={messages}
           setActiveIndex={setActiveIndex}
           activeIndex={activeIndex}
         />
         <ItemViewUserForm
-          nickname={
-            messageData?.data?.[activeIndex].anonymous ||
-            messageData?.data?.[activeIndex].user.nickname
-          }
+          nickname={message.anonymous || message.user.nickname}
           activeIndex={activeIndex}
-          totalIndex={messageData?.data?.length}
+          totalIndex={messages.length}
         />
       </div>
-      <ItemViewButtons
-        activeIndex={activeIndex}
-        onCloseItemView={onCloseItemView}
-        messages={messageData?.data}
-      />
+      <ItemViewButtons onCloseItemView={onCloseItemView} message={message} />
     </StyledWrapper>
   );
 }

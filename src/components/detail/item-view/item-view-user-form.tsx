@@ -4,8 +4,8 @@ import { getFontSizeAndWeight } from '../../../styles/mixins';
 
 interface ItemViewUserFormProps {
   activeIndex: number;
-  totalIndex?: number;
-  nickname?: string;
+  totalIndex: number;
+  nickname: string;
 }
 
 export default function ItemViewUserForm({

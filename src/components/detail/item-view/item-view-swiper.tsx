@@ -11,7 +11,7 @@ import { Message } from '../../../types/message';
 interface DetailSwiperProps {
   activeIndex: number;
   setActiveIndex: React.Dispatch<React.SetStateAction<number>>;
-  messages?: Message[];
+  messages: Message[];
 }
 
 export default function ItemViewSwiper({
@@ -22,7 +22,7 @@ export default function ItemViewSwiper({
   const [isBeginning, setIsBeginning] = useState(
     activeIndex === 0 ? true : false,
   );
-  const [isEnd, setIsEnd] = useState(messages?.length === 1 ? true : false);
+  const [isEnd, setIsEnd] = useState(messages.length === 1 ? true : false);
   const swiperRef = useRef<SwiperType>();
 
   const handleSlideChange = (e: SwiperType) => {
@@ -39,7 +39,7 @@ export default function ItemViewSwiper({
       modules={[Navigation]}
       onSlideChange={handleSlideChange}
     >
-      {messages?.map((message) => {
+      {messages.map((message) => {
         const emoji = findEmojiForTheme(message.theme);
         // const font = fonts.find(
         //   (font) => font.name === message.font,

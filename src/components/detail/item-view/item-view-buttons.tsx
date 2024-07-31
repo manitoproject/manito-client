@@ -1,31 +1,29 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 
+import { useDeleteMessage } from '../../../queries/message';
 import { useUserQuery } from '../../../queries/users';
-import useToastStore from '../../../stores/toast-store';
 import theme from '../../../styles/theme';
 import { Message } from '../../../types/message';
 import { Button } from '../../common/buttons';
 import { Modal } from '../../modal/modal';
 
 interface ItemViewButtonsProps {
-  messages?: Message[];
-  activeIndex: number;
+  message: Message;
   onCloseItemView: () => void;
 }
 
 export default function ItemViewButtons({
-  messages,
-  activeIndex,
+  message,
   onCloseItemView,
 }: ItemViewButtonsProps) {
   const { data: userData } = useUserQuery();
+  const { mutate } = useDeleteMessage({
+    paperId: message?.paperId as number,
+  });
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const toast = useToastStore();
+  const user = userData?.data;
 
-  const handleMessageDeletee = () => {
-    setIsModalOpen(true);
-  };
   return (
     <StyledItemViewButtons>
       <Button
@@ -38,7 +36,7 @@ export default function ItemViewButtons({
       >
         닫기
       </Button>
-      {messages?.[activeIndex].user?.id === userData?.data?.id && (
+      {message.id === user?.id && (
         <>
           <Button
             css={{ background: theme.colors['powderBlue-900'] }}
@@ -46,7 +44,7 @@ export default function ItemViewButtons({
           >
             수정
           </Button>
-          <Button css={{}} onClick={handleMessageDeletee}>
+          <Button css={{}} onClick={() => setIsModalOpen(true)}>
             삭제
           </Button>
         </>
@@ -74,7 +72,7 @@ export default function ItemViewButtons({
                 background: theme.colors['black'],
                 color: theme.colors.white,
               }}
-              onClick={() => toast.add('편지가 삭제 되었습니다.')}
+              onClick={() => mutate(message.id)}
             >
               삭제하기
             </Modal.Button>

@@ -26,6 +26,7 @@ export default function RollingDetail() {
     useMessageStore();
   const navigate = useNavigate();
   const toast = useToastStore();
+  const currentPaperId = data?.data?.id;
   const handleShowItemView = () => {
     if (hasList()) return setIsShowItemView(true);
     toast.add('상세보기 내역이 없습니다.');
@@ -37,7 +38,7 @@ export default function RollingDetail() {
 
   return (
     <StyledRollingDetail>
-      {!isShowItemView ? (
+      {!isShowItemView && (
         <StyledWrapper>
           <DetailHeader
             onShowItemView={handleShowItemView}
@@ -71,13 +72,13 @@ export default function RollingDetail() {
             </StyledBottomSheetContentWrapper>
           </BottomSheet>
         </StyledWrapper>
-      ) : (
+      )}
+      {isShowItemView && currentPaperId && (
         <ItemView
-          paperId={data?.data?.id}
+          paperId={currentPaperId}
           onCloseItemView={() => setIsShowItemView(false)}
         />
       )}
-
       <StyledBackdrop themeName={data?.data?.theme} />
     </StyledRollingDetail>
   );
