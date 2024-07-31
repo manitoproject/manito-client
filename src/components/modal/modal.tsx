@@ -87,8 +87,10 @@ function Button({
   children,
   onClick,
   isActionBtn,
+  isPending,
   ...rest
 }: {
+  isPending?: boolean;
   isActionBtn?: boolean;
   children: React.ReactNode;
   onClick: () => void;
@@ -98,7 +100,7 @@ function Button({
     <StyledButton
       {...rest}
       type="button"
-      disabled={isActionBtn && isError && !!activeIndex}
+      disabled={(isActionBtn && isError && !!activeIndex) || isPending}
       onClick={onClick}
     >
       {children}

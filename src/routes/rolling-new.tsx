@@ -40,7 +40,7 @@ export default function RollingNew() {
     nameRef: nicknameRef,
   } = useNameForm('nickname');
 
-  const { mutate } = useCreateMessage(+paperId);
+  const { mutate, isPending } = useCreateMessage(+paperId);
   const activeFont = fonts[activeFontIndex];
   const activeColor = colors[theme][activeColorIndex];
   const { svg: Svg, name } = emojis[theme][+emojiIndex];
@@ -132,6 +132,7 @@ export default function RollingNew() {
               닫기
             </Modal.Button>
             <Modal.Button
+              isPending={isPending}
               isActionBtn
               css={{
                 backgroundColor: themeObject.colors['gray-900'],

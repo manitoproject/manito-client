@@ -19,6 +19,7 @@ export default function ItemViewSwiper({
   setActiveIndex,
   messages,
 }: DetailSwiperProps) {
+  const sortedMessages = messages.sort((a, b) => a.position - b.position);
   const [isBeginning, setIsBeginning] = useState(
     activeIndex === 0 ? true : false,
   );
@@ -39,7 +40,7 @@ export default function ItemViewSwiper({
       modules={[Navigation]}
       onSlideChange={handleSlideChange}
     >
-      {messages.map((message) => {
+      {sortedMessages.map((message) => {
         const emoji = findEmojiForTheme(message.theme);
         // const font = fonts.find(
         //   (font) => font.name === message.font,
