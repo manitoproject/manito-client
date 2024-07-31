@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 import { LinkButton } from '../components/common/buttons';
 import { routes } from '../router';
-import { StyledFixedBackground } from '../styles/common';
+import { StyledFixedBackground } from '../styles/mixins';
 
 export default function SetupIntro() {
   return (

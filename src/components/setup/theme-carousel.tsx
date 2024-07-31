@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import themeList from '../../constants/theme-list';
-import { getFontSizeAndWeight } from '../../utils/style';
+import { getFontSizeAndWeight } from '../../styles/mixins';
 import ThemeItem from './theme-item';
 
 interface ThemeCarouselProps {

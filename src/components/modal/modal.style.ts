@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-import { getFontSizeAndWeight } from '../../utils/style';
+import { getFontSizeAndWeight } from '../../styles/mixins';
 
 export const StyledModalMainWrapper = styled.div`
   position: absolute;

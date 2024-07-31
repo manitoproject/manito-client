@@ -5,7 +5,7 @@ import { Setting } from '../../assets/svg/icons';
 import { defaultKaKaoUserProfile } from '../../constants/profile';
 import { useUserQuery } from '../../queries/users';
 import { routes } from '../../router';
-import { getFontSizeAndWeight } from '../../utils/style';
+import { getFontSizeAndWeight } from '../../styles/mixins';
 
 export default function UserInfo() {
   const { data } = useUserQuery();

@@ -3,8 +3,8 @@ import { useState } from 'react';
 
 import { Logo } from '../assets/svg/icons';
 import { Button, KakaoLoginButton } from '../components/common/buttons';
+import { getFontSizeAndWeight } from '../styles/mixins';
 import theme from '../styles/theme';
-import { getFontSizeAndWeight } from '../utils/style';
 import { StyledBrowserBackdrop } from './layout.style';
 
 export default function Index() {

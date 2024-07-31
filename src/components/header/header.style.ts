@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 import { HeaderConfig } from '../../constants/header-config';
-import { getFontSizeAndWeight } from '../../utils/style';
+import { getFontSizeAndWeight } from '../../styles/mixins';
 
 type HeaderType = Pick<HeaderConfig, 'hasBorder' | 'hasHeaderColor'>;
 type HeaderButtonType = Pick<HeaderConfig, 'hasHeaderColor'>;

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { getFontSizeAndWeight } from '../utils/style';
+import { getFontSizeAndWeight } from '../styles/mixins';
 
 export const StyledWrapper = styled.div`
   width: 100%;

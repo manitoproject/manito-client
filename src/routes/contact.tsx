@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import { Button } from '../components/common/buttons';
 import useToastStore from '../stores/toast-store';
-import { getFontSizeAndWeight } from '../utils/style';
+import { getFontSizeAndWeight } from '../styles/mixins';
 
 export default function Contact() {
   const [message, setMessage] = useState('');

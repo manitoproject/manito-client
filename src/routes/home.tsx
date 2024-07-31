@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { MainBanner, RollingBadge } from '../assets/imgs';
 import { useUserQuery } from '../queries/users';
 import { routes } from '../router';
-import { getFontSizeAndWeight } from '../utils/style';
+import { getFontSizeAndWeight } from '../styles/mixins';
 
 const CONTENTS = [
   {

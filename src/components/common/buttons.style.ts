@@ -2,8 +2,8 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
+import { getFontSizeAndWeight } from '../../styles/mixins';
 import { ThemeType } from '../../styles/theme';
-import { getFontSizeAndWeight } from '../../utils/style';
 import { CommonButtonProps, LinkButtonProps } from './buttons';
 
 const commonButtonStyle = ({
@@ -22,7 +22,7 @@ const commonButtonStyle = ({
   background-color: ${backgroundColor
     ? theme['colors'][backgroundColor]
     : theme.colors.black};
-  ${getFontSizeAndWeight('heading3', 'bold')}
+  ${getFontSizeAndWeight('heading3', 'bold')};
   &:disabled {
     background-color: ${theme.colors['gray-200']};
     color: ${theme.colors['gray-500']};

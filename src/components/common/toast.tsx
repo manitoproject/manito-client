@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { createPortal } from 'react-dom';
 
 import useToastStore from '../../stores/toast-store';
-import { getFontSizeAndWeight } from '../../utils/style';
+import { getFontSizeAndWeight } from '../../styles/mixins';
 
 export default function Toast() {
   const { toast } = useToastStore();

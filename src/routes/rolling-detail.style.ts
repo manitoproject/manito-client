@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 import { ThemeKey } from '../constants/theme-list';
-import { StyledFixedBackground } from '../styles/common';
+import { StyledFixedBackground } from '../styles/mixins';
 
 export const StyledRollingDetail = styled.div`
   width: 100%;

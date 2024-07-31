@@ -6,7 +6,7 @@ import { Trash } from '../../assets/svg/icons';
 import { useDeletePaper, useUserPaperQuery } from '../../queries/paper';
 import { useUserQuery } from '../../queries/users';
 import { routes } from '../../router';
-import { getFontSizeAndWeight } from '../../utils/style';
+import { getFontSizeAndWeight } from '../../styles/mixins';
 
 export default function MyPaperList() {
   const { data: userData } = useUserQuery();

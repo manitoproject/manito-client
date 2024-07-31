@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { useLogout } from '../queries/users';
 import { routes } from '../router';
-import { getFontSizeAndWeight } from '../utils/style';
+import { getFontSizeAndWeight } from '../styles/mixins';
 
 export default function MySetting() {
   const { mutate } = useLogout();

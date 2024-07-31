@@ -7,7 +7,7 @@ import { nicknameMaxLength } from '../constants/regex-patterns';
 import { useNameForm } from '../hooks';
 import { useNicknameChange } from '../queries/users';
 import { routes } from '../router';
-import { getFontSizeAndWeight } from '../utils/style';
+import { getFontSizeAndWeight } from '../styles/mixins';
 
 export default function Join() {
   const { mutate, isPending } = useNicknameChange();
