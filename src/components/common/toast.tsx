@@ -12,7 +12,7 @@ export default function Toast() {
     <AnimatePresence>
       {toast.map((item) => (
         <StyledTosatItem
-          key={item}
+          key={item.id}
           initial={{
             opacity: 0,
             y: 20,
@@ -25,7 +25,7 @@ export default function Toast() {
             y: 20,
           }}
         >
-          {item}
+          {item.message}
         </StyledTosatItem>
       ))}
     </AnimatePresence>,
