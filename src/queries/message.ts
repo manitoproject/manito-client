@@ -32,6 +32,14 @@ export const useUserMessagesQuery = () => {
   return useQuery({
     ...queries.messages.user(),
     staleTime: 1000 * 60 * 60,
+    select: (data) => {
+      if (data.data) {
+        const newData = { ...data };
+        newData['data'] = [...data.data.reverse()];
+        return newData;
+      }
+      return data;
+    },
   });
 };
 
