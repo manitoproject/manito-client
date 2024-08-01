@@ -22,7 +22,7 @@ export default function DetailHeader({
   paperId,
   onShowItemView,
 }: DetailHeaderProps) {
-  const toast = useToastStore();
+  const { add } = useToastStore();
   const [isCopyModalOpen, setIsCopyModalOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const { data: messageData } = usePaperMessagesQuery(paperId);
@@ -33,7 +33,7 @@ export default function DetailHeader({
       await navigator.clipboard.writeText(
         `${import.meta.env.VITE_CLIENT_URL}${location.pathname}`,
       );
-      toast.add('링크가 복사 되었습니다.');
+      add('링크가 복사 되었습니다.');
     }
   };
 

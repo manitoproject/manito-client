@@ -50,7 +50,7 @@ export const useLogout = () => {
 
 export const useProfileChange = () => {
   const queryClient = useQueryClient();
-  const toast = useToastStore();
+  const { add } = useToastStore();
   return useMutation({
     mutationFn: changeProfile,
     onSuccess: (data) => {
@@ -58,7 +58,7 @@ export const useProfileChange = () => {
         queryClient.invalidateQueries({
           queryKey: queries.users._def,
         });
-        toast.add('변경이 완료 되었습니다.');
+        add('변경이 완료 되었습니다.');
       }
     },
   });

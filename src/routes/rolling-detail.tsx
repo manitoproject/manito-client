@@ -25,13 +25,12 @@ export default function RollingDetail() {
   const { reset, activeEmojiIndex, activeMessageIndex, hasList } =
     useMessageStore();
   const navigate = useNavigate();
-  const toast = useToastStore();
+  const { add } = useToastStore();
   const currentPaperId = data?.data?.id;
   const handleShowItemView = () => {
     if (hasList()) return setIsShowItemView(true);
-    toast.add('상세보기 내역이 없습니다.');
+    add('상세보기 내역이 없습니다.');
   };
-
   useEffect(() => {
     return () => reset();
   }, [reset]);

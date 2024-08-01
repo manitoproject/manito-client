@@ -37,12 +37,12 @@ export const useUserMessagesQuery = () => {
 
 export const useDeleteMessage = ({ paperId }: { paperId: number }) => {
   const queryClient = useQueryClient();
-  const toast = useToastStore();
+  const { add } = useToastStore();
   return useMutation({
     mutationFn: deleteMessage,
     onSuccess: (data) => {
       if (data.result === 'Success') {
-        toast.add('편지가 삭제 되었습니다.');
+        add('편지가 삭제 되었습니다.');
         queryClient.invalidateQueries({
           queryKey: queries.messages.paper(paperId).queryKey,
         });

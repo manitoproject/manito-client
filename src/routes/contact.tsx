@@ -8,10 +8,10 @@ import { getFontSizeAndWeight } from '../styles/mixins';
 export default function Contact() {
   const [message, setMessage] = useState('');
   const [isFocus, setIsFocus] = useState(false);
-  const toast = useToastStore();
+  const { add } = useToastStore();
   const handleSendMessage = () => {
     if (message.length) {
-      toast.add('문의하기가 완료 되었습니다.');
+      add('문의하기가 완료 되었습니다.');
       setMessage('');
     }
   };
