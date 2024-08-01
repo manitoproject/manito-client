@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 
-import { EmojiType } from '../components/common/emoji-skin';
+import { EmojiType } from '../components/message/message-skin';
 import theme from './theme';
 
 export const StyledFixedBackground = css`

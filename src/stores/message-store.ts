@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 
 import emojis from '../constants/emojis';
-import { ThemeKey } from '../constants/theme-list';
+import { ThemeName } from '../constants/theme-list';
 import { Message } from '../types/message';
 
 const INIT_LIST = Array(8).fill(null);
@@ -15,7 +15,7 @@ interface MessageState {
   setActiveEmojiIndex: (i: number | null) => void;
   setActiveMessageIndex: (i: number | null) => void;
   snycList: (serverData?: Message[]) => void;
-  addList: (theme: ThemeKey) => void;
+  addList: (theme: ThemeName) => void;
   reset: () => void;
   hasList: () => boolean;
 }
@@ -58,7 +58,7 @@ const useMessageStore = create<MessageState>()(
           }),
         };
       }),
-    addList: (theme: ThemeKey) =>
+    addList: (theme: ThemeName) =>
       set((state) => ({
         list: state.list.map((prev, i) => {
           if (

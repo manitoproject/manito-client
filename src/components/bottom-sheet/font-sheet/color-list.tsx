@@ -1,11 +1,11 @@
-import { colors } from '../../../../constants/fonts';
-import { ThemeKey } from '../../../../constants/theme-list';
+import { colors } from '../../../constants/fonts';
+import { ThemeName } from '../../../constants/theme-list';
 import { StyledColorItem, StyledColorList } from './color-list.style';
 
 export interface ColorListProps {
   setActiveColorIndex: React.Dispatch<React.SetStateAction<number>>;
   activeColorIndex: number;
-  theme: ThemeKey;
+  theme: ThemeName;
 }
 
 export default function ColorList({

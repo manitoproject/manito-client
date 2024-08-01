@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { ColorKey } from '../../../../styles/theme';
+import { ColorName } from '../../../styles/theme';
 
 export const StyledColorList = styled.div`
   display: grid;
@@ -9,7 +9,7 @@ export const StyledColorList = styled.div`
 `;
 
 export const StyledColorItem = styled.button<{
-  color: ColorKey;
+  color: ColorName;
   isActive: boolean;
 }>`
   background-color: ${({ isActive, theme }) =>

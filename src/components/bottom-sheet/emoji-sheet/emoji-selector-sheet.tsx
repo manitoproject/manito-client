@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
 
-import emojis from '../../../../constants/emojis';
-import { ThemeKey } from '../../../../constants/theme-list';
-import useMessageStore from '../../../../stores/message-store';
+import emojis from '../../../constants/emojis';
+import { ThemeName } from '../../../constants/theme-list';
+import useMessageStore from '../../../stores/message-store';
 
 interface EmojiContentProps {
-  theme?: ThemeKey;
+  theme?: ThemeName;
 }
 
 export default function EmojiSelectorSheet({ theme }: EmojiContentProps) {

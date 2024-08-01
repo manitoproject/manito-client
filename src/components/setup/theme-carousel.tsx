@@ -3,7 +3,7 @@ import 'swiper/css';
 import styled from '@emotion/styled';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import themeList from '../../constants/theme-list';
+import THEME_LIST from '../../constants/theme-list';
 import { getFontSizeAndWeight } from '../../styles/mixins';
 import ThemeItem from './theme-item';
 
@@ -25,7 +25,7 @@ export default function ThemeCarousel({
           slidesPerView="auto"
           slideToClickedSlide
         >
-          {themeList.map(({ themeKor, img }, i) => (
+          {THEME_LIST.map(({ themeKor, img }, i) => (
             <SwiperSlide key={themeKor}>
               <ThemeItem
                 onClick={() => onActiveIndexChange(i)}

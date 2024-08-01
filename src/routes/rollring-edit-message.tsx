@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import BottomSheet from '../components/bottom-sheet/bottom-sheet';
 import { StyledBottomSheetContentWrapper } from '../components/bottom-sheet/bottom-sheet.style';
@@ -8,57 +9,21 @@ import FontSelectorSheet from '../components/bottom-sheet/font-sheet/font-select
 import { Button } from '../components/common/buttons';
 import MessageSkin from '../components/message/message-skin';
 import { Modal } from '../components/modal/modal';
-import emojis from '../constants/emojis';
-import { colors, fonts } from '../constants/fonts';
-import { useNameForm, useValidationQueryString } from '../hooks';
-import { useCreateMessage } from '../queries/message';
-import useModalStore from '../stores/modal-store';
-import themeObject from '../styles/theme';
+import { Message } from '../types/message';
 import {
   StyledOverlayBackdrop,
   StyledRollingNew,
   StyledRollingNewWrapper,
 } from './rolling-new.style';
 
-export default function RollingNew() {
-  const { emojiIndex, paperId, theme, position } = useValidationQueryString();
+export default function RollringEditMessage() {
+  const location = useLocation();
+  const message: Message = location.state;
+  const [value, setValue] = useState(message.content);
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeMenuIndex, setActiveMenuIndex] = useState(0);
-  const { activeIndex } = useModalStore();
-  const [activeFontIndex, setActiveFontIndex] = useState(0);
-  const [activeColorIndex, setActiveColorIndex] = useState(0);
-  const [message, setMessage] = useState('');
-  const {
-    handleNameChange,
-    handleNameReset,
-    isError,
-    name: nickname,
-    nameRef: nicknameRef,
-  } = useNameForm('nickname');
-
-  const { mutate, isPending } = useCreateMessage(+paperId);
-  const activeFont = fonts[activeFontIndex];
-  const activeColor = colors[theme][activeColorIndex];
-  const { svg: Svg } = emojis[theme][+emojiIndex];
-
-  const handleMessageSubmit = () => {
-    mutate({
-      font: activeFont.name,
-      content: message,
-      fontColor: activeColor,
-      position: +position,
-      theme: emojis[theme][+emojiIndex].name,
-      isPublic: activeIndex === 0 ? 'Y' : 'N',
-      paperId: +paperId,
-      anonymous: activeIndex === 1 ? nickname : '',
-    });
-  };
-
-  useEffect(() => {
-    setIsBottomSheetOpen(true);
-  }, []);
-
+  if (!message.id) throw new Error();
   return (
     <StyledRollingNew>
       <StyledRollingNewWrapper>
@@ -68,10 +33,7 @@ export default function RollingNew() {
           FontName={activeFont.name}
         >
           <Svg />
-          <textarea
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-          />
+          <textarea value={value} onChange={(e) => setValue(e.target.value)} />
         </MessageSkin>
         <BottomSheet
           onToggle={() => setIsBottomSheetOpen((prev) => !prev)}
@@ -97,7 +59,7 @@ export default function RollingNew() {
             </FontSelectorSheet>
             <Button
               onClick={() => setIsModalOpen(true)}
-              disabled={!message.length}
+              disabled={!value.length}
             >
               작성완료
             </Button>

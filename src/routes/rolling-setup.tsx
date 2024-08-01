@@ -4,7 +4,7 @@ import { Button } from '../components/common/buttons';
 import NameForm from '../components/common/name-form';
 import ThemeCarousel from '../components/setup/theme-carousel';
 import { titleMaxLength } from '../constants/regex-patterns';
-import themeList from '../constants/theme-list';
+import THEME_LIST from '../constants/theme-list';
 import { useNameForm } from '../hooks';
 import { useCreateRollingPaper } from '../queries/paper';
 import {
@@ -21,7 +21,7 @@ export default function RollingSetup() {
   const handleSubmit = () => {
     mutate({
       category: 'ROLLING_PAPER',
-      theme: themeList[activeThemeIndex].themeEng,
+      theme: THEME_LIST[activeThemeIndex].themeEng,
       title: name,
     });
   };

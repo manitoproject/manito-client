@@ -1,4 +1,4 @@
-import useOutsideClick from '../../../hooks/common/use-outside-click';
+import useOutsideClick from '../../hooks/common/use-outside-click';
 import {
   StyledBottomSheet,
   StyledBottomSheetHeader,
