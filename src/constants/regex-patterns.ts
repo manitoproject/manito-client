@@ -5,7 +5,7 @@ export const maxMessageLength = 56;
 const nicknameRegex = new RegExp(
   `^(?=.*[a-z가-힣])[a-z가-힣]{1,${nicknameMaxLength}}$`,
 );
-const titleRegex = new RegExp(`^.{1,${titleMaxLength}}$`);
+const titleRegex = new RegExp(`^.{1,${titleMaxLength - 1}}[^\\s]$`);
 
 const regex = {
   nickname: nicknameRegex,
