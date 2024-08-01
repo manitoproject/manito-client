@@ -7,6 +7,7 @@ import { Swiper as SwiperType } from 'swiper/types';
 import { RightChevron } from '../../../assets/svg/icons';
 import { findEmojiForTheme } from '../../../constants/emojis';
 import { Message } from '../../../types/message';
+import EmojiSkin from '../../common/emoji-skin';
 
 interface DetailSwiperProps {
   activeIndex: number;
@@ -42,24 +43,17 @@ export default function ItemViewSwiper({
     >
       {sortedMessages.map((message) => {
         const emoji = findEmojiForTheme(message.theme);
-        // const font = fonts.find(
-        //   (font) => font.name === message.font,
-        // ) as Font;
         return (
-          <StyledItemEmojiWrapper key={message.id}>
-            {emoji?.svg && <emoji.svg />}
-            {/* <StyledItemEmojiWrapper
-        type="Circle"
-        font={font}
-        color={message.fontColor}
-      >
-        <textarea
-          disabled
-          value={message.content}
-          // onChange={(e) => setMessage(e.target.value)}
-        />
-      </StyledItemEmojiWrapper> */}
-          </StyledItemEmojiWrapper>
+          <SwiperSlide key={message.id}>
+            <EmojiSkin
+              colorKey={message.fontColor}
+              fontKey={message.font}
+              theme={message.theme}
+            >
+              {emoji?.svg && <emoji.svg />}
+              <p>{message.content}</p>
+            </EmojiSkin>
+          </SwiperSlide>
         );
       })}
       <StyledNavigationWarpper>
@@ -81,19 +75,6 @@ export default function ItemViewSwiper({
 const StyledSwiper = styled(Swiper)`
   width: 100%;
   position: relative;
-`;
-
-const StyledItemEmojiWrapper = styled(SwiperSlide)`
-  width: 100%;
-  svg {
-    height: 432px;
-    width: 100%;
-  }
-  /* position: relative;
-  transform: none;
-  textarea {
-    pointer-events: none;
-  } */
 `;
 
 const StyledNavigationWarpper = styled.div`

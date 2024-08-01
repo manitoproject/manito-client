@@ -2,16 +2,15 @@ import { useState } from 'react';
 
 import { AddCircle } from '../../assets/svg/icons';
 import emojis from '../../constants/emojis';
-import { fonts } from '../../constants/fonts';
 import { ThemeKey } from '../../constants/theme-list';
 import { usePaperDetailQuery } from '../../queries/paper';
 import { useUserQuery } from '../../queries/users';
 import { Message } from '../../types/message';
+import EmojiSkin from '../common/emoji-skin';
 import LoginModal from '../modal/login-modal';
 import {
   StyledEmptySvg,
   StyledItem,
-  StyledMessageBox,
   StyledMessageItem,
 } from './message-item.style';
 
@@ -43,15 +42,15 @@ export default function MessageItem({
     <>
       {PaperDetailData?.data && message ? (
         'content' in message ? (
-          <StyledMessageItem isServerData>
+          <EmojiSkin
+            isMini
+            theme={message.theme}
+            colorKey={message.fontColor}
+            fontKey={message.font}
+          >
             {EmojiSvg ? <EmojiSvg /> : <StyledEmptySvg />}
-            <StyledMessageBox
-              color={message.fontColor}
-              font={fonts.find((font) => font.name === message.font)}
-            >
-              {message.content}
-            </StyledMessageBox>
-          </StyledMessageItem>
+            <p>{message.content}</p>
+          </EmojiSkin>
         ) : (
           <StyledMessageItem
             onClick={() => onBottomSheetOpen(true)}

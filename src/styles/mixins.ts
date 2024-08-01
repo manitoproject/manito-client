@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 
+import { EmojiType } from '../components/common/emoji-skin';
 import theme from './theme';
 
 export const StyledFixedBackground = css`
@@ -19,3 +20,62 @@ export const getFontSizeAndWeight = (
   font-size: ${theme.fontSize[size]};
   font-weight: ${theme.fontWeight[weight]};
 `;
+
+export const getTextareaSize = (type?: EmojiType, isMini?: boolean) => {
+  let width = '';
+  let height = '';
+  let top = '';
+  let translate = '';
+  if (type === 'Circle') {
+    if (isMini) {
+      width = '57.7%';
+      height = '53.8%';
+    } else {
+      width = '55.5%';
+      height = '55.5%';
+    }
+    top = '50%';
+    translate = '-50%,-50%';
+  } else if (type === 'Square') {
+    if (isMini) {
+      width = '73.1%';
+      height = '61.5%';
+    } else {
+      width = '64.8%';
+      height = '64.8%';
+    }
+    top = '50%';
+    translate = '-50%,-50%';
+  } else {
+    if (isMini) {
+      if (type === 'Clover') {
+        width = '48.6%';
+        height = '46.3%';
+        top = '50%';
+        translate = '-50%,-50%';
+      } else if (type === 'Polygon') {
+        width = '53.8%';
+        height = '48.1%';
+        top = '50%';
+        translate = '-50%,-50%';
+      } else {
+        width = '47.1%';
+        height = '47.1%';
+        translate = '-50%';
+        top = '34.6%';
+      }
+    } else {
+      top = '32.4%';
+      translate = '-50%';
+      width = '48.6%';
+      height = '46.3%';
+    }
+  }
+
+  return css`
+    transform: ${`translate(${translate})`};
+    top: ${top};
+    width: ${width};
+    height: ${height};
+  `;
+};

@@ -1,11 +1,10 @@
 import { EditSquare, Trash } from '../../assets/svg/icons';
 import { findEmojiForTheme } from '../../constants/emojis';
-import { fonts } from '../../constants/fonts';
 import { useDeleteMessage } from '../../queries/message';
 import { Message } from '../../types/message';
+import EmojiSkin from '../common/emoji-skin';
 import {
   StyledEditButton,
-  StyledMessageBox,
   StyledMessageItem,
   StyledTrashButton,
 } from '../detail/message-item.style';
@@ -19,8 +18,8 @@ export default function MyMessageItem({ message }: MyMessageItemProps) {
     paperId: message.paperId,
   });
 
-  const Emoji = findEmojiForTheme(message.theme)?.svg;
-
+  const EmojiSvg = findEmojiForTheme(message.theme)?.svg;
+  console.log(message);
   return (
     <StyledMessageItem isServerData>
       <StyledEditButton type="button" onClick={() => console.log('sdf')}>
@@ -29,13 +28,15 @@ export default function MyMessageItem({ message }: MyMessageItemProps) {
       <StyledTrashButton type="button" onClick={() => mutate(message.id)}>
         <Trash />
       </StyledTrashButton>
-      {Emoji && <Emoji />}
-      <StyledMessageBox
-        color={message.fontColor}
-        font={fonts.find((font) => font.name === message.font)}
+      <EmojiSkin
+        isMini
+        theme={message.theme}
+        fontKey={message.font}
+        colorKey={message.fontColor}
       >
-        {message.content}
-      </StyledMessageBox>
+        {EmojiSvg && <EmojiSvg />}
+        <p>{message.content}</p>
+      </EmojiSkin>
     </StyledMessageItem>
   );
 }

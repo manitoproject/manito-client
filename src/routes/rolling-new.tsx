@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { Button } from '../components/common/buttons';
+import EmojiSkin from '../components/common/emoji-skin';
 import BottomSheet from '../components/detail/bottom-sheet/bottom-sheet';
 import { StyledBottomSheetContentWrapper } from '../components/detail/bottom-sheet/bottom-sheet.style';
 import ColorList from '../components/detail/bottom-sheet/font-sheet/color-list';
@@ -14,14 +15,10 @@ import { useCreateMessage } from '../queries/message';
 import useModalStore from '../stores/modal-store';
 import themeObject from '../styles/theme';
 import {
-  StyledEmojiWrapper,
   StyledOverlayBackdrop,
   StyledRollingNew,
   StyledRollingNewWrapper,
 } from './rolling-new.style';
-
-export type EmojiType = 'Circle' | 'Square' | 'Rest';
-const EMOJI_TYPE: EmojiType[] = ['Circle', 'Square', 'Rest'];
 
 export default function RollingNew() {
   const { emojiIndex, paperId, theme, position } = useValidationQueryString();
@@ -43,11 +40,7 @@ export default function RollingNew() {
   const { mutate, isPending } = useCreateMessage(+paperId);
   const activeFont = fonts[activeFontIndex];
   const activeColor = colors[theme][activeColorIndex];
-  const { svg: Svg, name } = emojis[theme][+emojiIndex];
-  const emojiType: EmojiType = EMOJI_TYPE.filter((type, i) => {
-    if (EMOJI_TYPE.length - 1 === i) return true;
-    return name.includes(type);
-  })[0];
+  const { svg: Svg } = emojis[theme][+emojiIndex];
 
   const handleMessageSubmit = () => {
     mutate({
@@ -69,17 +62,17 @@ export default function RollingNew() {
   return (
     <StyledRollingNew>
       <StyledRollingNewWrapper>
-        <StyledEmojiWrapper
-          font={activeFont}
-          color={activeColor}
-          type={emojiType}
+        <EmojiSkin
+          theme={emojis[theme][+emojiIndex].name}
+          colorKey={activeColor}
+          fontKey={activeFont.name}
         >
           <Svg />
           <textarea
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           />
-        </StyledEmojiWrapper>
+        </EmojiSkin>
         <BottomSheet
           onToggle={() => setIsBottomSheetOpen((prev) => !prev)}
           isOpen={isBottomSheetOpen}
