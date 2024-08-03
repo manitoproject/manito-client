@@ -1,6 +1,4 @@
 import { ColorName, FontNameWithoutAppleFont } from '../styles/theme';
-import { YerOrNo } from './auth';
-import { User } from './user';
 
 interface CreateMessageApiParams {
   content: string;

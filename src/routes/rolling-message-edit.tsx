@@ -1,7 +1,52 @@
-import styled from '@emotion/styled';
+import { useState } from 'react';
+
+import MessageForm from '../components/message-form/message-form';
+import { useLocationStateProps } from '../hooks';
+import { useEditMessage } from '../queries/message';
+import { ColorName, FontNameWithoutAppleFont } from '../styles/theme';
+import { StyledOverlayBackdrop, StyledRollingNew } from './rolling-new.style';
 
 export default function RollingMessageEdit() {
-  return <StyledWrapper>rolling-message-edit</StyledWrapper>;
-}
+  const messageInfo = useLocationStateProps();
+  const isEditPage = 'id' in messageInfo;
+  const { mutate } = useEditMessage(messageInfo.paperId);
+  const [activeFont, setActiveFont] = useState<FontNameWithoutAppleFont>(
+    isEditPage ? messageInfo.font : 'Cafe24Ssurround',
+  );
+  const [activeColor, setActiveColor] = useState<ColorName>(
+    isEditPage ? messageInfo.fontColor : 'white',
+  );
+  const [content, setContent] = useState(
+    isEditPage ? messageInfo.content : 'white',
+  );
 
-const StyledWrapper = styled.div``;
+  const handleSubmit = () => {
+    if ('id' in messageInfo) {
+      //   if (messageInfo.isPublic === 'N') {
+      //     mutate({
+      //       content,
+      //       font: activeFont,
+      //       fontColor: activeColor,
+      //       id: messageInfo.id,
+      //       anonymous: messageInfo.anonymous,
+      //     });
+      //   }
+    }
+  };
+
+  return (
+    <StyledRollingNew>
+      <MessageForm
+        emoji={isEditPage ? messageInfo.theme : messageInfo.emoji}
+        handleSubmit={handleSubmit}
+        color={activeColor}
+        content={content}
+        font={activeFont}
+        setColor={setActiveColor}
+        setContent={setContent}
+        setFont={setActiveFont}
+      />
+      <StyledOverlayBackdrop themeName={messageInfo.rollingThemeName} />
+    </StyledRollingNew>
+  );
+}

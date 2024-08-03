@@ -1,8 +1,11 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
+import { getRollingThemeName } from '../../../constants/theme-list';
 import { useDeleteMessage } from '../../../queries/message';
 import { useUserQuery } from '../../../queries/users';
+import { routes } from '../../../router';
 import theme from '../../../styles/theme';
 import { Message } from '../../../types/message';
 import { Button } from '../../common/buttons';
@@ -17,11 +20,13 @@ export default function ItemViewButtons({
   message,
   onCloseItemView,
 }: ItemViewButtonsProps) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
   const { data: userData } = useUserQuery();
   const { mutate } = useDeleteMessage({
     paperId: message.paperId,
+    closeModal: () => setIsModalOpen(false),
   });
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const user = userData?.data;
 
   return (
@@ -40,7 +45,14 @@ export default function ItemViewButtons({
         <>
           <Button
             css={{ background: theme.colors['powderBlue-900'] }}
-            onClick={onCloseItemView}
+            onClick={() => {
+              navigate(routes.rolling.messageEdit(), {
+                state: {
+                  ...message,
+                  rollingThemeName: getRollingThemeName(message),
+                },
+              });
+            }}
           >
             수정
           </Button>

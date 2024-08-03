@@ -1,3 +1,13 @@
+import { Message } from '../types/message';
+const ROLLING_THEME_NAME: RollingThemeName[] = ['nature', 'space', 'animal'];
+
+export const getRollingThemeName = (
+  message: Message,
+): RollingThemeName | undefined => {
+  const messageTheme = message.theme.toLowerCase();
+  return ROLLING_THEME_NAME.find((name) => messageTheme.includes(name));
+};
+
 const themeList: Theme[] = [
   {
     themeKor: '우주',

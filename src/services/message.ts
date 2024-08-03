@@ -30,3 +30,12 @@ export const getUserMessages = async () => {
   const { data } = await requester.get<DeatultResponse<Message[]>>(`/message`);
   return data;
 };
+
+export const editMessage = async (
+  message: Pick<Message, 'id' | 'content' | 'font' | 'fontColor' | 'anonymous'>,
+) => {
+  const { data } = await requester.put<DeatultResponse<null>>(`/message`, {
+    data: message,
+  });
+  return data;
+};

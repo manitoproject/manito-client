@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { EditSquare, Trash } from '../../assets/svg/icons';
 import { findEmojiSvgFromTheme } from '../../constants/emojis';
+import { getRollingThemeName } from '../../constants/theme-list';
 import { useDeleteMessage } from '../../queries/message';
 import { routes } from '../../router';
 import { Message } from '../../types/message';
@@ -15,7 +16,6 @@ import {
 interface MyMessageItemProps {
   message: Message;
 }
-
 export default function MyMessageItem({ message }: MyMessageItemProps) {
   const { mutate } = useDeleteMessage({
     paperId: message.paperId,
@@ -28,7 +28,12 @@ export default function MyMessageItem({ message }: MyMessageItemProps) {
       <StyledEditButton
         type="button"
         onClick={() =>
-          navigate(routes.rolling.messageEdit(), { state: message })
+          navigate(routes.rolling.messageEdit(), {
+            state: {
+              ...message,
+              rollingThemeName: getRollingThemeName(message),
+            },
+          })
         }
       >
         <EditSquare />

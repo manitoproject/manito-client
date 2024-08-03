@@ -2,8 +2,9 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
 import { routes } from '../router';
-import { createMessage, deleteMessage } from '../services/message';
+import { createMessage, deleteMessage, editMessage } from '../services/message';
 import useToastStore from '../stores/toast-store';
+import { Message } from '../types/message';
 import queries from './query-key-factory';
 
 export const useCreateMessage = (paperId: number) => {
@@ -43,7 +44,13 @@ export const useUserMessagesQuery = () => {
   });
 };
 
-export const useDeleteMessage = ({ paperId }: { paperId: number }) => {
+export const useDeleteMessage = ({
+  paperId,
+  closeModal,
+}: {
+  paperId: number;
+  closeModal?: () => void;
+}) => {
   const queryClient = useQueryClient();
   const { add } = useToastStore();
   return useMutation({
@@ -51,6 +58,25 @@ export const useDeleteMessage = ({ paperId }: { paperId: number }) => {
     onSuccess: (data) => {
       if (data.result === 'Success') {
         add('편지가 삭제 되었습니다.');
+        queryClient.invalidateQueries({
+          queryKey: queries.messages.paper(paperId).queryKey,
+        });
+        queryClient.invalidateQueries({
+          queryKey: queries.messages.user._def,
+        });
+        closeModal && closeModal();
+      }
+    },
+  });
+};
+export const useEditMessage = (paperId: number) => {
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+  return useMutation({
+    mutationFn: editMessage,
+    onSuccess: (data) => {
+      if (data.result === 'Success') {
+        navigate(-1);
         queryClient.invalidateQueries({
           queryKey: queries.messages.paper(paperId).queryKey,
         });

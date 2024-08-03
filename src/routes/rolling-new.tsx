@@ -13,13 +13,13 @@ export default function RollingNew() {
     useState<FontNameWithoutAppleFont>('Cafe24Ssurround');
   const [activeColor, setActiveColor] = useState<ColorName>('white');
   const [content, setContent] = useState('');
-  const isMessage = 'id' in messageInfo;
+  const isNewPage = 'id' in messageInfo;
 
   return (
     <StyledRollingNew>
       <MessageForm
-        emoji={isMessage ? messageInfo.theme : messageInfo.emoji}
-        setIsModalOpen={setIsModalOpen}
+        handleSubmit={() => setIsModalOpen(true)}
+        emoji={isNewPage ? messageInfo.theme : messageInfo.emoji}
         color={activeColor}
         content={content}
         font={activeFont}
@@ -28,7 +28,7 @@ export default function RollingNew() {
         setFont={setActiveFont}
       />
       <StyledOverlayBackdrop themeName={messageInfo.rollingThemeName} />
-      {!isMessage && (
+      {!isNewPage && (
         <MessageCreateModal
           color={activeColor}
           font={activeFont}

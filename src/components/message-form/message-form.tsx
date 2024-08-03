@@ -14,7 +14,7 @@ interface MessageFormProps {
   content: string;
   setContent: React.Dispatch<React.SetStateAction<string>>;
   setFont: React.Dispatch<React.SetStateAction<FontNameWithoutAppleFont>>;
-  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  handleSubmit: () => void;
 }
 
 export default function MessageForm({
@@ -24,11 +24,10 @@ export default function MessageForm({
   content,
   setColor,
   setFont,
-  setIsModalOpen,
+  handleSubmit,
   setContent,
 }: MessageFormProps) {
   const theme = findEmojiSvgFromTheme(emoji);
-
   return (
     <StyledRollingNewWrapper>
       <EmojiSkin emoji={emoji} color={color} fontName={font}>
@@ -44,7 +43,7 @@ export default function MessageForm({
         setActiveColor={setColor}
         setActiveFont={setFont}
       >
-        <Button onClick={() => setIsModalOpen(true)} disabled={!content.length}>
+        <Button onClick={handleSubmit} disabled={!content.length}>
           작성완료
         </Button>
       </MessageFormBottomSheet>
