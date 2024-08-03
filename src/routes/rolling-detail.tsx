@@ -20,9 +20,10 @@ import {
 
 export default function RollingDetail() {
   const { data } = usePaperDetailQuery();
+
   const [isShowItemView, setIsShowItemView] = useState(false);
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
-  const { reset, activeEmojiIndex, activeMessageIndex, hasList } =
+  const { reset, activeEmojiName, activeMessageIndex, hasList } =
     useMessageStore();
   const navigate = useNavigate();
   const { add } = useToastStore();
@@ -34,7 +35,6 @@ export default function RollingDetail() {
   useEffect(() => {
     return () => reset();
   }, [reset]);
-
   return (
     <StyledRollingDetail>
       {!isShowItemView && (
@@ -56,15 +56,16 @@ export default function RollingDetail() {
               <EmojiSelectorSheet theme={data?.data?.theme} />
               <Button
                 onClick={() =>
-                  navigate(
-                    `${routes.rolling.new()}?theme=${
-                      data?.data?.theme
-                    }&paperId=${
-                      data?.data?.id
-                    }&emoji=${activeEmojiIndex}&position=${activeMessageIndex}`,
-                  )
+                  navigate(routes.rolling.new(), {
+                    state: {
+                      paperId: data?.data?.id,
+                      emoji: activeEmojiName,
+                      position: activeMessageIndex,
+                      rollingThemeName: data?.data?.theme,
+                    },
+                  })
                 }
-                disabled={typeof activeEmojiIndex !== 'number'}
+                disabled={!activeEmojiName}
               >
                 편지 선택하기
               </Button>

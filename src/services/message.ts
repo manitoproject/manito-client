@@ -1,4 +1,3 @@
-import { DeatultResponse } from '../types/axios';
 import { CreateMessageApiParams, Message } from '../types/message';
 import { requester, RequesterWithoutToken } from '.';
 

@@ -1,11 +1,3 @@
-export type ThemeKey = 'space' | 'nature' | 'animal';
-
-interface Theme {
-  themeKor: '우주' | '자연' | '멍냥';
-  themeEng: ThemeKey;
-  img: string;
-}
-
 const themeList: Theme[] = [
   {
     themeKor: '우주',

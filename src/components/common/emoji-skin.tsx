@@ -1,18 +1,16 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-import { findEmojiForTheme } from '../../constants/emojis';
 import { Font, fonts } from '../../constants/fonts';
 import { getTextareaSize } from '../../styles/mixins';
-import { ColorKey, FontKey } from '../../styles/theme';
-import { Message } from '../../types/message';
+import { ColorName, FontName } from '../../styles/theme';
 
 interface EmojiItemProps {
   children: React.ReactNode;
-  colorKey: ColorKey;
-  fontKey: FontKey;
-  theme: Message['theme'];
-  isMini?: boolean;
+  color: ColorName;
+  fontName: FontName;
+  emoji: string;
+  isSmall?: boolean;
 }
 
 export type EmojiType = 'Circle' | 'Square' | 'Clover' | 'Star' | 'Polygon';
@@ -26,24 +24,23 @@ const EMOJI_TYPE: EmojiType[] = [
 
 export default function EmojiSkin({
   children,
-  colorKey,
-  theme,
-  fontKey,
-  isMini = false,
+  color,
+  emoji,
+  fontName,
+  isSmall = false,
 }: EmojiItemProps) {
   const font = fonts.find((font) => {
-    return font.name === fontKey;
+    return font.name === fontName;
   });
-  const emoji = findEmojiForTheme(theme);
   const emojiType = EMOJI_TYPE.find((type, i) => {
     if (EMOJI_TYPE.length - 1 === i) return true;
-    return emoji?.name.includes(type);
+    return emoji.includes(type);
   });
   return (
     <StyledEmojiWrapper
-      isMini={isMini}
+      isSmall={isSmall}
       font={font}
-      color={colorKey}
+      color={color}
       type={emojiType}
     >
       {children}
@@ -53,11 +50,11 @@ export default function EmojiSkin({
 
 const StyledEmojiWrapper = styled.div<{
   type?: EmojiType;
-  color: ColorKey;
+  color: ColorName;
   font?: Font;
-  isMini?: boolean;
+  isSmall?: boolean;
 }>`
-  ${({ theme, type, color, font, isMini }) => css`
+  ${({ theme, type, color, font, isSmall }) => css`
   width: 100%;
   position: relative;
   svg {
@@ -69,15 +66,15 @@ const StyledEmojiWrapper = styled.div<{
   }
   textarea,
   p {
-    overflow-y: ${isMini ? 'hidden' : 'auto'};
+    overflow-y: ${isSmall ? 'hidden' : 'auto'};
     word-break: break-all;
     white-space: pre-wrap;
-    font-size:  ${isMini ? '14px' : '22px'};
+    font-size:  ${isSmall ? '14px' : '22px'};
     font-family: ${theme['fontFamily'][font?.name ?? 'SpoqaHanSansNeo']};
     font-weight: ${font?.fontWeight};
     color: ${theme.colors[color]};
     transform: translateX(-50%);
-    ${getTextareaSize(type, isMini)};
+    ${getTextareaSize(type, isSmall)};
     position: absolute;
     left: 50%;
     resize: none;

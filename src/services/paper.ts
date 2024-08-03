@@ -1,4 +1,3 @@
-import { DeatultResponse } from '../types/axios';
 import { requester, RequesterWithoutToken } from '.';
 
 export const createRollingPaper = async ({

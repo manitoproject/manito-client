@@ -1,13 +1,12 @@
-import { ColorKey, FontKey } from '../styles/theme';
-import { ThemeKey } from './theme-list';
+import { ColorName, FontNameWithoutAppleFont } from '../styles/theme';
 
 export type Font = {
-  name: FontKey;
+  name: FontNameWithoutAppleFont;
   fontWeight: number;
   displayName: string;
 };
 
-const colors: Record<ThemeKey, Array<ColorKey>> = {
+const colors: Record<RollingThemeName, Array<ColorName>> = {
   space: [
     'white',
     'powderBlue-800',

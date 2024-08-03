@@ -18,7 +18,7 @@ export default function MessageList({
   const {
     setActiveMessageIndex,
     activeMessageIndex,
-    setActiveEmojiIndex,
+    setActiveEmojiName,
     list,
     snycList,
     reset,
@@ -26,7 +26,7 @@ export default function MessageList({
 
   const handleMessageClick = (i: number) => {
     if (i !== activeMessageIndex) {
-      setActiveEmojiIndex(null);
+      setActiveEmojiName(null);
     }
     setActiveMessageIndex(i);
     onBottomSheetOpen(true);

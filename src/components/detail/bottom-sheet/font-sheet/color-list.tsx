@@ -1,24 +1,24 @@
 import { colors } from '../../../../constants/fonts';
-import { ThemeKey } from '../../../../constants/theme-list';
+import { ColorName } from '../../../../styles/theme';
 import { StyledColorItem, StyledColorList } from './color-list.style';
 
 export interface ColorListProps {
-  setActiveColorIndex: React.Dispatch<React.SetStateAction<number>>;
-  activeColorIndex: number;
-  theme: ThemeKey;
+  activeColor: ColorName;
+  setActiveColor: React.Dispatch<React.SetStateAction<ColorName>>;
+  theme: RollingThemeName;
 }
 
 export default function ColorList({
-  setActiveColorIndex,
-  activeColorIndex,
+  activeColor,
+  setActiveColor,
   theme,
 }: ColorListProps) {
   return (
     <StyledColorList>
-      {colors[theme].map((color, i) => (
+      {colors[theme].map((color) => (
         <StyledColorItem
-          isActive={activeColorIndex === i}
-          onClick={() => setActiveColorIndex(i)}
+          isActive={activeColor === color}
+          onClick={() => setActiveColor(color)}
           key={color}
           color={color}
         >

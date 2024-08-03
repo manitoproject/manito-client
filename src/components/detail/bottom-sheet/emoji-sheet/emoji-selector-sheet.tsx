@@ -1,27 +1,26 @@
 import styled from '@emotion/styled';
 
 import emojis from '../../../../constants/emojis';
-import { ThemeKey } from '../../../../constants/theme-list';
 import useMessageStore from '../../../../stores/message-store';
 
 interface EmojiContentProps {
-  theme?: ThemeKey;
+  theme?: RollingThemeName;
 }
 
 export default function EmojiSelectorSheet({ theme }: EmojiContentProps) {
-  const { setActiveEmojiIndex, activeEmojiIndex, addList } = useMessageStore();
+  const { setActiveEmojiName, activeEmojiName, addList } = useMessageStore();
 
   return (
     <StyledWrapper>
       {theme &&
-        emojis[theme].map((emoji, i) => (
+        emojis[theme].map((emoji) => (
           <StyledItem
-            isActive={activeEmojiIndex === i}
+            isActive={activeEmojiName === emoji.name}
             key={emoji.name}
             type="button"
             onClick={() => {
-              setActiveEmojiIndex(i);
-              if (activeEmojiIndex !== i) addList(theme);
+              setActiveEmojiName(emoji.name);
+              if (activeEmojiName !== emoji.name) addList(theme);
             }}
           >
             <emoji.svg />

@@ -2,7 +2,6 @@ import { useState } from 'react';
 
 import { AddCircle } from '../../assets/svg/icons';
 import emojis from '../../constants/emojis';
-import { ThemeKey } from '../../constants/theme-list';
 import { usePaperDetailQuery } from '../../queries/paper';
 import { useUserQuery } from '../../queries/users';
 import { Message } from '../../types/message';
@@ -27,9 +26,9 @@ export default function MessageItem({
   const { data: userData } = useUserQuery();
   const { data: PaperDetailData } = usePaperDetailQuery();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const EmojiSvg = emojis[PaperDetailData?.data?.theme as ThemeKey]?.find(
-    (item) => item.name === message?.theme,
-  )?.svg;
+  const EmojiSvg = emojis[
+    PaperDetailData?.data?.theme as RollingThemeName
+  ]?.find((item) => item.name === message?.theme)?.svg;
 
   const isOwner = userData?.data?.id === PaperDetailData?.data?.userId;
 
@@ -43,10 +42,10 @@ export default function MessageItem({
       {PaperDetailData?.data && message ? (
         'content' in message ? (
           <EmojiSkin
-            isMini
-            theme={message.theme}
-            colorKey={message.fontColor}
-            fontKey={message.font}
+            isSmall
+            color={message.fontColor}
+            fontName={message.font}
+            emoji={message.theme}
           >
             {EmojiSvg ? <EmojiSvg /> : <StyledEmptySvg />}
             <p>{message.content}</p>

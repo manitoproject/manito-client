@@ -1,6 +1,6 @@
 import { YerOrNo } from './auth';
 
-export interface User {
+interface User {
   email: string;
   id: number;
   nickname: string;

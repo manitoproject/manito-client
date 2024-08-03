@@ -1,8 +1,6 @@
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 
-import emojis from '../constants/emojis';
-import { ThemeKey } from '../constants/theme-list';
 import { Message } from '../types/message';
 
 const INIT_LIST = Array(8).fill(null);
@@ -10,12 +8,12 @@ const MAX_LIST_LENGTH = 56;
 
 interface MessageState {
   list: Array<null | Message | Pick<Message, 'theme'>>;
-  activeEmojiIndex: null | number;
+  activeEmojiName: string | null;
   activeMessageIndex: null | number;
-  setActiveEmojiIndex: (i: number | null) => void;
+  setActiveEmojiName: (i: string | null) => void;
   setActiveMessageIndex: (i: number | null) => void;
   snycList: (serverData?: Message[]) => void;
-  addList: (theme: ThemeKey) => void;
+  addList: (theme: RollingThemeName) => void;
   reset: () => void;
   hasList: () => boolean;
 }
@@ -23,14 +21,14 @@ interface MessageState {
 const useMessageStore = create<MessageState>()(
   devtools((set, get) => ({
     list: INIT_LIST,
-    activeEmojiIndex: null,
+    activeEmojiName: null,
     activeMessageIndex: null,
     hasList: () => {
       return get().list.some((item) => {
         return item?.theme && 'id' in item;
       });
     },
-    setActiveEmojiIndex: (i: number | null) => set({ activeEmojiIndex: i }),
+    setActiveEmojiName: (name: string | null) => set({ activeEmojiName: name }),
     setActiveMessageIndex: (i: number | null) => set({ activeMessageIndex: i }),
     snycList: (serverData?: Message[]) =>
       set((state) => {
@@ -58,15 +56,15 @@ const useMessageStore = create<MessageState>()(
           }),
         };
       }),
-    addList: (theme: ThemeKey) =>
+    addList: () =>
       set((state) => ({
         list: state.list.map((prev, i) => {
           if (
             state.activeMessageIndex === i &&
-            state.activeEmojiIndex !== null
+            state.activeEmojiName !== null
           ) {
             return {
-              theme: emojis[theme][state.activeEmojiIndex].name,
+              theme: state.activeEmojiName,
             };
           }
           if (prev?.theme && !('content' in prev)) {
@@ -79,7 +77,7 @@ const useMessageStore = create<MessageState>()(
       set({
         list: INIT_LIST,
         activeMessageIndex: null,
-        activeEmojiIndex: null,
+        activeEmojiName: null,
       }),
   })),
 );

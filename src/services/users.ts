@@ -1,4 +1,3 @@
-import { DeatultResponse } from '../types/axios';
 import { User } from '../types/user';
 import { requester } from '.';
 

@@ -36,14 +36,13 @@ import {
   SpaceTableclothPolygon,
   SpaceTableclothPolygonBright,
 } from '../assets/svg/emoji';
-import { ThemeKey } from './theme-list';
 
-export const findEmojiForTheme = (name: string) =>
+export const findEmojiSvgFromTheme = (name: string) =>
   [...emojis.animal, ...emojis.nature, ...emojis.space].find(
     (item) => item.name === name,
   );
 
-const emojis: { [key in ThemeKey]: { name: string; svg: string }[] } = {
+const emojis: { [key in RollingThemeName]: { name: string; svg: string }[] } = {
   nature: [
     {
       name: 'NatureCircle1',

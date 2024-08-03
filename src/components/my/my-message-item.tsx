@@ -1,6 +1,9 @@
+import { useNavigate } from 'react-router-dom';
+
 import { EditSquare, Trash } from '../../assets/svg/icons';
-import { findEmojiForTheme } from '../../constants/emojis';
+import { findEmojiSvgFromTheme } from '../../constants/emojis';
 import { useDeleteMessage } from '../../queries/message';
+import { routes } from '../../router';
 import { Message } from '../../types/message';
 import EmojiSkin from '../common/emoji-skin';
 import {
@@ -17,22 +20,27 @@ export default function MyMessageItem({ message }: MyMessageItemProps) {
   const { mutate } = useDeleteMessage({
     paperId: message.paperId,
   });
+  const navigate = useNavigate();
+  const EmojiSvg = findEmojiSvgFromTheme(message.theme)?.svg;
 
-  const EmojiSvg = findEmojiForTheme(message.theme)?.svg;
-  console.log(message);
   return (
     <StyledMessageItem isServerData>
-      <StyledEditButton type="button" onClick={() => console.log('sdf')}>
+      <StyledEditButton
+        type="button"
+        onClick={() =>
+          navigate(routes.rolling.messageEdit(), { state: message })
+        }
+      >
         <EditSquare />
       </StyledEditButton>
       <StyledTrashButton type="button" onClick={() => mutate(message.id)}>
         <Trash />
       </StyledTrashButton>
       <EmojiSkin
-        isMini
-        theme={message.theme}
-        fontKey={message.font}
-        colorKey={message.fontColor}
+        isSmall
+        emoji={message.theme}
+        fontName={message.font}
+        color={message.fontColor}
       >
         {EmojiSvg && <EmojiSvg />}
         <p>{message.content}</p>

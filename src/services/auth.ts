@@ -1,5 +1,3 @@
-import { AccessToken } from '../types/auth';
-import { DeatultResponse } from '../types/axios';
 import { User } from '../types/user';
 import { RequesterWithoutToken } from '.';
 

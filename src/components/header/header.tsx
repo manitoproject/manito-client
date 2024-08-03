@@ -18,18 +18,21 @@ export default function Header({ onSidebarOpen }: HeaderProps) {
   const navigate = useNavigate();
   const location = useLocation();
   const { data } = usePaperDetailQuery();
+
   const headerInfo =
     headerMap.find((header) => {
       let pathname = header.pathname();
-      if (header.title.includes(data?.data?.theme)) {
-        return header;
-      }
-      if (pathname === location.pathname) {
-        return header;
-      }
-      if (!data?.data && pathname.includes('/:')) {
-        pathname = pathname.split('/:')[0];
-        return location.pathname.includes(pathname);
+      if (data?.data) {
+        if (header.title.includes(data?.data?.theme)) {
+          return header;
+        }
+        if (pathname === location.pathname) {
+          return header;
+        }
+        if (!data?.data && pathname.includes('/:')) {
+          pathname = pathname.split('/:')[0];
+          return location.pathname.includes(pathname);
+        }
       }
     }) ?? headerMap[headerMap.length - 1];
 
