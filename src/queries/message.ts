@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { routes } from '../router';
 import { createMessage, deleteMessage, editMessage } from '../services/message';
 import useToastStore from '../stores/toast-store';
-import { Message } from '../types/message';
 import queries from './query-key-factory';
 
 export const useCreateMessage = (paperId: number) => {

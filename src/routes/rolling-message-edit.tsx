@@ -2,14 +2,14 @@ import { useState } from 'react';
 
 import MessageForm from '../components/message-form/message-form';
 import { useLocationStateProps } from '../hooks';
-import { useEditMessage } from '../queries/message';
+// import { useEditMessage } from '../queries/message';
 import { ColorName, FontNameWithoutAppleFont } from '../styles/theme';
 import { StyledOverlayBackdrop, StyledRollingNew } from './rolling-new.style';
 
 export default function RollingMessageEdit() {
   const messageInfo = useLocationStateProps();
   const isEditPage = 'id' in messageInfo;
-  const { mutate } = useEditMessage(messageInfo.paperId);
+  // const { mutate } = useEditMessage(messageInfo.paperId);
   const [activeFont, setActiveFont] = useState<FontNameWithoutAppleFont>(
     isEditPage ? messageInfo.font : 'Cafe24Ssurround',
   );
