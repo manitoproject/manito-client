@@ -61,6 +61,14 @@ const headerMap: HeaderConfig[] = [
   {
     hasBorder: true,
     hasHeaderColor: false,
+    pathname: () => routes.rolling.messageEdit(),
+    title: '수정하기',
+    isShowLeftBtn: true,
+    isShowMenuBtn: false,
+  },
+  {
+    hasBorder: true,
+    hasHeaderColor: false,
     pathname: () => routes.my.setting(),
     title: '설정',
     isShowLeftBtn: true,

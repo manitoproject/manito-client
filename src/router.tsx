@@ -12,6 +12,7 @@ import My from './routes/my';
 import MySetting from './routes/my-setting';
 import Rename from './routes/rename';
 import RollingDetail from './routes/rolling-detail';
+import RollingMessageEdit from './routes/rolling-message-edit';
 import RollingNew from './routes/rolling-new';
 import RollingSetup from './routes/rolling-setup';
 import SetupIntro from './routes/setup-intro';
@@ -34,6 +35,7 @@ export const routes = {
     detail: (id?: number) =>
       `${routes.rolling.default}/detail/${id ?? ':id'}` as const,
     new: () => `${routes.rolling.default}/new` as const,
+    messageEdit: () => `${routes.rolling.default}/message/edit` as const,
   },
 };
 
@@ -90,10 +92,13 @@ const router = () =>
                       path: routes.rolling.setup(),
                       element: <RollingSetup />,
                     },
-
                     {
                       path: routes.rolling.new(),
                       element: <RollingNew />,
+                    },
+                    {
+                      path: routes.rolling.messageEdit(),
+                      element: <RollingMessageEdit />,
                     },
                   ],
                 },
