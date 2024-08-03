@@ -1,12 +1,12 @@
-export type ThemeName = 'space' | 'nature' | 'animal';
+export type ThemeKey = 'space' | 'nature' | 'animal';
 
 interface Theme {
   themeKor: '우주' | '자연' | '멍냥';
-  themeEng: ThemeName;
+  themeEng: ThemeKey;
   img: string;
 }
 
-const THEME_LIST: Theme[] = [
+const themeList: Theme[] = [
   {
     themeKor: '우주',
     themeEng: 'space',
@@ -24,4 +24,4 @@ const THEME_LIST: Theme[] = [
   },
 ];
 
-export default THEME_LIST;
+export default themeList;

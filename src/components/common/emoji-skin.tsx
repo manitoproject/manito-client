@@ -1,11 +1,19 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-import { getEmojiObjectByName } from '../../constants/emojis';
-import { Font, FONTS } from '../../constants/fonts';
+import { findEmojiForTheme } from '../../constants/emojis';
+import { Font, fonts } from '../../constants/fonts';
 import { getTextareaSize } from '../../styles/mixins';
-import { ColorName, FontNameWithoutAppleGothic } from '../../styles/theme';
+import { ColorKey, FontKey } from '../../styles/theme';
 import { Message } from '../../types/message';
+
+interface EmojiItemProps {
+  children: React.ReactNode;
+  colorKey: ColorKey;
+  fontKey: FontKey;
+  theme: Message['theme'];
+  isMini?: boolean;
+}
 
 export type EmojiType = 'Circle' | 'Square' | 'Clover' | 'Star' | 'Polygon';
 const EMOJI_TYPE: EmojiType[] = [
@@ -16,45 +24,40 @@ const EMOJI_TYPE: EmojiType[] = [
   'Clover',
 ];
 
-interface MessageSkinProps {
-  children: React.ReactNode;
-  ColorName: ColorName;
-  FontName: FontNameWithoutAppleGothic;
-  theme: Message['theme'];
-  isSmall?: boolean;
-}
-
-export default function MessageSkin({
+export default function EmojiSkin({
   children,
-  ColorName,
+  colorKey,
   theme,
-  FontName,
-  isSmall = false,
-}: MessageSkinProps) {
-  const emoji = getEmojiObjectByName(theme);
+  fontKey,
+  isMini = false,
+}: EmojiItemProps) {
+  const font = fonts.find((font) => {
+    return font.name === fontKey;
+  });
+  const emoji = findEmojiForTheme(theme);
   const emojiType = EMOJI_TYPE.find((type, i) => {
     if (EMOJI_TYPE.length - 1 === i) return true;
     return emoji?.name.includes(type);
   });
   return (
-    <StyledMessageSkinWrapper
-      isSmall={isSmall}
-      font={FONTS[FontName]}
-      color={ColorName}
+    <StyledEmojiWrapper
+      isMini={isMini}
+      font={font}
+      color={colorKey}
       type={emojiType}
     >
       {children}
-    </StyledMessageSkinWrapper>
+    </StyledEmojiWrapper>
   );
 }
 
-const StyledMessageSkinWrapper = styled.div<{
+const StyledEmojiWrapper = styled.div<{
   type?: EmojiType;
-  color: ColorName;
+  color: ColorKey;
   font?: Font;
-  isSmall?: boolean;
+  isMini?: boolean;
 }>`
-  ${({ theme, type, color, font, isSmall }) => css`
+  ${({ theme, type, color, font, isMini }) => css`
   width: 100%;
   position: relative;
   svg {
@@ -66,15 +69,15 @@ const StyledMessageSkinWrapper = styled.div<{
   }
   textarea,
   p {
-    overflow-y: ${isSmall ? 'hidden' : 'auto'};
+    overflow-y: ${isMini ? 'hidden' : 'auto'};
     word-break: break-all;
     white-space: pre-wrap;
-    font-size:  ${isSmall ? '14px' : '22px'};
+    font-size:  ${isMini ? '14px' : '22px'};
     font-family: ${theme['fontFamily'][font?.name ?? 'SpoqaHanSansNeo']};
     font-weight: ${font?.fontWeight};
     color: ${theme.colors[color]};
     transform: translateX(-50%);
-    ${getTextareaSize(type, isSmall)};
+    ${getTextareaSize(type, isMini)};
     position: absolute;
     left: 50%;
     resize: none;

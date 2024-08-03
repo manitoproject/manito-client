@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-import { getFontSizeAndWeight } from '../../../styles/mixins';
+import { getFontSizeAndWeight } from '../../../../styles/mixins';
 
 const MENU = ['폰트 선택', '폰트색상선택'];
 

@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 
-import BottomSheet from '../components/bottom-sheet/bottom-sheet';
-import { StyledBottomSheetContentWrapper } from '../components/bottom-sheet/bottom-sheet.style';
-import ColorList from '../components/bottom-sheet/font-sheet/color-list';
-import FontList from '../components/bottom-sheet/font-sheet/font-list';
-import FontSelectorSheet from '../components/bottom-sheet/font-sheet/font-selector-sheet';
 import { Button } from '../components/common/buttons';
-import MessageSkin from '../components/message/message-skin';
+import EmojiSkin from '../components/common/emoji-skin';
+import BottomSheet from '../components/detail/bottom-sheet/bottom-sheet';
+import { StyledBottomSheetContentWrapper } from '../components/detail/bottom-sheet/bottom-sheet.style';
+import ColorList from '../components/detail/bottom-sheet/font-sheet/color-list';
+import FontList from '../components/detail/bottom-sheet/font-sheet/font-list';
+import FontSelectorSheet from '../components/detail/bottom-sheet/font-sheet/font-selector-sheet';
 import { Modal } from '../components/modal/modal';
 import emojis from '../constants/emojis';
 import { colors, fonts } from '../constants/fonts';
@@ -62,17 +62,17 @@ export default function RollingNew() {
   return (
     <StyledRollingNew>
       <StyledRollingNewWrapper>
-        <MessageSkin
+        <EmojiSkin
           theme={emojis[theme][+emojiIndex].name}
-          ColorName={activeColor}
-          FontName={activeFont.name}
+          colorKey={activeColor}
+          fontKey={activeFont.name}
         >
           <Svg />
           <textarea
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           />
-        </MessageSkin>
+        </EmojiSkin>
         <BottomSheet
           onToggle={() => setIsBottomSheetOpen((prev) => !prev)}
           isOpen={isBottomSheetOpen}

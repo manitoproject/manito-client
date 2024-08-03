@@ -73,12 +73,8 @@ const theme = {
     error: '#F04747',
   },
 };
-export type FontName = keyof ThemeType['fontFamily'];
-export type FontNameWithoutAppleGothic = Exclude<
-  keyof ThemeType['fontFamily'],
-  'AppleSDGothicNeo'
->;
+export type FontKey = keyof ThemeType['fontFamily'];
 export type ThemeType = typeof theme;
-export type ColorName = keyof ThemeType['colors'];
+export type ColorKey = keyof ThemeType['colors'];
 
 export default theme;

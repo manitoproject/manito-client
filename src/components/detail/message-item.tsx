@@ -2,11 +2,11 @@ import { useState } from 'react';
 
 import { AddCircle } from '../../assets/svg/icons';
 import emojis from '../../constants/emojis';
-import { ThemeName } from '../../constants/theme-list';
+import { ThemeKey } from '../../constants/theme-list';
 import { usePaperDetailQuery } from '../../queries/paper';
 import { useUserQuery } from '../../queries/users';
 import { Message } from '../../types/message';
-import MessageSkin from '../message/message-skin';
+import EmojiSkin from '../common/emoji-skin';
 import LoginModal from '../modal/login-modal';
 import {
   StyledEmptySvg,
@@ -27,7 +27,7 @@ export default function MessageItem({
   const { data: userData } = useUserQuery();
   const { data: PaperDetailData } = usePaperDetailQuery();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const EmojiSvg = emojis[PaperDetailData?.data?.theme as ThemeName]?.find(
+  const EmojiSvg = emojis[PaperDetailData?.data?.theme as ThemeKey]?.find(
     (item) => item.name === message?.theme,
   )?.svg;
 
@@ -42,15 +42,15 @@ export default function MessageItem({
     <>
       {PaperDetailData?.data && message ? (
         'content' in message ? (
-          <MessageSkin
-            isSmall
+          <EmojiSkin
+            isMini
             theme={message.theme}
-            ColorName={message.fontColor}
-            FontName={message.font}
+            colorKey={message.fontColor}
+            fontKey={message.font}
           >
             {EmojiSvg ? <EmojiSvg /> : <StyledEmptySvg />}
             <p>{message.content}</p>
-          </MessageSkin>
+          </EmojiSkin>
         ) : (
           <StyledMessageItem
             onClick={() => onBottomSheetOpen(true)}

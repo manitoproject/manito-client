@@ -1,7 +1,7 @@
 import { LinkProps } from 'react-router-dom';
 
 import { KakaoLogo } from '../../assets/svg/icons';
-import { ColorName } from '../../styles/theme';
+import { ColorKey } from '../../styles/theme';
 import {
   StyledButton,
   StyledKakaoButton,
@@ -9,7 +9,7 @@ import {
 } from './buttons.style';
 
 export interface CommonButtonProps {
-  backgroundColor?: ColorName;
+  backgroundColor?: ColorKey;
 }
 
 interface ButtonProps

@@ -5,9 +5,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperType } from 'swiper/types';
 
 import { RightChevron } from '../../../assets/svg/icons';
-import { getEmojiObjectByName } from '../../../constants/emojis';
+import { findEmojiForTheme } from '../../../constants/emojis';
 import { Message } from '../../../types/message';
-import MessageSkin from '../../message/message-skin';
+import EmojiSkin from '../../common/emoji-skin';
 
 interface DetailSwiperProps {
   activeIndex: number;
@@ -42,17 +42,17 @@ export default function ItemViewSwiper({
       onSlideChange={handleSlideChange}
     >
       {sortedMessages.map((message) => {
-        const emoji = getEmojiObjectByName(message.theme);
+        const emoji = findEmojiForTheme(message.theme);
         return (
           <SwiperSlide key={message.id}>
-            <MessageSkin
-              ColorName={message.fontColor}
-              FontName={message.font}
+            <EmojiSkin
+              colorKey={message.fontColor}
+              fontKey={message.font}
               theme={message.theme}
             >
               {emoji?.svg && <emoji.svg />}
               <p>{message.content}</p>
-            </MessageSkin>
+            </EmojiSkin>
           </SwiperSlide>
         );
       })}

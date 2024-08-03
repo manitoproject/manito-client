@@ -1,4 +1,4 @@
-import { fonts } from '../../../constants/fonts';
+import { fonts } from '../../../../constants/fonts';
 import { StyledFontItem, StyledFontList } from './font-list.style';
 
 interface FontListProps {

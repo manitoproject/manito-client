@@ -1,15 +1,13 @@
-import { FontName, FontNameWithoutAppleGothic } from '../styles/theme';
+import { ColorKey, FontKey } from '../styles/theme';
+import { ThemeKey } from './theme-list';
 
 export type Font = {
-  name: FontName;
+  name: FontKey;
   fontWeight: number;
   displayName: string;
 };
 
-export type ThemeColor<K extends keyof typeof COLORS> =
-  (typeof COLORS)[K][number];
-
-const COLORS = {
+const colors: Record<ThemeKey, Array<ColorKey>> = {
   space: [
     'white',
     'powderBlue-800',
@@ -40,39 +38,39 @@ const COLORS = {
     'animal-gray-800',
     'black',
   ],
-} as const;
+};
 
-const FONTS: Record<FontNameWithoutAppleGothic, Font> = {
-  Cafe24Ssurround: {
+const fonts: Font[] = [
+  {
     name: 'Cafe24Ssurround',
     fontWeight: 700,
     displayName: 'cafe 24',
   },
-  Cafe24Simplehae: {
+  {
     name: 'Cafe24Simplehae',
     fontWeight: 400,
     displayName: 'Cafe 24 simple',
   },
-  Galmuri11: {
+  {
     name: 'Galmuri11',
     fontWeight: 700,
     displayName: 'Galmuri11',
   },
-  SpoqaHanSansNeo: {
+  {
     name: 'SpoqaHanSansNeo',
     fontWeight: 700,
     displayName: 'spoqa Sans',
   },
-  NanumPen: {
+  {
     name: 'NanumPen',
     fontWeight: 400,
     displayName: 'Nanum Pen',
   },
-  PyeongChangPeace: {
+  {
     name: 'PyeongChangPeace',
     fontWeight: 700,
     displayName: 'Pyeong',
   },
-};
+];
 
-export { COLORS, FONTS };
+export { colors, fonts };

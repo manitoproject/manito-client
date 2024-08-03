@@ -1,11 +1,11 @@
-import { ColorName, FontNameWithoutAppleGothic } from '../styles/theme';
+import { ColorKey, FontKey } from '../styles/theme';
 import { YerOrNo } from './auth';
 import { User } from './user';
 
 interface CreateMessageApiParams {
   content: string;
-  font: FontNameWithoutAppleGothic;
-  fontColor: ColorName;
+  font: FontKey;
+  fontColor: ColorKey;
   isPublic: YerOrNo;
   theme: string;
   paperId: number;
@@ -20,8 +20,8 @@ interface Message {
   theme: string;
   content: string;
   regDateTime: string;
-  font: FontNameWithoutAppleGothic;
-  fontColor: ColorName;
+  font: FontKey;
+  fontColor: ColorKey;
   isPublic: YerOrNo;
   position: number;
   user: User | null;

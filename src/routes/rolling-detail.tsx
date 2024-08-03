@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import BottomSheet from '../components/bottom-sheet/bottom-sheet';
-import { StyledBottomSheetContentWrapper } from '../components/bottom-sheet/bottom-sheet.style';
-import EmojiSelectorSheet from '../components/bottom-sheet/emoji-sheet/emoji-selector-sheet';
 import { Button } from '../components/common/buttons';
+import BottomSheet from '../components/detail/bottom-sheet/bottom-sheet';
+import { StyledBottomSheetContentWrapper } from '../components/detail/bottom-sheet/bottom-sheet.style';
+import EmojiSelectorSheet from '../components/detail/bottom-sheet/emoji-sheet/emoji-selector-sheet';
 import DetailHeader from '../components/detail/detail-header';
 import ItemView from '../components/detail/item-view/item-view';
 import MessageList from '../components/detail/message-list';
