@@ -1,5 +1,3 @@
-import { YerOrNo } from './auth';
-
 interface User {
   email: string;
   id: number;

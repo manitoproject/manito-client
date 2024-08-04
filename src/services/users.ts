@@ -1,8 +1,8 @@
 import { User } from '../types/user';
-import { requester } from '.';
+import { apiRequester } from '.';
 
 export const changeNickname = async (nickname: string) => {
-  const { data } = await requester.post<DeatultResponse<null>>(
+  const { data } = await apiRequester.post<DeatultResponse<null>>(
     '/user/nickname',
     {
       nickname,
@@ -12,17 +12,17 @@ export const changeNickname = async (nickname: string) => {
 };
 
 export const getUser = async () => {
-  const { data } = await requester.post<DeatultResponse<User>>('/user/info');
+  const { data } = await apiRequester.post<DeatultResponse<User>>('/user/info');
   return data;
 };
 
 export const logout = async () => {
-  const { data } = await requester<DeatultResponse<null>>('/user/logout');
+  const { data } = await apiRequester<DeatultResponse<null>>('/user/logout');
   return data;
 };
 
 export const changeProfile = async () => {
-  const { data } = await requester.post<DeatultResponse<null>>(
+  const { data } = await apiRequester.post<DeatultResponse<null>>(
     '/user/profile',
     {
       isOriginProfile: 'Y',
