@@ -53,7 +53,7 @@ export default function Sidebar({ onClose, isOpen }: SideMenuProps) {
               <>
                 <img
                   src={
-                    data?.data?.isOriginProfile === 'Y'
+                    data?.data?.isOriginProfile === 'N'
                       ? defaultKaKaoUserProfile
                       : data?.data?.profileImage
                   }

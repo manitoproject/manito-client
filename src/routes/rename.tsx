@@ -22,19 +22,19 @@ export default function Rename() {
   };
 
   const handleProfileChange = () => {
-    if (data?.data?.isOriginProfile === 'Y') return;
+    if (data?.data?.isOriginProfile === 'N') return;
     profileMutate();
   };
 
   return (
     <StyledRenameWrapper>
       <StyledAvartarWrapper
-        isOriginProfile={data?.data?.isOriginProfile === 'Y'}
+        isOriginProfile={data?.data?.isOriginProfile === 'N'}
       >
         <button>
           <img
             src={
-              data?.data?.isOriginProfile === 'Y'
+              data?.data?.isOriginProfile === 'N'
                 ? defaultKaKaoUserProfile
                 : data?.data?.profileImage
             }

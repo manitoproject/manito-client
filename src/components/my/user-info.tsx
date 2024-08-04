@@ -16,7 +16,7 @@ export default function UserInfo() {
       <StyledAvatarWrapper>
         <img
           src={
-            user?.isOriginProfile === 'Y'
+            user?.isOriginProfile === 'N'
               ? defaultKaKaoUserProfile
               : user?.profileImage
           }

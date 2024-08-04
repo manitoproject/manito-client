@@ -25,7 +25,7 @@ export const changeProfile = async () => {
   const { data } = await apiRequester.post<DeatultResponse<null>>(
     '/user/profile',
     {
-      isOriginProfile: 'Y',
+      isOriginProfile: 'N',
     },
   );
   return data;
