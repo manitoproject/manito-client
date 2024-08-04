@@ -1,4 +1,3 @@
-import { User } from '../types/user';
 import { apiRequester } from '.';
 
 export const changeNickname = async (nickname: string) => {
