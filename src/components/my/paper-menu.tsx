@@ -4,12 +4,12 @@ const PAPERS: { name: PaperType }[] = [
   {
     name: '페이퍼',
   },
-  {
-    name: '보물',
-  },
-  {
-    name: '케이크',
-  },
+  // {
+  //   name: '보물',
+  // },
+  // {
+  //   name: '케이크',
+  // },
 ];
 
 interface PaperMenuProps {

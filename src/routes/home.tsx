@@ -14,18 +14,18 @@ const CONTENTS = [
     href: () => routes.setupIntro('rolling'),
     badge: RollingBadge,
   },
-  {
-    name: '케이크 꾸미기',
-    isActive: false,
-    href: () => '',
-    badge: RollingBadge,
-  },
-  {
-    name: '보물상자 채우기',
-    isActive: false,
-    href: () => '',
-    badge: RollingBadge,
-  },
+  // {
+  //   name: '케이크 꾸미기',
+  //   isActive: false,
+  //   href: () => '',
+  //   badge: RollingBadge,
+  // },
+  // {
+  //   name: '보물상자 채우기',
+  //   isActive: false,
+  //   href: () => '',
+  //   badge: RollingBadge,
+  // },
 ];
 
 export default function Home() {
