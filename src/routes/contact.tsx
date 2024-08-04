@@ -2,18 +2,17 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 
 import { Button } from '../components/common/buttons';
-import useToastStore from '../stores/toast-store';
+import { useSendFeedbackMessage } from '../queries/contact';
+import { useUserQuery } from '../queries/users';
 import { getFontSizeAndWeight } from '../styles/mixins';
 
 export default function Contact() {
+  const { data } = useUserQuery();
   const [message, setMessage] = useState('');
   const [isFocus, setIsFocus] = useState(false);
-  const { add } = useToastStore();
+  const { mutate, isPending } = useSendFeedbackMessage(setMessage);
   const handleSendMessage = () => {
-    if (message.length) {
-      add('문의하기가 완료 되었습니다.');
-      setMessage('');
-    }
+    if (message.length) mutate({ content: message, user: data?.data });
   };
   return (
     <StyledWrapper>
@@ -33,7 +32,10 @@ export default function Contact() {
         </div>
       </div>
       <div>
-        <Button disabled={!message.length} onClick={handleSendMessage}>
+        <Button
+          disabled={!message.length || isPending}
+          onClick={handleSendMessage}
+        >
           문의하기
         </Button>
       </div>

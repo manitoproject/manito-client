@@ -15,7 +15,12 @@ export const RequesterWithoutToken = axios.create({
   ...defaultConfig,
 });
 
-requester.interceptors.request.use((config) => {
+export const discordRequester = axios.create({
+  timeout: 5000,
+  baseURL: import.meta.env.VITE_DISCORD_WEBHOOK,
+});
+
+apiRequester.interceptors.request.use((config) => {
   if (!token.getAccessToken()) {
     window.location.href = '/';
     return config;
