@@ -51,13 +51,7 @@ const StyledWrapper = styled.div`
 `;
 
 const StyledLogoWrapper = styled.div`
-  align-items: center;
   flex: 1;
   display: flex;
-  justify-content: center;
-  ${getFontSizeAndWeight('heading1', 'bold')}
-  img {
-    width: 312px;
-    height: 248px;
-  }
+  align-items: center;
 `;
