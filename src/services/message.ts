@@ -39,8 +39,9 @@ export const getUserMessages = async () => {
 export const editMessage = async (
   message: Pick<Message, 'id' | 'content' | 'font' | 'fontColor' | 'anonymous'>,
 ) => {
-  const { data } = await apiRequester.put<DeatultResponse<null>>(`/message`, {
-    data: message,
-  });
+  const { data } = await apiRequester.put<DeatultResponse<null>>(
+    `/message`,
+    message,
+  );
   return data;
 };
