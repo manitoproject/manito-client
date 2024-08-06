@@ -24,5 +24,7 @@ const StyledWrapper = styled.div`
 
 const StyledBackdrop = styled.div`
   ${StyledFixedBackground};
-  background-image: url('/src/assets/imgs/intro/rollring-paper-B@4x-1002.jpg');
+  background-image: ${`url(${
+    import.meta.env.VITE_CLIENT_URL
+  }/src/assets/imgs/intro/rollring-paper-B@4x-1002.jpg)`};
 `;

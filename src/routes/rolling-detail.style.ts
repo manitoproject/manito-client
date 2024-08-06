@@ -16,6 +16,8 @@ export const StyledWrapper = styled.div`
 
 export const StyledBackdrop = styled.div<{ themeName?: RollingThemeName }>`
   background-image: ${({ themeName }) =>
-    `url(/src/assets/imgs/bg/${themeName}-theme@4x-100.jpg)`};
+    `url(${
+      import.meta.env.VITE_CLIENT_URL
+    }/src/assets/imgs/bg/${themeName}-theme@4x-100.jpg)`};
   ${StyledFixedBackground};
 `;
