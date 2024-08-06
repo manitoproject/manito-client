@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 
+import bg from '../assets/imgs/intro/rollring-paper-B@4x-1002.jpg';
 import { LinkButton } from '../components/common/buttons';
 import { routes } from '../router';
 import { StyledFixedBackground } from '../styles/mixins';
-
 export default function SetupIntro() {
   return (
     <StyledWrapper>
@@ -24,7 +24,5 @@ const StyledWrapper = styled.div`
 
 const StyledBackdrop = styled.div`
   ${StyledFixedBackground};
-  background-image: ${`url(${
-    import.meta.env.VITE_CLIENT_URL
-  }/src/assets/imgs/intro/rollring-paper-B@4x-1002.jpg)`};
+  background-image: ${`url(${bg})`};
 `;

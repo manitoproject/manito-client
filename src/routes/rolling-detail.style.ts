@@ -1,6 +1,10 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-import { StyledFixedBackground } from '../styles/mixins';
+import {
+  getBackgroundImageFromThemeName,
+  StyledFixedBackground,
+} from '../styles/mixins';
 
 export const StyledRollingDetail = styled.div`
   width: 100%;
@@ -15,9 +19,8 @@ export const StyledWrapper = styled.div`
 `;
 
 export const StyledBackdrop = styled.div<{ themeName?: RollingThemeName }>`
-  background-image: ${({ themeName }) =>
-    `url(${
-      import.meta.env.VITE_CLIENT_URL
-    }/src/assets/imgs/bg/${themeName}-theme@4x-100.jpg)`};
-  ${StyledFixedBackground};
+  ${({ themeName }) => css`
+    background-image: ${`url(${getBackgroundImageFromThemeName(themeName)})`};
+    ${StyledFixedBackground};
+  `}
 `;
