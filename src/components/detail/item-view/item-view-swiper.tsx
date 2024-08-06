@@ -20,7 +20,6 @@ export default function ItemViewSwiper({
   setActiveIndex,
   messages,
 }: DetailSwiperProps) {
-  console.log(messages);
   const sortedMessages = messages.sort((a, b) => a.position - b.position);
   const [isBeginning, setIsBeginning] = useState(
     activeIndex === 0 ? true : false,

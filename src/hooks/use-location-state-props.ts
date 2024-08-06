@@ -16,7 +16,6 @@ export default function useLocationState(): NewMessage | PaperCreation {
   const isMessage = (data: NewMessage | null): data is NewMessage => {
     return data?.id !== undefined;
   };
-  console.log(state);
   if (!state) {
     throw new Error();
   }
