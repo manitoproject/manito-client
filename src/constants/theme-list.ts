@@ -2,7 +2,7 @@ import { Message } from '../types/message';
 const ROLLING_THEME_NAME: RollingThemeName[] = ['nature', 'space', 'animal'];
 
 export const getRollingThemeName = (
-  message: Message,
+  message: Message<unknown>,
 ): RollingThemeName | undefined => {
   const messageTheme = message.theme.toLowerCase();
   return ROLLING_THEME_NAME.find((name) => messageTheme.includes(name));

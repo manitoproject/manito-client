@@ -1,5 +1,6 @@
 import { ColorName, FontNameWithoutAppleFont } from '../styles/theme';
 
+type Anonymous = string | null;
 interface CreateMessageApiParams {
   content: string;
   font: FontNameWithoutAppleFont;
@@ -8,12 +9,12 @@ interface CreateMessageApiParams {
   theme: string;
   paperId: number;
   position: number;
-  anonymous?: string;
+  anonymous: Anonymous;
 }
 
-interface Message {
+interface Message<T> {
   id: number;
-  anonymous?: string;
+  anonymous: Anonymous;
   paperId: number;
   theme: string;
   content: string;
@@ -22,5 +23,5 @@ interface Message {
   fontColor: ColorName;
   isPublic: YerOrNo;
   position: number;
-  user: User | null;
+  user: T;
 }

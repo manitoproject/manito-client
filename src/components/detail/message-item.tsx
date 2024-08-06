@@ -16,7 +16,7 @@ import {
 export interface MessageItemProps {
   onMessageClick: () => void;
   onBottomSheetOpen: (status: boolean) => void;
-  message: Message | null | Pick<Message, 'theme'>;
+  message: Message<unknown> | null | Pick<Message<unknown>, 'theme'>;
 }
 export default function MessageItem({
   onMessageClick,

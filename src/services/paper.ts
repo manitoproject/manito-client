@@ -5,7 +5,7 @@ export const createRollingPaper = async ({
   theme,
   title,
 }: PaperCreateType) => {
-  const { data } = await apiRequester.post<DeatultResponse<Pick<Paper, 'id'>>>(
+  const { data } = await apiRequester.post<DeatultResponse<UserIdAndNickname>>(
     '/paper',
     {
       title,

@@ -7,12 +7,12 @@ const INIT_LIST = Array(8).fill(null);
 const MAX_LIST_LENGTH = 56;
 
 interface MessageState {
-  list: Array<null | Message | Pick<Message, 'theme'>>;
+  list: Array<null | Message<unknown> | Pick<Message<unknown>, 'theme'>>;
   activeEmojiName: string | null;
   activeMessageIndex: null | number;
   setActiveEmojiName: (i: string | null) => void;
   setActiveMessageIndex: (i: number | null) => void;
-  snycList: (serverData?: Message[]) => void;
+  snycList: (serverData?: Message<unknown>[]) => void;
   addList: (theme: RollingThemeName) => void;
   reset: () => void;
   hasList: () => boolean;
@@ -30,7 +30,7 @@ const useMessageStore = create<MessageState>()(
     },
     setActiveEmojiName: (name: string | null) => set({ activeEmojiName: name }),
     setActiveMessageIndex: (i: number | null) => set({ activeMessageIndex: i }),
-    snycList: (serverData?: Message[]) =>
+    snycList: (serverData?: Message<unknown>[]) =>
       set((state) => {
         if (!serverData?.length) return { list: state.list };
         const currentLength = state.list.length;

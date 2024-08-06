@@ -14,7 +14,7 @@ import {
 } from '../detail/message-item.style';
 
 interface MyMessageItemProps {
-  message: Message;
+  message: Message<User>;
 }
 export default function MyMessageItem({ message }: MyMessageItemProps) {
   const { mutate } = useDeleteMessage({
@@ -22,7 +22,6 @@ export default function MyMessageItem({ message }: MyMessageItemProps) {
   });
   const navigate = useNavigate();
   const EmojiSvg = findEmojiSvgFromTheme(message.theme)?.svg;
-
   return (
     <StyledMessageItem isServerData>
       <StyledEditButton

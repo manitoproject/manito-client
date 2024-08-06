@@ -8,3 +8,5 @@ interface User {
   profileImage: string;
   isOriginProfile: null | YerOrNo;
 }
+
+type UserIdAndNickname = Pick<User, 'id' | 'nickname'>;

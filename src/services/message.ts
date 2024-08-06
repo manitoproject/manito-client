@@ -12,7 +12,7 @@ export const createMessage = async (messageInfo: CreateMessageApiParams) => {
 export const getPaperMessages = async (paperId?: number) => {
   if (!paperId) return null;
   const { data } = await apiRequesterWithoutToken.get<
-    DeatultResponse<Message[]>
+    DeatultResponse<Message<UserIdAndNickname>[]>
   >(`/message/paper/${paperId}`);
   return data;
 };
@@ -30,14 +30,14 @@ export const deleteMessage = async (messageId: number) => {
 };
 
 export const getUserMessages = async () => {
-  const { data } = await apiRequester.get<DeatultResponse<Message[]>>(
+  const { data } = await apiRequester.get<DeatultResponse<Message<User>[]>>(
     `/message`,
   );
   return data;
 };
 
 export const editMessage = async (
-  message: Pick<Message, 'id' | 'content' | 'font' | 'fontColor' | 'anonymous'>,
+  message: Pick<Message<null>, 'id' | 'content' | 'font' | 'fontColor'>,
 ) => {
   const { data } = await apiRequester.put<DeatultResponse<null>>(
     `/message`,

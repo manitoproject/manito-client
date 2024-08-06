@@ -12,7 +12,7 @@ import { Button } from '../../common/buttons';
 import { Modal } from '../../modal/modal';
 
 interface ItemViewButtonsProps {
-  message: Message;
+  message: Message<UserIdAndNickname>;
   onCloseItemView: () => void;
 }
 

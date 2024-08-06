@@ -9,15 +9,14 @@ interface PaperCreation extends RollingThemeNameType {
   position: number;
 }
 
-type NewMessage = Message & RollingThemeNameType;
+type NewMessage = Message<User> & RollingThemeNameType;
 
 export default function useLocationState(): NewMessage | PaperCreation {
   const { state } = useLocation();
-
   const isMessage = (data: NewMessage | null): data is NewMessage => {
     return data?.id !== undefined;
   };
-
+  console.log(state);
   if (!state) {
     throw new Error();
   }
