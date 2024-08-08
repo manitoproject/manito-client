@@ -67,9 +67,9 @@ export default function ItemViewButtons({
           onClick={() => setIsModalOpen((prev) => !prev)}
         >
           <Modal.TitleWrapper>
-            <Modal.Title>작성된 펀지를 삭제하시겠습니까?</Modal.Title>
+            <Modal.Title>작성된 편지를 삭제하시겠습니까?</Modal.Title>
             <Modal.Description>
-              삭제한 펀지는 되돌릴 수 없습니다.
+              삭제한 편지는 되돌릴 수 없습니다.
             </Modal.Description>
           </Modal.TitleWrapper>
           <Modal.Buttons>
