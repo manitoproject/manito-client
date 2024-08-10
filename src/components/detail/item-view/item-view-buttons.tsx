@@ -9,7 +9,7 @@ import { routes } from '../../../router';
 import theme from '../../../styles/theme';
 import { Message } from '../../../types/message';
 import { Button } from '../../common/buttons';
-import { Modal } from '../../modal/modal';
+import DeleteModal from '../../modal/delete-modal';
 
 interface ItemViewButtonsProps {
   message: Message<UserIdAndNickname>;
@@ -62,34 +62,12 @@ export default function ItemViewButtons({
         </>
       )}
       {isModalOpen && (
-        <Modal
+        <DeleteModal
+          isMessageDelete
           isOpen={isModalOpen}
-          onClick={() => setIsModalOpen((prev) => !prev)}
-        >
-          <Modal.TitleWrapper>
-            <Modal.Title>작성된 편지를 삭제하시겠습니까?</Modal.Title>
-            <Modal.Description>
-              삭제한 편지는 되돌릴 수 없습니다.
-            </Modal.Description>
-          </Modal.TitleWrapper>
-          <Modal.Buttons>
-            <Modal.Button
-              css={{ border: `1px solid ${theme.colors['gray-300']}` }}
-              onClick={() => setIsModalOpen(false)}
-            >
-              닫기
-            </Modal.Button>
-            <Modal.Button
-              css={{
-                background: theme.colors['black'],
-                color: theme.colors.white,
-              }}
-              onClick={() => mutate(message.id)}
-            >
-              삭제하기
-            </Modal.Button>
-          </Modal.Buttons>
-        </Modal>
+          setIsOpen={setIsModalOpen}
+          handler={() => mutate(message.id)}
+        />
       )}
     </StyledItemViewButtons>
   );

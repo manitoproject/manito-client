@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { EditSquare, Trash } from '../../assets/svg/icons';
@@ -12,11 +13,13 @@ import {
   StyledMessageItem,
   StyledTrashButton,
 } from '../detail/message-item.style';
+import DeleteModal from '../modal/delete-modal';
 
 interface MyMessageItemProps {
   message: Message<User>;
 }
 export default function MyMessageItem({ message }: MyMessageItemProps) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { mutate } = useDeleteMessage({
     paperId: message.paperId,
   });
@@ -37,7 +40,7 @@ export default function MyMessageItem({ message }: MyMessageItemProps) {
       >
         <EditSquare />
       </StyledEditButton>
-      <StyledTrashButton type="button" onClick={() => mutate(message.id)}>
+      <StyledTrashButton type="button" onClick={() => setIsModalOpen(true)}>
         <Trash />
       </StyledTrashButton>
       <EmojiSkin
@@ -49,6 +52,14 @@ export default function MyMessageItem({ message }: MyMessageItemProps) {
         {EmojiSvg && <EmojiSvg />}
         <p>{message.content}</p>
       </EmojiSkin>
+      {isModalOpen && (
+        <DeleteModal
+          isMessageDelete
+          setIsOpen={setIsModalOpen}
+          isOpen={isModalOpen}
+          handler={() => mutate(message.id)}
+        />
+      )}
     </StyledMessageItem>
   );
 }

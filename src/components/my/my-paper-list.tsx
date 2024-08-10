@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import dayjs from 'dayjs';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Trash } from '../../assets/svg/icons';
@@ -7,14 +8,16 @@ import { useDeletePaper, useUserPaperQuery } from '../../queries/paper';
 import { useUserQuery } from '../../queries/users';
 import { routes } from '../../router';
 import { getFontSizeAndWeight } from '../../styles/mixins';
+import DeleteModal from '../modal/delete-modal';
 
 export default function MyPaperList() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { data: userData } = useUserQuery();
   const { data } = useUserPaperQuery(userData?.data?.id);
   const { mutate } = useDeletePaper();
-  const handleButtonClick = (e: React.MouseEvent, id?: number) => {
+  const handleButtonClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    mutate(id);
+    setIsModalOpen(true);
   };
 
   return (
@@ -25,14 +28,19 @@ export default function MyPaperList() {
             <span>{item.title}</span>
             <div>
               <span>{dayjs(item.regDateTime).format('YYYY.MM.DD')}</span>
-              <button
-                type="button"
-                onClick={(e) => handleButtonClick(e, item.id)}
-              >
+              <button type="button" onClick={handleButtonClick}>
                 <Trash />
               </button>
             </div>
           </Link>
+          {isModalOpen && (
+            <DeleteModal
+              isMessageDelete={false}
+              handler={() => mutate(item.id)}
+              setIsOpen={setIsModalOpen}
+              isOpen={isModalOpen}
+            />
+          )}
         </StyledItem>
       ))}
     </StyledList>
