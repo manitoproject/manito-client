@@ -7,10 +7,14 @@ import queries from './query-key-factory';
 
 export const useCreateRollingPaper = () => {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   return useMutation({
     mutationFn: createRollingPaper,
     onSuccess: (data) => {
       navigate(routes.rolling.detail(data.data?.id));
+      queryClient.invalidateQueries({
+        queryKey: queries.papers.user._def,
+      });
     },
   });
 };
