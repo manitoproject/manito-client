@@ -21,6 +21,7 @@ module.exports = {
     'simple-import-sort/exports': 'error',
     'react/react-in-jsx-scope': 'off',
     'react/no-unknown-property': ['error', { ignore: ['css'] }],
+    '@typescript-eslint/ban-types': 'warn',
   },
   parserOptions: {
     sourceType: 'module',
