@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 
-import { Button } from '../components/common/buttons';
+import { Button } from '../components/common/button/buttons';
 import { useSendFeedbackMessage } from '../queries/contact';
 import { useUserQuery } from '../queries/users';
 import { getFontSizeAndWeight } from '../styles/mixins';

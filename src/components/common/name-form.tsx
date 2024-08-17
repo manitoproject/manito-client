@@ -4,7 +4,7 @@ import { ForwardedRef, forwardRef } from 'react';
 import Input from './input';
 
 interface NameFormProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   isError: boolean;
   onClick: () => void;
   value: string;

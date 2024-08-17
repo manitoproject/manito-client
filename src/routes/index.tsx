@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 
 import { Logo } from '../assets/svg/icons';
-import { Button, KakaoLoginButton } from '../components/common/buttons';
+import { Button, KakaoLoginButton } from '../components/common/button/buttons';
 import theme from '../styles/theme';
 import { StyledBrowserBackdrop } from './layout.style';
 

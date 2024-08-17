@@ -1,7 +1,7 @@
 import { findEmojiSvgFromTheme } from '../../constants/emojis';
 import { StyledRollingNewWrapper } from '../../routes/rolling-new.style';
 import { ColorName, FontNameWithoutAppleFont } from '../../styles/theme';
-import { Button } from '../common/buttons';
+import { Button } from '../common/button/buttons';
 import EmojiSkin from '../common/emoji-skin';
 import { StyledEmptySvg } from '../detail/message-item.style';
 import MessageFormBottomSheet from './message-form-bottom-sheet';

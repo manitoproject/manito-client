@@ -1,8 +1,10 @@
 import styled from '@emotion/styled';
+import { useState } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 
-import { Button } from '../components/common/buttons';
+import { Button } from '../components/common/button/buttons';
 import NameForm from '../components/common/name-form';
+import JoinRadioButtons from '../components/join/join-radio-buttons';
 import { nicknameMaxLength } from '../constants/regex-patterns';
 import { useNameForm } from '../hooks';
 import { useNicknameChange } from '../queries/users';
@@ -10,41 +12,51 @@ import { routes } from '../router';
 import { getFontSizeAndWeight } from '../styles/mixins';
 
 export default function Join() {
+  const [activeRadioButtonIndex, setActiveRadioButtonIndex] = useState(0);
   const { mutate, isPending } = useNicknameChange();
   const { handleNameChange, handleNameReset, isError, name, nameRef } =
     useNameForm('nickname');
+
   const handleNicknameChange = (e: React.MouseEvent) => {
+    if (!activeRadioButtonIndex) Navigate({ to: routes.index });
     e.preventDefault();
     mutate(name);
   };
   const location = useLocation();
 
-  if (location.state !== 'Y') {
-    Navigate({ to: routes.index });
-  }
+  if (location.state !== 'Y') Navigate({ to: routes.index });
 
   return (
     <StyledWrapper>
-      <NameForm
-        ref={nameRef}
-        isError={isError}
-        maxLength={nicknameMaxLength}
-        value={name}
-        onChange={handleNameChange}
-        onClick={handleNameReset}
-      >
-        <StyledHeading>
-          <h2>마니또에 오신 걸 환영합니다.</h2>
-          <h3>
-            사용하실 <strong>이름</strong>을 입력해주세요.
-          </h3>
-        </StyledHeading>
-      </NameForm>
+      <StyledHeading>
+        <h2>마니또에 오신 걸 환영합니다.</h2>
+        <h3>
+          사용하실 <strong>이름</strong>을 입력하시겠어요?
+        </h3>
+      </StyledHeading>
+      <StyledNameFormWrapper>
+        <JoinRadioButtons
+          activeRadioButtonIndex={activeRadioButtonIndex}
+          setActiveRadioButtonIndex={setActiveRadioButtonIndex}
+        />
+        {activeRadioButtonIndex === 1 && (
+          <NameForm
+            ref={nameRef}
+            isError={isError}
+            maxLength={nicknameMaxLength}
+            value={name}
+            onChange={handleNameChange}
+            onClick={handleNameReset}
+          />
+        )}
+      </StyledNameFormWrapper>
       <div>
         <Button
           onClick={handleNicknameChange}
           backgroundColor="powderBlue-800"
-          disabled={!name.length || isError || isPending}
+          disabled={
+            !!activeRadioButtonIndex && (!name.length || isError || isPending)
+          }
         >
           가입완료
         </Button>
@@ -57,9 +69,16 @@ const StyledWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  div {
+  gap: 20px;
+  div:last-of-type {
     margin-top: auto;
   }
+`;
+
+const StyledNameFormWrapper = styled.div`
+  padding: 16px;
+  border-radius: 8px;
+  background-color: ${({ theme }) => theme.colors['powderBlue-50']};
 `;
 
 const StyledHeading = styled.div`

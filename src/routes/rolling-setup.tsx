@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Button } from '../components/common/buttons';
+import { Button } from '../components/common/button/buttons';
 import NameForm from '../components/common/name-form';
 import ThemeCarousel from '../components/setup/theme-carousel';
 import { titleMaxLength } from '../constants/regex-patterns';

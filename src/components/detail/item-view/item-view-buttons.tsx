@@ -8,7 +8,7 @@ import { useUserQuery } from '../../../queries/users';
 import { routes } from '../../../router';
 import theme from '../../../styles/theme';
 import { Message } from '../../../types/message';
-import { Button } from '../../common/buttons';
+import { Button } from '../../common/button/buttons';
 import DeleteModal from '../../modal/delete-modal';
 
 interface ItemViewButtonsProps {

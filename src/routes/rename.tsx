@@ -1,4 +1,4 @@
-import { Button } from '../components/common/buttons';
+import { Button } from '../components/common/button/buttons';
 import NameForm from '../components/common/name-form';
 import { defaultKaKaoUserProfile } from '../constants/profile';
 import { nicknameMaxLength } from '../constants/regex-patterns';
@@ -51,9 +51,7 @@ export default function Rename() {
         value={name}
         onChange={handleNameChange}
         onClick={handleNameReset}
-      >
-        {null}
-      </NameForm>
+      />
       <div>
         <Button
           onClick={handleNicknameChange}
