@@ -52,7 +52,7 @@ export default function MessageCreateModal({
 
   return (
     <Modal isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
-      <Modal.CheckboxForm
+      <Modal.RadioForm
         handleNameChange={handleNameChange}
         handleNameReset={handleNameReset}
         isError={isError}

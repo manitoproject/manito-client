@@ -1,26 +1,25 @@
 import { ForwardedRef, forwardRef, useEffect } from 'react';
 
-import { RadioButton, RadioButtonActive } from '../../assets/svg/icons';
 import { nicknameMaxLength } from '../../constants/regex-patterns';
 import { useDisableScroll, useOutsideClick } from '../../hooks';
 import useModalStore from '../../stores/modal-store';
+import RadioButton from '../common/button/radio-button';
 import Input from '../common/input';
 import { Portal } from '../common/portal';
 import {
   StyledButton,
   StyledButtonWrapper,
-  StyledCheckboxFormTitleWrapper,
-  StyledCheckboxFormWrapper,
-  StyledCheckboxItem,
   StyledModalMainWrapper,
+  StyledRadioFormTitleWrapper,
+  StyledRadioFormWrapper,
   StyledTitleWrapper,
 } from './modal.style';
 import ModalContext, { useModalContext } from './modal-context';
 import useModal from './use-modal';
 
-const CHECKBOX_LIST = ['공개로 작성할래요.', '익명으로 작성할래요.'];
+const LABELS = ['공개로 작성할래요.', '익명으로 작성할래요.'];
 
-interface CheckboxFormProps {
+interface RadioFormProps {
   handleNameChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   isError: boolean;
   nickname: string;
@@ -37,8 +36,8 @@ function Description({ children }: { children: React.ReactNode }) {
   return <p>{children}</p>;
 }
 
-function CheckboxForm(
-  { handleNameChange, isError, nickname, handleNameReset }: CheckboxFormProps,
+function RadioForm(
+  { handleNameChange, isError, nickname, handleNameReset }: RadioFormProps,
   ref: ForwardedRef<HTMLInputElement>,
 ) {
   const { activeIndex, setActiveIndex } = useModalContext();
@@ -49,21 +48,20 @@ function CheckboxForm(
   }, [isError, nickname.length, setIsError]);
 
   return (
-    <StyledCheckboxFormWrapper>
-      <StyledCheckboxFormTitleWrapper>
+    <StyledRadioFormWrapper>
+      <StyledRadioFormTitleWrapper>
         <h1>작성한 편지를 공개 하시겠어요?</h1>
         <p>익명 선택시 익명, 공개 선택시 설정한 이름으로 공개됩니다.</p>
-      </StyledCheckboxFormTitleWrapper>
+      </StyledRadioFormTitleWrapper>
       <div>
-        {CHECKBOX_LIST.map((item, i) => (
-          <StyledCheckboxItem
-            isActive={i === activeIndex}
+        {LABELS.map((item, i) => (
+          <RadioButton
             key={item}
-            onClick={() => setActiveIndex(i)}
+            isActive={activeIndex === i}
+            onChangeIndex={() => setActiveIndex(i)}
           >
-            {activeIndex === i ? <RadioButtonActive /> : <RadioButton />}
-            <span>{item}</span>
-          </StyledCheckboxItem>
+            <p>{item}</p>
+          </RadioButton>
         ))}
       </div>
       {activeIndex === 1 && (
@@ -79,7 +77,7 @@ function CheckboxForm(
           </span>
         </Input>
       )}
-    </StyledCheckboxFormWrapper>
+    </StyledRadioFormWrapper>
   );
 }
 
@@ -149,5 +147,5 @@ export const Modal = Object.assign(ModalMain, {
   TitleWrapper: TitleWrapper,
   Title: Title,
   Description: Description,
-  CheckboxForm: forwardRef(CheckboxForm),
+  RadioForm: forwardRef(RadioForm),
 });

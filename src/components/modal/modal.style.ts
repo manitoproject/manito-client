@@ -1,4 +1,3 @@
-import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 import { getFontSizeAndWeight } from '../../styles/mixins';
@@ -44,12 +43,12 @@ export const StyledTitleWrapper = styled.div`
   }
 `;
 
-export const StyledCheckboxFormWrapper = styled.div`
+export const StyledRadioFormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
 `;
-export const StyledCheckboxFormTitleWrapper = styled.div`
+export const StyledRadioFormTitleWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -61,20 +60,6 @@ export const StyledCheckboxFormTitleWrapper = styled.div`
     color: ${({ theme }) => theme.colors['gray-500']};
     ${getFontSizeAndWeight('body1', 'medium')};
   }
-`;
-
-export const StyledCheckboxItem = styled.button<{ isActive: boolean }>`
-  ${({ isActive }) => {
-    return css`
-      ${getFontSizeAndWeight('heading2', isActive ? 'bold' : 'regular')};
-    `;
-  }}
-  padding:12px 0;
-  color: ${({ theme, isActive }) =>
-    isActive ? theme.colors['gray-900'] : theme.colors['gray-500']};
-  display: flex;
-  align-items: center;
-  gap: 8px;
 `;
 
 export const StyledButtonWrapper = styled.div`
