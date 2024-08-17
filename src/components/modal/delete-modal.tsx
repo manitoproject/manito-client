@@ -15,6 +15,7 @@ export default function DeleteModal({
   isMessageDelete,
 }: DeleteModalProps) {
   const type = isMessageDelete ? '편지' : '컨텐츠';
+
   return (
     <Modal isOpen={isOpen} onClick={() => setIsOpen((prev) => !prev)}>
       <Modal.TitleWrapper>
