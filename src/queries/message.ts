@@ -56,6 +56,7 @@ export const useDeleteMessage = ({
     mutationFn: deleteMessage,
     onSuccess: (data) => {
       if (data.result === 'Success') {
+        if (closeModal) closeModal();
         add('편지가 삭제 되었습니다.');
         queryClient.invalidateQueries({
           queryKey: queries.messages.paper(paperId).queryKey,
@@ -63,7 +64,6 @@ export const useDeleteMessage = ({
         queryClient.invalidateQueries({
           queryKey: queries.messages.user._def,
         });
-        closeModal && closeModal();
       }
     },
   });

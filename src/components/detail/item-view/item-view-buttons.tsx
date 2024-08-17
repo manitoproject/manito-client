@@ -25,7 +25,7 @@ export default function ItemViewButtons({
   const { data: userData } = useUserQuery();
   const { mutate } = useDeleteMessage({
     paperId: message.paperId,
-    closeModal: () => setIsModalOpen(false),
+    closeModal: () => onCloseItemView(),
   });
   const user = userData?.data;
 
