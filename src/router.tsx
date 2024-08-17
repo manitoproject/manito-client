@@ -26,8 +26,8 @@ export const routes = {
   my: {
     default: '/my' as const,
     setting: () => `${routes.my.default}/setting` as const,
-    rename: () => `${routes.my.setting()}/rename`,
-    contact: () => `${routes.my.setting()}/contact`,
+    rename: () => `${routes.my.setting()}/rename` as const,
+    contact: () => `${routes.my.setting()}/contact` as const,
   },
   rolling: {
     default: '/rolling' as const,

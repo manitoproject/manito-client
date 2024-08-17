@@ -1,19 +1,19 @@
 import styled from '@emotion/styled';
 
-import { HeaderConfig } from '../../constants/header-config';
 import { getFontSizeAndWeight } from '../../styles/mixins';
+import { EditedHeaderConfig } from './header';
 
-type HeaderType = Pick<HeaderConfig, 'hasBorder' | 'hasHeaderColor'>;
-type HeaderButtonType = Pick<HeaderConfig, 'hasHeaderColor'>;
-export const StyledHeader = styled.header<HeaderType>`
+type HeaderColor = Pick<EditedHeaderConfig, 'headerColor'>;
+type Header = Pick<EditedHeaderConfig, 'headerColor' | 'hasBorder'>;
+
+export const StyledHeader = styled.header<Header>`
   max-width: ${(props) => props.theme.sizes.mobile};
   width: 100%;
   z-index: 51;
   position: fixed;
-  background-color: ${({ hasHeaderColor, theme }) =>
-    hasHeaderColor ? theme.colors['powderBlue-900'] : theme.colors.white};
+  background-color: ${({ headerColor }) => headerColor};
   border-bottom: ${({ hasBorder, theme }) =>
-    hasBorder ? `1px solid ${theme.colors['gray-300']}` : 'none'};
+    !hasBorder ? 'none' : `1px solid ${theme.colors['gray-300']}`};
   & > div {
     h1 {
       ${getFontSizeAndWeight('heading2', 'medium')}
@@ -24,8 +24,10 @@ export const StyledHeader = styled.header<HeaderType>`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: ${({ hasHeaderColor, theme }) =>
-      hasHeaderColor ? theme.colors.white : theme.colors['gray-800']};
+    color: ${({ headerColor, theme }) =>
+      headerColor !== theme.colors.white
+        ? theme.colors.white
+        : theme.colors['gray-800']};
     padding: ${(props) => `0 ${props.theme.sizes.padding}`};
     padding-top: 16px;
     padding-bottom: 16px;
@@ -33,23 +35,25 @@ export const StyledHeader = styled.header<HeaderType>`
   }
 `;
 
-export const StyledLeftButton = styled.button<HeaderButtonType>`
+export const StyledLeftButton = styled.button<HeaderColor>`
   svg {
     rect {
-      fill: ${({ hasHeaderColor, theme }) =>
-        hasHeaderColor ? 'transparent' : theme.colors.white};
+      fill: ${({ headerColor, theme }) =>
+        headerColor === theme.colors.white
+          ? theme.colors.white
+          : 'transparent'};
     }
     path {
-      stroke: ${({ hasHeaderColor, theme }) =>
-        hasHeaderColor ? theme.colors.white : 'auto'};
+      stroke: ${({ headerColor, theme }) =>
+        headerColor === theme.colors.white ? 'auto' : theme.colors.white};
     }
   }
 `;
 
-export const StyledMenuButton = styled.button<HeaderButtonType>`
+export const StyledMenuButton = styled.button<HeaderColor>`
   margin-left: auto;
   svg path {
-    stroke: ${({ hasHeaderColor, theme }) =>
-      hasHeaderColor ? theme.colors.white : 'auto'};
+    stroke: ${({ headerColor, theme }) =>
+      headerColor === theme.colors.white ? 'auto' : theme.colors.white};
   }
 `;

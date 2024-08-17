@@ -1,9 +1,10 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { HamburgerMenu, LeftChevron } from '../../assets/svg/icons';
-import headerMap from '../../constants/header-config';
+import headerMap, { HeaderConfig } from '../../constants/header-config';
 import { usePaperDetailQuery } from '../../queries/paper';
 import { routes } from '../../router';
+import theme from '../../styles/theme';
 import {
   StyledHeader,
   StyledLeftButton,
@@ -14,49 +15,71 @@ interface HeaderProps {
   onSidebarOpen: () => void;
 }
 
+export type EditedHeaderConfig = {
+  headerColor: string;
+  hasBorder: boolean;
+} & Pick<HeaderConfig, 'isShowLeftBtn' | 'isShowMenuBtn' | 'title'>;
+
+const headerColorByTheme: Record<RollingThemeName, string> = {
+  animal: theme.colors.white,
+  nature: theme.colors['powderBlue-800'],
+  space: theme.colors['powderBlue-900'],
+};
+
 export default function Header({ onSidebarOpen }: HeaderProps) {
   const navigate = useNavigate();
   const location = useLocation();
-  const { data } = usePaperDetailQuery();
+  const { data, isFetching } = usePaperDetailQuery();
+  const paper = data?.data;
 
-  const headerInfo =
-    headerMap.find((header) => {
-      let pathname = header.pathname();
-      if (data?.data) {
-        if (header.title.includes(data?.data?.theme)) {
-          return header;
-        }
+  if (isFetching) return <div>loading....</div>;
+
+  const header = headerMap.reduce<EditedHeaderConfig | object>(
+    (result, item) => {
+      if (paper) {
+        return {
+          headerColor: headerColorByTheme[paper.theme],
+          hasBorder: paper.theme === 'animal',
+          title: paper.title,
+          isShowLeftBtn: true,
+          isShowMenuBtn: true,
+        };
       }
-      if (pathname === location.pathname) {
-        return header;
+      if (item.pathname() === location.pathname) {
+        return {
+          title: item.title,
+          isShowLeftBtn: item.isShowLeftBtn,
+          isShowMenuBtn: item.isShowMenuBtn,
+          hasBorder: true,
+          headerColor: theme.colors.white,
+        };
       }
-      if (!data?.data && pathname.includes('/:')) {
-        pathname = pathname.split('/:')[0];
-        return location.pathname.includes(pathname);
-      }
-    }) ?? headerMap[headerMap.length - 1];
+      return result;
+    },
+    {},
+  );
+
+  if (!('headerColor' in header))
+    throw Error('서버 데이터 에러 발생 (header config)');
 
   return (
-    <StyledHeader
-      hasBorder={headerInfo.hasBorder}
-      hasHeaderColor={headerInfo.hasHeaderColor}
-    >
+    <StyledHeader headerColor={header.headerColor} hasBorder={header.hasBorder}>
       <div>
-        {headerInfo.isShowLeftBtn && (
+        {header.isShowLeftBtn && (
           <StyledLeftButton
-            hasHeaderColor={headerInfo.hasHeaderColor}
+            headerColor={header.headerColor}
             onClick={() => {
-              if (headerInfo.pathname() === routes.home) navigate(routes.index);
-              else navigate(-1);
+              if (location.state === routes.my.default) return navigate(-1);
+              return navigate(routes.home);
             }}
           >
             <LeftChevron />
           </StyledLeftButton>
         )}
-        <h1>{data?.data?.title ?? headerInfo.title}</h1>
-        {headerInfo.isShowMenuBtn && (
+        <h1>{header.title}</h1>
+        {header.isShowMenuBtn && (
           <StyledMenuButton
-            hasHeaderColor={headerInfo.hasHeaderColor}
+            headerColor={header.headerColor}
             onClick={onSidebarOpen}
           >
             <HamburgerMenu />
