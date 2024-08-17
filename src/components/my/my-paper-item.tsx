@@ -24,7 +24,7 @@ export default function MyPaperItem({ paper }: MyPaperItemProps) {
 
   return (
     <StyledItem>
-      <Link to={routes.rolling.detail(paper.id)}>
+      <Link to={routes.rolling.detail(paper.id)} state={routes.my.default}>
         <span>{paper.title}</span>
         <div>
           <span>{dayjs(paper.regDateTime).format('YYYY.MM.DD')}</span>
