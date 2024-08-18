@@ -16,32 +16,32 @@ export default function Rename() {
   const { mutate: profileMutate } = useProfileChange();
   const { handleNameChange, handleNameReset, isError, name, nameRef } =
     useNameForm('nickname');
-
   const handleNicknameChange = () => {
     mutate(name);
   };
+  const user = data?.data;
 
   const handleProfileChange = () => {
-    if (data?.data?.isOriginProfile === 'N') return;
+    if (user?.isOriginProfile === 'N') return;
     profileMutate();
   };
 
   return (
     <StyledRenameWrapper>
-      <StyledAvartarWrapper
-        isOriginProfile={data?.data?.isOriginProfile === 'N'}
-      >
+      <StyledAvartarWrapper isOriginProfile={user?.isOriginProfile === 'N'}>
         <button>
           <img
             src={
-              data?.data?.isOriginProfile === 'N'
+              user?.isOriginProfile === 'N'
                 ? defaultKaKaoUserProfile
-                : data?.data?.profileImage
+                : user?.profileImage
             }
             alt="avartar"
           />
         </button>
-        <button onClick={handleProfileChange}>기본프로필로변경</button>
+        {user?.isOriginProfile == 'Y' && (
+          <button onClick={handleProfileChange}>기본프로필로변경</button>
+        )}
       </StyledAvartarWrapper>
       <h3>이름</h3>
       <NameForm
