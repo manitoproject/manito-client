@@ -41,12 +41,7 @@ export default function MessageItem({
     <>
       {PaperDetailData?.data && message ? (
         'content' in message ? (
-          <EmojiSkin
-            isSmall
-            color={message.fontColor}
-            fontName={message.font}
-            emoji={message.theme}
-          >
+          <EmojiSkin isSmall message={message}>
             {EmojiSvg ? <EmojiSvg /> : <StyledEmptySvg />}
             <p>{message.content}</p>
           </EmojiSkin>
@@ -60,7 +55,6 @@ export default function MessageItem({
         )
       ) : (
         <StyledItem isOwner={false}>
-          {/* <StyledItem isOwner={isOwner}> */}
           <button type="button" onClick={handleMessageClick}>
             {!isOwner && <AddCircle />}
           </button>

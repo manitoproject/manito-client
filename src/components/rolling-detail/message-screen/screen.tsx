@@ -1,51 +1,36 @@
 import 'swiper/css';
 
 import styled from '@emotion/styled';
-import { useState } from 'react';
 
 import { usePaperMessagesQuery } from '../../../queries/message';
-import ItemViewButtons from './item-view-buttons';
-import ItemViewSwiper from './item-view-swiper';
-import ItemViewUserForm from './item-view-user-form';
+import { useMessageScreenIndex } from '../../../stores/message-screen-store';
+import AuthorInfo from './author-info';
+import MessageScreenButtons from './buttons';
+import MessageScreenSwipe from './swipe';
 
-interface ItemViewProps {
-  onCloseItemView: () => void;
-  paperId: number;
+interface MessageScreenProps {
+  paperId?: number;
   userId?: number;
 }
 
-export default function ItemView({
-  onCloseItemView,
-  paperId,
-  userId,
-}: ItemViewProps) {
+export default function MessageScreen({ paperId, userId }: MessageScreenProps) {
   const { data: messageData } = usePaperMessagesQuery(paperId);
-  const [activeIndex, setActiveIndex] = useState(0);
-
+  const activeIndex = useMessageScreenIndex();
   const message = messageData?.data?.[activeIndex];
   const messages = messageData?.data;
-
   if (!message || !messages) throw new Error();
 
   return (
     <StyledWrapper>
       <div>
-        <ItemViewSwiper
-          messages={messages}
-          setActiveIndex={setActiveIndex}
-          activeIndex={activeIndex}
-        />
-        <ItemViewUserForm
+        <MessageScreenSwipe messages={messages} activeIndex={activeIndex} />
+        <AuthorInfo
           nickname={message.anonymous || message.user?.nickname}
           activeIndex={activeIndex}
           totalIndex={messages.length}
         />
       </div>
-      <ItemViewButtons
-        userId={userId}
-        onCloseItemView={onCloseItemView}
-        message={message}
-      />
+      <MessageScreenButtons userId={userId} message={message} />
     </StyledWrapper>
   );
 }

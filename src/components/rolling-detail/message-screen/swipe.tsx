@@ -6,20 +6,20 @@ import { Swiper as SwiperType } from 'swiper/types';
 
 import { RightChevron } from '../../../assets/svg/icons';
 import { findEmojiSvgFromTheme } from '../../../constants/emojis';
+import { useMessageScreenActions } from '../../../stores/message-screen-store';
 import { Message } from '../../../types/message';
 import EmojiSkin from '../../common/emoji-skin';
 
 interface DetailSwiperProps {
   activeIndex: number;
-  setActiveIndex: React.Dispatch<React.SetStateAction<number>>;
   messages: Message<UserIdAndNickname>[];
 }
 
-export default function ItemViewSwiper({
+export default function MessageScreenSwipe({
   activeIndex,
-  setActiveIndex,
   messages,
 }: DetailSwiperProps) {
+  const messageScreen = useMessageScreenActions();
   const sortedMessages = messages.sort((a, b) => a.position - b.position);
   const [isBeginning, setIsBeginning] = useState(
     activeIndex === 0 ? true : false,
@@ -30,7 +30,7 @@ export default function ItemViewSwiper({
   const handleSlideChange = (e: SwiperType) => {
     setIsEnd(e.isEnd);
     setIsBeginning(e.isBeginning);
-    setActiveIndex(e.activeIndex);
+    messageScreen.setActiveIndex(e.activeIndex);
   };
 
   return (
@@ -45,11 +45,7 @@ export default function ItemViewSwiper({
         const emoji = findEmojiSvgFromTheme(message.theme);
         return (
           <SwiperSlide key={message.id}>
-            <EmojiSkin
-              color={message.fontColor}
-              emoji={message.theme}
-              fontName={message.font}
-            >
+            <EmojiSkin message={message}>
               {emoji?.svg && <emoji.svg />}
               <p>{message.content}</p>
             </EmojiSkin>

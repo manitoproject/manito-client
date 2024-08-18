@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 
 import { useLocationStateProps } from '../../hooks';
 import { ColorName, FontNameWithoutAppleFont } from '../../styles/theme';
-import BottomSheet from '../detail/bottom-sheet/bottom-sheet';
-import { StyledBottomSheetContentWrapper } from '../detail/bottom-sheet/bottom-sheet.style';
-import ColorList from '../detail/bottom-sheet/font-sheet/color-list';
-import FontList from '../detail/bottom-sheet/font-sheet/font-list';
-import FontSelectorSheet from '../detail/bottom-sheet/font-sheet/font-selector-sheet';
+import BottomSheet from '../rolling-detail/bottom-sheet/bottom-sheet';
+import { StyledBottomSheetContentWrapper } from '../rolling-detail/bottom-sheet/bottom-sheet.style';
+import ColorList from '../rolling-detail/bottom-sheet/font-sheet/color-list';
+import FontList from '../rolling-detail/bottom-sheet/font-sheet/font-list';
+import FontSelectorSheet from '../rolling-detail/bottom-sheet/font-sheet/font-selector-sheet';
 
 interface MessageFormBottomSheetProps {
   activeFont: FontNameWithoutAppleFont;

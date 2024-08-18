@@ -3,7 +3,7 @@ import { StyledRollingNewWrapper } from '../../routes/rolling-new.style';
 import { ColorName, FontNameWithoutAppleFont } from '../../styles/theme';
 import { Button } from '../common/button/buttons';
 import EmojiSkin from '../common/emoji-skin';
-import { StyledEmptySvg } from '../detail/message-item.style';
+import { StyledEmptySvg } from '../rolling-detail/message-item.style';
 import MessageFormBottomSheet from './message-form-bottom-sheet';
 
 interface MessageFormProps {
@@ -30,7 +30,7 @@ export default function MessageForm({
   const theme = findEmojiSvgFromTheme(emoji);
   return (
     <StyledRollingNewWrapper>
-      <EmojiSkin emoji={emoji} color={color} fontName={font}>
+      <EmojiSkin message={{ font, fontColor: color, theme: emoji }}>
         {theme ? <theme.svg /> : <StyledEmptySvg />}
         <textarea
           value={content}

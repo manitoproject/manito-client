@@ -1,5 +1,5 @@
 import { useUserMessagesQuery } from '../../queries/message';
-import { StyledList } from '../detail/message-list';
+import { StyledList } from '../rolling-detail/message-list';
 import MyMessageItem from './my-message-item';
 
 export default function MyMessageList() {

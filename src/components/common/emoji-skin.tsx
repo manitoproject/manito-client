@@ -1,16 +1,20 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { useNavigate } from 'react-router-dom';
 
 import { Font, fonts } from '../../constants/fonts';
+import { routes } from '../../router';
+import { useMessageScreenActions } from '../../stores/message-screen-store';
 import { getTextareaSize } from '../../styles/mixins';
-import { ColorName, FontName } from '../../styles/theme';
+import { ColorName } from '../../styles/theme';
+import { Message } from '../../types/message';
 
 interface EmojiItemProps {
   children: React.ReactNode;
-  color: ColorName;
-  fontName: FontName;
-  emoji: string;
   isSmall?: boolean;
+  message: Pick<Message<unknown>, 'font' | 'theme' | 'fontColor'> &
+    Partial<Pick<Message<unknown>, 'position'>>;
+  paperId?: number;
 }
 
 export type EmojiType = 'Circle' | 'Square' | 'Clover' | 'Star' | 'Polygon';
@@ -24,23 +28,37 @@ const EMOJI_TYPE: EmojiType[] = [
 
 export default function EmojiSkin({
   children,
-  color,
-  emoji,
-  fontName,
   isSmall = false,
+  paperId,
+  message,
 }: EmojiItemProps) {
+  const navigate = useNavigate();
+  const messageScreen = useMessageScreenActions();
   const font = fonts.find((font) => {
-    return font.name === fontName;
+    return font.name === message.font;
   });
   const emojiType = EMOJI_TYPE.find((type, i) => {
     if (EMOJI_TYPE.length - 1 === i) return true;
-    return emoji.includes(type);
+    return message.theme.includes(type);
   });
+
+  const handleNavigate = () => {
+    if (!isSmall) return;
+    if (paperId) {
+      return navigate(routes.rolling.detail(paperId), {
+        state: routes.my.default,
+      });
+    }
+    messageScreen.open();
+    messageScreen.setActiveIndex(message.position ?? 1);
+  };
+
   return (
     <StyledEmojiWrapper
+      onClick={handleNavigate}
       isSmall={isSmall}
       font={font}
-      color={color}
+      color={message.fontColor}
       type={emojiType}
     >
       {children}
@@ -57,13 +75,12 @@ const StyledEmojiWrapper = styled.div<{
   ${({ theme, type, color, font, isSmall }) => css`
   width: 100%;
   position: relative;
+cursor: ${isSmall && 'pointer'};
   svg {
     width: 100%;
     height: 100%;
   }
-  p {
-    /* pointer-events: none; */
-  }
+
   textarea,
   p {
     overflow-y: ${isSmall ? 'hidden' : 'auto'};

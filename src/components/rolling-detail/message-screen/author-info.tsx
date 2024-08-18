@@ -2,17 +2,17 @@ import styled from '@emotion/styled';
 
 import { getFontSizeAndWeight } from '../../../styles/mixins';
 
-interface ItemViewUserFormProps {
+interface AuthorInfoProps {
   activeIndex: number;
   totalIndex: number;
   nickname?: string;
 }
 
-export default function ItemViewUserForm({
+export default function AuthorInfo({
   activeIndex,
   totalIndex,
   nickname,
-}: ItemViewUserFormProps) {
+}: AuthorInfoProps) {
   return (
     <StyledWrapper>
       <StyledNicknameBox>

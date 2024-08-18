@@ -6,40 +6,40 @@ import { getRollingThemeName } from '../../../constants/theme-list';
 import { useDeleteMessage } from '../../../queries/message';
 import { useUserQuery } from '../../../queries/users';
 import { routes } from '../../../router';
+import { useMessageScreenActions } from '../../../stores/message-screen-store';
 import theme from '../../../styles/theme';
 import { Message } from '../../../types/message';
 import { Button } from '../../common/button/buttons';
 import DeleteModal from '../../modal/delete-modal';
 
-interface ItemViewButtonsProps {
+interface MessageScreenButtonsProps {
   message: Message<UserIdAndNickname>;
-  onCloseItemView: () => void;
   userId?: number;
 }
 
-export default function ItemViewButtons({
+export default function MessageScreenButtons({
   message,
-  onCloseItemView,
   userId,
-}: ItemViewButtonsProps) {
+}: MessageScreenButtonsProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const messageScreen = useMessageScreenActions();
   const navigate = useNavigate();
   const { data: userData } = useUserQuery();
   const { mutate } = useDeleteMessage({
     paperId: message.paperId,
-    closeModal: () => onCloseItemView(),
+    closeModal: () => messageScreen.close(),
   });
   const user = userData?.data;
 
   return (
-    <StyledItemViewButtons>
+    <StyledMessageScreenButtons>
       <Button
         css={{
           background: theme.colors.white,
           color: theme.colors.black,
           outline: `1px solid ${theme.colors['gray-300']}`,
         }}
-        onClick={onCloseItemView}
+        onClick={messageScreen.close}
       >
         닫기
       </Button>
@@ -71,11 +71,11 @@ export default function ItemViewButtons({
           handler={() => mutate(message.id)}
         />
       )}
-    </StyledItemViewButtons>
+    </StyledMessageScreenButtons>
   );
 }
 
-const StyledItemViewButtons = styled.div`
+const StyledMessageScreenButtons = styled.div`
   display: flex;
   gap: 8px;
 `;

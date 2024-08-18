@@ -8,12 +8,12 @@ import { useDeleteMessage } from '../../queries/message';
 import { routes } from '../../router';
 import { Message } from '../../types/message';
 import EmojiSkin from '../common/emoji-skin';
+import DeleteModal from '../modal/delete-modal';
 import {
   StyledEditButton,
   StyledMessageItem,
   StyledTrashButton,
-} from '../detail/message-item.style';
-import DeleteModal from '../modal/delete-modal';
+} from '../rolling-detail/message-item.style';
 
 interface MyMessageItemProps {
   message: Message<User>;
@@ -43,12 +43,7 @@ export default function MyMessageItem({ message }: MyMessageItemProps) {
       <StyledTrashButton type="button" onClick={() => setIsModalOpen(true)}>
         <Trash />
       </StyledTrashButton>
-      <EmojiSkin
-        isSmall
-        emoji={message.theme}
-        fontName={message.font}
-        color={message.fontColor}
-      >
+      <EmojiSkin paperId={message.paperId} isSmall message={message}>
         {EmojiSvg && <EmojiSvg />}
         <p>{message.content}</p>
       </EmojiSkin>

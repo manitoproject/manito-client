@@ -15,12 +15,12 @@ import {
 
 interface DetailHeaderProps {
   paperId?: number;
-  onShowItemView: () => void;
+  onMessageScreenOpen: () => void;
 }
 
 export default function DetailHeader({
   paperId,
-  onShowItemView,
+  onMessageScreenOpen,
 }: DetailHeaderProps) {
   const { add } = useToastStore();
   const [isCopyModalOpen, setIsCopyModalOpen] = useState(false);
@@ -43,7 +43,7 @@ export default function DetailHeader({
         <strong>{messageData?.data?.length}</strong>개의 작성물
       </span>
       <div>
-        <button onClick={onShowItemView}>상세보기</button>
+        <button onClick={onMessageScreenOpen}>상세보기</button>
         <button onClick={() => setIsCopyModalOpen(true)}>
           <Clip />
         </button>
