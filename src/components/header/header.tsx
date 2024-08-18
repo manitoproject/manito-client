@@ -59,6 +59,12 @@ export default function Header({ onSidebarOpen }: HeaderProps) {
     {},
   );
 
+  const handleNavigation = () => {
+    if (location.state === routes.my.default) return navigate(-1);
+    if (location.pathname === routes.home) return navigate(routes.index);
+    return navigate(routes.home);
+  };
+
   if (!('headerColor' in header))
     throw Error('서버 데이터 에러 발생 (header config)');
 
@@ -68,10 +74,7 @@ export default function Header({ onSidebarOpen }: HeaderProps) {
         {header.isShowLeftBtn && (
           <StyledLeftButton
             headerColor={header.headerColor}
-            onClick={() => {
-              if (location.state === routes.my.default) return navigate(-1);
-              return navigate(routes.home);
-            }}
+            onClick={handleNavigation}
           >
             <LeftChevron />
           </StyledLeftButton>
