@@ -3,19 +3,22 @@ import 'swiper/css';
 import styled from '@emotion/styled';
 import { useState } from 'react';
 
-// import { Font, fonts } from '../../constants/fonts';
 import { usePaperMessagesQuery } from '../../../queries/message';
 import ItemViewButtons from './item-view-buttons';
-// import { StyledEmojiWrapper } from '../../routes/rolling-new.style';
 import ItemViewSwiper from './item-view-swiper';
 import ItemViewUserForm from './item-view-user-form';
 
 interface ItemViewProps {
   onCloseItemView: () => void;
   paperId: number;
+  userId?: number;
 }
 
-export default function ItemView({ onCloseItemView, paperId }: ItemViewProps) {
+export default function ItemView({
+  onCloseItemView,
+  paperId,
+  userId,
+}: ItemViewProps) {
   const { data: messageData } = usePaperMessagesQuery(paperId);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -38,7 +41,11 @@ export default function ItemView({ onCloseItemView, paperId }: ItemViewProps) {
           totalIndex={messages.length}
         />
       </div>
-      <ItemViewButtons onCloseItemView={onCloseItemView} message={message} />
+      <ItemViewButtons
+        userId={userId}
+        onCloseItemView={onCloseItemView}
+        message={message}
+      />
     </StyledWrapper>
   );
 }

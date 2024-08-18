@@ -14,11 +14,13 @@ import DeleteModal from '../../modal/delete-modal';
 interface ItemViewButtonsProps {
   message: Message<UserIdAndNickname>;
   onCloseItemView: () => void;
+  userId?: number;
 }
 
 export default function ItemViewButtons({
   message,
   onCloseItemView,
+  userId,
 }: ItemViewButtonsProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
@@ -42,24 +44,24 @@ export default function ItemViewButtons({
         닫기
       </Button>
       {message.user?.id === user?.id && (
-        <>
-          <Button
-            css={{ background: theme.colors['powderBlue-900'] }}
-            onClick={() => {
-              navigate(routes.rolling.messageEdit(), {
-                state: {
-                  ...message,
-                  rollingThemeName: getRollingThemeName(message),
-                },
-              });
-            }}
-          >
-            수정
-          </Button>
-          <Button css={{}} onClick={() => setIsModalOpen(true)}>
-            삭제
-          </Button>
-        </>
+        <Button
+          css={{ background: theme.colors['powderBlue-900'] }}
+          onClick={() => {
+            navigate(routes.rolling.messageEdit(), {
+              state: {
+                ...message,
+                rollingThemeName: getRollingThemeName(message),
+              },
+            });
+          }}
+        >
+          수정
+        </Button>
+      )}
+      {(message.user?.id === user?.id || user?.id === userId) && (
+        <Button css={{}} onClick={() => setIsModalOpen(true)}>
+          삭제
+        </Button>
       )}
       {isModalOpen && (
         <DeleteModal

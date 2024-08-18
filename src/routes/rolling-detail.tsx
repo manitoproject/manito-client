@@ -21,7 +21,6 @@ import ReactHelmet, { TITLE } from '../helmet';
 
 export default function RollingDetail() {
   const { data } = usePaperDetailQuery();
-
   const [isShowItemView, setIsShowItemView] = useState(false);
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
   const { reset, activeEmojiName, activeMessageIndex, hasList } =
@@ -36,6 +35,7 @@ export default function RollingDetail() {
   useEffect(() => {
     return () => reset();
   }, [reset]);
+
   return (
     <StyledRollingDetail>
       <ReactHelmet title={`${data?.data?.title} - ${TITLE}`} />
@@ -77,6 +77,7 @@ export default function RollingDetail() {
       )}
       {isShowItemView && currentPaperId && (
         <ItemView
+          userId={data.data?.userId}
           paperId={currentPaperId}
           onCloseItemView={() => setIsShowItemView(false)}
         />
