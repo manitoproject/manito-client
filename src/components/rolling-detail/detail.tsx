@@ -6,7 +6,7 @@ import { usePaperDetailQuery } from '../../queries/paper';
 import { routes } from '../../router';
 import { useMessageScreenActions } from '../../stores/message-screen-store';
 import useMessageStore from '../../stores/message-store';
-import useToastStore from '../../stores/toast-store';
+import { useToastActions } from '../../stores/toast-store';
 import { Button } from '../common/button/buttons';
 import BottomSheet from './bottom-sheet/bottom-sheet';
 import { StyledBottomSheetContentWrapper } from './bottom-sheet/bottom-sheet.style';
@@ -22,10 +22,10 @@ export default function Detail() {
     useMessageStore();
 
   const navigate = useNavigate();
-  const { add } = useToastStore();
+  const toast = useToastActions();
   const handleMessageScreenOpen = () => {
     if (hasList()) return messageScreen.open();
-    add('상세보기 내역이 없습니다.');
+    toast.add('상세보기 내역이 없습니다.');
   };
 
   useEffect(() => {

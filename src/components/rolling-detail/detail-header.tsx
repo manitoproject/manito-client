@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 
 import { Clip, KakaoFill } from '../../assets/svg/icons';
 import { usePaperMessagesQuery } from '../../queries/message';
-import useToastStore from '../../stores/toast-store';
+import { useToastActions } from '../../stores/toast-store';
 import theme from '../../styles/theme';
 import LoginModal from '../modal/login-modal';
 import { Modal } from '../modal/modal';
@@ -22,7 +22,7 @@ export default function DetailHeader({
   paperId,
   onMessageScreenOpen,
 }: DetailHeaderProps) {
-  const { add } = useToastStore();
+  const toast = useToastActions();
   const [isCopyModalOpen, setIsCopyModalOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const { data: messageData } = usePaperMessagesQuery(paperId);
@@ -33,7 +33,7 @@ export default function DetailHeader({
       await navigator.clipboard.writeText(
         `${import.meta.env.VITE_CLIENT_URL}${location.pathname}`,
       );
-      add('링크가 복사 되었습니다.');
+      toast.add('링크가 복사 되었습니다.');
     }
   };
 

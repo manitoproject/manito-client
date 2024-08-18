@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { routes } from '../router';
 import { changeNickname, changeProfile, logout } from '../services/users';
-import useToastStore from '../stores/toast-store';
+import { useToastActions } from '../stores/toast-store';
 import { token } from '../utils/storage';
 import queries from './query-key-factory';
 
@@ -50,7 +50,7 @@ export const useLogout = () => {
 
 export const useProfileChange = () => {
   const queryClient = useQueryClient();
-  const { add } = useToastStore();
+  const toast = useToastActions();
   return useMutation({
     mutationFn: changeProfile,
     onSuccess: (data) => {
@@ -58,7 +58,7 @@ export const useProfileChange = () => {
         queryClient.invalidateQueries({
           queryKey: queries.users._def,
         });
-        add('변경이 완료 되었습니다.');
+        toast.add('변경이 완료 되었습니다.');
       }
     },
   });

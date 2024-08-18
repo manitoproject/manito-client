@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { routes } from '../router';
 import { createRollingPaper, deletePaper } from '../services/paper';
-import useToastStore from '../stores/toast-store';
+import { useToastActions } from '../stores/toast-store';
 import queries from './query-key-factory';
 
 export const useCreateRollingPaper = () => {
@@ -43,12 +43,12 @@ export const usePaperDetailQuery = () => {
 
 export const useDeletePaper = () => {
   const queryClient = useQueryClient();
-  const { add } = useToastStore();
+  const toast = useToastActions();
   return useMutation({
     mutationFn: deletePaper,
     onSuccess: (data) => {
       if (data?.result === 'Success') {
-        add('컨텐츠가 삭제 되었습니다.');
+        toast.add('컨텐츠가 삭제 되었습니다.');
         queryClient.invalidateQueries({
           queryKey: queries.papers.user._def,
         });

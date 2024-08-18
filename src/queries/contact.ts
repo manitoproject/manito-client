@@ -1,20 +1,20 @@
 import { useMutation } from '@tanstack/react-query';
 
 import { sendFeedbackMessage } from '../services/contact';
-import useToastStore from '../stores/toast-store';
+import { useToastActions } from '../stores/toast-store';
 
 export const useSendFeedbackMessage = (
   setMessage: React.Dispatch<React.SetStateAction<string>>,
 ) => {
-  const { add } = useToastStore();
+  const toast = useToastActions();
   return useMutation({
     mutationFn: sendFeedbackMessage,
     onSuccess: () => {
       setMessage('');
-      add('문의하기가 완료 되었습니다.');
+      toast.add('문의하기가 완료 되었습니다.');
     },
     onError: () => {
-      add('잠시후 다시 시도해주세요.');
+      toast.add('잠시후 다시 시도해주세요.');
     },
   });
 };

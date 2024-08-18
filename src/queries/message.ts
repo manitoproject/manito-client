@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { routes } from '../router';
 import { createMessage, deleteMessage, editMessage } from '../services/message';
-import useToastStore from '../stores/toast-store';
+import { useToastActions } from '../stores/toast-store';
 import queries from './query-key-factory';
 
 export const useCreateMessage = (paperId: number) => {
@@ -51,13 +51,13 @@ export const useDeleteMessage = ({
   closeModal?: () => void;
 }) => {
   const queryClient = useQueryClient();
-  const { add } = useToastStore();
+  const toast = useToastActions();
   return useMutation({
     mutationFn: deleteMessage,
     onSuccess: (data) => {
       if (data.result === 'Success') {
         if (closeModal) closeModal();
-        add('편지가 삭제 되었습니다.');
+        toast.add('편지가 삭제 되었습니다.');
         queryClient.invalidateQueries({
           queryKey: queries.messages.paper(paperId).queryKey,
         });
