@@ -17,6 +17,7 @@ import {
   StyledRollingDetail,
   StyledWrapper,
 } from './rolling-detail.style';
+import ReactHelmet, { TITLE } from '../helmet';
 
 export default function RollingDetail() {
   const { data } = usePaperDetailQuery();
@@ -37,6 +38,7 @@ export default function RollingDetail() {
   }, [reset]);
   return (
     <StyledRollingDetail>
+      <ReactHelmet title={`${data?.data?.title} - ${TITLE}`} />
       {!isShowItemView && (
         <StyledWrapper>
           <DetailHeader

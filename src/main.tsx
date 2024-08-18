@@ -3,8 +3,10 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { HelmetProvider } from 'react-helmet-async';
 import { RouterProvider } from 'react-router-dom';
 
+import ReactHelmet from './helmet';
 import { enableMocking } from './mocks/browser';
 import router from './router';
 import global from './styles/global';
@@ -17,13 +19,16 @@ const queryClient = new QueryClient({
 enableMocking().then(() => {
   ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
-      <ThemeProvider theme={theme}>
-        <Global styles={global} />
-        <QueryClientProvider client={queryClient}>
-          <RouterProvider router={router()} />
-          <ReactQueryDevtools />
-        </QueryClientProvider>
-      </ThemeProvider>
+      <HelmetProvider>
+        <ReactHelmet />
+        <ThemeProvider theme={theme}>
+          <Global styles={global} />
+          <QueryClientProvider client={queryClient}>
+            <RouterProvider router={router()} />
+            <ReactQueryDevtools />
+          </QueryClientProvider>
+        </ThemeProvider>
+      </HelmetProvider>
     </React.StrictMode>,
   );
 });
