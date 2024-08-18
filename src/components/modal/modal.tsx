@@ -2,7 +2,7 @@ import { ForwardedRef, forwardRef, useEffect } from 'react';
 
 import { nicknameMaxLength } from '../../constants/regex-patterns';
 import { useDisableScroll, useOutsideClick } from '../../hooks';
-import useModalStore from '../../stores/modal-store';
+import { useModalActions, useModalIndex } from '../../stores/modal-store';
 import RadioButton from '../common/button/radio-button';
 import Input from '../common/input';
 import { Portal } from '../common/portal';
@@ -124,7 +124,9 @@ function ModalMain({
   onClick: () => void;
 }) {
   const { isError, setIsError } = useModal();
-  const { activeIndex, setActiveIndex } = useModalStore();
+
+  const activeIndex = useModalIndex();
+  const { setActiveIndex } = useModalActions();
   const ref = useOutsideClick(onClick, isOpen);
   useDisableScroll(isOpen);
 

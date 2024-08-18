@@ -1,6 +1,6 @@
 import { useNameForm } from '../../hooks';
 import { useCreateMessage } from '../../queries/message';
-import useModalStore from '../../stores/modal-store';
+import { useModalIndex } from '../../stores/modal-store';
 import theme, { ColorName, FontNameWithoutAppleFont } from '../../styles/theme';
 import { Modal } from '../modal/modal';
 
@@ -26,7 +26,7 @@ export default function MessageCreateModal({
   messageInfo,
 }: MessageCreateModalProps) {
   const { emoji, paperId, position } = messageInfo;
-  const { activeIndex } = useModalStore();
+  const activeModalIndex = useModalIndex();
   const { mutate, isPending } = useCreateMessage(+paperId);
   const {
     handleNameChange,
@@ -42,9 +42,9 @@ export default function MessageCreateModal({
       fontColor: color,
       position: +position,
       theme: emoji,
-      isPublic: activeIndex === 0 ? 'Y' : 'N',
+      isPublic: activeModalIndex === 0 ? 'Y' : 'N',
       paperId: +paperId,
-      anonymous: activeIndex === 1 ? nickname : '',
+      anonymous: activeModalIndex === 1 ? nickname : '',
     });
   };
 
