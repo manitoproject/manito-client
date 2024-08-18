@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { HamburgerMenu, LeftChevron } from '../../assets/svg/icons';
 import headerMap, { HeaderConfig } from '../../constants/header-config';
 import { usePaperDetailQuery } from '../../queries/paper';
+import { useUserQuery } from '../../queries/users';
 import { routes } from '../../router';
 import theme from '../../styles/theme';
 import {
@@ -29,6 +30,7 @@ const headerColorByTheme: Record<RollingThemeName, string> = {
 export default function Header({ onSidebarOpen }: HeaderProps) {
   const navigate = useNavigate();
   const location = useLocation();
+  const { data: userData } = useUserQuery();
   const { data, isFetching } = usePaperDetailQuery();
   const paper = data?.data;
 
@@ -58,11 +60,11 @@ export default function Header({ onSidebarOpen }: HeaderProps) {
     },
     {},
   );
-
   const handleNavigation = () => {
-    if (location.state === routes.my.default) return navigate(-1);
-    if (location.pathname === routes.home) return navigate(routes.index);
-    return navigate(routes.home);
+    const isHomePage = location.pathname === routes.home;
+    const isDetailPageAndUnAuth = paper && !userData?.data;
+    if (isHomePage || isDetailPageAndUnAuth) return navigate(routes.index);
+    return navigate(-1);
   };
 
   if (!('headerColor' in header))
