@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import {
   getBackgroundImageFromThemeName,
   StyledFixedBackground,
-} from '../styles/mixins';
+} from '../../styles/mixins';
 
 export const StyledRollingDetail = styled.div`
   width: 100%;

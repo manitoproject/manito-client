@@ -11,10 +11,10 @@ import Layout from './routes/layout';
 import My from './routes/my';
 import MySetting from './routes/my-setting';
 import Rename from './routes/rename';
-import RollingDetail from './routes/rolling-detail';
-import RollingMessageEdit from './routes/rolling-message-edit';
-import RollingNew from './routes/rolling-new';
-import RollingSetup from './routes/rolling-setup';
+import RollingDetail from './routes/rolling-paper/detail';
+import RollingMessageEdit from './routes/rolling-paper/message-edit';
+import RollingNew from './routes/rolling-paper/new';
+import RollingSetup from './routes/rolling-paper/setup';
 import SetupIntro from './routes/setup-intro';
 
 export const routes = {

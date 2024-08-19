@@ -1,17 +1,17 @@
 import { useState } from 'react';
 
-import { Button } from '../components/common/button/buttons';
-import NameForm from '../components/common/name-form';
-import ThemeCarousel from '../components/setup/theme-carousel';
-import { titleMaxLength } from '../constants/regex-patterns';
-import themeList from '../constants/theme-list';
-import { useNameForm } from '../hooks';
-import { useCreateRollingPaper } from '../queries/paper';
+import { Button } from '../../components/common/button/buttons';
+import NameForm from '../../components/common/name-form';
+import ThemeCarousel from '../../components/setup/theme-carousel';
+import { titleMaxLength } from '../../constants/regex-patterns';
+import themeList from '../../constants/theme-list';
+import { useNameForm } from '../../hooks';
+import { useCreateRollingPaper } from '../../queries/paper';
 import {
   StyledHeading,
   StyledSectionWrapper,
   StyledWrapper,
-} from './rolling-setup.style';
+} from './setup.style';
 
 export default function RollingSetup() {
   const { handleNameChange, handleNameReset, isError, name, nameRef } =

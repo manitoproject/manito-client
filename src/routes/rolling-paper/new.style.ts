@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { StyledBackdrop } from './rolling-detail.style';
+import { StyledBackdrop } from './detail.style';
 
 export const StyledRollingNew = styled.div`
   width: 100%;

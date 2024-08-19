@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
 
-import Detail from '../components/rolling-detail/detail';
-import MessageScreen from '../components/rolling-detail/message-screen/screen';
-import ReactHelmet, { TITLE } from '../helmet';
-import { usePaperDetailQuery } from '../queries/paper';
+import Detail from '../../components/rolling-detail/detail';
+import MessageScreen from '../../components/rolling-detail/message-screen/screen';
+import ReactHelmet, { TITLE } from '../../helmet';
+import { usePaperDetailQuery } from '../../queries/paper';
 import {
   useMessageScreenActions,
   useMessageScreenVisible,
-} from '../stores/message-screen-store';
-import { StyledBackdrop, StyledRollingDetail } from './rolling-detail.style';
+} from '../../stores/message-screen-store';
+import { StyledBackdrop, StyledRollingDetail } from './detail.style';
 
 export default function RollingDetail() {
   const { data, isFetching } = usePaperDetailQuery();

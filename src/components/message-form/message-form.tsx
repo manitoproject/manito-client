@@ -1,5 +1,5 @@
 import { findEmojiSvgFromTheme } from '../../constants/emojis';
-import { StyledRollingNewWrapper } from '../../routes/rolling-new.style';
+import { StyledRollingNewWrapper } from '../../routes/rolling-paper/new.style';
 import { ColorName, FontNameWithoutAppleFont } from '../../styles/theme';
 import { Button } from '../common/button/buttons';
 import EmojiSkin from '../common/emoji-skin';

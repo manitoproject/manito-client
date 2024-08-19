@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
-import MessageCreateModal from '../components/message-form/message-create-modal';
-import MessageForm from '../components/message-form/message-form';
-import { useLocationStateProps } from '../hooks';
-import { ColorName, FontNameWithoutAppleFont } from '../styles/theme';
-import { StyledOverlayBackdrop, StyledRollingNew } from './rolling-new.style';
+import MessageCreateModal from '../../components/message-form/message-create-modal';
+import MessageForm from '../../components/message-form/message-form';
+import { useLocationStateProps } from '../../hooks';
+import { ColorName, FontNameWithoutAppleFont } from '../../styles/theme';
+import { StyledOverlayBackdrop, StyledRollingNew } from './new.style';
 
 export default function RollingNew() {
   const messageInfo = useLocationStateProps();
