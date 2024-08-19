@@ -6,6 +6,7 @@ import routes from '../../constants/routes';
 import { usePaperDetailQuery } from '../../queries/paper';
 import { useUserQuery } from '../../queries/users';
 import theme from '../../styles/theme';
+import SkeletonHeader from '../skeletons/header';
 import {
   StyledHeader,
   StyledLeftButton,
@@ -34,7 +35,7 @@ export default function Header({ onSidebarOpen }: HeaderProps) {
   const { data, isFetching } = usePaperDetailQuery();
   const paper = data?.data;
 
-  if (isFetching) return <div>loading....</div>;
+  if (isFetching) return <SkeletonHeader />;
 
   const header = headerMap.reduce<EditedHeaderConfig | object>(
     (result, item) => {
