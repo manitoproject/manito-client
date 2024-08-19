@@ -5,7 +5,11 @@ import { useNavigate } from 'react-router-dom';
 import { usePaperDetailQuery } from '../../queries/paper';
 import { routes } from '../../router';
 import { useMessageScreenActions } from '../../stores/message-screen-store';
-import useMessageStore from '../../stores/message-store';
+import {
+  useActiveMessageEmojiName,
+  useActiveMessageIndex,
+  useMessageActions,
+} from '../../stores/message-store';
 import { useToastActions } from '../../stores/toast-store';
 import { Button } from '../common/button/buttons';
 import BottomSheet from './bottom-sheet/bottom-sheet';
@@ -18,19 +22,20 @@ export default function Detail() {
   const { data } = usePaperDetailQuery();
   const messageScreen = useMessageScreenActions();
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
-  const { activeEmojiName, activeMessageIndex, hasList, reset } =
-    useMessageStore();
+  const messageActions = useMessageActions();
+  const activeEmojiName = useActiveMessageEmojiName();
+  const activeIndex = useActiveMessageIndex();
 
   const navigate = useNavigate();
   const toast = useToastActions();
   const handleMessageScreenOpen = () => {
-    if (hasList()) return messageScreen.open();
+    if (messageActions.hasList()) return messageScreen.open();
     toast.add('상세보기 내역이 없습니다.');
   };
 
   useEffect(() => {
-    return () => reset();
-  }, [reset]);
+    return () => messageActions.reset();
+  }, [messageActions]);
 
   return (
     <StyledWrapper>
@@ -55,7 +60,7 @@ export default function Detail() {
                 state: {
                   paperId: data?.data?.id,
                   emoji: activeEmojiName,
-                  position: activeMessageIndex,
+                  position: activeIndex,
                   rollingThemeName: data?.data?.theme,
                 },
               })

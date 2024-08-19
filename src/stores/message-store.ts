@@ -10,12 +10,14 @@ interface MessageState {
   list: Array<null | Message<unknown> | Pick<Message<unknown>, 'theme'>>;
   activeEmojiName: string | null;
   activeMessageIndex: null | number;
-  setActiveEmojiName: (i: string | null) => void;
-  setActiveMessageIndex: (i: number | null) => void;
-  snycList: (serverData?: Message<unknown>[]) => void;
-  addList: (theme: RollingThemeName) => void;
-  reset: () => void;
-  hasList: () => boolean;
+  actions: {
+    setActiveEmojiName: (i: string | null) => void;
+    setActiveMessageIndex: (i: number | null) => void;
+    snycList: (serverData?: Message<unknown>[]) => void;
+    addList: (theme: RollingThemeName) => void;
+    reset: () => void;
+    hasList: () => boolean;
+  };
 }
 
 const useMessageStore = create<MessageState>()(
@@ -23,63 +25,73 @@ const useMessageStore = create<MessageState>()(
     list: INIT_LIST,
     activeEmojiName: null,
     activeMessageIndex: null,
-    hasList: () => {
-      return get().list.some((item) => {
-        return item?.theme && 'id' in item;
-      });
-    },
-    setActiveEmojiName: (name: string | null) => set({ activeEmojiName: name }),
-    setActiveMessageIndex: (i: number | null) => set({ activeMessageIndex: i }),
-    snycList: (serverData?: Message<unknown>[]) =>
-      set((state) => {
-        if (!serverData?.length) return { list: state.list };
-        const currentLength = state.list.length;
-        const serverDataLength = serverData.length;
-        const additionalData = Array(
-          currentLength - Math.ceil(serverDataLength / 8),
-        ).fill(null);
-        let newList = [...state.list];
-        if (
-          serverDataLength >= currentLength &&
-          serverDataLength < MAX_LIST_LENGTH
-        ) {
-          if (serverDataLength % 8 !== 0) {
-            newList = [...serverData, ...additionalData];
-          } else {
-            newList = [...serverData, ...INIT_LIST];
-          }
-        }
-        return {
-          list: newList.map((prev, i) => {
-            const item = serverData?.find((item) => item.position === i);
-            return item ?? prev;
-          }),
-        };
-      }),
-    addList: () =>
-      set((state) => ({
-        list: state.list.map((prev, i) => {
+    actions: {
+      hasList: () => {
+        return get().list.some((item) => {
+          return item?.theme && 'id' in item;
+        });
+      },
+      setActiveEmojiName: (name: string | null) =>
+        set({ activeEmojiName: name }),
+      setActiveMessageIndex: (i: number | null) =>
+        set({ activeMessageIndex: i }),
+      snycList: (serverData?: Message<unknown>[]) =>
+        set((state) => {
+          if (!serverData?.length) return { list: state.list };
+          const currentLength = state.list.length;
+          const serverDataLength = serverData.length;
+          const additionalData = Array(
+            currentLength - Math.ceil(serverDataLength / 8),
+          ).fill(null);
+          let newList = [...state.list];
           if (
-            state.activeMessageIndex === i &&
-            state.activeEmojiName !== null
+            serverDataLength >= currentLength &&
+            serverDataLength < MAX_LIST_LENGTH
           ) {
-            return {
-              theme: state.activeEmojiName,
-            };
+            if (serverDataLength % 8 !== 0) {
+              newList = [...serverData, ...additionalData];
+            } else {
+              newList = [...serverData, ...INIT_LIST];
+            }
           }
-          if (prev?.theme && !('content' in prev)) {
-            return null;
-          }
-          return prev;
+          return {
+            list: newList.map((prev, i) => {
+              const item = serverData?.find((item) => item.position === i);
+              return item ?? prev;
+            }),
+          };
         }),
-      })),
-    reset: () =>
-      set({
-        list: INIT_LIST,
-        activeMessageIndex: null,
-        activeEmojiName: null,
-      }),
+      addList: () =>
+        set((state) => ({
+          list: state.list.map((prev, i) => {
+            if (
+              state.activeMessageIndex === i &&
+              state.activeEmojiName !== null
+            ) {
+              return {
+                theme: state.activeEmojiName,
+              };
+            }
+            if (prev?.theme && !('content' in prev)) {
+              return null;
+            }
+            return prev;
+          }),
+        })),
+      reset: () =>
+        set({
+          list: INIT_LIST,
+          activeMessageIndex: null,
+          activeEmojiName: null,
+        }),
+    },
   })),
 );
 
-export default useMessageStore;
+export const useMessageList = () => useMessageStore((state) => state.list);
+export const useActiveMessageEmojiName = () =>
+  useMessageStore((state) => state.activeEmojiName);
+export const useActiveMessageIndex = () =>
+  useMessageStore((state) => state.activeMessageIndex);
+export const useMessageActions = () =>
+  useMessageStore((state) => state.actions);

@@ -2,7 +2,11 @@ import styled from '@emotion/styled';
 import { useEffect } from 'react';
 
 import { usePaperMessagesQuery } from '../../queries/message';
-import useMessageStore from '../../stores/message-store';
+import {
+  useActiveMessageIndex,
+  useMessageActions,
+  useMessageList,
+} from '../../stores/message-store';
 import MessageItem from './message-item';
 
 interface MessageListProps {
@@ -15,30 +19,23 @@ export default function MessageList({
   paperId,
 }: MessageListProps) {
   const { data } = usePaperMessagesQuery(paperId);
-  const {
-    setActiveMessageIndex,
-    activeMessageIndex,
-    setActiveEmojiName,
-    list,
-    snycList,
-    reset,
-  } = useMessageStore();
+  const messageList = useMessageList();
+  const messageActions = useMessageActions();
+  const activeIndex = useActiveMessageIndex();
 
   const handleMessageClick = (i: number) => {
-    if (i !== activeMessageIndex) {
-      setActiveEmojiName(null);
-    }
-    setActiveMessageIndex(i);
+    if (i !== activeIndex) messageActions.setActiveEmojiName(null);
+    messageActions.setActiveMessageIndex(i);
     onBottomSheetOpen(true);
   };
 
   useEffect(() => {
-    snycList(data?.data);
-    return () => reset();
-  }, [data, reset, snycList]);
+    messageActions.snycList(data?.data);
+    return () => messageActions.reset();
+  }, [data, messageActions]);
   return (
     <StyledList>
-      {list.map((message, i) => (
+      {messageList.map((message, i) => (
         <MessageItem
           onBottomSheetOpen={onBottomSheetOpen}
           key={i}

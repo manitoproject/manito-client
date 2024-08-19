@@ -1,14 +1,18 @@
 import styled from '@emotion/styled';
 
 import emojis from '../../../../constants/emojis';
-import useMessageStore from '../../../../stores/message-store';
+import {
+  useActiveMessageEmojiName,
+  useMessageActions,
+} from '../../../../stores/message-store';
 
 interface EmojiContentProps {
   theme?: RollingThemeName;
 }
 
 export default function EmojiSelectorSheet({ theme }: EmojiContentProps) {
-  const { setActiveEmojiName, activeEmojiName, addList } = useMessageStore();
+  const messageActions = useMessageActions();
+  const activeEmojiName = useActiveMessageEmojiName();
 
   return (
     <StyledWrapper>
@@ -19,8 +23,8 @@ export default function EmojiSelectorSheet({ theme }: EmojiContentProps) {
             key={emoji.name}
             type="button"
             onClick={() => {
-              setActiveEmojiName(emoji.name);
-              if (activeEmojiName !== emoji.name) addList(theme);
+              messageActions.setActiveEmojiName(emoji.name);
+              if (activeEmojiName !== emoji.name) messageActions.addList(theme);
             }}
           >
             <emoji.svg />
