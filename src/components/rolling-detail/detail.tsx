@@ -43,10 +43,7 @@ export default function Detail() {
         onMessageScreenOpen={handleMessageScreenOpen}
         paperId={data?.data?.id}
       />
-      <MessageList
-        paperId={data?.data?.id}
-        onBottomSheetOpen={setIsBottomSheetOpen}
-      />
+      <MessageList paperId={data?.data?.id} />
       <BottomSheet
         isDetailPage
         onToggle={() => setIsBottomSheetOpen((prev) => !prev)}

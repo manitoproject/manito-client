@@ -7,20 +7,14 @@ import { useUserQuery } from '../../queries/users';
 import { Message } from '../../types/message';
 import EmojiSkin from '../common/emoji-skin';
 import LoginModal from '../modal/login-modal';
-import {
-  StyledEmptySvg,
-  StyledItem,
-  StyledMessageItem,
-} from './message-item.style';
+import { StyledEmptySvg, StyledItem } from './message-item.style';
 
 export interface MessageItemProps {
   onMessageClick: () => void;
-  onBottomSheetOpen: (status: boolean) => void;
-  message: Message<unknown> | null | Pick<Message<unknown>, 'theme'>;
+  message: Message<unknown> | null;
 }
 export default function MessageItem({
   onMessageClick,
-  onBottomSheetOpen,
   message,
 }: MessageItemProps) {
   const { data: userData } = useUserQuery();
@@ -40,19 +34,10 @@ export default function MessageItem({
   return (
     <>
       {PaperDetailData?.data && message ? (
-        'content' in message ? (
-          <EmojiSkin isSmall message={message}>
-            {EmojiSvg ? <EmojiSvg /> : <StyledEmptySvg />}
-            <p>{message.content}</p>
-          </EmojiSkin>
-        ) : (
-          <StyledMessageItem
-            onClick={() => onBottomSheetOpen(true)}
-            isServerData={false}
-          >
-            {EmojiSvg ? <EmojiSvg /> : <StyledEmptySvg />}
-          </StyledMessageItem>
-        )
+        <EmojiSkin isSmall message={message}>
+          {EmojiSvg ? <EmojiSvg /> : <StyledEmptySvg />}
+          <p>{message.content}</p>
+        </EmojiSkin>
       ) : (
         <StyledItem isOwner={false}>
           <button type="button" onClick={handleMessageClick}>

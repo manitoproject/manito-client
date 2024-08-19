@@ -7,7 +7,7 @@ const INIT_LIST = Array(8).fill(null);
 const MAX_LIST_LENGTH = 56;
 
 interface MessageState {
-  list: Array<null | Message<unknown> | Pick<Message<unknown>, 'theme'>>;
+  list: Array<null | Message<unknown>>;
   activeEmojiName: string | null;
   activeMessageIndex: null | number;
   actions: {
@@ -63,15 +63,7 @@ const useMessageStore = create<MessageState>()(
         }),
       addList: () =>
         set((state) => ({
-          list: state.list.map((prev, i) => {
-            if (
-              state.activeMessageIndex === i &&
-              state.activeEmojiName !== null
-            ) {
-              return {
-                theme: state.activeEmojiName,
-              };
-            }
+          list: state.list.map((prev) => {
             if (prev?.theme && !('content' in prev)) {
               return null;
             }

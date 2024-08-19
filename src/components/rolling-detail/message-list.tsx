@@ -10,14 +10,10 @@ import {
 import MessageItem from './message-item';
 
 interface MessageListProps {
-  onBottomSheetOpen: (status: boolean) => void;
   paperId?: number;
 }
 
-export default function MessageList({
-  onBottomSheetOpen,
-  paperId,
-}: MessageListProps) {
+export default function MessageList({ paperId }: MessageListProps) {
   const { data } = usePaperMessagesQuery(paperId);
   const messageList = useMessageList();
   const messageActions = useMessageActions();
@@ -26,7 +22,6 @@ export default function MessageList({
   const handleMessageClick = (i: number) => {
     if (i !== activeIndex) messageActions.setActiveEmojiName(null);
     messageActions.setActiveMessageIndex(i);
-    onBottomSheetOpen(true);
   };
 
   useEffect(() => {
@@ -37,7 +32,6 @@ export default function MessageList({
     <StyledList>
       {messageList.map((message, i) => (
         <MessageItem
-          onBottomSheetOpen={onBottomSheetOpen}
           key={i}
           message={message}
           onMessageClick={() => handleMessageClick(i)}
