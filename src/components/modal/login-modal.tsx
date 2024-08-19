@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 
-import { routes } from '../../router';
+import routes from '../../constants/routes';
 import theme from '../../styles/theme';
-import { Modal } from './modal';
+import { Modal } from '.';
 
 interface LogoinModalProps {
   isOpen: boolean;

@@ -1,43 +1,21 @@
 import { createBrowserRouter } from 'react-router-dom';
 
 import AuthRouter from './auth-router';
+import routes from './constants/routes';
 import Index from './routes';
 import Contact from './routes/contact';
 import ErrorPage from './routes/error-page';
 import Home from './routes/home';
-import Join from './routes/join';
 import KakaoRedirection from './routes/kakako-redirection';
 import Layout from './routes/layout';
 import My from './routes/my';
 import MySetting from './routes/my-setting';
 import Rename from './routes/rename';
-import RollingDetail from './routes/rolling-paper/detail';
-import RollingMessageEdit from './routes/rolling-paper/message-edit';
-import RollingNew from './routes/rolling-paper/new';
-import RollingSetup from './routes/rolling-paper/setup';
+import RollingpaperDetail from './routes/rollingpaper/detail';
+import RollingpaperForm from './routes/rollingpaper/form';
+import RollingpaperSetup from './routes/rollingpaper/setup';
 import SetupIntro from './routes/setup-intro';
-
-export const routes = {
-  index: '/' as const,
-  join: '/join' as const,
-  home: '/home' as const,
-  kakako_redirection: '/login/oauth/kakao/callback' as const,
-  setupIntro: (content?: string) => `/intro/${content ?? ':content'}` as const,
-  my: {
-    default: '/my' as const,
-    setting: () => `${routes.my.default}/setting` as const,
-    rename: () => `${routes.my.setting()}/rename` as const,
-    contact: () => `${routes.my.setting()}/contact` as const,
-  },
-  rolling: {
-    default: '/rolling' as const,
-    setup: () => `${routes.rolling.default}/setup` as const,
-    detail: (id?: number) =>
-      `${routes.rolling.default}/detail/${id ?? ':id'}` as const,
-    new: () => `${routes.rolling.default}/new` as const,
-    messageEdit: () => `${routes.rolling.default}/message/edit` as const,
-  },
-};
+import Signup from './routes/signup';
 
 const router = () =>
   createBrowserRouter([
@@ -61,8 +39,8 @@ const router = () =>
                 {
                   children: [
                     {
-                      path: routes.join,
-                      element: <Join />,
+                      path: routes.signup,
+                      element: <Signup />,
                     },
                     {
                       path: routes.home,
@@ -89,16 +67,12 @@ const router = () =>
                       element: <SetupIntro />,
                     },
                     {
-                      path: routes.rolling.setup(),
-                      element: <RollingSetup />,
+                      path: routes.rollingpaper.setup(),
+                      element: <RollingpaperSetup />,
                     },
                     {
-                      path: routes.rolling.new(),
-                      element: <RollingNew />,
-                    },
-                    {
-                      path: routes.rolling.messageEdit(),
-                      element: <RollingMessageEdit />,
+                      path: routes.rollingpaper.form(),
+                      element: <RollingpaperForm />,
                     },
                   ],
                 },
@@ -110,8 +84,8 @@ const router = () =>
           element: <Layout />,
           children: [
             {
-              path: routes.rolling.detail(),
-              element: <RollingDetail />,
+              path: routes.rollingpaper.detail(),
+              element: <RollingpaperDetail />,
             },
           ],
         },

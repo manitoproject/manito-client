@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
-import { routes } from '../router';
+import routes from '../constants/routes';
 import { createMessage, deleteMessage, editMessage } from '../services/message';
 import { useToastActions } from '../stores/toast-store';
 import queries from './query-key-factory';
@@ -13,7 +13,7 @@ export const useCreateMessage = (paperId: number) => {
     mutationFn: createMessage,
     onSuccess: (data) => {
       if (data.result === 'Success') {
-        navigate(routes.rolling.detail(paperId));
+        navigate(routes.rollingpaper.detail(paperId));
         queryClient.invalidateQueries({ queryKey: queries.messages._def });
       }
     },
@@ -51,13 +51,13 @@ export const useDeleteMessage = ({
   closeModal?: () => void;
 }) => {
   const queryClient = useQueryClient();
-  const toast = useToastActions();
+  const toastActions = useToastActions();
   return useMutation({
     mutationFn: deleteMessage,
     onSuccess: (data) => {
       if (data.result === 'Success') {
         if (closeModal) closeModal();
-        toast.add('편지가 삭제 되었습니다.');
+        toastActions.add('편지가 삭제 되었습니다.');
         queryClient.invalidateQueries({
           queryKey: queries.messages.paper(paperId).queryKey,
         });

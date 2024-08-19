@@ -1,18 +1,18 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { routes } from '../router';
-import { createRollingPaper, deletePaper } from '../services/paper';
+import routes from '../constants/routes';
+import { createRollingpaper, deletePaper } from '../services/paper';
 import { useToastActions } from '../stores/toast-store';
 import queries from './query-key-factory';
 
-export const useCreateRollingPaper = () => {
+export const useCreateRollingpaper = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: createRollingPaper,
+    mutationFn: createRollingpaper,
     onSuccess: (data) => {
-      navigate(routes.rolling.detail(data.data?.id));
+      navigate(routes.rollingpaper.detail(data.data?.id));
       queryClient.invalidateQueries({
         queryKey: queries.papers.user._def,
       });
@@ -43,12 +43,12 @@ export const usePaperDetailQuery = () => {
 
 export const useDeletePaper = () => {
   const queryClient = useQueryClient();
-  const toast = useToastActions();
+  const toastActions = useToastActions();
   return useMutation({
     mutationFn: deletePaper,
     onSuccess: (data) => {
       if (data?.result === 'Success') {
-        toast.add('컨텐츠가 삭제 되었습니다.');
+        toastActions.add('컨텐츠가 삭제 되었습니다.');
         queryClient.invalidateQueries({
           queryKey: queries.papers.user._def,
         });

@@ -3,8 +3,8 @@ import { Suspense } from 'react';
 import { Link } from 'react-router-dom';
 
 import { MainBanner, RollingBadge } from '../assets/imgs';
+import routes from '../constants/routes';
 import { useUserQuery } from '../queries/users';
-import { routes } from '../router';
 import { getFontSizeAndWeight } from '../styles/mixins';
 
 const CONTENTS = [

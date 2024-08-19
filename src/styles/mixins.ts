@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import animalBg from '../assets/imgs/bg/animal-theme@4x-100.jpg';
 import natureBg from '../assets/imgs/bg/nature-theme@4x-100.jpg';
 import spaceBg from '../assets/imgs/bg/space-theme@4x-100.jpg';
-import { EmojiType } from '../components/common/emoji-skin';
+import { EmojiType } from '../components/rollingpaper/emoji-skin';
 import theme from './theme';
 
 export const getBackgroundImageFromThemeName = (

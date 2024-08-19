@@ -1,4 +1,4 @@
-import { routes } from '../router';
+import routes from './routes';
 
 export interface HeaderConfig {
   pathname: () => string;
@@ -9,7 +9,7 @@ export interface HeaderConfig {
 
 const headerMap: HeaderConfig[] = [
   {
-    pathname: () => routes.join,
+    pathname: () => routes.signup,
     title: '회원 가입',
     isShowLeftBtn: true,
     isShowMenuBtn: false,
@@ -27,23 +27,29 @@ const headerMap: HeaderConfig[] = [
     isShowMenuBtn: false,
   },
   {
-    pathname: () => routes.rolling.setup(),
+    pathname: () => routes.rollingpaper.setup(),
     title: '롤링페이퍼 테마선택',
     isShowLeftBtn: true,
     isShowMenuBtn: false,
   },
-  {
-    pathname: () => routes.rolling.new(),
-    title: '편지 작성',
-    isShowLeftBtn: true,
-    isShowMenuBtn: true,
-  },
-  {
-    pathname: () => routes.rolling.messageEdit(),
-    title: '수정하기',
-    isShowLeftBtn: true,
-    isShowMenuBtn: false,
-  },
+  // {
+  //   pathname: () => routes.rollingpaper.edit(),
+  //   title: '편지 선택',
+  //   isShowLeftBtn: true,
+  //   isShowMenuBtn: false,
+  // },
+  // {
+  //   pathname: () => routes.rollingpaper.edit(),
+  //   title: '편지 작성',
+  //   isShowLeftBtn: true,
+  //   isShowMenuBtn: false,
+  // },
+  // {
+  //   pathname: () => routes.rollingpaper.edit(),
+  //   title: '수정하기',
+  //   isShowLeftBtn: true,
+  //   isShowMenuBtn: false,
+  // },
   {
     pathname: () => routes.my.setting(),
     title: '설정',

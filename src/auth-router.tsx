@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from 'react-router-dom';
 
-import { routes } from './router';
+import routes from './constants/routes';
 import { accessToken } from './utils/storage';
 
 export default function AuthRouter() {

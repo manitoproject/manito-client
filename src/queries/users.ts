@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
-import { routes } from '../router';
+import routes from '../constants/routes';
 import { changeNickname, changeProfile, logout } from '../services/users';
 import { useToastActions } from '../stores/toast-store';
 import { token } from '../utils/storage';
@@ -50,7 +50,7 @@ export const useLogout = () => {
 
 export const useProfileChange = () => {
   const queryClient = useQueryClient();
-  const toast = useToastActions();
+  const toastActions = useToastActions();
   return useMutation({
     mutationFn: changeProfile,
     onSuccess: (data) => {
@@ -58,7 +58,7 @@ export const useProfileChange = () => {
         queryClient.invalidateQueries({
           queryKey: queries.users._def,
         });
-        toast.add('변경이 완료 되었습니다.');
+        toastActions.add('변경이 완료 되었습니다.');
       }
     },
   });

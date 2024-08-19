@@ -2,12 +2,13 @@ import styled from '@emotion/styled';
 
 import bg from '../assets/imgs/intro/rollring-paper-B@4x-1002.jpg';
 import { LinkButton } from '../components/common/button/buttons';
-import { routes } from '../router';
+import routes from '../constants/routes';
 import { StyledFixedBackground } from '../styles/mixins';
+
 export default function SetupIntro() {
   return (
     <StyledWrapper>
-      <LinkButton to={routes.rolling.setup()}>시작하기</LinkButton>
+      <LinkButton to={routes.rollingpaper.setup()}>시작하기</LinkButton>
       <StyledBackdrop />
     </StyledWrapper>
   );

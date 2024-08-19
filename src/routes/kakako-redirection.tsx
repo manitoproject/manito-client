@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import routes from '../constants/routes';
 import { useTokenQuery } from '../queries/auth';
-import { routes } from '../router';
 import { token } from '../utils/storage';
 
 export default function KakaoRedirection() {
@@ -14,7 +14,7 @@ export default function KakaoRedirection() {
     if (data?.data) {
       token.setAccessToken(data.data.accessToken);
       if (data.data.isNewUser === 'Y') {
-        navigate(routes.join, { replace: true, state: data.data.isNewUser });
+        navigate(routes.signup, { replace: true, state: data.data.isNewUser });
       } else {
         navigate(routes.home, { replace: true });
       }

@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom';
 
 import { Document, Home, Logout, My } from '../../assets/svg/icons';
 import { defaultKaKaoUserProfile } from '../../constants/profile';
-import useOutsideClick from '../../hooks/common/use-outside-click';
+import routes from '../../constants/routes';
+import useOutsideClick from '../../hooks/common/outside-click';
 import { useLogout, useUserQuery } from '../../queries/users';
-import { routes } from '../../router';
 import {
   StyledInnerNav,
   StyledNav,

@@ -1,4 +1,4 @@
-import { createContext, useContext } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 interface ModalContextType {
   isError: boolean;
@@ -16,5 +16,11 @@ export const useModalContext = () => {
   }
   return context;
 };
+
+export function useModal() {
+  const [isError, setIsError] = useState(false);
+
+  return { isError, setIsError };
+}
 
 export default ModalContext;

@@ -2,9 +2,9 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import { HamburgerMenu, LeftChevron } from '../../assets/svg/icons';
 import headerMap, { HeaderConfig } from '../../constants/header-config';
+import routes from '../../constants/routes';
 import { usePaperDetailQuery } from '../../queries/paper';
 import { useUserQuery } from '../../queries/users';
-import { routes } from '../../router';
 import theme from '../../styles/theme';
 import {
   StyledHeader,

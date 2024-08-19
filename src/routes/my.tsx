@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 
-import MyMessageList from '../components/my/my-message-list';
-import MyPaperList from '../components/my/my-paper-list';
-import PageMenu from '../components/my/page-menu';
-import PaperMenu from '../components/my/paper-menu';
-import UserInfo from '../components/my/user-info';
+import MyInfo from '../components/my/info';
+import PageMenu from '../components/my/menu/page-menu';
+import PaperMenu from '../components/my/menu/paper-menu';
+import MyMessageList from '../components/my/message/list';
+import MyPaperList from '../components/my/paper/list';
 
 export default function My() {
   const [activePaperMenuIndex, setActivePaperMenuIndex] = useState(0);
@@ -13,7 +13,7 @@ export default function My() {
 
   return (
     <StyledWrapper>
-      <UserInfo />
+      <MyInfo />
       <StyledContentsWrapper>
         <PageMenu
           activePageMenuIndex={activePageMenuIndex}
