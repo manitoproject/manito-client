@@ -17,10 +17,11 @@
     "@tanstack/react-query-devtools": "^5.48.0",
     "axios": "^1.7.2",
     "dayjs": "^1.11.12",
-    "framer-motion": "^11.3.19",
+    "framer-motion": "^11.3.28",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-helmet-async": "^2.0.5",
+    "react-modal-sheet": "^3.1.0",
     "react-router-dom": "^6.24.0",
     "swiper": "^11.1.4",
     "zustand": "^4.5.4"

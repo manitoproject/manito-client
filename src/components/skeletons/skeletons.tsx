@@ -51,7 +51,7 @@ export function MyMessageListSkeleton() {
     >
       {Array(8)
         .fill('1')
-        .map((item, index) => (
+        .map((_, index) => (
           <SkeletonItem css={{ height: '180px' }} key={index} />
         ))}
     </div>
@@ -69,7 +69,7 @@ export function MyPaperListSkeleton() {
     >
       {Array(8)
         .fill('1')
-        .map((item, index) => (
+        .map((_, index) => (
           <SkeletonItem css={{ height: '80px' }} key={index} />
         ))}
     </div>

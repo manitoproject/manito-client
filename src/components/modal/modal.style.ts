@@ -8,7 +8,7 @@ export const StyledModalMainWrapper = styled.div`
   right: 0;
   top: 0;
   bottom: 0;
-  z-index: 100;
+  z-index: 99999999999999999999999999999;
   background: rgba(0, 0, 0, 0.3);
   display: flex;
   align-items: center;

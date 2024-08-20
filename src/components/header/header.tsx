@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 
 import { HamburgerMenu, LeftChevron } from '../../assets/svg/icons';
 import headerMap, { HeaderConfig } from '../../constants/header-config';
@@ -40,10 +40,14 @@ export default function Header({ onSidebarOpen }: HeaderProps) {
   const header = headerMap.reduce<EditedHeaderConfig | object>(
     (result, item) => {
       if (paper) {
+        let title = '';
+        if (location.search) title = '편지 작성';
+        else if (location.pathname.includes('edit')) title = '수정하기';
+        else if (location.pathname.includes('create')) title = '편지 선택';
         return {
           headerColor: headerColorByTheme[paper.theme],
           hasBorder: paper.theme === 'animal',
-          title: paper.title,
+          title: title || paper.title,
           isShowLeftBtn: true,
           isShowMenuBtn: true,
         };

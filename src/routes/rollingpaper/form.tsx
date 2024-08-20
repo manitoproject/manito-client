@@ -1,34 +1,40 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { Sheet } from 'react-modal-sheet';
+import { useNavigate } from 'react-router-dom';
 
 import { Button } from '../../components/common/button/buttons';
 import MessageCreateModal from '../../components/modal/message-create-modal';
-import BottomSheet from '../../components/rollingpaper/bottom-sheet/bottom-sheet';
-import { StyledBottomSheetContentWrapper } from '../../components/rollingpaper/bottom-sheet/bottom-sheet.style';
+import BottomSheetButton from '../../components/rollingpaper/bottom-sheet/button';
 import EmojiSheet from '../../components/rollingpaper/bottom-sheet/emoji-sheet/emoji-sheet';
 import ColorList from '../../components/rollingpaper/bottom-sheet/font-sheet/color-list';
 import FontList from '../../components/rollingpaper/bottom-sheet/font-sheet/font-list';
 import FontSheet from '../../components/rollingpaper/bottom-sheet/font-sheet/font-sheet';
+import BottomSheetheader from '../../components/rollingpaper/bottom-sheet/header';
 import EmojiSkin from '../../components/rollingpaper/emoji-skin';
 import { findEmojiSvgFromTheme } from '../../constants/emojis';
 import { useMessageInfo } from '../../hooks';
 import { useEditMessage } from '../../queries/message';
 import { ColorName, FontNameWithoutAppleFont } from '../../styles/theme';
 import {
+  StyledCustomSheet,
   StyledOverlayBackdrop,
-  StyledRollingNew,
-  StyledRollingNewWrapper,
+  StyledRollingFormEmojiWrapper,
+  StyledRollingFormWrapper,
+  StyledSheetContentWrapper,
 } from './form.style';
 
 export default function RollingpaperForm() {
   const messageInfo = useMessageInfo();
+  const navigate = useNavigate();
   const isEditing = 'font' in messageInfo && messageInfo.type === 'edit';
-  const [isEmojiSheetOpen, setIsEmojiSheetOpen] = useState(!isEditing);
-  const [isFontSheetOpen, setIsFontSheetOpen] = useState(isEditing);
+  const isActiveFontTab = messageInfo.activeTab === 'font';
+  const [isEmojiSheetOpen, setIsEmojiSheetOpen] = useState(false);
+  const [isFontSheetOpen, setIsFontSheetOpen] = useState(false);
   const [activeEmoji, setActiveEmoji] = useState(
     isEditing ? messageInfo.theme : '',
   );
+  const [isButtonOpen, setIsButtonOpen] = useState(false);
   const [activeMenuIndex, setActiveMenuIndex] = useState(0);
-  const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
   const emoji = findEmojiSvgFromTheme(activeEmoji);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeFont, setActiveFont] = useState<FontNameWithoutAppleFont>(
@@ -39,26 +45,57 @@ export default function RollingpaperForm() {
   );
   const [content, setContent] = useState(isEditing ? messageInfo.content : '');
 
-  const handleNextSheet = () => {
-    setIsEmojiSheetOpen(false);
-    setIsFontSheetOpen(true);
-  };
   const { mutate } = useEditMessage(messageInfo.paperId);
   const handleMessageSubmit = () => {
     if (isEditing) {
-      mutate({
+      return mutate({
         content,
         font: activeFont,
         fontColor: activeColor,
         id: messageInfo.id,
       });
     }
-    setIsModalOpen(true);
+    if (isActiveFontTab) return setIsModalOpen(true);
+    navigate(`${messageInfo.pathname}?activeTab=font`, {
+      state: messageInfo,
+    });
+    setIsEmojiSheetOpen(false);
+    setIsFontSheetOpen(true);
   };
+
+  const checkTextareaDisabled = () => {
+    if (isEditing || isActiveFontTab) return false;
+    return true;
+  };
+
+  const handleOpenSheet = () => {
+    if (isEditing || isActiveFontTab) setIsFontSheetOpen(true);
+    else setIsEmojiSheetOpen(true);
+  };
+
+  const checkButtonDisable = () => {
+    if (isEditing || isActiveFontTab) {
+      return !content;
+    }
+    return !activeEmoji;
+  };
+
+  useEffect(() => {
+    if (!isActiveFontTab && !isEditing) {
+      setActiveMenuIndex(0);
+      setIsEmojiSheetOpen(true);
+      setIsFontSheetOpen(false);
+    }
+  }, [isEditing, isActiveFontTab]);
+
+  useEffect(() => {
+    if (isEditing) setIsFontSheetOpen(true);
+  }, [isEditing]);
+
   return (
-    <StyledRollingNew>
+    <StyledRollingFormWrapper>
       <StyledOverlayBackdrop themeName={messageInfo.paperTheme} />
-      <StyledRollingNewWrapper>
+      <StyledRollingFormEmojiWrapper>
         <EmojiSkin
           message={{
             font: activeFont,
@@ -67,61 +104,80 @@ export default function RollingpaperForm() {
           }}
         >
           {emoji && <emoji.svg />}
-          {isFontSheetOpen && (
+          {activeEmoji && (
             <textarea
+              disabled={checkTextareaDisabled()}
               value={content}
               onChange={(e) => setContent(e.target.value)}
             />
           )}
         </EmojiSkin>
-      </StyledRollingNewWrapper>
-      {isFontSheetOpen && (
-        <BottomSheet
-          onToggle={() => setIsBottomSheetOpen((prev) => !prev)}
-          isOpen={isBottomSheetOpen}
-        >
-          <StyledBottomSheetContentWrapper>
-            <FontSheet
-              activeMenuIndex={activeMenuIndex}
-              setActiveMenuIndex={setActiveMenuIndex}
-            >
-              {activeMenuIndex === 0 ? (
-                <FontList
-                  activeFont={activeFont}
-                  setActiveFont={setActiveFont}
-                />
-              ) : (
-                <ColorList
-                  theme={messageInfo.paperTheme}
-                  activeColor={activeColor}
-                  setActiveColor={setActiveColor}
-                />
-              )}
-            </FontSheet>
-            <Button onClick={handleMessageSubmit} disabled={!content.length}>
-              작성완료
-            </Button>
-          </StyledBottomSheetContentWrapper>
-        </BottomSheet>
-      )}
-      {isEmojiSheetOpen && (
-        <BottomSheet
-          isDetailPage
-          onToggle={() => setIsEmojiSheetOpen((prev) => !prev)}
-          isOpen={isEmojiSheetOpen}
-        >
-          <StyledBottomSheetContentWrapper>
-            <EmojiSheet
-              activeEmoji={activeEmoji}
-              setActiveEmoji={setActiveEmoji}
-              theme={messageInfo.paperTheme}
-            />
-            <Button onClick={handleNextSheet} disabled={!activeEmoji}>
-              편지 선택하기
-            </Button>
-          </StyledBottomSheetContentWrapper>
-        </BottomSheet>
-      )}
+      </StyledRollingFormEmojiWrapper>
+      <StyledCustomSheet
+        onCloseEnd={() => setIsButtonOpen(true)}
+        detent="content-height"
+        isOpen={isFontSheetOpen}
+        onClose={() => setIsFontSheetOpen(false)}
+        onOpenEnd={() => setIsButtonOpen(false)}
+      >
+        <Sheet.Container>
+          <Sheet.Header>
+            <BottomSheetheader />
+          </Sheet.Header>
+          <Sheet.Content>
+            <StyledSheetContentWrapper>
+              <FontSheet
+                activeMenuIndex={activeMenuIndex}
+                setActiveMenuIndex={setActiveMenuIndex}
+              >
+                {activeMenuIndex === 0 ? (
+                  <FontList
+                    activeFont={activeFont}
+                    setActiveFont={setActiveFont}
+                  />
+                ) : (
+                  <ColorList
+                    theme={messageInfo.paperTheme}
+                    activeColor={activeColor}
+                    setActiveColor={setActiveColor}
+                  />
+                )}
+              </FontSheet>
+              <Button onClick={handleMessageSubmit} disabled={!content.length}>
+                작성완료
+              </Button>
+            </StyledSheetContentWrapper>
+          </Sheet.Content>
+        </Sheet.Container>
+      </StyledCustomSheet>
+
+      <StyledCustomSheet
+        onOpenEnd={() => setIsButtonOpen(false)}
+        onCloseEnd={() => setIsButtonOpen(true)}
+        isOpen={isEmojiSheetOpen}
+        onClose={() => setIsEmojiSheetOpen(false)}
+        detent="content-height"
+      >
+        <Sheet.Container>
+          <Sheet.Header>
+            <BottomSheetheader />
+          </Sheet.Header>
+          <Sheet.Content>
+            <StyledSheetContentWrapper>
+              <EmojiSheet
+                activeEmoji={activeEmoji}
+                setActiveEmoji={setActiveEmoji}
+                theme={messageInfo.paperTheme}
+              />
+              <Button onClick={handleMessageSubmit} disabled={!activeEmoji}>
+                {/* <Button onClick={handleNextSheet} disabled={!activeEmoji}> */}
+                편지 선택하기
+              </Button>
+            </StyledSheetContentWrapper>
+          </Sheet.Content>
+        </Sheet.Container>
+      </StyledCustomSheet>
+
       {isModalOpen && (
         <MessageCreateModal
           color={activeColor}
@@ -136,6 +192,14 @@ export default function RollingpaperForm() {
           }}
         />
       )}
-    </StyledRollingNew>
+      <BottomSheetButton
+        isOpen={isButtonOpen}
+        onOpen={handleOpenSheet}
+        disabled={checkButtonDisable()}
+        onClick={handleMessageSubmit}
+      >
+        {isActiveFontTab || isEditing ? '작성 완료' : '편지 선택하기'}
+      </BottomSheetButton>
+    </StyledRollingFormWrapper>
   );
 }

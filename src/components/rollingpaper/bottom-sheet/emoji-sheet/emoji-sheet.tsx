@@ -36,7 +36,6 @@ export default function EmojiSheet({
 const StyledWrapper = styled.div`
   display: grid;
   gap: 8px 16px;
-  z-index: 9999;
   grid-template-columns: repeat(4, 1fr);
 `;
 
