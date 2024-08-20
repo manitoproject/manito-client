@@ -18,10 +18,14 @@ export const StyledFixedBackground = css`
   position: fixed;
   transform: ${`translateX(-${theme.sizes.padding})`};
   height: ${theme.sizes.calcHeader};
-  width: ${theme.sizes.mobile};
   top: ${theme.sizes.header};
   background-size: cover;
+  background-position: center center;
   background-repeat: no-repeat;
+  width: ${theme.sizes.mobile};
+  @media (max-width: 480px) {
+    width: 100vw;
+  }
 `;
 
 export const getFontSizeAndWeight = (
