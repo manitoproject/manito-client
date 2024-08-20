@@ -24,7 +24,7 @@ export default function MessageItem({
     PaperDetailData?.data?.theme as RollingThemeName
   ]?.find((item) => item.name === message?.theme)?.svg;
 
-  const isOwner = userData?.data?.id === PaperDetailData?.data?.userId;
+  // const isOwner = userData?.data?.id === PaperDetailData?.data?.userId;
 
   const handleEmptyMessageClick = () => {
     if (userData?.data?.id) onEmptyMessageClick();
@@ -41,7 +41,8 @@ export default function MessageItem({
       ) : (
         <StyledItem isOwner={false}>
           <button type="button" onClick={handleEmptyMessageClick}>
-            {!isOwner && <AddCircle />}
+            <AddCircle />
+            {/* {!isOwner && <AddCircle />} */}
           </button>
         </StyledItem>
       )}
