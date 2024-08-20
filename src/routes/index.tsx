@@ -53,4 +53,8 @@ const StyledLogoWrapper = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
+  svg {
+    width: 100%;
+    height: 100%;
+  }
 `;
