@@ -73,6 +73,7 @@ export const StyledButton = styled.button`
     background-color: ${({ theme }) => theme.colors['gray-200']};
     color: ${({ theme }) => theme.colors['gray-500']};
   }
+  color: ${({ theme }) => theme.colors['gray-800']};
   ${getFontSizeAndWeight('heading3', 'bold')};
   border-radius: 4px;
   display: flex;

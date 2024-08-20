@@ -10,6 +10,7 @@ export const StyledFontItem = styled.button<{
   isActive: boolean;
   font: string;
 }>`
+  color: ${({ theme }) => theme.colors['gray-800']};
   font-family: ${({ font }) => font};
   border-radius: 4px;
   font-weight: ${({ weight }) => weight};

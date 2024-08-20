@@ -77,4 +77,7 @@ const StyledListItem = styled.li`
     font-size: inherit;
     font-weight: inherit;
   }
+  button {
+    color: ${({ theme }) => theme.colors['gray-800']};
+  }
 `;

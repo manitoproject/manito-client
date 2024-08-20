@@ -45,6 +45,7 @@ export const StyledModalLink = styled.button`
     padding: 15px;
     background-color: ${({ theme }) => theme.colors['gray-100']};
   }
+  color: ${({ theme }) => theme.colors['gray-800']};
   display: flex;
   gap: 12px;
   flex-direction: column;
