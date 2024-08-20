@@ -19,10 +19,11 @@ export const StyledModalMainWrapper = styled.div`
     display: flex;
     gap: 24px;
     align-items: center;
-    min-width: 400px;
+    width: 400px;
     border-radius: 10px;
     border: 1px solid ${({ theme }) => theme.colors['gray-300']};
     background-color: white;
+    margin: ${({ theme }) => `0 ${theme.sizes.padding}`};
   }
 `;
 
