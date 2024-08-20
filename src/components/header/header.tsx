@@ -1,4 +1,4 @@
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { HamburgerMenu, LeftChevron } from '../../assets/svg/icons';
 import headerMap, { HeaderConfig } from '../../constants/header-config';
