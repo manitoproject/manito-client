@@ -20,7 +20,6 @@ export const StyledFixedBackground = css`
   height: ${theme.sizes.calcHeader};
   top: ${theme.sizes.header};
   background-size: cover;
-  /* background-position: center center; */
   background-repeat: no-repeat;
   width: ${theme.sizes.mobile};
   @media (max-width: 480px) {
