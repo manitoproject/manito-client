@@ -95,7 +95,9 @@ export default function RollingpaperForm() {
   return (
     <StyledRollingFormWrapper>
       <StyledOverlayBackdrop themeName={messageInfo.paperTheme} />
-      <StyledRollingFormEmojiWrapper>
+      <StyledRollingFormEmojiWrapper
+        isEmojiTab={!isActiveFontTab && !isEditing}
+      >
         <EmojiSkin
           message={{
             font: activeFont,

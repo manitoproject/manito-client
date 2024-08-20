@@ -7,11 +7,14 @@ export const StyledRollingFormWrapper = styled.div`
   position: relative;
   width: 100%;
 `;
-export const StyledRollingFormEmojiWrapper = styled.div`
+export const StyledRollingFormEmojiWrapper = styled.div<{
+  isEmojiTab: boolean;
+}>`
   position: relative;
   z-index: 1;
   & > div:nth-of-type(1) {
-    transform: translateY(-24px);
+    transform: ${({ isEmojiTab }) =>
+      `translateY(${isEmojiTab ? '-45px' : '-24px'})`};
   }
 `;
 export const StyledOverlayBackdrop = styled(StyledBackdrop)``;
