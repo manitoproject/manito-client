@@ -9,12 +9,20 @@ import queries from './query-key-factory';
 export const useCreateMessage = (paperId: number) => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+  const toastActions = useToastActions();
   return useMutation({
     mutationFn: createMessage,
     onSuccess: (data) => {
       if (data.result === 'Success') {
-        navigate(routes.rollingpaper.detail(paperId));
+        navigate(routes.rollingpaper.detail(paperId), { replace: true });
         queryClient.invalidateQueries({ queryKey: queries.messages._def });
+      }
+      if (data.result === 'Fail') {
+        if (data.description === 'Position is not available') {
+          toastActions.add('이미 자리에 메시지가 존재합니다.');
+          navigate(routes.rollingpaper.detail(paperId));
+          queryClient.invalidateQueries({ queryKey: queries.messages._def });
+        }
       }
     },
   });
