@@ -45,7 +45,7 @@ export default function MyPaperItem({ paper }: MyPaperItemProps) {
   );
 }
 
-const StyledItem = styled.li`
+export const StyledItem = styled.li`
   a {
     border-radius: 4px;
     background-color: ${({ theme }) => theme.colors['powderBlue-50']};

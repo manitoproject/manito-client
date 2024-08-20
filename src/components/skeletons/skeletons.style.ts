@@ -1,13 +1,11 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-export const SkeletonItem = styled.div`
-  width: 100px;
-  height: 25px;
+const skeletonAnimation = css`
   background-color: #f2f2f2;
   position: relative;
   overflow: hidden;
-  border-radius: 4px;
-
+  border-radius: 6px;
   @keyframes skeleton-gradient {
     0% {
       background-color: rgba(165, 165, 165, 0.1);
@@ -29,4 +27,8 @@ export const SkeletonItem = styled.div`
     height: 100%;
     animation: skeleton-gradient 1.5s infinite ease-in-out;
   }
+`;
+
+export const SkeletonItem = styled.div`
+  ${skeletonAnimation}
 `;

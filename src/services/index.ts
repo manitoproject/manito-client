@@ -21,11 +21,12 @@ export const discordRequester = axios.create({
 });
 
 apiRequester.interceptors.request.use((config) => {
-  if (!token.getAccessToken()) {
+  const accessToken = token.getAccessToken();
+  if (!accessToken) {
     window.location.href = '/';
     return config;
   }
-  config.headers.Authorization = `Bearer ${token.getAccessToken()}`;
+  config.headers.Authorization = `Bearer ${accessToken}`;
   return config;
 });
 

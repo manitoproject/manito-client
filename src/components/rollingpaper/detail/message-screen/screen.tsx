@@ -9,12 +9,11 @@ import MessageScreenButtons from './buttons';
 import MessageScreenSwipe from './swipe';
 
 interface MessageScreenProps {
-  paperId?: number;
   userId?: number;
 }
 
-export default function MessageScreen({ paperId, userId }: MessageScreenProps) {
-  const { data: messageData } = usePaperMessagesQuery(paperId);
+export default function MessageScreen({ userId }: MessageScreenProps) {
+  const { data: messageData } = usePaperMessagesQuery();
   const activeIndex = useMessageScreenIndex();
   const message = messageData?.data?.[activeIndex];
   const messages = messageData?.data;

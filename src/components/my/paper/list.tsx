@@ -2,11 +2,14 @@ import styled from '@emotion/styled';
 
 import { useUserPaperQuery } from '../../../queries/paper';
 import { useUserQuery } from '../../../queries/users';
+import { MyPaperListSkeleton } from '../../skeletons/skeletons';
 import MyPaperItem from './item';
 
 export default function MyPaperList() {
   const { data: userData } = useUserQuery();
-  const { data } = useUserPaperQuery(userData?.data?.id);
+  const { data, isLoading } = useUserPaperQuery(userData?.data?.id);
+
+  if (isLoading) return <MyPaperListSkeleton />;
 
   return (
     <StyledList>
@@ -17,7 +20,7 @@ export default function MyPaperList() {
   );
 }
 
-const StyledList = styled.ul`
+export const StyledList = styled.ul`
   display: flex;
   gap: 8px;
   flex-direction: column;

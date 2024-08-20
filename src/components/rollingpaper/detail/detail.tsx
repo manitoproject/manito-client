@@ -1,15 +1,13 @@
 import styled from '@emotion/styled';
 import { useEffect } from 'react';
 
-import { usePaperDetailQuery } from '../../../queries/paper';
 import { useMessageScreenActions } from '../../../stores/message-screen-store';
 import { useMessageActions } from '../../../stores/message-store';
 import { useToastActions } from '../../../stores/toast-store';
-import DetailHeader from './detail-header';
+import DetailHeader from './header/detail-header';
 import MessageList from './message-list';
 
 export default function Detail() {
-  const { data } = usePaperDetailQuery();
   const messageScreen = useMessageScreenActions();
   const messageActions = useMessageActions();
   const toastActions = useToastActions();
@@ -24,10 +22,7 @@ export default function Detail() {
 
   return (
     <StyledWrapper>
-      <DetailHeader
-        onMessageScreenOpen={handleMessageScreenOpen}
-        paperId={data?.data?.id}
-      />
+      <DetailHeader onMessageScreenOpen={handleMessageScreenOpen} />
       <MessageList />
     </StyledWrapper>
   );

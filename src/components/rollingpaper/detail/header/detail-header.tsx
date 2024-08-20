@@ -1,31 +1,28 @@
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import { Clip, KakaoFill } from '../../../assets/svg/icons';
-import { usePaperMessagesQuery } from '../../../queries/message';
-import { useToastActions } from '../../../stores/toast-store';
-import theme from '../../../styles/theme';
-import { Modal } from '../../modal';
-import LoginModal from '../../modal/login-modal';
+import { Clip, KakaoFill } from '../../../../assets/svg/icons';
+import { useToastActions } from '../../../../stores/toast-store';
+import theme from '../../../../styles/theme';
+import { Modal } from '../../../modal';
+import LoginModal from '../../../modal/login-modal';
 import {
   StyledModalLink,
   StyledModalLinks,
   StyledRollingHeader,
-} from './detail-header.style';
+} from '../detail-header.style';
+import DetailMessagelength from './message-length';
 
 interface DetailHeaderProps {
-  paperId?: number;
   onMessageScreenOpen: () => void;
 }
 
 export default function DetailHeader({
-  paperId,
   onMessageScreenOpen,
 }: DetailHeaderProps) {
   const toastActions = useToastActions();
   const [isCopyModalOpen, setIsCopyModalOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-  const { data: messageData } = usePaperMessagesQuery(paperId);
   const location = useLocation();
 
   const handleUrlCopy = async () => {
@@ -39,9 +36,7 @@ export default function DetailHeader({
 
   return (
     <StyledRollingHeader>
-      <span>
-        <strong>{messageData?.data?.length}</strong>개의 작성물
-      </span>
+      <DetailMessagelength />
       <div>
         <button onClick={onMessageScreenOpen}>상세보기</button>
         <button onClick={() => setIsCopyModalOpen(true)}>

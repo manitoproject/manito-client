@@ -1,4 +1,9 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import {
+  useMutation,
+  useQuery,
+  useQueryClient,
+  useSuspenseQuery,
+} from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
 import routes from '../constants/routes';
@@ -7,10 +12,16 @@ import { useToastActions } from '../stores/toast-store';
 import { token } from '../utils/storage';
 import queries from './query-key-factory';
 
+export const useUserSuspenseQuery = () => {
+  return useSuspenseQuery({
+    ...queries.users.detail(),
+    staleTime: 1000 * 60 * 10,
+  });
+};
+
 export const useUserQuery = () => {
   return useQuery({
     ...queries.users.detail(),
-    enabled: !!token.getAccessToken(),
     staleTime: 1000 * 60 * 10,
   });
 };

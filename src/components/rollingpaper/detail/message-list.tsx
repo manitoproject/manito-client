@@ -9,11 +9,12 @@ import {
   useMessageActions,
   useMessageList,
 } from '../../../stores/message-store';
+import { MyMessageListSkeleton } from '../../skeletons/skeletons';
 import MessageItem from './message-item';
 
 export default function MessageList() {
   const { data: paperData } = usePaperDetailQuery();
-  const { data } = usePaperMessagesQuery(paperData?.data?.id);
+  const { data, isLoading } = usePaperMessagesQuery();
   const messageList = useMessageList();
   const messageActions = useMessageActions();
   const navigate = useNavigate();
@@ -27,6 +28,8 @@ export default function MessageList() {
   useEffect(() => {
     messageActions.snycList(data?.data);
   }, [data, messageActions]);
+
+  if (isLoading) return <MyMessageListSkeleton />;
 
   return (
     <StyledList>

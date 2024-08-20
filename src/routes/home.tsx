@@ -1,10 +1,11 @@
 import styled from '@emotion/styled';
+import { Suspense } from 'react';
 import { Link } from 'react-router-dom';
 
 import { MainBanner, RollingBadge } from '../assets/imgs';
+import Greeting from '../components/home/greeting';
+import { GreetingSkeleton } from '../components/skeletons/skeletons';
 import routes from '../constants/routes';
-import { useUserQuery } from '../queries/users';
-import { getFontSizeAndWeight } from '../styles/mixins';
 
 const CONTENTS = [
   {
@@ -28,16 +29,12 @@ const CONTENTS = [
 ];
 
 export default function Home() {
-  const { data } = useUserQuery();
   return (
     <StyledWrapper>
       <section>
-        <StyledHeading>
-          <p>{data?.data?.nickname}님 안녕하세요!</p>
-          <p>
-            <strong>다양한 컨텐츠</strong>를 즐겨보세요.
-          </p>
-        </StyledHeading>
+        <Suspense fallback={<GreetingSkeleton />}>
+          <Greeting />
+        </Suspense>
         <StyeldBanner>
           <MainBanner />
         </StyeldBanner>
@@ -70,23 +67,7 @@ const StyledWrapper = styled.div`
     gap: 32px;
   }
 `;
-const StyledHeading = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  p:nth-of-type(1) {
-    color: ${(props) => props.theme.colors['gray-800']};
 
-    ${getFontSizeAndWeight('heading2', 'medium')}
-  }
-  p:nth-of-type(2) {
-    color: ${(props) => props.theme.colors['gray-900']};
-    ${getFontSizeAndWeight('heading1', 'bold')}
-    strong {
-      color: ${(props) => props.theme.colors['powderBlue-900']};
-    }
-  }
-`;
 const StyeldBanner = styled.div`
   width: 100%;
   overflow: hidden;

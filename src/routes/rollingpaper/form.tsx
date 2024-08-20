@@ -19,7 +19,7 @@ import {
   StyledRollingNewWrapper,
 } from './form.style';
 
-export default function RollingpaperEditForm() {
+export default function RollingpaperForm() {
   const messageInfo = useMessageInfo();
   const isEditing = 'font' in messageInfo && messageInfo.type === 'edit';
   const [isEmojiSheetOpen, setIsEmojiSheetOpen] = useState(!isEditing);
@@ -43,7 +43,6 @@ export default function RollingpaperEditForm() {
     setIsEmojiSheetOpen(false);
     setIsFontSheetOpen(true);
   };
-  console.log(messageInfo);
   const { mutate } = useEditMessage(messageInfo.paperId);
   const handleMessageSubmit = () => {
     if (isEditing) {

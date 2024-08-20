@@ -11,11 +11,9 @@ import {
 import { StyledBackdrop, StyledRollingDetail } from './detail.style';
 
 export default function RollingpaperDetail() {
-  const { data, isFetching } = usePaperDetailQuery();
+  const { data } = usePaperDetailQuery();
   const isScreenVisible = useMessageScreenVisible();
   const messageScreen = useMessageScreenActions();
-
-  const currentPaperId = data?.data?.id;
 
   useEffect(() => {
     return () => {
@@ -26,13 +24,11 @@ export default function RollingpaperDetail() {
     };
   }, [isScreenVisible, messageScreen]);
 
-  if (isFetching) return <div>로딩중</div>;
-
   return (
     <StyledRollingDetail>
       <ReactHelmet title={`${data?.data?.title} - ${TITLE}`} />
       {isScreenVisible ? (
-        <MessageScreen userId={data?.data?.userId} paperId={currentPaperId} />
+        <MessageScreen userId={data?.data?.userId} />
       ) : (
         <Detail />
       )}

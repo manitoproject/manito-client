@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import routes from '../constants/routes';
 import { createMessage, deleteMessage, editMessage } from '../services/message';
@@ -20,11 +20,12 @@ export const useCreateMessage = (paperId: number) => {
   });
 };
 
-export const usePaperMessagesQuery = (paperId?: number) => {
+export const usePaperMessagesQuery = () => {
+  const { id } = useParams();
   return useQuery({
-    ...queries.messages.paper(paperId),
+    ...queries.messages.paper(Number(id)),
     staleTime: 1000 * 60 * 60 * 6, // 삭제 바람!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    enabled: !!paperId,
+    enabled: !!id,
   });
 };
 

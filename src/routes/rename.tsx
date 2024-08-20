@@ -1,6 +1,6 @@
 import { Button } from '../components/common/button/buttons';
 import NameForm from '../components/common/name-form';
-import { defaultKaKaoUserProfile } from '../constants/profile';
+import { KAKAO_PROFILE_URL } from '../constants/profile';
 import { nicknameMaxLength } from '../constants/regex-patterns';
 import { useNameForm } from '../hooks';
 import {
@@ -33,7 +33,7 @@ export default function Rename() {
           <img
             src={
               user?.isOriginProfile === 'N'
-                ? defaultKaKaoUserProfile
+                ? KAKAO_PROFILE_URL
                 : user?.profileImage
             }
             alt="avartar"
