@@ -2,44 +2,42 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { getRollingThemeName } from '../../../../constants/theme-list';
-import { useDeleteMessage } from '../../../../queries/message';
-import { useUserQuery } from '../../../../queries/users';
-import routes from '../../../../routes';
-import { useMessageScreenActions } from '../../../../stores/message-screen-store';
-import theme from '../../../../styles/theme';
-import { Message } from '../../../../types/message';
-import { Button } from '../../../common/button/buttons';
-import DeleteModal from '../../../modal/delete-modal';
+import { getRollingThemeName } from '../../../constants/theme-list';
+import { useDeleteMessage } from '../../../queries/message';
+import { useUserQuery } from '../../../queries/users';
+import routes from '../../../routes';
+import theme from '../../../styles/theme';
+import { Message } from '../../../types/message';
+import { Button } from '../../common/button/buttons';
+import DeleteModal from '../../modal/delete-modal';
 
-interface MessageScreenButtonsProps {
+interface DetailMessageButtonsProps {
   message: Message<UserIdAndNickname>;
   authorId?: number;
 }
 
-export default function MessageScreenButtons({
+export default function DetailMessageButtons({
   message,
   authorId,
-}: MessageScreenButtonsProps) {
-  const messageScreenActions = useMessageScreenActions();
+}: DetailMessageButtonsProps) {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { data: userData } = useUserQuery();
   const { mutate } = useDeleteMessage({
     paperId: message?.paperId,
-    closeModal: () => messageScreenActions.close(),
+    isDetailPaer: true,
   });
   const user = userData?.data;
 
   return (
-    <StyledMessageScreenButtons>
+    <StyledDetailMessageButtons>
       <Button
         css={{
           background: theme.colors.white,
           color: theme.colors.black,
           border: `1px solid ${theme.colors['gray-300']}`,
         }}
-        onClick={messageScreenActions.close}
+        onClick={() => navigate(routes.rollingpaper.list(message.paperId))}
       >
         닫기
       </Button>
@@ -71,11 +69,13 @@ export default function MessageScreenButtons({
           handler={() => mutate(message?.id)}
         />
       )}
-    </StyledMessageScreenButtons>
+    </StyledDetailMessageButtons>
   );
 }
 
-const StyledMessageScreenButtons = styled.div`
+const StyledDetailMessageButtons = styled.div`
   display: flex;
+  position: relative;
+  z-index: 50;
   gap: 8px;
 `;

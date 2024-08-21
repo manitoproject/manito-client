@@ -11,19 +11,13 @@ interface MessageState {
   actions: {
     snycList: (serverData?: Message<unknown>[]) => void;
     reset: () => void;
-    hasList: () => boolean;
   };
 }
 
 const useMessageStore = create<MessageState>()(
-  devtools((set, get) => ({
+  devtools((set) => ({
     list: INIT_LIST,
     actions: {
-      hasList: () => {
-        return get().list.some((item) => {
-          return item?.theme && 'id' in item;
-        });
-      },
       snycList: (serverData?: Message<unknown>[]) =>
         set((state) => {
           if (!serverData?.length) return { list: state.list };

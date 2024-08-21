@@ -13,8 +13,10 @@ const routes = {
   rollingpaper: {
     default: '/rollingpaper' as const,
     setup: () => `${routes.rollingpaper.default}/setup` as const,
+    list: (id?: number) =>
+      `${routes.rollingpaper.default}/${id ?? ':id'}` as const,
     detail: (id?: number) =>
-      `${routes.rollingpaper.default}/detail/${id ?? ':id'}` as const,
+      `${routes.rollingpaper.default}/${id ?? ':id'}/detail` as const,
     form: (type?: 'create' | 'edit', id?: number) =>
       `${routes.rollingpaper.default}/${id || ':id'}/${
         type || ':type'
@@ -23,3 +25,8 @@ const routes = {
 };
 
 export default routes;
+
+// rollingpaper/80
+// rollingpaper/80/detail
+// rollingpaper/80/create
+// rollingpaper/80/edit

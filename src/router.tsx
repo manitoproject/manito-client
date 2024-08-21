@@ -13,6 +13,7 @@ import MySetting from './routes/my-setting';
 import Rename from './routes/rename';
 import RollingpaperDetail from './routes/rollingpaper/detail';
 import RollingpaperForm from './routes/rollingpaper/form';
+import RollingpaperList from './routes/rollingpaper/list';
 import RollingpaperSetup from './routes/rollingpaper/setup';
 import SetupIntro from './routes/setup-intro';
 import Signup from './routes/signup';
@@ -74,6 +75,10 @@ const router = () =>
                       path: routes.rollingpaper.form(),
                       element: <RollingpaperForm />,
                     },
+                    {
+                      path: routes.rollingpaper.detail(),
+                      element: <RollingpaperDetail />,
+                    },
                   ],
                 },
               ],
@@ -84,8 +89,8 @@ const router = () =>
           element: <Layout />,
           children: [
             {
-              path: routes.rollingpaper.detail(),
-              element: <RollingpaperDetail />,
+              path: routes.rollingpaper.list(),
+              element: <RollingpaperList />,
             },
           ],
         },

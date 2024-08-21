@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { Clip, KakaoFill } from '../../../../assets/svg/icons';
-import { useMessageScreenActions } from '../../../../stores/message-screen-store';
-import { useMessageActions } from '../../../../stores/message-store';
+import { usePaperMessagesQuery } from '../../../../queries/message';
+import routes from '../../../../routes';
 import { useToastActions } from '../../../../stores/toast-store';
 import theme from '../../../../styles/theme';
 import { Modal } from '../../../modal';
@@ -15,19 +15,20 @@ import {
 } from './detail-header.style';
 import DetailMessagelength from './message-length';
 
-export default function DetailHeader() {
+interface DetailHeaderProps {
+  paperId?: number;
+}
+
+export default function DetailHeader({ paperId }: DetailHeaderProps) {
   const location = useLocation();
+  const { data } = usePaperMessagesQuery();
   const [isCopyModalOpen, setIsCopyModalOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const toastActions = useToastActions();
-  const messageScreenActions = useMessageScreenActions();
-  const messageActions = useMessageActions();
-
-  const handleMessageScreenOpen = () => {
-    if (messageActions.hasList()) {
-      messageScreenActions.resetActiveIndex();
-      return messageScreenActions.open();
-    }
+  const navigate = useNavigate();
+  const handleShowDetailMessage = () => {
+    if (data?.data?.length)
+      return navigate(routes.rollingpaper.detail(paperId));
     toastActions.add('상세보기 내역이 없습니다.');
   };
 
@@ -44,7 +45,7 @@ export default function DetailHeader() {
     <StyledRollingHeader>
       <DetailMessagelength />
       <div>
-        <button onClick={handleMessageScreenOpen}>상세보기</button>
+        <button onClick={handleShowDetailMessage}>상세보기</button>
         <button onClick={() => setIsCopyModalOpen(true)}>
           <Clip />
         </button>

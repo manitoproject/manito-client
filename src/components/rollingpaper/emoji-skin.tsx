@@ -1,10 +1,7 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { useNavigate } from 'react-router-dom';
 
 import { Font, fonts } from '../../constants/fonts';
-import routes from '../../routes';
-import { useMessageScreenActions } from '../../stores/message-screen-store';
 import { getTextareaSize } from '../../styles/mixins';
 import { ColorName } from '../../styles/theme';
 import { Message } from '../../types/message';
@@ -16,9 +13,11 @@ interface EmojiItemProps {
     Partial<Pick<Message<unknown>, 'position'>> &
     Partial<Pick<Message<unknown>, 'theme'>>;
   paperId?: number;
+  onClick?: () => void;
 }
 
 export type EmojiType = 'Circle' | 'Square' | 'Clover' | 'Star' | 'Polygon';
+
 const EMOJI_TYPE: EmojiType[] = [
   'Circle',
   'Square',
@@ -30,11 +29,9 @@ const EMOJI_TYPE: EmojiType[] = [
 export default function EmojiSkin({
   children,
   isSmall = false,
-  paperId,
+  onClick,
   message,
 }: EmojiItemProps) {
-  const navigate = useNavigate();
-  const messageScreenActions = useMessageScreenActions();
   const font = fonts.find((font) => {
     return font.name === message.font;
   });
@@ -43,22 +40,9 @@ export default function EmojiSkin({
     return message.theme?.includes(type);
   });
 
-  const handleNavigate = () => {
-    if (!isSmall) return;
-    if (paperId) {
-      messageScreenActions.setActiveIndex(message?.position ?? 0);
-      messageScreenActions.open();
-      return navigate(routes.rollingpaper.detail(paperId), {
-        state: routes.my.default,
-      });
-    }
-    messageScreenActions.open();
-    messageScreenActions.setActiveIndex(message.position ?? 1);
-  };
-
   return (
     <StyledEmojiWrapper
-      onClick={handleNavigate}
+      onClick={onClick}
       isSmall={isSmall}
       font={font}
       color={message.fontColor}

@@ -12,7 +12,7 @@ export const useCreateRollingpaper = () => {
   return useMutation({
     mutationFn: createRollingpaper,
     onSuccess: (data) => {
-      navigate(routes.rollingpaper.detail(data.data?.id));
+      navigate(routes.rollingpaper.list(data.data?.id));
       queryClient.invalidateQueries({
         queryKey: queries.papers.user._def,
       });
@@ -37,7 +37,6 @@ export const usePaperDetailQuery = () => {
   });
 
   if (query.isError || query.data?.result === 'Fail') throw new Error();
-
   return query;
 };
 

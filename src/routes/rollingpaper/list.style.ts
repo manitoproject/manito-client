@@ -6,7 +6,7 @@ import {
   StyledFixedBackground,
 } from '../../styles/mixins';
 
-export const StyledRollingDetail = styled.div`
+export const StyledRollingList = styled.div`
   width: 100%;
 `;
 
@@ -15,4 +15,12 @@ export const StyledBackdrop = styled.div<{ themeName?: RollingThemeName }>`
     background-image: ${`url(${getBackgroundImageFromThemeName(themeName)})`};
     ${StyledFixedBackground};
   `}
+`;
+export const StyledListWrapper = styled.div`
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  z-index: 50;
 `;

@@ -23,7 +23,7 @@ export const StyledOverlay = styled.div<Pick<SideMenuProps, 'isOpen'>>`
   position: absolute;
   width: 100%;
   top: 0;
-  z-index: 52;
+  z-index: 999999999;
   background-color: rgba(0, 0, 0, 0.2);
   height: 100%;
 `;
@@ -59,7 +59,7 @@ export const StyledNav = styled.nav<Pick<SideMenuProps, 'isOpen'>>`
   position: absolute;
   top: 0;
   right: ${(props) => (props.isOpen ? 0 : '-240px')};
-  z-index: 999;
+  z-index: 9999999999999999;
   transition: right 300ms ease;
   box-shadow: ${(props) =>
     props.isOpen ? ' 0px 0px 4px 0px rgba(0, 0, 0, 0.2)' : 'none'};

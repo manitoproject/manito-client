@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Sheet } from 'react-modal-sheet';
 
-import { StyledBackdrop } from './detail.style';
+import { StyledBackdrop } from './list.style';
 
 export const StyledRollingFormWrapper = styled.div`
   position: relative;

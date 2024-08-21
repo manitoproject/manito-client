@@ -1,4 +1,9 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import {
+  useMutation,
+  useQuery,
+  useQueryClient,
+  useSuspenseQuery,
+} from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import routes from '../routes';
@@ -14,13 +19,13 @@ export const useCreateMessage = (paperId: number) => {
     mutationFn: createMessage,
     onSuccess: (data) => {
       if (data.result === 'Success') {
-        navigate(routes.rollingpaper.detail(paperId), { replace: true });
+        navigate(routes.rollingpaper.list(paperId), { replace: true });
         queryClient.invalidateQueries({ queryKey: queries.messages._def });
       }
       if (data.result === 'Fail') {
         if (data.description === 'Position is not available') {
           toastActions.add('이미 자리에 메시지가 존재합니다.');
-          navigate(routes.rollingpaper.detail(paperId));
+          navigate(routes.rollingpaper.list(paperId));
           queryClient.invalidateQueries({ queryKey: queries.messages._def });
         }
       }
@@ -37,8 +42,8 @@ export const usePaperMessagesQuery = () => {
   });
 };
 
-export const useUserMessagesQuery = () => {
-  return useQuery({
+export const useUserMessagesSuspenseQuery = () => {
+  return useSuspenseQuery({
     ...queries.messages.user(),
     staleTime: 1000 * 60 * 60,
     select: (data) => {
@@ -54,18 +59,19 @@ export const useUserMessagesQuery = () => {
 
 export const useDeleteMessage = ({
   paperId,
-  closeModal,
+  isDetailPaer = false,
 }: {
   paperId: number;
-  closeModal?: () => void;
+  isDetailPaer?: boolean;
 }) => {
   const queryClient = useQueryClient();
   const toastActions = useToastActions();
+  const navigate = useNavigate();
   return useMutation({
     mutationFn: deleteMessage,
     onSuccess: (data) => {
       if (data.result === 'Success') {
-        if (closeModal) closeModal();
+        if (isDetailPaer) navigate(-1);
         toastActions.add('편지가 삭제 되었습니다.');
         queryClient.invalidateQueries({
           queryKey: queries.messages.paper(paperId).queryKey,

@@ -4,38 +4,39 @@ import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperType } from 'swiper/types';
 
-import { RightChevron } from '../../../../assets/svg/icons';
-import { findEmojiSvgFromTheme } from '../../../../constants/emojis';
-import { useBoundaryIndex } from '../../../../hooks';
-import {
-  useMessageScreenActions,
-  useMessageScreenIndex,
-} from '../../../../stores/message-screen-store';
-import { Message } from '../../../../types/message';
-import EmojiSkin from '../../emoji-skin';
+import { RightChevron } from '../../../assets/svg/icons';
+import { findEmojiSvgFromTheme } from '../../../constants/emojis';
+import { useBoundaryIndex } from '../../../hooks';
+import { Message } from '../../../types/message';
+import EmojiSkin from '../emoji-skin';
 
 interface DetailSwiperProps {
   messages: Message<UserIdAndNickname>[];
+  activeIndex: number;
+  setActiveIndex: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export default function MessageScreenSwipe({ messages }: DetailSwiperProps) {
+export default function MessageSwipe({
+  messages,
+  activeIndex,
+  setActiveIndex,
+}: DetailSwiperProps) {
   const swiperRef = useRef<SwiperType>();
-  const messageScreenAction = useMessageScreenActions();
-  const activeScreenIndex = useMessageScreenIndex();
+
   const { isBeginning, isEnd, onBoundaryUpdate } = useBoundaryIndex(
-    activeScreenIndex,
+    activeIndex,
     messages.length,
   );
 
   const handleSlideChange = (e: SwiperType) => {
     const { isBeginning, isEnd, activeIndex } = e;
     onBoundaryUpdate(isBeginning, isEnd);
-    messageScreenAction.setActiveIndex(activeIndex);
+    setActiveIndex(activeIndex);
   };
 
   return (
     <StyledSwiper
-      initialSlide={activeScreenIndex}
+      initialSlide={activeIndex}
       onBeforeInit={(swiper) => {
         swiperRef.current = swiper;
       }}

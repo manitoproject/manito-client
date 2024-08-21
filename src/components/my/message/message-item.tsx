@@ -8,12 +8,12 @@ import { useDeleteMessage } from '../../../queries/message';
 import routes from '../../../routes';
 import { Message } from '../../../types/message';
 import DeleteModal from '../../modal/delete-modal';
+import EmojiSkin from '../../rollingpaper/emoji-skin';
 import {
   StyledEditButton,
   StyledMessageItem,
   StyledTrashButton,
-} from '../../rollingpaper/detail/list/item.style';
-import EmojiSkin from '../../rollingpaper/emoji-skin';
+} from '../../rollingpaper/list/item.style';
 
 interface MyMessageItemProps {
   message: Message<User>;
@@ -26,7 +26,7 @@ export default function MyMessageItem({ message }: MyMessageItemProps) {
   const navigate = useNavigate();
   const EmojiSvg = findEmojiSvgFromTheme(message.theme)?.svg;
 
-  const handleMessageClick = () => {
+  const handleEditMessage = () => {
     navigate(routes.rollingpaper.form('edit', message.paperId), {
       state: {
         ...message,
@@ -35,15 +35,26 @@ export default function MyMessageItem({ message }: MyMessageItemProps) {
     });
   };
 
+  const handleClick = async () => {
+    navigate(routes.rollingpaper.detail(message.paperId), {
+      state: message.id,
+    });
+  };
+
   return (
     <StyledMessageItem isServerData>
-      <StyledEditButton type="button" onClick={handleMessageClick}>
+      <StyledEditButton type="button" onClick={handleEditMessage}>
         <EditSquare />
       </StyledEditButton>
       <StyledTrashButton type="button" onClick={() => setIsModalOpen(true)}>
         <Trash />
       </StyledTrashButton>
-      <EmojiSkin paperId={message.paperId} isSmall message={message}>
+      <EmojiSkin
+        onClick={handleClick}
+        paperId={message.paperId}
+        isSmall
+        message={message}
+      >
         {EmojiSvg && <EmojiSvg />}
         <p>{message.content}</p>
       </EmojiSkin>

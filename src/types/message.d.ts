@@ -23,5 +23,5 @@ interface Message<T> {
   fontColor: ColorName;
   isPublic: YerOrNo;
   position: number;
-  user: T;
+  user?: T;
 }

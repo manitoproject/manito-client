@@ -1,29 +1,32 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 
 import MyInfo from '../components/my/info';
-import PageMenu from '../components/my/menu/page-menu';
-import PaperMenu from '../components/my/menu/paper-menu';
-import MyMessageList from '../components/my/message/list';
-import MyPaperList from '../components/my/paper/list';
+import MyContentsTab from '../components/my/menu/contenst-tab';
+import ThemeTab from '../components/my/menu/theme-tab';
+import MyMessageList from '../components/my/message/message-list';
+import MyPaperList from '../components/my/paper/paper-list';
+import { MyMessageListSkeleton } from '../components/skeletons/skeletons';
 
 export default function My() {
-  const [activePaperMenuIndex, setActivePaperMenuIndex] = useState(0);
-  const [activePageMenuIndex, setActivePageMenuIndex] = useState(0);
+  const [activeContentTabIndex, setActiveContentTabIndex] = useState(0);
 
   return (
     <StyledWrapper>
       <MyInfo />
       <StyledContentsWrapper>
-        <PageMenu
-          activePageMenuIndex={activePageMenuIndex}
-          onActivePageMenuChange={(i: number) => setActivePageMenuIndex(i)}
+        <MyContentsTab
+          activeIndex={activeContentTabIndex}
+          onChangeIndex={setActiveContentTabIndex}
         />
-        <PaperMenu
-          onActivePaperMenuIndex={activePaperMenuIndex}
-          onActivePaperMenuChange={(i: number) => setActivePaperMenuIndex(i)}
-        />
-        {activePageMenuIndex === 0 ? <MyPaperList /> : <MyMessageList />}
+        <ThemeTab />
+        {!activeContentTabIndex ? (
+          <MyPaperList />
+        ) : (
+          <Suspense fallback={<MyMessageListSkeleton />}>
+            <MyMessageList />
+          </Suspense>
+        )}
       </StyledContentsWrapper>
     </StyledWrapper>
   );

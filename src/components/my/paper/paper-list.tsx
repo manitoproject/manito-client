@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { useUserPaperQuery } from '../../../queries/paper';
 import { useUserQuery } from '../../../queries/users';
 import { MyPaperListSkeleton } from '../../skeletons/skeletons';
-import MyPaperItem from './item';
+import MyPaperItem from './paper-item';
 
 export default function MyPaperList() {
   const { data: userData } = useUserQuery();
