@@ -24,7 +24,6 @@ const useMessageStore = create<MessageState>()(
           return item?.theme && 'id' in item;
         });
       },
-
       snycList: (serverData?: Message<unknown>[]) =>
         set((state) => {
           if (!serverData?.length) return { list: state.list };

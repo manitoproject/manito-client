@@ -19,7 +19,7 @@ export default function MessageScreenSwipe({
   activeIndex,
   messages,
 }: DetailSwiperProps) {
-  const messageScreen = useMessageScreenActions();
+  const messageScreenAction = useMessageScreenActions();
   const sortedMessages = messages.sort((a, b) => a.position - b.position);
   const [isBeginning, setIsBeginning] = useState(
     activeIndex === 0 ? true : false,
@@ -30,7 +30,7 @@ export default function MessageScreenSwipe({
   const handleSlideChange = (e: SwiperType) => {
     setIsEnd(e.isEnd);
     setIsBeginning(e.isBeginning);
-    messageScreen.setActiveIndex(e.activeIndex);
+    messageScreenAction.setActiveIndex(e.activeIndex);
   };
 
   return (

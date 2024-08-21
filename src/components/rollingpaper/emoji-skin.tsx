@@ -76,7 +76,7 @@ const StyledEmojiWrapper = styled.div<{
   ${({ theme, type, color, font, isSmall }) => css`
   width: 100%;
   position: relative;
-cursor: ${isSmall && 'pointer'};
+cursor: ${isSmall ? 'pointer' : 'default'};
   svg {
     width: 100%;
     height: 100%;

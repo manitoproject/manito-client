@@ -13,16 +13,10 @@ import { StyledBackdrop, StyledRollingDetail } from './detail.style';
 export default function RollingpaperDetail() {
   const { data } = usePaperDetailQuery();
   const isScreenVisible = useMessageScreenVisible();
-  const messageScreen = useMessageScreenActions();
-
+  const { resetActiveIndex } = useMessageScreenActions();
   useEffect(() => {
-    return () => {
-      if (isScreenVisible) {
-        messageScreen.close();
-        messageScreen.resetActiveIndex();
-      }
-    };
-  }, [isScreenVisible, messageScreen]);
+    return () => resetActiveIndex();
+  }, [resetActiveIndex]);
 
   return (
     <StyledRollingDetail>

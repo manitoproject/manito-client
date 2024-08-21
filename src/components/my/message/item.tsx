@@ -26,19 +26,18 @@ export default function MyMessageItem({ message }: MyMessageItemProps) {
   const navigate = useNavigate();
   const EmojiSvg = findEmojiSvgFromTheme(message.theme)?.svg;
 
+  const handleMessageClick = () => {
+    navigate(routes.rollingpaper.form('edit', message.paperId), {
+      state: {
+        ...message,
+        paperTheme: getRollingThemeName(message),
+      },
+    });
+  };
+
   return (
     <StyledMessageItem isServerData>
-      <StyledEditButton
-        type="button"
-        onClick={() =>
-          navigate(routes.rollingpaper.form('edit', message.paperId), {
-            state: {
-              ...message,
-              paperTheme: getRollingThemeName(message),
-            },
-          })
-        }
-      >
+      <StyledEditButton type="button" onClick={handleMessageClick}>
         <EditSquare />
       </StyledEditButton>
       <StyledTrashButton type="button" onClick={() => setIsModalOpen(true)}>

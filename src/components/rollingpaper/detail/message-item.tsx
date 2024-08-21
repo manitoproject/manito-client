@@ -17,9 +17,9 @@ export default function MessageItem({
   onEmptyMessageClick,
   message,
 }: MessageItemProps) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { data: userData } = useUserQuery();
   const { data: PaperDetailData } = usePaperDetailQuery();
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const EmojiSvg = emojis[
     PaperDetailData?.data?.theme as RollingThemeName
   ]?.find((item) => item.name === message?.theme)?.svg;

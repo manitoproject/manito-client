@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { Clip, KakaoFill } from '../../../../assets/svg/icons';
+import { useMessageScreenActions } from '../../../../stores/message-screen-store';
+import { useMessageActions } from '../../../../stores/message-store';
 import { useToastActions } from '../../../../stores/toast-store';
 import theme from '../../../../styles/theme';
 import { Modal } from '../../../modal';
@@ -13,17 +15,21 @@ import {
 } from '../detail-header.style';
 import DetailMessagelength from './message-length';
 
-interface DetailHeaderProps {
-  onMessageScreenOpen: () => void;
-}
-
-export default function DetailHeader({
-  onMessageScreenOpen,
-}: DetailHeaderProps) {
-  const toastActions = useToastActions();
+export default function DetailHeader() {
+  const location = useLocation();
   const [isCopyModalOpen, setIsCopyModalOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-  const location = useLocation();
+  const toastActions = useToastActions();
+  const messageScreenActions = useMessageScreenActions();
+  const messageActions = useMessageActions();
+
+  const handleMessageScreenOpen = () => {
+    if (messageActions.hasList()) {
+      messageScreenActions.resetActiveIndex();
+      return messageScreenActions.open();
+    }
+    toastActions.add('상세보기 내역이 없습니다.');
+  };
 
   const handleUrlCopy = async () => {
     if ('clipboard' in navigator) {
@@ -38,7 +44,7 @@ export default function DetailHeader({
     <StyledRollingHeader>
       <DetailMessagelength />
       <div>
-        <button onClick={onMessageScreenOpen}>상세보기</button>
+        <button onClick={handleMessageScreenOpen}>상세보기</button>
         <button onClick={() => setIsCopyModalOpen(true)}>
           <Clip />
         </button>
