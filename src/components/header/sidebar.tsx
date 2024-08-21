@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Document, Home, Logout, My } from '../../assets/svg/icons';
 import { KAKAO_PROFILE_URL } from '../../constants/profile';
 import routes from '../../constants/routes';
-import useOutsideClick from '../../hooks/common/outside-click';
+import useOutsideClick from '../../hooks/common/use-outside-click';
 import { useLogout, useUserQuery } from '../../queries/users';
 import {
   StyledInnerNav,

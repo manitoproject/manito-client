@@ -1,11 +1,12 @@
 import styled from '@emotion/styled';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperType } from 'swiper/types';
 
 import { RightChevron } from '../../../../assets/svg/icons';
 import { findEmojiSvgFromTheme } from '../../../../constants/emojis';
+import { useBoundaryIndex } from '../../../../hooks';
 import {
   useMessageScreenActions,
   useMessageScreenIndex,
@@ -14,23 +15,22 @@ import { Message } from '../../../../types/message';
 import EmojiSkin from '../../emoji-skin';
 
 interface DetailSwiperProps {
-  messages?: Message<UserIdAndNickname>[];
+  messages: Message<UserIdAndNickname>[];
 }
 
 export default function MessageScreenSwipe({ messages }: DetailSwiperProps) {
+  const swiperRef = useRef<SwiperType>();
   const messageScreenAction = useMessageScreenActions();
   const activeScreenIndex = useMessageScreenIndex();
-  const sortedMessages = messages?.sort((a, b) => a.position - b.position);
-  const [isBeginning, setIsBeginning] = useState(
-    activeScreenIndex === 0 ? true : false,
+  const { isBeginning, isEnd, onBoundaryUpdate } = useBoundaryIndex(
+    activeScreenIndex,
+    messages.length,
   );
-  const [isEnd, setIsEnd] = useState(messages?.length === 1 ? true : false);
-  const swiperRef = useRef<SwiperType>();
 
   const handleSlideChange = (e: SwiperType) => {
-    setIsEnd(e.isEnd);
-    setIsBeginning(e.isBeginning);
-    messageScreenAction.setActiveIndex(e.activeIndex);
+    const { isBeginning, isEnd, activeIndex } = e;
+    onBoundaryUpdate(isBeginning, isEnd);
+    messageScreenAction.setActiveIndex(activeIndex);
   };
 
   return (
