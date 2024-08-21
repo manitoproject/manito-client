@@ -46,6 +46,8 @@ export default function EmojiSkin({
   const handleNavigate = () => {
     if (!isSmall) return;
     if (paperId) {
+      messageScreen.open();
+      messageScreen.setActiveIndex(message.position ?? 0);
       return navigate(routes.rollingpaper.detail(paperId), {
         state: routes.my.default,
       });
