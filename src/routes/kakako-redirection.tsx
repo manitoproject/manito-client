@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import routes from '../constants/routes';
 import { useTokenQuery } from '../queries/auth';
+import routes from '../routes';
 import { token } from '../utils/storage';
 
 export default function KakaoRedirection() {
@@ -20,7 +20,7 @@ export default function KakaoRedirection() {
       }
     }
     if (!code) {
-      navigate(routes.index, { replace: true });
+      navigate(routes.landing, { replace: true });
     }
   }, [code, data, navigate]);
 

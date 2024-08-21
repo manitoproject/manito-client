@@ -6,7 +6,7 @@ import {
 } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
-import routes from '../constants/routes';
+import routes from '../routes';
 import { changeNickname, changeProfile, logout } from '../services/users';
 import { useToastActions } from '../stores/toast-store';
 import { token } from '../utils/storage';
@@ -53,7 +53,7 @@ export const useLogout = () => {
     onSuccess: (data) => {
       if (data.result === 'Success') {
         token.removeToken();
-        navigate(routes.index);
+        navigate(routes.landing);
       }
     },
   });

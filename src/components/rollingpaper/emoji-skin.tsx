@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 
 import { Font, fonts } from '../../constants/fonts';
-import routes from '../../constants/routes';
+import routes from '../../routes';
 import { useMessageScreenActions } from '../../stores/message-screen-store';
 import { getTextareaSize } from '../../styles/mixins';
 import { ColorName } from '../../styles/theme';

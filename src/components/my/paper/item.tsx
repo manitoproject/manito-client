@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Trash } from '../../../assets/svg/icons';
-import routes from '../../../constants/routes';
 import { useDeletePaper } from '../../../queries/paper';
+import routes from '../../../routes';
 import { getFontSizeAndWeight } from '../../../styles/mixins';
 import DeleteModal from '../../modal/delete-modal';
 

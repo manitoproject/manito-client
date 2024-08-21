@@ -2,10 +2,10 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import routes from '../../../../constants/routes';
 import { getRollingThemeName } from '../../../../constants/theme-list';
 import { useDeleteMessage } from '../../../../queries/message';
 import { useUserQuery } from '../../../../queries/users';
+import routes from '../../../../routes';
 import { useMessageScreenActions } from '../../../../stores/message-screen-store';
 import theme from '../../../../styles/theme';
 import { Message } from '../../../../types/message';

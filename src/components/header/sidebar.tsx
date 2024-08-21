@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom';
 
 import { Document, Home, Logout, My } from '../../assets/svg/icons';
 import { KAKAO_PROFILE_URL } from '../../constants/profile';
-import routes from '../../constants/routes';
 import useOutsideClick from '../../hooks/common/use-outside-click';
 import { useLogout, useUserQuery } from '../../queries/users';
+import routes from '../../routes';
 import {
   StyledInnerNav,
   StyledNav,
@@ -21,7 +21,7 @@ export interface SideMenuProps {
 
 const LINKS = [
   {
-    href: () => routes.index,
+    href: () => routes.landing,
     name: '첫 화면',
     svg: <Home />,
   },

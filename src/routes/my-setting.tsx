@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
-import routes from '../constants/routes';
 import { useLogout } from '../queries/users';
+import routes from '../routes';
 import { getFontSizeAndWeight } from '../styles/mixins';
 
 export default function MySetting() {

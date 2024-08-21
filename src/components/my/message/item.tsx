@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 
 import { EditSquare, Trash } from '../../../assets/svg/icons';
 import { findEmojiSvgFromTheme } from '../../../constants/emojis';
-import routes from '../../../constants/routes';
 import { getRollingThemeName } from '../../../constants/theme-list';
 import { useDeleteMessage } from '../../../queries/message';
+import routes from '../../../routes';
 import { Message } from '../../../types/message';
 import DeleteModal from '../../modal/delete-modal';
 import {

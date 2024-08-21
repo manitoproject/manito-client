@@ -1,5 +1,5 @@
 const routes = {
-  index: '/' as const,
+  landing: '/' as const,
   signup: '/signup' as const,
   home: '/home' as const,
   kakako_redirection: '/login/oauth/kakao/callback' as const,

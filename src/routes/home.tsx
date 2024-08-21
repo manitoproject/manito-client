@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { MainBanner, RollingBadge } from '../assets/imgs';
 import Greeting from '../components/home/greeting';
 import { GreetingSkeleton } from '../components/skeletons/skeletons';
-import routes from '../constants/routes';
+import routes from '../routes';
 
 const CONTENTS = [
   {

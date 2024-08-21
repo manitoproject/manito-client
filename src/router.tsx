@@ -1,12 +1,12 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import AuthRouter from './auth-router';
-import routes from './constants/routes';
-import Index from './routes';
+import routes from './routes';
+import AuthGuard from './routes/auth-guard';
 import Contact from './routes/contact';
 import ErrorPage from './routes/error-page';
 import Home from './routes/home';
 import KakaoRedirection from './routes/kakako-redirection';
+import Landing from './routes/landing';
 import Layout from './routes/layout';
 import My from './routes/my';
 import MySetting from './routes/my-setting';
@@ -23,15 +23,15 @@ const router = () =>
       errorElement: <ErrorPage />,
       children: [
         {
-          path: routes.index,
-          element: <Index />,
+          path: routes.landing,
+          element: <Landing />,
         },
         {
           path: routes.kakako_redirection,
           element: <KakaoRedirection />,
         },
         {
-          element: <AuthRouter />,
+          element: <AuthGuard />,
           children: [
             {
               element: <Layout />,

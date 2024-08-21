@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import routes from '../../constants/routes';
+import routes from '../../routes';
 import theme from '../../styles/theme';
 import { Modal } from '.';
 
@@ -34,7 +34,7 @@ export default function LoginModal({
           닫기
         </Modal.Button>
         <Modal.Button
-          onClick={() => navigate(routes.index)}
+          onClick={() => navigate(routes.landing)}
           css={{
             backgroundColor: theme.colors.black,
             color: theme.colors.white,

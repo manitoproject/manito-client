@@ -6,9 +6,9 @@ import { Button } from '../components/common/button/buttons';
 import SignupRadioButton from '../components/common/button/signup-radio-button';
 import NameForm from '../components/common/name-form';
 import { nicknameMaxLength } from '../constants/regex-patterns';
-import routes from '../constants/routes';
 import { useNameForm } from '../hooks';
 import { useNicknameChange } from '../queries/users';
+import routes from '../routes';
 import { getFontSizeAndWeight } from '../styles/mixins';
 
 export default function Signup() {
@@ -18,13 +18,13 @@ export default function Signup() {
     useNameForm('nickname');
 
   const handleNicknameChange = (e: React.MouseEvent) => {
-    if (!activeRadioButtonIndex) Navigate({ to: routes.index });
+    if (!activeRadioButtonIndex) Navigate({ to: routes.landing });
     e.preventDefault();
     mutate(name);
   };
   const location = useLocation();
 
-  if (location.state !== 'Y') Navigate({ to: routes.index });
+  if (location.state !== 'Y') Navigate({ to: routes.landing });
 
   return (
     <StyledWrapper>

@@ -2,9 +2,9 @@ import styled from '@emotion/styled';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import routes from '../../../../constants/routes';
 import { usePaperMessagesQuery } from '../../../../queries/message';
 import { usePaperDetailQuery } from '../../../../queries/paper';
+import routes from '../../../../routes';
 import {
   useMessageActions,
   useMessageList,

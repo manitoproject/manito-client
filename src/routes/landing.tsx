@@ -6,7 +6,7 @@ import { Button, KakaoLoginButton } from '../components/common/button/buttons';
 import theme from '../styles/theme';
 import { StyledBrowserBackdrop } from './layout.style';
 
-export default function Index() {
+export default function Landing() {
   const [isButtonClicked, setIsButtonClicked] = useState(false);
   const handleSocialLoginKakao = () => {
     const clientId = import.meta.env.VITE_KAKAO_CLIENT_ID;

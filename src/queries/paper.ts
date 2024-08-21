@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import routes from '../constants/routes';
+import routes from '../routes';
 import { createRollingpaper, deletePaper } from '../services/paper';
 import { useToastActions } from '../stores/toast-store';
 import queries from './query-key-factory';

@@ -2,9 +2,9 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import { HamburgerMenu, LeftChevron } from '../../assets/svg/icons';
 import headerMap, { HeaderConfig } from '../../constants/header-config';
-import routes from '../../constants/routes';
 import { usePaperDetailQuery } from '../../queries/paper';
 import { useUserQuery } from '../../queries/users';
+import routes from '../../routes';
 import theme from '../../styles/theme';
 import { HeaderSkeleton } from '../skeletons/skeletons';
 import {
@@ -68,7 +68,7 @@ export default function Header({ onSidebarOpen }: HeaderProps) {
   const handleNavigation = () => {
     const isHomePage = location.pathname === routes.home;
     const isDetailPageAndUnAuth = paper && !userData?.data;
-    if (isHomePage || isDetailPageAndUnAuth) return navigate(routes.index);
+    if (isHomePage || isDetailPageAndUnAuth) return navigate(routes.landing);
     return navigate(-1);
   };
 
