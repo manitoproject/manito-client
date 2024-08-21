@@ -52,6 +52,9 @@ export const useDeletePaper = () => {
         queryClient.invalidateQueries({
           queryKey: queries.papers.user._def,
         });
+        queryClient.invalidateQueries({
+          queryKey: queries.messages.user._def,
+        });
       }
     },
   });
