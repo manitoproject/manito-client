@@ -1,30 +1,30 @@
 import styled from '@emotion/styled';
-import { act, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperType } from 'swiper/types';
 
 import { RightChevron } from '../../../../assets/svg/icons';
 import { findEmojiSvgFromTheme } from '../../../../constants/emojis';
-import { useMessageScreenActions } from '../../../../stores/message-screen-store';
+import {
+  useMessageScreenActions,
+  useMessageScreenIndex,
+} from '../../../../stores/message-screen-store';
 import { Message } from '../../../../types/message';
 import EmojiSkin from '../../emoji-skin';
 
 interface DetailSwiperProps {
-  activeIndex: number;
-  messages: Message<UserIdAndNickname>[];
+  messages?: Message<UserIdAndNickname>[];
 }
 
-export default function MessageScreenSwipe({
-  activeIndex,
-  messages,
-}: DetailSwiperProps) {
+export default function MessageScreenSwipe({ messages }: DetailSwiperProps) {
   const messageScreenAction = useMessageScreenActions();
-  const sortedMessages = messages.sort((a, b) => a.position - b.position);
+  const activeScreenIndex = useMessageScreenIndex();
+  const sortedMessages = messages?.sort((a, b) => a.position - b.position);
   const [isBeginning, setIsBeginning] = useState(
-    activeIndex === 0 ? true : false,
+    activeScreenIndex === 0 ? true : false,
   );
-  const [isEnd, setIsEnd] = useState(messages.length === 1 ? true : false);
+  const [isEnd, setIsEnd] = useState(messages?.length === 1 ? true : false);
   const swiperRef = useRef<SwiperType>();
 
   const handleSlideChange = (e: SwiperType) => {
@@ -35,14 +35,14 @@ export default function MessageScreenSwipe({
 
   return (
     <StyledSwiper
-      initialSlide={activeIndex}
+      initialSlide={activeScreenIndex}
       onBeforeInit={(swiper) => {
         swiperRef.current = swiper;
       }}
       modules={[Navigation]}
       onSlideChange={handleSlideChange}
     >
-      {sortedMessages.map((message) => {
+      {sortedMessages?.map((message) => {
         const emoji = findEmojiSvgFromTheme(message.theme);
         return (
           <SwiperSlide key={message.id}>

@@ -34,7 +34,7 @@ export default function EmojiSkin({
   message,
 }: EmojiItemProps) {
   const navigate = useNavigate();
-  const messageScreen = useMessageScreenActions();
+  const messageScreenActions = useMessageScreenActions();
   const font = fonts.find((font) => {
     return font.name === message.font;
   });
@@ -46,14 +46,14 @@ export default function EmojiSkin({
   const handleNavigate = () => {
     if (!isSmall) return;
     if (paperId) {
-      messageScreen.open();
-      messageScreen.setActiveIndex(message.position ?? 0);
+      messageScreenActions.setActiveIndex(message?.position ?? 0);
+      messageScreenActions.open();
       return navigate(routes.rollingpaper.detail(paperId), {
         state: routes.my.default,
       });
     }
-    messageScreen.open();
-    messageScreen.setActiveIndex(message.position ?? 1);
+    messageScreenActions.open();
+    messageScreenActions.setActiveIndex(message.position ?? 1);
   };
 
   return (

@@ -14,20 +14,20 @@ import DeleteModal from '../../../modal/delete-modal';
 
 interface MessageScreenButtonsProps {
   message: Message<UserIdAndNickname>;
-  userId?: number;
+  authorId?: number;
 }
 
 export default function MessageScreenButtons({
   message,
-  userId,
+  authorId,
 }: MessageScreenButtonsProps) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const messageScreen = useMessageScreenActions();
+  const messageScreenActions = useMessageScreenActions();
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { data: userData } = useUserQuery();
   const { mutate } = useDeleteMessage({
-    paperId: message.paperId,
-    closeModal: () => messageScreen.close(),
+    paperId: message?.paperId,
+    closeModal: () => messageScreenActions.close(),
   });
   const user = userData?.data;
 
@@ -39,15 +39,15 @@ export default function MessageScreenButtons({
           color: theme.colors.black,
           outline: `1px solid ${theme.colors['gray-300']}`,
         }}
-        onClick={messageScreen.close}
+        onClick={messageScreenActions.close}
       >
         닫기
       </Button>
-      {message.user?.id === user?.id && (
+      {message?.user?.id === user?.id && (
         <Button
           css={{ background: theme.colors['powderBlue-900'] }}
           onClick={() => {
-            navigate(routes.rollingpaper.form('edit', message.paperId), {
+            navigate(routes.rollingpaper.form('edit', message?.paperId), {
               state: {
                 ...message,
                 paperTheme: getRollingThemeName(message),
@@ -58,7 +58,7 @@ export default function MessageScreenButtons({
           수정
         </Button>
       )}
-      {(message.user?.id === user?.id || user?.id === userId) && (
+      {(message?.user?.id === user?.id || user?.id === authorId) && (
         <Button css={{}} onClick={() => setIsModalOpen(true)}>
           삭제
         </Button>
@@ -68,7 +68,7 @@ export default function MessageScreenButtons({
           isMessageDelete
           isOpen={isModalOpen}
           setIsOpen={setIsModalOpen}
-          handler={() => mutate(message.id)}
+          handler={() => mutate(message?.id)}
         />
       )}
     </StyledMessageScreenButtons>

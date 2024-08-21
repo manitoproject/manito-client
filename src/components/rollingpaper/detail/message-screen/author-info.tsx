@@ -1,18 +1,15 @@
 import styled from '@emotion/styled';
 
+import { useMessageScreenIndex } from '../../../../stores/message-screen-store';
 import { getFontSizeAndWeight } from '../../../../styles/mixins';
 
 interface AuthorInfoProps {
-  activeIndex: number;
-  totalIndex: number;
+  totalIndex?: number;
   nickname?: string;
 }
 
-export default function AuthorInfo({
-  activeIndex,
-  totalIndex,
-  nickname,
-}: AuthorInfoProps) {
+export default function AuthorInfo({ totalIndex, nickname }: AuthorInfoProps) {
+  const activeScreenIndex = useMessageScreenIndex();
   return (
     <StyledWrapper>
       <StyledNicknameBox>
@@ -21,7 +18,7 @@ export default function AuthorInfo({
       </StyledNicknameBox>
       <StyledLengthBox>
         <div>
-          <span>{activeIndex + 1}</span>
+          <span>{activeScreenIndex + 1}</span>
           <span>/{totalIndex}</span>
         </div>
       </StyledLengthBox>

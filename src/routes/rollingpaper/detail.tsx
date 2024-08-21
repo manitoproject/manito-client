@@ -14,6 +14,7 @@ export default function RollingpaperDetail() {
   const { data } = usePaperDetailQuery();
   const isScreenVisible = useMessageScreenVisible();
   const { resetActiveIndex } = useMessageScreenActions();
+
   useEffect(() => {
     return () => resetActiveIndex();
   }, [resetActiveIndex]);
@@ -22,7 +23,7 @@ export default function RollingpaperDetail() {
     <StyledRollingDetail>
       <ReactHelmet title={`${data?.data?.title} - ${TITLE}`} />
       {isScreenVisible ? (
-        <MessageScreen userId={data?.data?.userId} />
+        <MessageScreen authorId={data?.data?.userId} />
       ) : (
         <Detail />
       )}

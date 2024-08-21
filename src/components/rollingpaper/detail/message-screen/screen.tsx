@@ -4,32 +4,36 @@ import styled from '@emotion/styled';
 
 import { usePaperMessagesQuery } from '../../../../queries/message';
 import { useMessageScreenIndex } from '../../../../stores/message-screen-store';
+import { Message } from '../../../../types/message';
 import AuthorInfo from './author-info';
 import MessageScreenButtons from './buttons';
 import MessageScreenSwipe from './swipe';
 
 interface MessageScreenProps {
-  userId?: number;
+  authorId?: number;
 }
 
-export default function MessageScreen({ userId }: MessageScreenProps) {
-  const { data: messageData } = usePaperMessagesQuery();
-  const activeIndex = useMessageScreenIndex();
-  const message = messageData?.data?.[activeIndex];
-  const messages = messageData?.data;
-  if (!message || !messages) throw new Error();
+export default function MessageScreen({ authorId }: MessageScreenProps) {
+  const { data: messageData, isError, isLoading } = usePaperMessagesQuery();
+  const activeScreenIndex = useMessageScreenIndex();
+
+  if (isError) throw new Error('usePaperMessagesQuery fetching error');
+  if (isLoading) return null;
+  const message = messageData?.data?.[
+    activeScreenIndex
+  ] as Message<UserIdAndNickname>;
+  const messages = messageData?.data as Message<UserIdAndNickname>[];
 
   return (
     <StyledWrapper>
       <div>
-        <MessageScreenSwipe messages={messages} activeIndex={activeIndex} />
+        <MessageScreenSwipe messages={messages} />
         <AuthorInfo
-          nickname={message.anonymous || message.user?.nickname}
-          activeIndex={activeIndex}
-          totalIndex={messages.length}
+          nickname={message?.anonymous || message?.user?.nickname}
+          totalIndex={messages?.length}
         />
       </div>
-      <MessageScreenButtons userId={userId} message={message} />
+      <MessageScreenButtons authorId={authorId} message={message} />
     </StyledWrapper>
   );
 }
