@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { useRef, useState } from 'react';
+import { act, useRef, useState } from 'react';
 import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperType } from 'swiper/types';
@@ -35,6 +35,7 @@ export default function MessageScreenSwipe({
 
   return (
     <StyledSwiper
+      initialSlide={activeIndex}
       onBeforeInit={(swiper) => {
         swiperRef.current = swiper;
       }}
