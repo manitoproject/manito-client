@@ -12,7 +12,7 @@ import {
   StyledEditButton,
   StyledMessageItem,
   StyledTrashButton,
-} from '../../rollingpaper/detail/message-item.style';
+} from '../../rollingpaper/detail/list/item.style';
 import EmojiSkin from '../../rollingpaper/emoji-skin';
 
 interface MyMessageItemProps {

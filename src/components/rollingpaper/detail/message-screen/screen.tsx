@@ -19,18 +19,20 @@ export default function MessageScreen({ authorId }: MessageScreenProps) {
 
   if (isError) throw new Error('usePaperMessagesQuery fetching error');
   if (isLoading) return null;
+
   const message = messageData?.data?.[
     activeScreenIndex
   ] as Message<UserIdAndNickname>;
   const messages = messageData?.data as Message<UserIdAndNickname>[];
+  const sortedMessages = messages?.sort((a, b) => a.position - b.position);
 
   return (
     <StyledWrapper>
       <div>
-        <MessageScreenSwipe messages={messages} />
+        <MessageScreenSwipe messages={sortedMessages} />
         <AuthorInfo
           nickname={message?.anonymous || message?.user?.nickname}
-          totalIndex={messages?.length}
+          totalIndex={sortedMessages?.length}
         />
       </div>
       <MessageScreenButtons authorId={authorId} message={message} />

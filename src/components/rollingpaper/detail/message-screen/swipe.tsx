@@ -42,7 +42,7 @@ export default function MessageScreenSwipe({ messages }: DetailSwiperProps) {
       modules={[Navigation]}
       onSlideChange={handleSlideChange}
     >
-      {sortedMessages?.map((message) => {
+      {messages?.map((message) => {
         const emoji = findEmojiSvgFromTheme(message.theme);
         return (
           <SwiperSlide key={message.id}>

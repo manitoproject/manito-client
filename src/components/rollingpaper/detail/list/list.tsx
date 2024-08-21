@@ -2,15 +2,15 @@ import styled from '@emotion/styled';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import routes from '../../../constants/routes';
-import { usePaperMessagesQuery } from '../../../queries/message';
-import { usePaperDetailQuery } from '../../../queries/paper';
+import routes from '../../../../constants/routes';
+import { usePaperMessagesQuery } from '../../../../queries/message';
+import { usePaperDetailQuery } from '../../../../queries/paper';
 import {
   useMessageActions,
   useMessageList,
-} from '../../../stores/message-store';
-import { MyMessageListSkeleton } from '../../skeletons/skeletons';
-import MessageItem from './message-item';
+} from '../../../../stores/message-store';
+import { MyMessageListSkeleton } from '../../../skeletons/skeletons';
+import MessageItem from './item';
 
 export default function MessageList() {
   const { data: paperData } = usePaperDetailQuery();

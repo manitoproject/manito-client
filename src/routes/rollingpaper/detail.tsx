@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import Detail from '../../components/rollingpaper/detail/detail';
+import MessageListContainer from '../../components/rollingpaper/detail/list/container';
 import MessageScreen from '../../components/rollingpaper/detail/message-screen/screen';
 import ReactHelmet, { TITLE } from '../../helmet';
 import { usePaperDetailQuery } from '../../queries/paper';
@@ -25,7 +25,7 @@ export default function RollingpaperDetail() {
       {isScreenVisible ? (
         <MessageScreen authorId={data?.data?.userId} />
       ) : (
-        <Detail />
+        <MessageListContainer />
       )}
       <StyledBackdrop themeName={data?.data?.theme} />
     </StyledRollingDetail>

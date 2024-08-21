@@ -12,7 +12,7 @@ import {
   StyledModalLink,
   StyledModalLinks,
   StyledRollingHeader,
-} from '../detail-header.style';
+} from './detail-header.style';
 import DetailMessagelength from './message-length';
 
 export default function DetailHeader() {

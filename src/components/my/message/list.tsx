@@ -1,5 +1,5 @@
 import { useUserMessagesQuery } from '../../../queries/message';
-import { StyledList } from '../../rollingpaper/detail/message-list';
+import { StyledList } from '../../rollingpaper/detail/list/list';
 import { MyMessageListSkeleton } from '../../skeletons/skeletons';
 import MyMessageItem from './item';
 

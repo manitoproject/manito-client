@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
 import { useEffect } from 'react';
 
-import { useMessageActions } from '../../../stores/message-store';
-import DetailHeader from './header/detail-header';
-import MessageList from './message-list';
+import { useMessageActions } from '../../../../stores/message-store';
+import DetailHeader from '../header/detail-header';
+import MessageList from './list';
 
-export default function Detail() {
+export default function MessageListContainer() {
   const messageActions = useMessageActions();
   useEffect(() => {
     return () => messageActions.reset();

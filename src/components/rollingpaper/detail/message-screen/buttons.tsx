@@ -37,7 +37,7 @@ export default function MessageScreenButtons({
         css={{
           background: theme.colors.white,
           color: theme.colors.black,
-          outline: `1px solid ${theme.colors['gray-300']}`,
+          border: `1px solid ${theme.colors['gray-300']}`,
         }}
         onClick={messageScreenActions.close}
       >

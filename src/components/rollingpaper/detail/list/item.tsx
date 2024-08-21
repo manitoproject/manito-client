@@ -1,13 +1,13 @@
 import { useState } from 'react';
 
-import { AddCircle } from '../../../assets/svg/icons';
-import emojis from '../../../constants/emojis';
-import { usePaperDetailQuery } from '../../../queries/paper';
-import { useUserQuery } from '../../../queries/users';
-import { Message } from '../../../types/message';
-import LoginModal from '../../modal/login-modal';
-import EmojiSkin from '../emoji-skin';
-import { StyledEmptySvg, StyledItem } from './message-item.style';
+import { AddCircle } from '../../../../assets/svg/icons';
+import emojis from '../../../../constants/emojis';
+import { usePaperDetailQuery } from '../../../../queries/paper';
+import { useUserQuery } from '../../../../queries/users';
+import { Message } from '../../../../types/message';
+import LoginModal from '../../../modal/login-modal';
+import EmojiSkin from '../../emoji-skin';
+import { StyledEmptySvg, StyledItem } from './item.style';
 
 export interface MessageItemProps {
   onEmptyMessageClick: () => void;
