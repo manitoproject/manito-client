@@ -2,19 +2,15 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 const skeletonAnimation = css`
-  background-color: #f2f2f2;
   position: relative;
   overflow: hidden;
   border-radius: 6px;
   @keyframes skeleton-gradient {
     0% {
-      background-color: rgba(165, 165, 165, 0.1);
-    }
-    50% {
-      background-color: rgba(165, 165, 165, 0.3);
+      background-color: #f5f5f5; /* FROM Color 1 */
     }
     100% {
-      background-color: rgba(165, 165, 165, 0.1);
+      background-color: #e2e2e2; /* TO Color 2 */
     }
   }
 
@@ -25,7 +21,7 @@ const skeletonAnimation = css`
     left: 0;
     width: 100%;
     height: 100%;
-    animation: skeleton-gradient 1.5s infinite ease-in-out;
+    animation: skeleton-gradient 1s linear infinite alternate;
   }
 `;
 
