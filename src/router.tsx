@@ -75,10 +75,6 @@ const router = () =>
                       path: routes.rollingpaper.form(),
                       element: <RollingpaperForm />,
                     },
-                    {
-                      path: routes.rollingpaper.detail(),
-                      element: <RollingpaperDetail />,
-                    },
                   ],
                 },
               ],
@@ -91,6 +87,10 @@ const router = () =>
             {
               path: routes.rollingpaper.list(),
               element: <RollingpaperList />,
+            },
+            {
+              path: routes.rollingpaper.detail(),
+              element: <RollingpaperDetail />,
             },
           ],
         },
