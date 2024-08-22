@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 
-import img from '../src/assets/imgs/og/manito-og@4x-100.jpg';
+import img from '../src/assets/imgs/og/manito-og@4x-100.webp';
 interface ReactHelmetProps {
   title?: string;
   description?: string;

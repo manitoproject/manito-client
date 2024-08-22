@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import bg from '../assets/imgs/intro/rollring-paper-B@4x-1002.jpg';
+import bg from '../assets/imgs/intro/rollring-paper-B@4x-1002.webp';
 import { LinkButton } from '../components/common/button/buttons';
 import routes from '../routes';
 import { StyledFixedBackground } from '../styles/mixins';
