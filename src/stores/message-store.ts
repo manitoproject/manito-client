@@ -21,29 +21,23 @@ const useMessageStore = create<MessageState>()(
       snycList: (serverData?: Message<unknown>[]) =>
         set((state) => {
           if (!serverData?.length) return { list: state.list };
-          const currentLength = state.list.length;
-          const serverDataLength = serverData.length;
-          const additionalData = Array(
-            currentLength - Math.ceil(serverDataLength / 8),
-          ).fill(null);
-          let newList = [...state.list];
-          if (
-            serverDataLength >= currentLength &&
-            serverDataLength < MAX_LIST_LENGTH
-          ) {
-            if (serverDataLength % 8 !== 0) {
-              newList = [...serverData, ...additionalData];
-            } else {
-              newList = [...serverData, ...INIT_LIST];
-            }
+          const neededLength = Math.ceil(serverData.length / 8) * 8;
+          let newList: Array<null | Message<unknown>> =
+            Array(neededLength).fill(null);
+          serverData.forEach((item) => {
+            newList[item.position] = item;
+          });
+
+          if (!newList.includes(null) && newList.length % 8 === 0) {
+            newList = [...newList, ...INIT_LIST];
           }
-          return {
-            list: newList.map((prev, i) => {
-              const item = serverData?.find((item) => item.position === i);
-              return item ?? prev;
-            }),
-          };
+
+          if (newList.length > MAX_LIST_LENGTH) {
+            newList = newList.slice(0, MAX_LIST_LENGTH);
+          }
+          return { list: newList };
         }),
+
       reset: () =>
         set({
           list: INIT_LIST,
