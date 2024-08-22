@@ -66,8 +66,11 @@ export default function Header({ onSidebarOpen }: HeaderProps) {
   );
   const handleNavigation = () => {
     const isHomePage = location.pathname === routes.home;
-    const isDetailPageAndUnAuth = paper && !token.getAccessToken();
-    if (isHomePage || isDetailPageAndUnAuth) return navigate(routes.landing);
+    const currentPathname = location.pathname.split('/');
+    const isListPage =
+      currentPathname.length === 3 && currentPathname[1] === 'rollingpaper';
+    const isListPageAndUnAuth = isListPage && !token.getAccessToken();
+    if (isHomePage || isListPageAndUnAuth) return navigate(routes.landing);
     return navigate(-1);
   };
 
