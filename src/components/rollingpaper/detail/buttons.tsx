@@ -8,18 +8,17 @@ import { useUserQuery } from '../../../queries/users';
 import routes from '../../../routes';
 import theme from '../../../styles/theme';
 import { Message } from '../../../types/message';
+import { token } from '../../../utils/storage';
 import { Button } from '../../common/button/buttons';
 import DeleteModal from '../../modal/delete-modal';
 
+interface AuthButtonsProps extends DetailMessageButtonsProps {}
 interface DetailMessageButtonsProps {
   message: Message<UserIdAndNickname>;
   authorId?: number;
 }
 
-export default function DetailMessageButtons({
-  message,
-  authorId,
-}: DetailMessageButtonsProps) {
+function AuthButtons({ message, authorId }: AuthButtonsProps) {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { data: userData } = useUserQuery();
@@ -28,19 +27,8 @@ export default function DetailMessageButtons({
     isDetailPaer: true,
   });
   const user = userData?.data;
-
   return (
-    <StyledDetailMessageButtons>
-      <Button
-        css={{
-          background: theme.colors.white,
-          color: theme.colors.black,
-          border: `1px solid ${theme.colors['gray-300']}`,
-        }}
-        onClick={() => navigate(routes.rollingpaper.list(message.paperId))}
-      >
-        닫기
-      </Button>
+    <>
       {message?.user?.id === user?.id && (
         <Button
           css={{ background: theme.colors['powderBlue-900'] }}
@@ -68,6 +56,31 @@ export default function DetailMessageButtons({
           setIsOpen={setIsModalOpen}
           handler={() => mutate(message?.id)}
         />
+      )}
+    </>
+  );
+}
+
+export default function DetailMessageButtons({
+  message,
+  authorId,
+}: DetailMessageButtonsProps) {
+  const navigate = useNavigate();
+  return (
+    <StyledDetailMessageButtons>
+      {!token.getAccessToken() ? (
+        <Button
+          css={{
+            background: theme.colors.white,
+            color: theme.colors.black,
+            border: `1px solid ${theme.colors['gray-300']}`,
+          }}
+          onClick={() => navigate(routes.rollingpaper.list(message.paperId))}
+        >
+          닫기
+        </Button>
+      ) : (
+        <AuthButtons message={message} authorId={authorId} />
       )}
     </StyledDetailMessageButtons>
   );
