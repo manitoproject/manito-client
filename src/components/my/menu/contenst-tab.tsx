@@ -1,5 +1,5 @@
 import { Document, Edit } from '../../../assets/svg/icons';
-import { StyledMenu, StyledMenuWrapper } from './page-menu.style';
+import { StyledMenu, StyledMenuWrapper } from './content-tab.style';
 
 const TAB = [
   {

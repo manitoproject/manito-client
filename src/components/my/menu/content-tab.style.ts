@@ -8,15 +8,15 @@ export const StyledMenuWrapper = styled.div`
   gap: 8px;
 `;
 export const StyledMenu = styled.button<{ isActive: boolean }>`
-  display: flex;
-  padding: 16px 0;
-  gap: 4px;
-  position: relative;
-  justify-content: center;
-  align-items: center;
-  ${getFontSizeAndWeight('heading4', 'medium')}
-  flex: 1;
   ${({ isActive, theme }) => css`
+    ${getFontSizeAndWeight('heading4', isActive ? 'bold' : 'medium')}
+    display: flex;
+    padding: 16px 0;
+    gap: 4px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
     &::after {
       display: ${isActive ? 'auto' : 'none'};
       content: '';
@@ -29,7 +29,7 @@ export const StyledMenu = styled.button<{ isActive: boolean }>`
     svg {
       path {
         stroke: ${isActive
-          ? theme.colors['gray-900']
+          ? theme.colors['gray-800']
           : theme.colors['gray-500']};
       }
       width: 20px;
