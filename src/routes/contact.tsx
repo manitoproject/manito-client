@@ -72,12 +72,13 @@ const StyledWrapper = styled.div`
     ${getFontSizeAndWeight('body1', 'regular')}
   }
   textarea {
+    font-family: ${({ theme }) => theme.fontFamily.SpoqaHanSansNeo};
     height: 320px;
     padding: 20px 12px;
     width: 100%;
     resize: none;
     outline: none;
-    color: ${({ theme }) => theme.colors.black};
+    color: ${({ theme }) => theme.colors['gray-900']};
     box-sizing: border-box;
     padding: 20.5px 44px 20.5px 12px;
     width: 100%;
@@ -88,7 +89,7 @@ const StyledWrapper = styled.div`
   }
 
   textarea::placeholder {
-    color: ${(props) => props.theme.colors['gray-500']};
+    color: ${(props) => props.theme.colors['gray-400']};
   }
   textarea:focus {
     background-color: ${({ theme }) => theme.colors['powderBlue-100']};
