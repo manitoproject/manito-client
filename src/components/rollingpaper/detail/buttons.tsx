@@ -68,18 +68,18 @@ export default function DetailMessageButtons({
   const navigate = useNavigate();
   return (
     <StyledDetailMessageButtons>
-      {!token.getAccessToken() ? (
-        <Button
-          css={{
-            background: theme.colors.white,
-            color: theme.colors.black,
-            border: `1px solid ${theme.colors['gray-300']}`,
-          }}
-          onClick={() => navigate(routes.rollingpaper.list(message.paperId))}
-        >
-          닫기
-        </Button>
-      ) : (
+      <Button
+        css={{
+          background: theme.colors.white,
+          color: theme.colors.black,
+          border: `1px solid ${theme.colors['gray-300']}`,
+        }}
+        onClick={() => navigate(routes.rollingpaper.list(message.paperId))}
+      >
+        닫기
+      </Button>
+
+      {token.getAccessToken() && (
         <AuthButtons message={message} authorId={authorId} />
       )}
     </StyledDetailMessageButtons>
