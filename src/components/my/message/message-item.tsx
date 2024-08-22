@@ -36,7 +36,7 @@ export default function MyMessageItem({ message }: MyMessageItemProps) {
   };
 
   const handleClick = async () => {
-    navigate(routes.rollingpaper.detail(message.paperId), {
+    navigate(routes.rollingpaper.list(message.paperId), {
       state: message.id,
     });
   };
