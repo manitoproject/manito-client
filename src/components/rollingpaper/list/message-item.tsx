@@ -4,9 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import { AddCircle } from '../../../assets/svg/icons';
 import emojis from '../../../constants/emojis';
 import { usePaperDetailQuery } from '../../../queries/paper';
-import { useUserQuery } from '../../../queries/users';
 import routes from '../../../routes';
 import { Message } from '../../../types/message';
+import { token } from '../../../utils/storage';
 import LoginModal from '../../modal/login-modal';
 import EmojiSkin from '../emoji-skin';
 import { StyledEmptySvg, StyledItem } from './item.style';
@@ -19,7 +19,6 @@ export interface MessageItemProps {
 export default function MessageItem({ message, position }: MessageItemProps) {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { data: userData } = useUserQuery();
   const { data: PaperDetailData } = usePaperDetailQuery();
   const paper = PaperDetailData?.data;
   const EmojiSvg = emojis[paper?.theme as RollingThemeName]?.find(
@@ -27,8 +26,7 @@ export default function MessageItem({ message, position }: MessageItemProps) {
   )?.svg;
 
   const handleCreateMessage = () => {
-    const isLoggedIn = userData?.data?.id;
-    if (isLoggedIn) {
+    if (token.getAccessToken()) {
       return navigate(`${routes.rollingpaper.form('create', paper?.id)}`, {
         state: { paperTheme: paper?.theme, position },
       });

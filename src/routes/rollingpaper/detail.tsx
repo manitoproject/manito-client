@@ -1,25 +1,30 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
+import { Button } from '../../components/common/button/buttons';
 import AuthorInfo from '../../components/rollingpaper/detail/author-info';
 import DetailMessageButtons from '../../components/rollingpaper/detail/buttons';
 import MessageSwipe from '../../components/rollingpaper/detail/swipe';
 import ReactHelmet, { TITLE } from '../../helmet';
 import { usePaperMessagesQuery } from '../../queries/message';
 import { usePaperDetailQuery } from '../../queries/paper';
+import routes from '../../routes';
+import theme from '../../styles/theme';
 import { Message } from '../../types/message';
+import { token } from '../../utils/storage';
 import { StyledBackdrop } from './list.style';
 
 export default function RollingpaperDetail() {
   const location = useLocation();
+  const isLoggedIn = token.getAccessToken();
   const { data: messageData, isError, isLoading } = usePaperMessagesQuery();
   const { data: paperData } = usePaperDetailQuery();
   const target = messageData?.data?.findIndex((a) => a.id === location.state);
   const [activeIndex, setActiveIndex] = useState(
     !target || target === -1 ? 0 : target,
   );
-
+  const navigate = useNavigate();
   if (isError) throw new Error('usePaperMessagesQuery fetching error');
   if (isLoading) return null;
 
@@ -41,10 +46,27 @@ export default function RollingpaperDetail() {
           totalIndex={sortedMessages?.length}
         />
       </div>
-      <DetailMessageButtons
-        authorId={paperData?.data?.userId}
-        message={currentMessage}
-      />
+      {!isLoggedIn ? (
+        <div css={{ position: 'relative', zIndex: 50 }}>
+          <Button
+            css={{
+              background: theme.colors.white,
+              color: theme.colors.black,
+              border: `1px solid ${theme.colors['gray-300']}`,
+            }}
+            onClick={() =>
+              navigate(routes.rollingpaper.list(paperData?.data?.id))
+            }
+          >
+            닫기
+          </Button>
+        </div>
+      ) : (
+        <DetailMessageButtons
+          authorId={paperData?.data?.userId}
+          message={currentMessage}
+        />
+      )}
       <ReactHelmet title={`${paperData?.data?.title} - ${TITLE}`} />
       <StyledBackdrop themeName={paperData?.data?.theme} />
     </StyledWrapper>

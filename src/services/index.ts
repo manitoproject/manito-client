@@ -22,10 +22,10 @@ export const discordRequester = axios.create({
 
 apiRequester.interceptors.request.use((config) => {
   const accessToken = token.getAccessToken();
-  // if (!accessToken) {
-  //   window.location.href = '/';
-  //   return config;
-  // }
+  if (!accessToken) {
+    window.location.href = '/';
+    return config;
+  }
   config.headers.Authorization = `Bearer ${accessToken}`;
   return config;
 });
@@ -38,15 +38,22 @@ apiRequester.interceptors.response.use(
     const { config, response } = error;
     if (isAxiosError(error)) {
       if (response.status === 401) {
-        const { data } = await axios.post<
-          DeatultResponse<Pick<AccessToken, 'accessToken'>>
-        >(`${import.meta.env.VITE_BASE_URL}/login/oauth/token/refresh`, {}, {});
-        if (data.result === 'Success' && data.data?.accessToken) {
-          token.setAccessToken(data.data?.accessToken);
-          return apiRequester(config);
+        try {
+          const { data } = await axios.post<
+            DeatultResponse<Pick<AccessToken, 'accessToken'>>
+          >(
+            `${import.meta.env.VITE_BASE_URL}/login/oauth/token/refresh`,
+            {},
+            {},
+          );
+          if (data.result === 'Success' && data.data?.accessToken) {
+            token.setAccessToken(data.data?.accessToken);
+            return apiRequester(config);
+          }
+        } catch (err) {
+          token.removeToken();
+          window.location.href = '/';
         }
-        token.removeToken();
-        window.location.href = '/';
       }
     }
     return Promise.reject(error);

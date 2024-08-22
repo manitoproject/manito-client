@@ -3,9 +3,9 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { HamburgerMenu, LeftChevron } from '../../assets/svg/icons';
 import headerMap, { HeaderConfig } from '../../constants/header-config';
 import { usePaperDetailQuery } from '../../queries/paper';
-import { useUserQuery } from '../../queries/users';
 import routes from '../../routes';
 import theme from '../../styles/theme';
+import { token } from '../../utils/storage';
 import { HeaderSkeleton } from '../skeletons/skeletons';
 import {
   StyledHeader,
@@ -31,7 +31,6 @@ const headerColorByTheme: Record<RollingThemeName, string> = {
 export default function Header({ onSidebarOpen }: HeaderProps) {
   const navigate = useNavigate();
   const location = useLocation();
-  const { data: userData } = useUserQuery();
   const { data, isLoading } = usePaperDetailQuery();
   const paper = data?.data;
 
@@ -67,7 +66,7 @@ export default function Header({ onSidebarOpen }: HeaderProps) {
   );
   const handleNavigation = () => {
     const isHomePage = location.pathname === routes.home;
-    const isDetailPageAndUnAuth = paper && !userData?.data;
+    const isDetailPageAndUnAuth = paper && !token.getAccessToken();
     if (isHomePage || isDetailPageAndUnAuth) return navigate(routes.landing);
     return navigate(-1);
   };
