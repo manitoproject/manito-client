@@ -1,4 +1,4 @@
-import { KAKAO_PROFILE_URL } from '../constants/profile';
+import { kakaoProfile } from '../assets/imgs';
 import { discordRequester } from '.';
 
 export const sendFeedbackMessage = async ({
@@ -10,8 +10,7 @@ export const sendFeedbackMessage = async ({
 }) => {
   if (!user) return;
   const { data } = await discordRequester.post('', {
-    avatar_url:
-      user.isOriginProfile === 'N' ? KAKAO_PROFILE_URL : user.profileImage,
+    avatar_url: user.isOriginProfile === 'N' ? kakaoProfile : user.profileImage,
     username: user.email,
     embeds: [
       {

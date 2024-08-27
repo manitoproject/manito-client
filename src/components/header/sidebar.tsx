@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
+import { kakaoProfile } from '../../assets/imgs';
 import { Document, Home, Logout, My } from '../../assets/svg/icons';
-import { KAKAO_PROFILE_URL } from '../../constants/profile';
 import useOutsideClick from '../../hooks/common/use-outside-click';
 import { useLogout, useUserQuery } from '../../queries/users';
 import routes from '../../routes';
@@ -54,7 +54,7 @@ export default function Sidebar({ onClose, isOpen }: SideMenuProps) {
                 <img
                   src={
                     data?.data?.isOriginProfile === 'N'
-                      ? KAKAO_PROFILE_URL
+                      ? kakaoProfile
                       : data?.data?.profileImage
                   }
                   alt="avatar"

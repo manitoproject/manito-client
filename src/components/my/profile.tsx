@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { KAKAO_PROFILE_URL } from '../../constants/profile';
+import { kakaoProfile } from '../../assets/imgs';
 import { useUserSuspenseQuery } from '../../queries/users';
 import { getFontSizeAndWeight } from '../../styles/mixins';
 
@@ -12,7 +12,7 @@ export default function MyProfile() {
         <img
           src={
             data?.data?.isOriginProfile === 'N'
-              ? KAKAO_PROFILE_URL
+              ? kakaoProfile
               : data?.data?.profileImage
           }
           alt="avatar"
