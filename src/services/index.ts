@@ -54,8 +54,17 @@ apiRequester.interceptors.response.use(
           token.removeToken();
           window.location.href = '/';
         }
+      } else {
+        throw new Error();
       }
     }
     return Promise.reject(error);
+  },
+);
+
+apiRequesterWithoutToken.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    throw new Error(error);
   },
 );
