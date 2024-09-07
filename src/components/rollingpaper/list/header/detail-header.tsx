@@ -1,8 +1,11 @@
 import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { Clip, KakaoFill } from '../../../../assets/svg/icons';
+import { useShare } from '../../../../hooks';
 import { usePaperMessagesQuery } from '../../../../queries/message';
+import { usePaperDetailQuery } from '../../../../queries/paper';
+import { useUserQuery } from '../../../../queries/users';
 import routes from '../../../../routes';
 import { useToastActions } from '../../../../stores/toast-store';
 import theme from '../../../../styles/theme';
@@ -20,25 +23,18 @@ interface DetailHeaderProps {
 }
 
 export default function DetailHeader({ paperId }: DetailHeaderProps) {
-  const location = useLocation();
-  const { data } = usePaperMessagesQuery();
   const [isCopyModalOpen, setIsCopyModalOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const { data } = usePaperMessagesQuery();
+  const { data: PaperData } = usePaperDetailQuery();
+  const { data: userData } = useUserQuery();
   const toastActions = useToastActions();
+  const { handleKakakoShare, handleUrlCopy } = useShare();
   const navigate = useNavigate();
   const handleShowDetailMessage = () => {
     if (data?.data?.length)
       return navigate(routes.rollingpaper.detail(paperId));
     toastActions.add('상세보기 내역이 없습니다.');
-  };
-
-  const handleUrlCopy = async () => {
-    if ('clipboard' in navigator) {
-      await navigator.clipboard.writeText(
-        `${import.meta.env.VITE_CLIENT_URL}${location.pathname}`,
-      );
-      toastActions.add('링크가 복사 되었습니다.');
-    }
   };
 
   return (
@@ -59,7 +55,14 @@ export default function DetailHeader({ paperId }: DetailHeaderProps) {
             <Modal.Title>공유하기</Modal.Title>
           </Modal.TitleWrapper>
           <StyledModalLinks>
-            <StyledModalLink>
+            <StyledModalLink
+              onClick={() =>
+                handleKakakoShare(
+                  userData?.data?.originName,
+                  PaperData?.data?.title,
+                )
+              }
+            >
               <KakaoFill />
               <span>카카오톡</span>
             </StyledModalLink>

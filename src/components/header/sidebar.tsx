@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import { kakaoProfile } from '../../assets/imgs';
 import { Document, Home, Logout, My } from '../../assets/svg/icons';
-import useOutsideClick from '../../hooks/common/use-outside-click';
+import useOutsideClick from '../../hooks/common/outside-click';
 import { useLogout, useUserQuery } from '../../queries/users';
 import routes from '../../routes';
 import {
