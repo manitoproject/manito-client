@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { Suspense } from 'react';
 import { Link } from 'react-router-dom';
 
-import { MainBanner, RollingBadge } from '../assets/imgs';
+import { MainBanner, MakeCakeBadge, RollingBadge } from '../assets/imgs';
 import Greeting from '../components/home/greeting';
 import { GreetingSkeleton } from '../components/skeletons/skeletons';
 import routes from '../routes';
@@ -14,12 +14,12 @@ const CONTENTS = [
     href: () => routes.setupIntro('rolling'),
     badge: RollingBadge,
   },
-  // {
-  //   name: '케이크 꾸미기',
-  //   isActive: false,
-  //   href: () => '',
-  //   badge: RollingBadge,
-  // },
+  {
+    name: '케이크 꾸미기',
+    isActive: false,
+    href: () => '',
+    badge: MakeCakeBadge,
+  },
   // {
   //   name: '보물상자 채우기',
   //   isActive: false,
@@ -48,7 +48,7 @@ export default function Home() {
                     <Badge />
                   </Link>
                 ) : (
-                  <div>{content.name}</div>
+                  <img src={content.badge} alt={content.name} />
                 )}
               </StyledContentItem>
             );
@@ -81,15 +81,8 @@ const StyeldContents = styled.ul`
 `;
 const StyledContentItem = styled.li`
   a,
-  div {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: ${(props) => props.theme.colors['powderBlue-50']};
+  img {
     border-radius: 10px;
-    aspect-ratio: 1;
-
     svg {
       width: 100%;
       height: 100%;
