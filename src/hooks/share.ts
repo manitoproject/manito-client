@@ -23,8 +23,13 @@ export default function useShare() {
       }
       window.Kakao.Share.sendDefault({
         objectType: 'feed',
+        itemContent: {
+          profileText: '마니또',
+          profileImageUrl:
+            'https://github.com/user-attachments/assets/54f814ab-dcc3-4a16-8bf3-29117b5d0744',
+        },
         content: {
-          title: `${paper} - 마니또`,
+          title: paper,
           description: `${nickname}님의 롤링페이퍼를 작성해주세요 :)`,
           imageUrl:
             'https://github.com/user-attachments/assets/54f814ab-dcc3-4a16-8bf3-29117b5d0744',
