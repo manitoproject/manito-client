@@ -2,26 +2,34 @@ import styled from '@emotion/styled';
 import { Suspense, useState } from 'react';
 
 import MyInfo from '../components/my/info';
-import MyContentsTab from '../components/my/menu/contenst-tab';
-import ThemeTab from '../components/my/menu/theme-tab';
+import ActivityTab from '../components/my/menu/activity-tab';
+import CategoryTab from '../components/my/menu/category-tab';
 import MyMessageList from '../components/my/message/message-list';
 import MyPaperList from '../components/my/paper/paper-list';
 import { MyMessageListSkeleton } from '../components/skeletons/skeletons';
 
+const categoryList: Category[] = ['ROLLING_PAPER', 'CAKE', 'TREASURE'];
+
 export default function My() {
-  const [activeContentTabIndex, setActiveContentTabIndex] = useState(0);
+  const [activeActivityTabIndex, setActiveActivityTabIndex] = useState(0);
+  const [activeCategoryTabIndex, setActiveCategoryTabIndex] = useState(0);
+  const activeCagegory: Category = categoryList[activeCategoryTabIndex];
 
   return (
     <StyledWrapper>
       <MyInfo />
       <StyledContentsWrapper>
-        <MyContentsTab
-          activeIndex={activeContentTabIndex}
-          onChangeIndex={setActiveContentTabIndex}
+        <ActivityTab
+          resetCategoryTab={() => setActiveCategoryTabIndex(0)}
+          activeIndex={activeActivityTabIndex}
+          setActiveIndex={setActiveActivityTabIndex}
         />
-        <ThemeTab />
-        {!activeContentTabIndex ? (
-          <MyPaperList />
+        <CategoryTab
+          activeIndex={activeCategoryTabIndex}
+          setActiveIndex={setActiveCategoryTabIndex}
+        />
+        {!activeActivityTabIndex ? (
+          <MyPaperList activeCagegory={activeCagegory} />
         ) : (
           <Suspense fallback={<MyMessageListSkeleton />}>
             <MyMessageList />

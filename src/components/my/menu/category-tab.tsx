@@ -3,30 +3,39 @@ import styled from '@emotion/styled';
 
 import { getFontSizeAndWeight } from '../../../styles/mixins';
 
-const PAPERS: { name: PaperType }[] = [
+interface CategoryTabProps {
+  setActiveIndex: React.Dispatch<React.SetStateAction<number>>;
+  activeIndex: number;
+}
+
+const contents: { name: CategoryKor }[] = [
   {
     name: '페이퍼',
   },
-  // {
-  //   name: '보물',
-  // },
-  // {
-  //   name: '케이크',
-  // },
+  {
+    name: '케이크',
+  },
 ];
 
-export default function ThemeTab() {
+export default function CategoryTab({
+  activeIndex,
+  setActiveIndex,
+}: CategoryTabProps) {
   return (
-    <StyledPaperWrapper>
-      {PAPERS.map((paper) => (
-        <StyledPaper isActive key={paper.name}>
-          {paper.name}
-        </StyledPaper>
+    <StyledWrapper>
+      {contents.map((content, i) => (
+        <StyledButton
+          onClick={() => setActiveIndex(i)}
+          isActive={activeIndex === i}
+          key={content.name}
+        >
+          {content.name}
+        </StyledButton>
       ))}
-    </StyledPaperWrapper>
+    </StyledWrapper>
   );
 }
-const StyledPaperWrapper = styled.div`
+const StyledWrapper = styled.div`
   padding: 8px 16px;
   display: flex;
   gap: 8px;
@@ -34,7 +43,7 @@ const StyledPaperWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors['gray-100']};
 `;
 
-const StyledPaper = styled.button<{ isActive: boolean }>`
+const StyledButton = styled.button<{ isActive: boolean }>`
   border-radius: 4px;
   ${getFontSizeAndWeight('heading4', 'regular')}
   padding: 12px 16px;

@@ -1,7 +1,7 @@
 import { Document, Edit } from '../../../assets/svg/icons';
-import { StyledMenu, StyledMenuWrapper } from './content-tab.style';
+import { StyledMenu, StyledMenuWrapper } from './activity-tab.style';
 
-const TAB = [
+const tab = [
   {
     name: '내 컨텐츠',
     svg: Document,
@@ -12,20 +12,25 @@ const TAB = [
   },
 ];
 
-interface MyContentsTabProps {
-  onChangeIndex: React.Dispatch<React.SetStateAction<number>>;
+interface MyActivityTabProps {
+  setActiveIndex: React.Dispatch<React.SetStateAction<number>>;
   activeIndex: number;
+  resetCategoryTab: () => void;
 }
 
-export default function MyContentsTab({
+export default function MyActivityTab({
   activeIndex,
-  onChangeIndex,
-}: MyContentsTabProps) {
+  setActiveIndex,
+  resetCategoryTab,
+}: MyActivityTabProps) {
   return (
     <StyledMenuWrapper>
-      {TAB.map((tab, i) => (
+      {tab.map((tab, i) => (
         <StyledMenu
-          onClick={() => onChangeIndex(i)}
+          onClick={() => {
+            setActiveIndex(i);
+            resetCategoryTab();
+          }}
           isActive={i === activeIndex}
           key={tab.name}
         >

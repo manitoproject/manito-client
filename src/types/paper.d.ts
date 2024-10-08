@@ -1,10 +1,13 @@
 interface PaperCreateType {
-  category: 'ROLLING_PAPER';
+  category: Category;
   title: string;
   theme: RollingThemeName;
 }
 
 type RollingThemeName = 'space' | 'nature' | 'animal';
+type Category = 'ROLLING_PAPER' | 'CAKE' | 'TREASURE';
+type CategoryKor = '페이퍼' | '보물' | '케이크';
+type CategoryLowerCase = 'rollingpaper' | 'cake' | 'treasure';
 
 interface Theme {
   themeKor: '우주' | '자연' | '멍냥';
@@ -12,11 +15,9 @@ interface Theme {
   img: string;
 }
 
-type PaperType = '페이퍼' | '보물' | '케이크';
-
 interface Paper {
   id: number;
-  category: keyof PaperCreateType['category'];
+  category: Category;
   title: string;
   theme: RollingThemeName;
   regDateTime: string;
