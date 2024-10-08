@@ -101,3 +101,8 @@ export const useEditMessage = (paperId: number) => {
     },
   });
 };
+export const useMessageCounts = (theme: CategoryLowerCase) => {
+  return useQuery({
+    ...queries.messages.counts(theme),
+  });
+};

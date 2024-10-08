@@ -2,6 +2,8 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import routes from './routes';
 import AuthGuard from './routes/auth-guard';
+import CakeDetail from './routes/cake/detail';
+import CakeSetup from './routes/cake/setup';
 import Contact from './routes/contact';
 import ErrorPage from './routes/error-page';
 import Home from './routes/home';
@@ -28,7 +30,7 @@ const router = () =>
           element: <Landing />,
         },
         {
-          path: routes.kakako_redirection,
+          path: routes.kakakoRedirection,
           element: <KakaoRedirection />,
         },
         {
@@ -74,6 +76,14 @@ const router = () =>
                     {
                       path: routes.rollingpaper.form(),
                       element: <RollingpaperForm />,
+                    },
+                    {
+                      path: routes.cake.setup(),
+                      element: <CakeSetup />,
+                    },
+                    {
+                      path: routes.cake.list(),
+                      element: <CakeDetail />,
                     },
                   ],
                 },

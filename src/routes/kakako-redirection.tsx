@@ -7,7 +7,7 @@ import { token } from '../utils/storage';
 
 export default function KakaoRedirection() {
   const code = new URL(location.href).searchParams.get('code');
-  const { data } = useTokenQuery(code);
+  const { data, isLoading } = useTokenQuery(code);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,5 +24,6 @@ export default function KakaoRedirection() {
     }
   }, [code, data, navigate]);
 
+  if (isLoading) return <div>sdfffffffffffff</div>;
   return null;
 }

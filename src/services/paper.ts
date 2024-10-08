@@ -1,6 +1,6 @@
 import { apiRequester, apiRequesterWithoutToken } from '.';
 
-export const createRollingpaper = async ({
+export const createPaper = async ({
   category,
   theme,
   title,

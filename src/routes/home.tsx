@@ -11,13 +11,13 @@ const CONTENTS = [
   {
     name: '롤링 페이퍼',
     isActive: true,
-    href: () => routes.setupIntro('rolling'),
+    href: () => routes.setupIntro('rollingpaper'),
     badge: RollingBadge,
   },
   {
     name: '케이크 꾸미기',
-    isActive: false,
-    href: () => '',
+    isActive: true,
+    href: () => routes.setupIntro('cake'),
     badge: MakeCakeBadge,
   },
   // {
@@ -36,7 +36,7 @@ export default function Home() {
           <Greeting />
         </Suspense>
         <StyeldBanner>
-          <MainBanner />
+          <img src={MainBanner} alt="메인 배너" />
         </StyeldBanner>
         <StyeldContents>
           {CONTENTS.map((content) => {
@@ -80,9 +80,10 @@ const StyeldContents = styled.ul`
   grid-template-columns: repeat(2, 1fr);
 `;
 const StyledContentItem = styled.li`
+  border-radius: 10px;
+  overflow: hidden;
   a,
   img {
-    border-radius: 10px;
     svg {
       width: 100%;
       height: 100%;

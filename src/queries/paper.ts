@@ -2,17 +2,17 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import routes from '../routes';
-import { createRollingpaper, deletePaper } from '../services/paper';
+import { createPaper, deletePaper } from '../services/paper';
 import { useToastActions } from '../stores/toast-store';
 import queries from './query-key-factory';
 
-export const useCreateRollingpaper = () => {
+export const useCreatePaper = (content: CategoryLowerCase) => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: createRollingpaper,
+    mutationFn: createPaper,
     onSuccess: (data) => {
-      navigate(routes.rollingpaper.list(data.data?.id));
+      navigate(routes[content].list(data.data?.id));
       queryClient.invalidateQueries({
         queryKey: queries.papers.user._def,
       });

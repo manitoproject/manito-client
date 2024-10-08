@@ -45,3 +45,10 @@ export const editMessage = async (
   );
   return data;
 };
+
+export const getMessageCounts = async (theme: CategoryLowerCase) => {
+  const { data } = await apiRequester<DeatultResponse<{ count: number }>>(
+    `/message/count/${theme}`,
+  );
+  return data;
+};

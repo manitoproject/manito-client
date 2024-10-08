@@ -4,7 +4,11 @@ import {
 } from '@lukemorales/query-key-factory';
 
 import { getAccessToken } from '../services/auth';
-import { getPaperMessages, getUserMessages } from '../services/message';
+import {
+  getMessageCounts,
+  getPaperMessages,
+  getUserMessages,
+} from '../services/message';
 import { getPaperByUserId, getPerperDetail } from '../services/paper';
 import { getUser } from '../services/users';
 
@@ -41,6 +45,10 @@ const messages = createQueryKeys('messages', {
   user: () => ({
     queryFn: getUserMessages,
     queryKey: ['user'],
+  }),
+  counts: (theme: CategoryLowerCase) => ({
+    queryKey: [theme],
+    queryFn: () => getMessageCounts(theme),
   }),
 });
 

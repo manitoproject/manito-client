@@ -52,6 +52,15 @@ export default function Header({ onSidebarOpen }: HeaderProps) {
         };
       }
       if (item.pathname() === location.pathname) {
+        if (location.pathname === routes.setupIntro('cake')) {
+          return {
+            title: item.title,
+            isShowLeftBtn: item.isShowLeftBtn,
+            isShowMenuBtn: item.isShowMenuBtn,
+            hasBorder: false,
+            headerColor: theme.colors['strawberry-300'],
+          };
+        }
         return {
           title: item.title,
           isShowLeftBtn: item.isShowLeftBtn,

@@ -1,30 +1,27 @@
-import { useState } from 'react';
-
 import { Button } from '../../components/common/button/buttons';
 import NameForm from '../../components/common/name-form';
-import ThemeCarousel from '../../components/setup/theme-carousel';
 import { titleMaxLength } from '../../constants/regex-patterns';
-import themeList from '../../constants/theme-list';
 import { useNameForm } from '../../hooks';
 import { useCreatePaper } from '../../queries/paper';
 import {
   StyledHeading,
   StyledSectionWrapper,
   StyledWrapper,
-} from './setup.style';
+} from '../rollingpaper/setup.style';
 
-export default function RollingpaperSetup() {
+export default function CakeSetup() {
   const { handleNameChange, handleNameReset, isError, name, nameRef } =
     useNameForm('title');
-  const [activeThemeIndex, setActiveThemeIndex] = useState(0);
-  const { mutate, isPending } = useCreatePaper('rollingpaper');
+  const { mutate, isPending, data } = useCreatePaper('cake');
   const handleSubmit = () => {
     mutate({
-      category: 'ROLLING_PAPER',
-      theme: themeList[activeThemeIndex].themeEng,
+      category: 'CAKE',
       title: name,
+      theme: 'animal',
     });
   };
+
+  console.log({ data });
 
   return (
     <StyledWrapper>
@@ -38,16 +35,11 @@ export default function RollingpaperSetup() {
           onClick={handleNameReset}
         >
           <StyledHeading>
-            <h2>롤링페이퍼</h2>
             <h3>
-              <strong>제목</strong>을 입력해주세요.
+              <strong>케이크 제목</strong>을 입력해주세요.
             </h3>
           </StyledHeading>
         </NameForm>
-        <ThemeCarousel
-          onActiveIndexChange={(i) => setActiveThemeIndex(i)}
-          activeIndex={activeThemeIndex}
-        />
       </StyledSectionWrapper>
       <Button
         disabled={!name.length || isError || isPending}

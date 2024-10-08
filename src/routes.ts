@@ -2,8 +2,9 @@ const routes = {
   landing: '/' as const,
   signup: '/signup' as const,
   home: '/home' as const,
-  kakako_redirection: '/login/oauth/kakao/callback' as const,
-  setupIntro: (content?: string) => `/intro/${content ?? ':content'}` as const,
+  kakakoRedirection: '/login/oauth/kakao/callback' as const,
+  setupIntro: (content?: 'cake' | 'rollingpaper') =>
+    `/intro/${content ?? ':content'}` as const,
   my: {
     default: '/my' as const,
     setting: () => `${routes.my.default}/setting` as const,
@@ -22,11 +23,20 @@ const routes = {
         type || ':type'
       }` as const,
   },
+  cake: {
+    default: '/cake' as const,
+    setup: () => `${routes.cake.default}/setup` as const,
+    list: (id?: number) => `${routes.cake.default}/${id ?? ':id'}` as const,
+    detail: (id?: number) =>
+      `${routes.cake.default}/${id ?? ':id'}/detail` as const,
+  },
+  treasure: {
+    default: '/treasure' as const,
+    setup: () => `${routes.treasure.default}/setup` as const,
+    list: (id?: number) => `${routes.treasure.default}/${id ?? ':id'}` as const,
+    detail: (id?: number) =>
+      `${routes.treasure.default}/${id ?? ':id'}/detail` as const,
+  },
 };
 
 export default routes;
-
-// rollingpaper/80
-// rollingpaper/80/detail
-// rollingpaper/80/create
-// rollingpaper/80/edit

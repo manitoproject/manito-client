@@ -21,14 +21,26 @@ const headerMap: HeaderConfig[] = [
     isShowMenuBtn: true,
   },
   {
-    pathname: () => routes.setupIntro('rolling'),
+    pathname: () => routes.setupIntro('rollingpaper'),
     title: 'Rollring paper',
+    isShowLeftBtn: true,
+    isShowMenuBtn: false,
+  },
+  {
+    pathname: () => routes.setupIntro('cake'),
+    title: '케이크 만들기',
     isShowLeftBtn: true,
     isShowMenuBtn: false,
   },
   {
     pathname: () => routes.rollingpaper.setup(),
     title: '롤링페이퍼 테마선택',
+    isShowLeftBtn: true,
+    isShowMenuBtn: false,
+  },
+  {
+    pathname: () => routes.cake.setup(),
+    title: '케이크 만들기',
     isShowLeftBtn: true,
     isShowMenuBtn: false,
   },
