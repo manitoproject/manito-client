@@ -71,6 +71,15 @@ const theme = {
     black: '#000000',
     kakao: '#FEE500',
     error: '#F04747',
+    'choco-100': '#F4EAE7',
+    'choco-200': '#EFC9C0',
+    'choco-300': '#400F0A',
+    'vanilla-100': '#FFFADE',
+    'vanilla-200': '#FFF5B4',
+    'vanilla-300': '#FF7D3F',
+    'strawberry-100': '#FFF4F7',
+    'strawberry-200': '#FEDEE6',
+    'strawberry-300': '#FF8DA8',
   },
 };
 export type FontName = keyof ThemeType['fontFamily'];
