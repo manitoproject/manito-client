@@ -10,7 +10,7 @@ import { useSetHeader } from '../../hooks';
 import { usePaperMessagesQuery } from '../../queries/message';
 import { usePaperDetailQuery } from '../../queries/paper';
 import { Message } from '../../types/message';
-import { COLOR_BY_THEME } from './list';
+import { BG_BY_THEME } from './list';
 import { StyledBackdrop } from './list.style';
 
 export default function RollingpaperDetail() {
@@ -25,7 +25,7 @@ export default function RollingpaperDetail() {
   const paper = paperData?.data;
   useSetHeader({
     title: paper?.title,
-    bg: COLOR_BY_THEME[paper?.theme ?? 'animal'],
+    bg: BG_BY_THEME[paper?.theme ?? 'animal'].bgColor,
     color: paper?.theme === 'animal' ? undefined : 'white',
   });
 
@@ -55,7 +55,9 @@ export default function RollingpaperDetail() {
         message={currentMessage}
       />
       <ReactHelmet title={`${paperData?.data?.title} - ${TITLE}`} />
-      <StyledBackdrop themeName={paperData?.data?.theme} />
+      <StyledBackdrop
+        bg={BG_BY_THEME[paperData?.data?.theme ?? 'animal'].bgUrl}
+      />
     </StyledWrapper>
   );
 }
@@ -70,6 +72,5 @@ const StyledWrapper = styled.div`
     flex-direction: column;
     justify-content: center;
     margin-bottom: ${({ theme }) => theme.sizes.paddingTop};
-    /* transform: ${({ theme }) => `translateY(-${theme.sizes.paddingTop})`}; */
   }
 `;

@@ -1,21 +1,19 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-import {
-  getBackgroundImageFromThemeName,
-  StyledFixedBackground,
-} from '../../styles/mixins';
+import { StyledFixedBackground } from '../../styles/mixins';
 
 export const StyledRollingList = styled.div`
   width: 100%;
 `;
 
-export const StyledBackdrop = styled.div<{ themeName?: RollingThemeName }>`
-  ${({ themeName }) => css`
-    background-image: ${`url(${getBackgroundImageFromThemeName(themeName)})`};
+export const StyledBackdrop = styled.div<{ bg: string }>`
+  ${({ bg }) => css`
+    background-image: ${`url(${bg})`};
     ${StyledFixedBackground};
   `}
 `;
+
 export const StyledListWrapper = styled.div`
   width: 100%;
   position: relative;

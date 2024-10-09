@@ -17,12 +17,12 @@ import { useEditMessage } from '../../queries/message';
 import { ColorName, FontNameWithoutAppleFont } from '../../styles/theme';
 import {
   StyledCustomSheet,
-  StyledOverlayBackdrop,
   StyledRollingFormEmojiWrapper,
   StyledRollingFormWrapper,
   StyledSheetContentWrapper,
 } from './form.style';
-import { COLOR_BY_THEME } from './list';
+import { BG_BY_THEME } from './list';
+import { StyledBackdrop } from './list.style';
 
 export default function RollingpaperForm() {
   const messageInfo = useMessageInfo();
@@ -47,7 +47,7 @@ export default function RollingpaperForm() {
   const [content, setContent] = useState(isEditing ? messageInfo.content : '');
   useSetHeader({
     title: messageInfo.type === 'create' ? '편지 작성' : '수정하기',
-    bg: COLOR_BY_THEME[messageInfo.paperTheme],
+    bg: BG_BY_THEME[messageInfo.paperTheme].bgColor,
     color: messageInfo.paperTheme === 'animal' ? undefined : 'white',
   });
 
@@ -100,7 +100,7 @@ export default function RollingpaperForm() {
 
   return (
     <StyledRollingFormWrapper>
-      <StyledOverlayBackdrop themeName={messageInfo.paperTheme} />
+      <StyledBackdrop bg={BG_BY_THEME[messageInfo.paperTheme].bgUrl} />
       <StyledRollingFormEmojiWrapper
         isEmojiTab={!isActiveFontTab && !isEditing}
       >

@@ -1,5 +1,10 @@
 import { useEffect } from 'react';
 
+import {
+  AnimalBgOriginal,
+  natureBgOriginal,
+  SpaceBgOriginal,
+} from '../../assets/imgs';
 import DetailHeader from '../../components/rollingpaper/list/header/detail-header';
 import MessageList from '../../components/rollingpaper/list/message-list';
 import ReactHelmet, { TITLE } from '../../helmet';
@@ -13,10 +18,13 @@ import {
   StyledRollingList,
 } from './list.style';
 
-export const COLOR_BY_THEME: Record<RollingThemeName, ColorName> = {
-  animal: 'white',
-  space: 'powderBlue-900',
-  nature: 'powderBlue-800',
+export const BG_BY_THEME: Record<
+  RollingThemeName,
+  { bgColor: ColorName; bgUrl: string }
+> = {
+  animal: { bgColor: 'white', bgUrl: AnimalBgOriginal },
+  space: { bgColor: 'powderBlue-900', bgUrl: SpaceBgOriginal },
+  nature: { bgColor: 'powderBlue-800', bgUrl: natureBgOriginal },
 };
 
 export default function RollingpaperList() {
@@ -25,7 +33,7 @@ export default function RollingpaperList() {
   const messageActions = useMessageActions();
   useSetHeader({
     title: paper?.title,
-    bg: COLOR_BY_THEME[paper?.theme ?? 'animal'],
+    bg: BG_BY_THEME[paper?.theme ?? 'animal'].bgColor,
     color: paper?.theme === 'animal' ? undefined : 'white',
   });
   useEffect(() => {
@@ -39,7 +47,7 @@ export default function RollingpaperList() {
         <DetailHeader paperId={paper?.id} />
         <MessageList />
       </StyledListWrapper>
-      <StyledBackdrop themeName={paper?.theme} />
+      <StyledBackdrop bg={BG_BY_THEME[paper?.theme ?? 'animal'].bgUrl} />
     </StyledRollingList>
   );
 }

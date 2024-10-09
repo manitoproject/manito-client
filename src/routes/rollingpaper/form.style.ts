@@ -1,8 +1,6 @@
 import styled from '@emotion/styled';
 import { Sheet } from 'react-modal-sheet';
 
-import { StyledBackdrop } from './list.style';
-
 export const StyledRollingFormWrapper = styled.div`
   position: relative;
   width: 100%;
@@ -17,7 +15,6 @@ export const StyledRollingFormEmojiWrapper = styled.div<{
       `translateY(${isEmojiTab ? '-45px' : '-24px'})`};
   }
 `;
-export const StyledOverlayBackdrop = styled(StyledBackdrop)``;
 
 export const StyledCustomSheet = styled(Sheet)`
   max-width: ${(props) => props.theme.sizes.mobile};

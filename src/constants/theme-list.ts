@@ -1,6 +1,8 @@
-import animalBg from '../assets/imgs/bg/animal-theme4x-100.webp';
-import natureBg from '../assets/imgs/bg/nature-theme4x-100.webp';
-import spaceBg from '../assets/imgs/bg/space-theme4x-100.webp';
+import {
+  AnimalBgThumbnail,
+  natureBgThumbnail,
+  SpaceBgThumbnail,
+} from '../assets/imgs';
 import { Message } from '../types/message';
 
 const ROLLING_THEME_NAME: RollingThemeName[] = ['nature', 'space', 'animal'];
@@ -16,17 +18,17 @@ const themeList: Theme[] = [
   {
     themeKor: '우주',
     themeEng: 'space',
-    img: spaceBg,
+    img: SpaceBgThumbnail,
   },
   {
     themeKor: '자연',
     themeEng: 'nature',
-    img: natureBg,
+    img: natureBgThumbnail,
   },
   {
     themeKor: '멍냥',
     themeEng: 'animal',
-    img: animalBg,
+    img: AnimalBgThumbnail,
   },
 ];
 
