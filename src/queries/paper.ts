@@ -33,7 +33,6 @@ export const usePaperDetailQuery = () => {
   const query = useQuery({
     ...queries.papers.detail(id),
     enabled: !!id,
-    staleTime: 1000 * 60 * 60 * 6, // 삭제 바람!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   });
 
   if (query.isError || query.data?.result === 'Fail') throw new Error();

@@ -1,108 +1,40 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import styled from '@emotion/styled';
+import { useNavigate } from 'react-router-dom';
 
 import { HamburgerMenu, LeftChevron } from '../../assets/svg/icons';
-import headerMap, { HeaderConfig } from '../../constants/header-config';
-import { usePaperDetailQuery } from '../../queries/paper';
-import routes from '../../routes';
-import theme from '../../styles/theme';
-import { token } from '../../utils/storage';
-import { HeaderSkeleton } from '../skeletons/skeletons';
-import {
-  StyledHeader,
-  StyledLeftButton,
-  StyledMenuButton,
-} from './header.style';
+import { useHeader } from '../../stores/header-store';
+import { getFontSizeAndWeight } from '../../styles/mixins';
+import { ColorName } from '../../styles/theme';
 
 interface HeaderProps {
   onSidebarOpen: () => void;
 }
 
-export type EditedHeaderConfig = {
-  headerColor: string;
-  hasBorder: boolean;
-} & Pick<HeaderConfig, 'isShowLeftBtn' | 'isShowMenuBtn' | 'title'>;
-
-const headerColorByTheme: Record<RollingThemeName, string> = {
-  animal: theme.colors.white,
-  nature: theme.colors['powderBlue-800'],
-  space: theme.colors['powderBlue-900'],
-};
-
 export default function Header({ onSidebarOpen }: HeaderProps) {
+  const header = useHeader();
   const navigate = useNavigate();
-  const location = useLocation();
-  const { data, isLoading } = usePaperDetailQuery();
-  const paper = data?.data;
 
-  if (isLoading) return <HeaderSkeleton />;
-
-  const header = headerMap.reduce<EditedHeaderConfig | object>(
-    (result, item) => {
-      if (paper) {
-        let title = '';
-        if (location.search) title = '편지 작성';
-        else if (location.pathname.includes('edit')) title = '수정하기';
-        else if (location.pathname.includes('create')) title = '편지 선택';
-        return {
-          headerColor: headerColorByTheme[paper.theme],
-          hasBorder: paper.theme === 'animal',
-          title: title || paper.title,
-          isShowLeftBtn: true,
-          isShowMenuBtn: true,
-        };
-      }
-      if (item.pathname() === location.pathname) {
-        if (location.pathname === routes.setupIntro('cake')) {
-          return {
-            title: item.title,
-            isShowLeftBtn: item.isShowLeftBtn,
-            isShowMenuBtn: item.isShowMenuBtn,
-            hasBorder: false,
-            headerColor: theme.colors['strawberry-300'],
-          };
-        }
-        return {
-          title: item.title,
-          isShowLeftBtn: item.isShowLeftBtn,
-          isShowMenuBtn: item.isShowMenuBtn,
-          hasBorder: true,
-          headerColor: theme.colors.white,
-        };
-      }
-      return result;
-    },
-    {},
-  );
   const handleNavigation = () => {
-    const isHomePage = location.pathname === routes.home;
-    const currentPathname = location.pathname.split('/');
-    const isListPage =
-      currentPathname.length === 3 && currentPathname[1] === 'rollingpaper';
-    const isListPageAndUnAuth = isListPage && !token.getAccessToken();
-    if (isHomePage || isListPageAndUnAuth) return navigate(routes.landing);
+    // const isHomePage = location.pathname === routes.home;
+    // const currentPathname = location.pathname.split('/');
+    // const isListPage =
+    //   currentPathname.length === 3 && currentPathname[1] === 'rollingpaper';
+    // const isListPageAndUnAuth = isListPage && !token.getAccessToken();
+    // if (isHomePage || isListPageAndUnAuth) return navigate(routes.landing);
     return navigate(-1);
   };
 
-  if (!('headerColor' in header))
-    throw Error('서버 데이터 에러 발생 (header config)');
-
   return (
-    <StyledHeader headerColor={header.headerColor} hasBorder={header.hasBorder}>
+    <StyledHeader bg={header.bg} color={header.color}>
       <div>
-        {header.isShowLeftBtn && (
-          <StyledLeftButton
-            headerColor={header.headerColor}
-            onClick={handleNavigation}
-          >
+        {header.leftBtn && (
+          <StyledLeftButton color={header.color} onClick={handleNavigation}>
             <LeftChevron />
           </StyledLeftButton>
         )}
         <h1>{header.title}</h1>
-        {header.isShowMenuBtn && (
-          <StyledMenuButton
-            headerColor={header.headerColor}
-            onClick={onSidebarOpen}
-          >
+        {header.rightBtn && (
+          <StyledMenuButton color={header.color} onClick={onSidebarOpen}>
             <HamburgerMenu />
           </StyledMenuButton>
         )}
@@ -110,3 +42,48 @@ export default function Header({ onSidebarOpen }: HeaderProps) {
     </StyledHeader>
   );
 }
+
+export const StyledHeader = styled.header<{
+  bg: ColorName;
+  color: ColorName;
+}>`
+  max-width: ${(props) => props.theme.sizes.mobile};
+  width: 100%;
+  z-index: 51;
+  position: fixed;
+  background-color: ${({ bg, theme }) => theme.colors[bg]};
+  border-bottom: ${({ bg, theme }) =>
+    bg === 'white' ? `1px solid ${theme.colors['gray-300']}` : 'none'};
+  & > div {
+    h1 {
+      ${getFontSizeAndWeight('heading2', 'medium')}
+      left: 50%;
+      transform: translateX(-50%);
+      position: absolute;
+    }
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: ${({ color, theme }) => theme.colors[color]};
+    padding: ${(props) => `0 ${props.theme.sizes.padding}`};
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+`;
+
+const StyledLeftButton = styled.button<{ color: ColorName }>`
+  svg {
+    path {
+      stroke: ${({ color, theme }) =>
+        color === 'gray-800' ? theme.colors['gray-500'] : theme.colors[color]};
+    }
+  }
+`;
+
+const StyledMenuButton = styled.button<{ color: ColorName }>`
+  margin-left: auto;
+  svg path {
+    stroke: ${({ color, theme }) =>
+      color === 'gray-800' ? theme.colors['gray-500'] : theme.colors[color]};
+  }
+`;

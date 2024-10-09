@@ -2,7 +2,7 @@ import { kakaoProfile } from '../assets/imgs';
 import { Button } from '../components/common/button/buttons';
 import NameForm from '../components/common/name-form';
 import { nicknameMaxLength } from '../constants/regex-patterns';
-import { useNameForm } from '../hooks';
+import { useNameForm, useSetHeader } from '../hooks';
 import {
   useNicknameChange,
   useProfileChange,
@@ -12,6 +12,7 @@ import { StyledAvartarWrapper, StyledRenameWrapper } from './rename.style';
 
 export default function Rename() {
   const { data } = useUserQuery();
+  useSetHeader({ title: '프로필 수정', rightBtn: false });
   const { mutate, isPending } = useNicknameChange(true);
   const { mutate: profileMutate } = useProfileChange();
   const { handleNameChange, handleNameReset, isError, name, nameRef } =

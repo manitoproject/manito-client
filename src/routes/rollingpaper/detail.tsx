@@ -6,19 +6,29 @@ import AuthorInfo from '../../components/rollingpaper/detail/author-info';
 import DetailMessageButtons from '../../components/rollingpaper/detail/buttons';
 import MessageSwipe from '../../components/rollingpaper/detail/swipe';
 import ReactHelmet, { TITLE } from '../../helmet';
+import { useSetHeader } from '../../hooks';
 import { usePaperMessagesQuery } from '../../queries/message';
 import { usePaperDetailQuery } from '../../queries/paper';
 import { Message } from '../../types/message';
+import { COLOR_BY_THEME } from './list';
 import { StyledBackdrop } from './list.style';
 
 export default function RollingpaperDetail() {
   const location = useLocation();
   const { data: messageData, isError, isLoading } = usePaperMessagesQuery();
   const { data: paperData } = usePaperDetailQuery();
+
   const target = messageData?.data?.findIndex((a) => a.id === location.state);
   const [activeIndex, setActiveIndex] = useState(
     !target || target === -1 ? 0 : target,
   );
+  const paper = paperData?.data;
+  useSetHeader({
+    title: paper?.title,
+    bg: COLOR_BY_THEME[paper?.theme ?? 'animal'],
+    color: paper?.theme === 'animal' ? undefined : 'white',
+  });
+
   if (isError) throw new Error('usePaperMessagesQuery fetching error');
   if (isLoading) return null;
 

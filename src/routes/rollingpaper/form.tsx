@@ -12,7 +12,7 @@ import FontSheet from '../../components/rollingpaper/bottom-sheet/font-sheet/fon
 import BottomSheetheader from '../../components/rollingpaper/bottom-sheet/header';
 import EmojiSkin from '../../components/rollingpaper/emoji-skin';
 import { findEmojiSvgFromTheme } from '../../constants/emojis';
-import { useMessageInfo } from '../../hooks';
+import { useMessageInfo, useSetHeader } from '../../hooks';
 import { useEditMessage } from '../../queries/message';
 import { ColorName, FontNameWithoutAppleFont } from '../../styles/theme';
 import {
@@ -22,6 +22,7 @@ import {
   StyledRollingFormWrapper,
   StyledSheetContentWrapper,
 } from './form.style';
+import { COLOR_BY_THEME } from './list';
 
 export default function RollingpaperForm() {
   const messageInfo = useMessageInfo();
@@ -44,6 +45,11 @@ export default function RollingpaperForm() {
     isEditing ? messageInfo.fontColor : 'white',
   );
   const [content, setContent] = useState(isEditing ? messageInfo.content : '');
+  useSetHeader({
+    title: messageInfo.type === 'create' ? '편지 작성' : '수정하기',
+    bg: COLOR_BY_THEME[messageInfo.paperTheme],
+    color: messageInfo.paperTheme === 'animal' ? undefined : 'white',
+  });
 
   const { mutate } = useEditMessage(messageInfo.paperId);
   const handleMessageSubmit = () => {

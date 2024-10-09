@@ -2,9 +2,15 @@ import styled from '@emotion/styled';
 import { Suspense } from 'react';
 import { Link } from 'react-router-dom';
 
-import { MainBanner, MakeCakeBadge, RollingBadge } from '../assets/imgs';
+import {
+  MainBanner,
+  MakeCakeBadge,
+  RollingBadge,
+  TreasureBadge,
+} from '../assets/imgs';
 import Greeting from '../components/home/greeting';
 import { GreetingSkeleton } from '../components/skeletons/skeletons';
+import { useSetHeader } from '../hooks';
 import routes from '../routes';
 
 const CONTENTS = [
@@ -15,20 +21,22 @@ const CONTENTS = [
     badge: RollingBadge,
   },
   {
-    name: '케이크 꾸미기',
+    name: '케이크 만들기',
     isActive: true,
     href: () => routes.setupIntro('cake'),
     badge: MakeCakeBadge,
   },
-  // {
-  //   name: '보물상자 채우기',
-  //   isActive: false,
-  //   href: () => '',
-  //   badge: RollingBadge,
-  // },
+  {
+    name: '추억의 보물상자',
+    isActive: false,
+    href: () => '',
+    badge: TreasureBadge,
+  },
 ];
 
 export default function Home() {
+  useSetHeader({ title: '메인 페이지' });
+
   return (
     <StyledWrapper>
       <section>
@@ -40,12 +48,14 @@ export default function Home() {
         </StyeldBanner>
         <StyeldContents>
           {CONTENTS.map((content) => {
-            const Badge = content.badge;
             return (
-              <StyledContentItem key={content.name}>
+              <StyledContentItem
+                hasBorder={content.name === '롤링 페이퍼'}
+                key={content.name}
+              >
                 {content.isActive ? (
                   <Link to={content.href()}>
-                    <Badge />
+                    <img src={content.badge} alt={content.name} />
                   </Link>
                 ) : (
                   <img src={content.badge} alt={content.name} />
@@ -79,9 +89,11 @@ const StyeldContents = styled.ul`
   gap: 16px;
   grid-template-columns: repeat(2, 1fr);
 `;
-const StyledContentItem = styled.li`
+const StyledContentItem = styled.li<{ hasBorder: boolean }>`
   border-radius: 10px;
   overflow: hidden;
+  border: ${({ hasBorder, theme }) =>
+    hasBorder && `1px solid ${theme.colors['gray-300']}`};
   a,
   img {
     svg {

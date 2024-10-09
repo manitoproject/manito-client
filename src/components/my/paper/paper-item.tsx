@@ -13,6 +13,12 @@ interface MyPaperItemProps {
   paper: Paper;
 }
 
+const CATEGORY_MAP: Record<Category, CategoryLowerCase> = {
+  CAKE: 'cake',
+  ROLLING_PAPER: 'rollingpaper',
+  TREASURE: 'treasure',
+};
+
 export default function MyPaperItem({ paper }: MyPaperItemProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { mutate } = useDeletePaper();
@@ -24,7 +30,10 @@ export default function MyPaperItem({ paper }: MyPaperItemProps) {
 
   return (
     <StyledItem>
-      <Link to={routes.rollingpaper.list(paper.id)} state={routes.my.default}>
+      <Link
+        to={routes[CATEGORY_MAP[paper.category]].list(paper.id)}
+        state={routes.my.default}
+      >
         <span>{paper.title}</span>
         <div>
           <span>{dayjs(paper.regDateTime).format('YYYY.MM.DD')}</span>

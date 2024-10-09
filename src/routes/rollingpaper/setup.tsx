@@ -5,7 +5,7 @@ import NameForm from '../../components/common/name-form';
 import ThemeCarousel from '../../components/setup/theme-carousel';
 import { titleMaxLength } from '../../constants/regex-patterns';
 import themeList from '../../constants/theme-list';
-import { useNameForm } from '../../hooks';
+import { useNameForm, useSetHeader } from '../../hooks';
 import { useCreatePaper } from '../../queries/paper';
 import {
   StyledHeading,
@@ -17,6 +17,7 @@ export default function RollingpaperSetup() {
   const { handleNameChange, handleNameReset, isError, name, nameRef } =
     useNameForm('title');
   const [activeThemeIndex, setActiveThemeIndex] = useState(0);
+  useSetHeader({ title: '롤링페이퍼 테마선택', rightBtn: false });
   const { mutate, isPending } = useCreatePaper('rollingpaper');
   const handleSubmit = () => {
     mutate({

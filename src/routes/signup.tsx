@@ -6,7 +6,7 @@ import { Button } from '../components/common/button/buttons';
 import SignupRadioButton from '../components/common/button/signup-radio-button';
 import NameForm from '../components/common/name-form';
 import { nicknameMaxLength } from '../constants/regex-patterns';
-import { useNameForm } from '../hooks';
+import { useNameForm, useSetHeader } from '../hooks';
 import { useNicknameChange } from '../queries/users';
 import routes from '../routes';
 import { getFontSizeAndWeight } from '../styles/mixins';
@@ -14,6 +14,8 @@ import { getFontSizeAndWeight } from '../styles/mixins';
 export default function Signup() {
   const [activeRadioButtonIndex, setActiveRadioButtonIndex] = useState(0);
   const { mutate, isPending } = useNicknameChange();
+  useSetHeader({ title: '회원가입', rightBtn: false });
+
   const { handleNameChange, handleNameReset, isError, name, nameRef } =
     useNameForm('nickname');
 

@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 
 import { Button } from '../components/common/button/buttons';
+import { useSetHeader } from '../hooks';
 import { useSendFeedbackMessage } from '../queries/contact';
 import { useUserQuery } from '../queries/users';
 import { getFontSizeAndWeight } from '../styles/mixins';
@@ -11,6 +12,8 @@ export default function Contact() {
   const [message, setMessage] = useState('');
   const [isFocus, setIsFocus] = useState(false);
   const { mutate, isPending } = useSendFeedbackMessage(setMessage);
+  useSetHeader({ title: '문의하기', rightBtn: false });
+
   const handleSendMessage = () => {
     if (message.length) mutate({ content: message, user: data?.data });
   };

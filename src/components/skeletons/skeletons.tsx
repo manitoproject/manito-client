@@ -1,6 +1,4 @@
 import { StyledHeading } from '../../routes/rollingpaper/setup.style';
-import theme from '../../styles/theme';
-import { StyledHeader } from '../header/header.style';
 import { StyledGreetingDescription } from '../home/greeting';
 import { SkeletonItem } from './skeletons.style';
 
@@ -76,14 +74,14 @@ export function MyPaperListSkeleton() {
   );
 }
 
-export function HeaderSkeleton() {
-  return (
-    <StyledHeader headerColor={theme.colors.white} hasBorder={true}>
-      <div>
-        <SkeletonItem css={{ width: '32px', height: '32px' }} />
-        <SkeletonItem css={{ width: '170px', height: '30px' }} />
-        <SkeletonItem css={{ width: '32px', height: '32px' }} />
-      </div>
-    </StyledHeader>
-  );
-}
+// export function HeaderSkeleton() {
+//   return (
+//     <StyledHeader headerColor={theme.colors.white} hasBorder={true}>
+//       <div>
+//         <SkeletonItem css={{ width: '32px', height: '32px' }} />
+//         <SkeletonItem css={{ width: '170px', height: '30px' }} />
+//         <SkeletonItem css={{ width: '32px', height: '32px' }} />
+//       </div>
+//     </StyledHeader>
+//   );
+// }

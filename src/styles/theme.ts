@@ -77,9 +77,9 @@ const theme = {
     'vanilla-100': '#FFFADE',
     'vanilla-200': '#FFF5B4',
     'vanilla-300': '#FF7D3F',
-    'strawberry-100': '#FFF4F7',
-    'strawberry-200': '#FEDEE6',
-    'strawberry-300': '#FF8DA8',
+    'pink-100': '#FFF4F7',
+    'pink-200': '#FEDEE6',
+    'pink-300': '#FF8DA8',
   },
 };
 export type FontName = keyof ThemeType['fontFamily'];
