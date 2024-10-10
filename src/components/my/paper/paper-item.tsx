@@ -7,6 +7,7 @@ import { Trash } from '../../../assets/svg/icons';
 import { useDeletePaper } from '../../../queries/paper';
 import routes from '../../../routes';
 import { getFontSizeAndWeight } from '../../../styles/mixins';
+import theme from '../../../styles/theme';
 import DeleteModal from '../../modal/delete-modal';
 
 interface MyPaperItemProps {
@@ -38,7 +39,7 @@ export default function MyPaperItem({ paper }: MyPaperItemProps) {
         <div>
           <span>{dayjs(paper.regDateTime).format('YYYY.MM.DD')}</span>
           <button type="button" onClick={handleButtonClick}>
-            <Trash />
+            <Trash width={24} height={24} fill={theme.colors['gray-700']} />
           </button>
         </div>
       </Link>
@@ -82,13 +83,6 @@ export const StyledItem = styled.li`
         ${getFontSizeAndWeight('body1', 'regular')};
       }
       button {
-        svg {
-          width: 24px;
-          height: 24px;
-        }
-        path {
-          fill: ${({ theme }) => theme.colors['gray-700']};
-        }
         padding: 4px;
         box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
         background-color: ${({ theme }) => theme.colors.white};

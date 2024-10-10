@@ -6,6 +6,7 @@ import { findEmojiSvgFromTheme } from '../../../constants/emojis';
 import { getRollingThemeName } from '../../../constants/theme-list';
 import { useDeleteMessage } from '../../../queries/message';
 import routes from '../../../routes';
+import theme from '../../../styles/theme';
 import { Message } from '../../../types/message';
 import DeleteModal from '../../modal/delete-modal';
 import EmojiSkin from '../../rollingpaper/emoji-skin';
@@ -44,10 +45,10 @@ export default function MyMessageItem({ message }: MyMessageItemProps) {
   return (
     <StyledMessageItem isServerData>
       <StyledEditButton type="button" onClick={handleEditMessage}>
-        <EditSquare />
+        <EditSquare width={24} height={24} fill={theme.colors['gray-600']} />
       </StyledEditButton>
       <StyledTrashButton type="button" onClick={() => setIsModalOpen(true)}>
-        <Trash />
+        <Trash width={24} height={24} fill={theme.colors['gray-700']} />
       </StyledTrashButton>
       <EmojiSkin
         onClick={handleClick}
