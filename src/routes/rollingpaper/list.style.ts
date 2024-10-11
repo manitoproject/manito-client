@@ -5,6 +5,7 @@ import { StyledFixedBackground } from '../../styles/mixins';
 
 export const StyledRollingList = styled.div`
   width: 100%;
+  position: relative;
 `;
 
 export const StyledBackdrop = styled.div<{ bg: string }>`

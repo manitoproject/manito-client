@@ -21,7 +21,6 @@ interface HeaderStore {
 const useHeaderStore = create<HeaderStore>((set) => ({
   title: {
     font: 'SpoqaHanSansNeo',
-    hasBorder: true,
     bg: 'white',
     leftBtn: true,
     rightBtn: true,

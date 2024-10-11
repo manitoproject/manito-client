@@ -27,8 +27,8 @@ const routes = {
     default: '/cake' as const,
     setup: () => `${routes.cake.default}/setup` as const,
     list: (id?: number) => `${routes.cake.default}/${id ?? ':id'}` as const,
-    detail: (id?: number) =>
-      `${routes.cake.default}/${id ?? ':id'}/detail` as const,
+    editor: (id?: number) =>
+      `${routes.cake.default}/${id ?? ':id'}/editor` as const,
   },
   treasure: {
     default: '/treasure' as const,

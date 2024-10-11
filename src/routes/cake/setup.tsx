@@ -1,7 +1,7 @@
 import { Button } from '../../components/common/button/buttons';
 import NameForm from '../../components/common/name-form';
 import { titleMaxLength } from '../../constants/regex-patterns';
-import { useNameForm } from '../../hooks';
+import { useNameForm, useSetHeader } from '../../hooks';
 import { useCreatePaper } from '../../queries/paper';
 import {
   StyledHeading,
@@ -12,7 +12,8 @@ import {
 export default function CakeSetup() {
   const { handleNameChange, handleNameReset, isError, name, nameRef } =
     useNameForm('title');
-  const { mutate, isPending, data } = useCreatePaper('cake');
+  const { mutate, isPending } = useCreatePaper('cake');
+  useSetHeader({ title: '케이크 만들기', rightBtn: false });
   const handleSubmit = () => {
     mutate({
       category: 'CAKE',
@@ -20,8 +21,6 @@ export default function CakeSetup() {
       theme: 'animal',
     });
   };
-
-  console.log({ data });
 
   return (
     <StyledWrapper>
@@ -35,8 +34,9 @@ export default function CakeSetup() {
           onClick={handleNameReset}
         >
           <StyledHeading>
+            <h2>케이크</h2>
             <h3>
-              <strong>케이크 제목</strong>을 입력해주세요.
+              <strong>제목</strong>을 입력해주세요.
             </h3>
           </StyledHeading>
         </NameForm>

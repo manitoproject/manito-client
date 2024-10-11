@@ -1,6 +1,6 @@
 import {
   AnimalBgThumbnail,
-  natureBgThumbnail,
+  NatureBgThumbnail,
   SpaceBgThumbnail,
 } from '../assets/imgs';
 import { Message } from '../types/message';
@@ -23,7 +23,7 @@ const themeList: Theme[] = [
   {
     themeKor: '자연',
     themeEng: 'nature',
-    img: natureBgThumbnail,
+    img: NatureBgThumbnail,
   },
   {
     themeKor: '멍냥',

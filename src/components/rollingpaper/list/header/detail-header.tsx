@@ -31,6 +31,7 @@ export default function DetailHeader({ paperId }: DetailHeaderProps) {
   const toastActions = useToastActions();
   const { handleKakakoShare, handleUrlCopy } = useShare();
   const navigate = useNavigate();
+
   const handleShowDetailMessage = () => {
     if (data?.data?.length)
       return navigate(routes.rollingpaper.detail(paperId));

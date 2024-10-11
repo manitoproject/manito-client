@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 
 import { HamburgerMenu, LeftChevron } from '../../assets/svg/icons';
+import routes from '../../routes';
 import { useHeader } from '../../stores/header-store';
 import { getFontSizeAndWeight } from '../../styles/mixins';
 import { ColorName } from '../../styles/theme';
@@ -15,12 +16,8 @@ export default function Header({ onSidebarOpen }: HeaderProps) {
   const navigate = useNavigate();
 
   const handleNavigation = () => {
-    // const isHomePage = location.pathname === routes.home;
-    // const currentPathname = location.pathname.split('/');
-    // const isListPage =
-    //   currentPathname.length === 3 && currentPathname[1] === 'rollingpaper';
-    // const isListPageAndUnAuth = isListPage && !token.getAccessToken();
-    // if (isHomePage || isListPageAndUnAuth) return navigate(routes.landing);
+    const isHomePage = location.pathname === routes.home;
+    if (isHomePage) return navigate(routes.landing);
     return navigate(-1);
   };
 

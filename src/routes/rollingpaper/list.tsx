@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 import {
   AnimalBgOriginal,
-  natureBgOriginal,
+  NatureBgOriginal,
   SpaceBgOriginal,
 } from '../../assets/imgs';
 import DetailHeader from '../../components/rollingpaper/list/header/detail-header';
@@ -24,7 +24,7 @@ export const BG_BY_THEME: Record<
 > = {
   animal: { bgColor: 'white', bgUrl: AnimalBgOriginal },
   space: { bgColor: 'powderBlue-900', bgUrl: SpaceBgOriginal },
-  nature: { bgColor: 'powderBlue-800', bgUrl: natureBgOriginal },
+  nature: { bgColor: 'powderBlue-800', bgUrl: NatureBgOriginal },
 };
 
 export default function RollingpaperList() {

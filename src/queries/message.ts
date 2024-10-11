@@ -37,7 +37,6 @@ export const usePaperMessagesQuery = () => {
   const { id } = useParams();
   return useQuery({
     ...queries.messages.paper(Number(id)),
-    staleTime: 1000 * 60 * 60 * 6, // 삭제 바람!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     enabled: !!id,
   });
 };

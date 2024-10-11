@@ -13,7 +13,6 @@ export default function MessageList() {
   const { data, isLoading } = usePaperMessagesQuery();
   const messageList = useMessageList();
   const messageActions = useMessageActions();
-
   useEffect(() => {
     messageActions.snycList(data?.data);
   }, [data, messageActions]);

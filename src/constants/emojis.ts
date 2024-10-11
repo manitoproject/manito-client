@@ -1,3 +1,5 @@
+import { FunctionComponent, SVGAttributes } from 'react';
+
 import {
   AnimalCatPawsCircleLetter,
   AnimalCatPawsCloverLetter,
@@ -42,7 +44,12 @@ export const findEmojiSvgFromTheme = (name: string) =>
     (item) => item.name === name,
   );
 
-const emojis: { [key in RollingThemeName]: { name: string; svg: string }[] } = {
+const emojis: {
+  [key in RollingThemeName]: {
+    name: string;
+    svg: FunctionComponent<SVGAttributes<SVGElement>>;
+  }[];
+} = {
   nature: [
     {
       name: 'NatureCircle1',
