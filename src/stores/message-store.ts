@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 
-import { Message } from '../types/message';
+import { Message } from '@/types/message';
 
 const INIT_LIST = Array(8).fill(null);
 const MAX_LIST_LENGTH = 56;

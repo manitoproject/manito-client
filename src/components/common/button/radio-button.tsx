@@ -4,8 +4,8 @@ import styled from '@emotion/styled';
 import {
   RadioButton as RadioButtonSvg,
   RadioButtonActive,
-} from '../../../assets/svg/icons';
-import { getFontSizeAndWeight } from '../../../styles/mixins';
+} from '@/assets/svg/icons';
+import { getFontSizeAndWeight } from '@/styles/mixins';
 
 interface RadioButtonProps {
   children: React.ReactNode;

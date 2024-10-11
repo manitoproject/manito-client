@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 
-import { EmojiType } from '../components/rollingpaper/emoji-skin';
-import theme from './theme';
+import { EmojiType } from '@/components/rollingpaper/emoji-skin';
+import theme from '@/styles/theme';
 
 export const StyledFixedBackground = css`
   position: fixed;

@@ -1,20 +1,20 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { EditSquare, Trash } from '../../../assets/svg/icons';
-import { findEmojiSvgFromTheme } from '../../../constants/emojis';
-import { getRollingThemeName } from '../../../constants/theme-list';
-import { useDeleteMessage } from '../../../queries/message';
-import routes from '../../../routes';
-import theme from '../../../styles/theme';
-import { Message } from '../../../types/message';
-import DeleteModal from '../../modal/delete-modal';
-import EmojiSkin from '../../rollingpaper/emoji-skin';
+import { EditSquare, Trash } from '@/assets/svg/icons';
+import DeleteModal from '@/components/modal/delete-modal';
+import EmojiSkin from '@/components/rollingpaper/emoji-skin';
 import {
   StyledEditButton,
   StyledMessageItem,
   StyledTrashButton,
-} from '../../rollingpaper/list/item.style';
+} from '@/components/rollingpaper/list/item.style';
+import { findEmojiSvgFromTheme } from '@/constants/emojis';
+import { getRollingThemeName } from '@/constants/theme-list';
+import { useDeleteMessage } from '@/queries/message';
+import routes from '@/routes';
+import theme from '@/styles/theme';
+import { Message } from '@/types/message';
 
 interface MyMessageItemProps {
   message: Message<User>;

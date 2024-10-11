@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 
-import { Button } from '../components/common/button/buttons';
-import { useSetHeader } from '../hooks';
-import { useSendFeedbackMessage } from '../queries/contact';
-import { useUserQuery } from '../queries/users';
-import { getFontSizeAndWeight } from '../styles/mixins';
+import { Button } from '@/components/common/button/buttons';
+import { useSetHeader } from '@/hooks';
+import { useSendFeedbackMessage } from '@/queries/contact';
+import { useUserQuery } from '@/queries/users';
+import { getFontSizeAndWeight } from '@/styles/mixins';
 
 export default function Contact() {
   const { data } = useUserQuery();

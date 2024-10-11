@@ -1,25 +1,25 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import routes from './routes';
-import AuthGuard from './routes/auth-guard';
-import CakeEditor from './routes/cake/editor';
-import CakeListPage from './routes/cake/list';
-import CakeSetup from './routes/cake/setup';
-import Contact from './routes/contact';
-import ErrorPage from './routes/error-page';
-import Home from './routes/home';
-import KakaoRedirection from './routes/kakako-redirection';
-import Landing from './routes/landing';
-import Layout from './routes/layout';
-import My from './routes/my';
-import MySetting from './routes/my-setting';
-import Rename from './routes/rename';
-import RollingpaperDetail from './routes/rollingpaper/detail';
-import RollingpaperForm from './routes/rollingpaper/form';
-import RollingpaperList from './routes/rollingpaper/list';
-import RollingpaperSetup from './routes/rollingpaper/setup';
-import SetupIntro from './routes/setup-intro';
-import Signup from './routes/signup';
+import routes from '@/routes';
+import AuthGuard from '@/routes/auth-guard';
+import CakeEditor from '@/routes/cake/editor';
+import CakeListPage from '@/routes/cake/list';
+import CakeSetup from '@/routes/cake/setup';
+import Contact from '@/routes/contact';
+import ErrorPage from '@/routes/error-page';
+import Home from '@/routes/home';
+import KakaoRedirection from '@/routes/kakako-redirection';
+import Landing from '@/routes/landing';
+import Layout from '@/routes/layout';
+import My from '@/routes/my';
+import MySetting from '@/routes/my-setting';
+import Rename from '@/routes/rename';
+import RollingpaperDetail from '@/routes/rollingpaper/detail';
+import RollingpaperForm from '@/routes/rollingpaper/form';
+import RollingpaperList from '@/routes/rollingpaper/list';
+import RollingpaperSetup from '@/routes/rollingpaper/setup';
+import SetupIntro from '@/routes/setup-intro';
+import Signup from '@/routes/signup';
 
 const router = () =>
   createBrowserRouter([

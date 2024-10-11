@@ -1,15 +1,18 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { AddCircle } from '../../../assets/svg/icons';
-import emojis from '../../../constants/emojis';
-import { usePaperDetailQuery } from '../../../queries/paper';
-import routes from '../../../routes';
-import { Message } from '../../../types/message';
-import { token } from '../../../utils/storage';
-import LoginModal from '../../modal/login-modal';
-import EmojiSkin from '../emoji-skin';
-import { StyledEmptySvg, StyledItem } from './item.style';
+import { AddCircle } from '@/assets/svg/icons';
+import LoginModal from '@/components/modal/login-modal';
+import EmojiSkin from '@/components/rollingpaper/emoji-skin';
+import {
+  StyledEmptySvg,
+  StyledItem,
+} from '@/components/rollingpaper/list/item.style';
+import emojis from '@/constants/emojis';
+import { usePaperDetailQuery } from '@/queries/paper';
+import routes from '@/routes';
+import { Message } from '@/types/message';
+import { token } from '@/utils/storage';
 
 export interface MessageItemProps {
   message: Message<unknown> | null;

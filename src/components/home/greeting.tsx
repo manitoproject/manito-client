@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
-import { useUserSuspenseQuery } from '../../queries/users';
-import { getFontSizeAndWeight } from '../../styles/mixins';
+import { useUserSuspenseQuery } from '@/queries/users';
+import { getFontSizeAndWeight } from '@/styles/mixins';
 
 export default function Greeting() {
   const { data } = useUserSuspenseQuery();

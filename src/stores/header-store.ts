@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-import { ColorName, FontNameWithoutAppleFont } from '../styles/theme';
+import { ColorName, FontNameWithoutAppleFont } from '@/styles/theme';
 
 export type SetHeaderStore = Partial<HeaderStore['title']>;
 

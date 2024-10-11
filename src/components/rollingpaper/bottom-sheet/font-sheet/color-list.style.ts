@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { ColorName } from '../../../../styles/theme';
+import { ColorName } from '@/styles/theme';
 
 export const StyledColorList = styled.div`
   display: grid;

@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
-import { kakaoProfile } from '../../assets/imgs';
-import { useUserSuspenseQuery } from '../../queries/users';
-import { getFontSizeAndWeight } from '../../styles/mixins';
+import { kakaoProfile } from '@/assets/imgs';
+import { useUserSuspenseQuery } from '@/queries/users';
+import { getFontSizeAndWeight } from '@/styles/mixins';
 
 export default function MyProfile() {
   const { data } = useUserSuspenseQuery();

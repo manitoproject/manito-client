@@ -1,22 +1,22 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { Clip, KakaoFill } from '../../../../assets/svg/icons';
-import { useShare } from '../../../../hooks';
-import { usePaperMessagesQuery } from '../../../../queries/message';
-import { usePaperDetailQuery } from '../../../../queries/paper';
-import { useUserQuery } from '../../../../queries/users';
-import routes from '../../../../routes';
-import { useToastActions } from '../../../../stores/toast-store';
-import theme from '../../../../styles/theme';
-import { Modal } from '../../../modal';
-import LoginModal from '../../../modal/login-modal';
+import { Clip, KakaoFill } from '@/assets/svg/icons';
+import { Modal } from '@/components/modal';
+import LoginModal from '@/components/modal/login-modal';
 import {
   StyledModalLink,
   StyledModalLinks,
   StyledRollingHeader,
-} from './detail-header.style';
-import DetailMessagelength from './message-length';
+} from '@/components/rollingpaper/list/header/detail-header.style';
+import DetailMessagelength from '@/components/rollingpaper/list/header/message-length';
+import { useShare } from '@/hooks';
+import { usePaperMessagesQuery } from '@/queries/message';
+import { usePaperDetailQuery } from '@/queries/paper';
+import { useUserQuery } from '@/queries/users';
+import routes from '@/routes';
+import { useToastActions } from '@/stores/toast-store';
+import theme from '@/styles/theme';
 
 interface DetailHeaderProps {
   paperId?: number;

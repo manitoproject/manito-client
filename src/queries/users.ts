@@ -6,11 +6,11 @@ import {
 } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
-import routes from '../routes';
-import { changeNickname, changeProfile, logout } from '../services/users';
-import { useToastActions } from '../stores/toast-store';
-import { token } from '../utils/storage';
-import queries from './query-key-factory';
+import queries from '@/queries/query-key-factory';
+import routes from '@/routes';
+import { changeNickname, changeProfile, logout } from '@/services/users';
+import { useToastActions } from '@/stores/toast-store';
+import { token } from '@/utils/storage';
 
 export const useUserSuspenseQuery = () => {
   return useSuspenseQuery({

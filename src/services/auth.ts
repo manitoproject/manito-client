@@ -1,4 +1,4 @@
-import { apiRequesterWithoutToken } from '.';
+import { apiRequesterWithoutToken } from '@/services';
 
 export const getAccessToken = async (code: string | null) => {
   if (!code) return null;

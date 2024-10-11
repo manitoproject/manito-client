@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 
-import { useUserPaperQuery } from '../../../queries/paper';
-import { useUserQuery } from '../../../queries/users';
-import { MyPaperListSkeleton } from '../../skeletons/skeletons';
-import MyPaperItem from './paper-item';
+import MyPaperItem from '@/components/my/paper/paper-item';
+import { MyPaperListSkeleton } from '@/components/skeletons/skeletons';
+import { useUserPaperQuery } from '@/queries/paper';
+import { useUserQuery } from '@/queries/users';
 
 interface MyPaperListProps {
   activeCagegory: Category;

@@ -1,4 +1,4 @@
-import { apiRequester, apiRequesterWithoutToken } from '.';
+import { apiRequester, apiRequesterWithoutToken } from '@/services';
 
 export const createPaper = async ({
   category,

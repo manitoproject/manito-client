@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from 'react-router-dom';
 
-import routes from '../routes';
-import { accessToken } from '../utils/storage';
+import routes from '@/routes';
+import { accessToken } from '@/utils/storage';
 
 export default function AuthGuard() {
   if (localStorage.getItem(accessToken)) {

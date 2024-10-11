@@ -2,16 +2,16 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import AuthorInfo from '../../components/rollingpaper/detail/author-info';
-import DetailMessageButtons from '../../components/rollingpaper/detail/buttons';
-import MessageSwipe from '../../components/rollingpaper/detail/swipe';
-import ReactHelmet, { TITLE } from '../../helmet';
-import { useSetHeader } from '../../hooks';
-import { usePaperMessagesQuery } from '../../queries/message';
-import { usePaperDetailQuery } from '../../queries/paper';
-import { Message } from '../../types/message';
-import { BG_BY_THEME } from './list';
-import { StyledBackdrop } from './list.style';
+import AuthorInfo from '@/components/rollingpaper/detail/author-info';
+import DetailMessageButtons from '@/components/rollingpaper/detail/buttons';
+import MessageSwipe from '@/components/rollingpaper/detail/swipe';
+import ReactHelmet, { TITLE } from '@/helmet';
+import { useSetHeader } from '@/hooks';
+import { usePaperMessagesQuery } from '@/queries/message';
+import { usePaperDetailQuery } from '@/queries/paper';
+import { BG_BY_THEME } from '@/routes/rollingpaper/list';
+import { StyledBackdrop } from '@/routes/rollingpaper/list.style';
+import { Message } from '@/types/message';
 
 export default function RollingpaperDetail() {
   const location = useLocation();

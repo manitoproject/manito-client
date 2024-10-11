@@ -1,5 +1,5 @@
-import { kakaoProfile } from '../assets/imgs';
-import { discordRequester } from '.';
+import { kakaoProfile } from '@/assets/imgs';
+import { discordRequester } from '@/services';
 
 export const sendFeedbackMessage = async ({
   content,

@@ -1,4 +1,4 @@
-import { usePaperMessagesQuery } from '../../../../queries/message';
+import { usePaperMessagesQuery } from '@/queries/message';
 
 export default function DetailMessagelength() {
   const { data: messageData } = usePaperMessagesQuery();

@@ -1,5 +1,5 @@
-import theme from '../../styles/theme';
-import { Modal } from '.';
+import { Modal } from '@/components/modal';
+import theme from '@/styles/theme';
 
 interface DeleteModalProps {
   isOpen: boolean;

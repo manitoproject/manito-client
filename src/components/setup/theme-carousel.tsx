@@ -3,9 +3,9 @@ import 'swiper/css';
 import styled from '@emotion/styled';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import themeList from '../../constants/theme-list';
-import { getFontSizeAndWeight } from '../../styles/mixins';
-import ThemeItem from './theme-item';
+import ThemeItem from '@/components/setup/theme-item';
+import themeList from '@/constants/theme-list';
+import { getFontSizeAndWeight } from '@/styles/mixins';
 
 interface ThemeCarouselProps {
   activeIndex: number;

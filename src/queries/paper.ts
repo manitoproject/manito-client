@@ -1,10 +1,10 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import routes from '../routes';
-import { createPaper, deletePaper } from '../services/paper';
-import { useToastActions } from '../stores/toast-store';
-import queries from './query-key-factory';
+import queries from '@/queries/query-key-factory';
+import routes from '@/routes';
+import { createPaper, deletePaper } from '@/services/paper';
+import { useToastActions } from '@/stores/toast-store';
 
 export const useCreatePaper = (content: CategoryLowerCase) => {
   const navigate = useNavigate();

@@ -2,15 +2,15 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { getRollingThemeName } from '../../../constants/theme-list';
-import { useDeleteMessage } from '../../../queries/message';
-import { useUserQuery } from '../../../queries/users';
-import routes from '../../../routes';
-import theme from '../../../styles/theme';
-import { Message } from '../../../types/message';
-import { token } from '../../../utils/storage';
-import { Button } from '../../common/button/buttons';
-import DeleteModal from '../../modal/delete-modal';
+import { Button } from '@/components/common/button/buttons';
+import DeleteModal from '@/components/modal/delete-modal';
+import { getRollingThemeName } from '@/constants/theme-list';
+import { useDeleteMessage } from '@/queries/message';
+import { useUserQuery } from '@/queries/users';
+import routes from '@/routes';
+import theme from '@/styles/theme';
+import { Message } from '@/types/message';
+import { token } from '@/utils/storage';
 
 interface AuthButtonsProps extends DetailMessageButtonsProps {}
 interface DetailMessageButtonsProps {

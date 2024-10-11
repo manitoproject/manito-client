@@ -1,6 +1,6 @@
-import { useUserMessagesSuspenseQuery } from '../../../queries/message';
-import { StyledList } from '../../rollingpaper/list/message-list';
-import MyMessageItem from './message-item';
+import MyMessageItem from '@/components/my/message/message-item';
+import { StyledList } from '@/components/rollingpaper/list/message-list';
+import { useUserMessagesSuspenseQuery } from '@/queries/message';
 
 export default function MyMessageList() {
   const { data } = useUserMessagesSuspenseQuery();

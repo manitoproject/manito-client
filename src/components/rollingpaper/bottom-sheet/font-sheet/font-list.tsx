@@ -1,6 +1,9 @@
-import { fonts } from '../../../../constants/fonts';
-import { FontNameWithoutAppleFont } from '../../../../styles/theme';
-import { StyledFontItem, StyledFontList } from './font-list.style';
+import {
+  StyledFontItem,
+  StyledFontList,
+} from '@/components/rollingpaper/bottom-sheet/font-sheet/font-list.style';
+import { fonts } from '@/constants/fonts';
+import { FontNameWithoutAppleFont } from '@/styles/theme';
 
 interface FontListProps {
   activeFont: FontNameWithoutAppleFont;

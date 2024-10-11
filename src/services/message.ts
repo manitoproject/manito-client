@@ -1,5 +1,5 @@
-import { CreateMessageApiParams, Message } from '../types/message';
-import { apiRequester, apiRequesterWithoutToken } from '.';
+import { apiRequester, apiRequesterWithoutToken } from '@/services';
+import { CreateMessageApiParams, Message } from '@/types/message';
 
 export const createMessage = async (messageInfo: CreateMessageApiParams) => {
   const { data } = await apiRequester.post<DeatultResponse<null>>(

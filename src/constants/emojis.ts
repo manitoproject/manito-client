@@ -37,7 +37,7 @@ import {
   SpaceStarBright,
   SpaceTableclothPolygon,
   SpaceTableclothPolygonBright,
-} from '../assets/svg/emoji';
+} from '@/assets/svg/emoji';
 
 export const findEmojiSvgFromTheme = (name: string) =>
   [...emojis.animal, ...emojis.nature, ...emojis.space].find(

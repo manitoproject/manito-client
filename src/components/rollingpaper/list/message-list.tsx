@@ -1,13 +1,10 @@
 import styled from '@emotion/styled';
 import { useEffect } from 'react';
 
-import { usePaperMessagesQuery } from '../../../queries/message';
-import {
-  useMessageActions,
-  useMessageList,
-} from '../../../stores/message-store';
-import { MyMessageListSkeleton } from '../../skeletons/skeletons';
-import MessageItem from './message-item';
+import MessageItem from '@/components/rollingpaper/list/message-item';
+import { MyMessageListSkeleton } from '@/components/skeletons/skeletons';
+import { usePaperMessagesQuery } from '@/queries/message';
+import { useMessageActions, useMessageList } from '@/stores/message-store';
 
 export default function MessageList() {
   const { data, isLoading } = usePaperMessagesQuery();

@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 
-import { useSetHeader } from '../../hooks';
-import { getFontSizeAndWeight } from '../../styles/mixins';
-import theme from '../../styles/theme';
+import { useSetHeader } from '@/hooks';
+import { getFontSizeAndWeight } from '@/styles/mixins';
+import theme from '@/styles/theme';
 
 const DECORATIONS: { text: string; fontColor: string; bgColor: string }[] = [
   {

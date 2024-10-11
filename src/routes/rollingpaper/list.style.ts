@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-import { StyledFixedBackground } from '../../styles/mixins';
+import { StyledFixedBackground } from '@/styles/mixins';
 
 export const StyledRollingList = styled.div`
   width: 100%;

@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-import { getFontSizeAndWeight } from '../../../styles/mixins';
+import { getFontSizeAndWeight } from '@/styles/mixins';
 
 interface CategoryTabProps {
   setActiveIndex: React.Dispatch<React.SetStateAction<number>>;

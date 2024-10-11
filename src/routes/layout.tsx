@@ -1,16 +1,16 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import Toast from '../components/common/toast';
-import Header from '../components/header/header';
-import Sidebar from '../components/header/sidebar';
-import LoginModal from '../components/modal/login-modal';
-import { token } from '../utils/storage';
+import Toast from '@/components/common/toast';
+import Header from '@/components/header/header';
+import Sidebar from '@/components/header/sidebar';
+import LoginModal from '@/components/modal/login-modal';
 import {
   StyledBrowserBackdrop,
   StyledMain,
   StyledWrapper,
-} from './layout.style';
+} from '@/routes/layout.style';
+import { token } from '@/utils/storage';
 
 export default function Layout() {
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);

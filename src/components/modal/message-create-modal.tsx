@@ -1,8 +1,8 @@
-import { useNameForm } from '../../hooks';
-import { useCreateMessage } from '../../queries/message';
-import { useModalIndex } from '../../stores/modal-store';
-import theme, { ColorName, FontNameWithoutAppleFont } from '../../styles/theme';
-import { Modal } from '.';
+import { Modal } from '@/components/modal';
+import { useNameForm } from '@/hooks';
+import { useCreateMessage } from '@/queries/message';
+import { useModalIndex } from '@/stores/modal-store';
+import theme, { ColorName, FontNameWithoutAppleFont } from '@/styles/theme';
 
 interface MessageCreateModalProps {
   isOpen: boolean;

@@ -3,14 +3,14 @@ import {
   mergeQueryKeys,
 } from '@lukemorales/query-key-factory';
 
-import { getAccessToken } from '../services/auth';
+import { getAccessToken } from '@/services/auth';
 import {
   getMessageCounts,
   getPaperMessages,
   getUserMessages,
-} from '../services/message';
-import { getPaperByUserId, getPerperDetail } from '../services/paper';
-import { getUser } from '../services/users';
+} from '@/services/message';
+import { getPaperByUserId, getPerperDetail } from '@/services/paper';
+import { getUser } from '@/services/users';
 
 const auth = createQueryKeys('auth', {
   token: (code: string) => ({

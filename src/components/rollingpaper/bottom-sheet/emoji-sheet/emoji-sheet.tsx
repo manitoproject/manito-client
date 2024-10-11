@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import React from 'react';
 
-import emojis from '../../../../constants/emojis';
+import emojis from '@/constants/emojis';
 
 interface EmojiContentProps {
   theme: RollingThemeName;

@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 
-import { sendFeedbackMessage } from '../services/contact';
-import { useToastActions } from '../stores/toast-store';
+import { sendFeedbackMessage } from '@/services/contact';
+import { useToastActions } from '@/stores/toast-store';
 
 export const useSendFeedbackMessage = (
   setMessage: React.Dispatch<React.SetStateAction<string>>,

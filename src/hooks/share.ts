@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import { useToastActions } from '../stores/toast-store';
+import { useToastActions } from '@/stores/toast-store';
 
 export default function useShare() {
   const { pathname } = useLocation();

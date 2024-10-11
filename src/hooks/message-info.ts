@@ -1,6 +1,6 @@
 import { useLocation, useParams, useSearchParams } from 'react-router-dom';
 
-import { Message } from '../types/message';
+import { Message } from '@/types/message';
 
 interface MessageInfo extends Pick<Message<unknown>, 'paperId' | 'position'> {
   paperTheme: RollingThemeName;

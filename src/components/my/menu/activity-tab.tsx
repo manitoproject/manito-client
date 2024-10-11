@@ -1,5 +1,8 @@
-import { Document, Edit } from '../../../assets/svg/icons';
-import { StyledMenu, StyledMenuWrapper } from './activity-tab.style';
+import { Document, Edit } from '@/assets/svg/icons';
+import {
+  StyledMenu,
+  StyledMenuWrapper,
+} from '@/components/my/menu/activity-tab.style';
 
 const tab = [
   {

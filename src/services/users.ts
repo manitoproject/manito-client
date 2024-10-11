@@ -1,4 +1,4 @@
-import { apiRequester } from '.';
+import { apiRequester } from '@/services';
 
 export const changeNickname = async (nickname: string) => {
   const { data } = await apiRequester.post<DeatultResponse<null>>(

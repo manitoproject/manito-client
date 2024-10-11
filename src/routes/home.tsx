@@ -7,11 +7,11 @@ import {
   MakeCakeBadge,
   RollingBadge,
   TreasureBadge,
-} from '../assets/imgs';
-import Greeting from '../components/home/greeting';
-import { GreetingSkeleton } from '../components/skeletons/skeletons';
-import { useSetHeader } from '../hooks';
-import routes from '../routes';
+} from '@/assets/imgs';
+import Greeting from '@/components/home/greeting';
+import { GreetingSkeleton } from '@/components/skeletons/skeletons';
+import { useSetHeader } from '@/hooks';
+import routes from '@/routes';
 
 const CONTENTS = [
   {

@@ -2,14 +2,14 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 
-import { Button } from '../components/common/button/buttons';
-import SignupRadioButton from '../components/common/button/signup-radio-button';
-import NameForm from '../components/common/name-form';
-import { nicknameMaxLength } from '../constants/regex-patterns';
-import { useNameForm, useSetHeader } from '../hooks';
-import { useNicknameChange } from '../queries/users';
-import routes from '../routes';
-import { getFontSizeAndWeight } from '../styles/mixins';
+import { Button } from '@/components/common/button/buttons';
+import SignupRadioButton from '@/components/common/button/signup-radio-button';
+import NameForm from '@/components/common/name-form';
+import { nicknameMaxLength } from '@/constants/regex-patterns';
+import { useNameForm, useSetHeader } from '@/hooks';
+import { useNicknameChange } from '@/queries/users';
+import routes from '@/routes';
+import { getFontSizeAndWeight } from '@/styles/mixins';
 
 export default function Signup() {
   const [activeRadioButtonIndex, setActiveRadioButtonIndex] = useState(0);

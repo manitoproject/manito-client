@@ -6,17 +6,17 @@ import {
   ChocolateBgOriginal,
   StrawberryBgOriginal,
   VanillaBgOriginal,
-} from '../../assets/imgs';
-import { EditSquare } from '../../assets/svg/icons';
-import DetailHeader from '../../components/rollingpaper/list/header/detail-header';
-import { useSetHeader } from '../../hooks';
-import { usePaperDetailQuery } from '../../queries/paper';
-import routes from '../../routes';
+} from '@/assets/imgs';
+import { EditSquare } from '@/assets/svg/icons';
+import DetailHeader from '@/components/rollingpaper/list/header/detail-header';
+import { useSetHeader } from '@/hooks';
+import { usePaperDetailQuery } from '@/queries/paper';
+import routes from '@/routes';
 import {
   StyledBackdrop,
   StyledListWrapper,
   StyledRollingList,
-} from '../rollingpaper/list.style';
+} from '@/routes/rollingpaper/list.style';
 
 const THEME_PALETTES: Array<{ btnColor: string; bgUrl: string }> = [
   { btnColor: '#F9BBC8', bgUrl: StrawberryBgOriginal },

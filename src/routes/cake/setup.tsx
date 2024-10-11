@@ -1,13 +1,13 @@
-import { Button } from '../../components/common/button/buttons';
-import NameForm from '../../components/common/name-form';
-import { titleMaxLength } from '../../constants/regex-patterns';
-import { useNameForm, useSetHeader } from '../../hooks';
-import { useCreatePaper } from '../../queries/paper';
+import { Button } from '@/components/common/button/buttons';
+import NameForm from '@/components/common/name-form';
+import { titleMaxLength } from '@/constants/regex-patterns';
+import { useNameForm, useSetHeader } from '@/hooks';
+import { useCreatePaper } from '@/queries/paper';
 import {
   StyledHeading,
   StyledSectionWrapper,
   StyledWrapper,
-} from '../rollingpaper/setup.style';
+} from '@/routes/rollingpaper/setup.style';
 
 export default function CakeSetup() {
   const { handleNameChange, handleNameReset, isError, name, nameRef } =

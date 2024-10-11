@@ -2,8 +2,8 @@ import styled from '@emotion/styled';
 import { AnimatePresence, motion } from 'framer-motion';
 import { createPortal } from 'react-dom';
 
-import { useToast } from '../../stores/toast-store';
-import { getFontSizeAndWeight } from '../../styles/mixins';
+import { useToast } from '@/stores/toast-store';
+import { getFontSizeAndWeight } from '@/styles/mixins';
 
 export default function Toast() {
   const toast = useToast();

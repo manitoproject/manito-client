@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { getFontSizeAndWeight } from '../../styles/mixins';
+import { getFontSizeAndWeight } from '@/styles/mixins';
 
 export const StyledModalMainWrapper = styled.div`
   position: fixed;

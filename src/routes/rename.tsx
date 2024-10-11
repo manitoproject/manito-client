@@ -1,14 +1,17 @@
-import { kakaoProfile } from '../assets/imgs';
-import { Button } from '../components/common/button/buttons';
-import NameForm from '../components/common/name-form';
-import { nicknameMaxLength } from '../constants/regex-patterns';
-import { useNameForm, useSetHeader } from '../hooks';
+import { kakaoProfile } from '@/assets/imgs';
+import { Button } from '@/components/common/button/buttons';
+import NameForm from '@/components/common/name-form';
+import { nicknameMaxLength } from '@/constants/regex-patterns';
+import { useNameForm, useSetHeader } from '@/hooks';
 import {
   useNicknameChange,
   useProfileChange,
   useUserQuery,
-} from '../queries/users';
-import { StyledAvartarWrapper, StyledRenameWrapper } from './rename.style';
+} from '@/queries/users';
+import {
+  StyledAvartarWrapper,
+  StyledRenameWrapper,
+} from '@/routes/rename.style';
 
 export default function Rename() {
   const { data } = useUserQuery();

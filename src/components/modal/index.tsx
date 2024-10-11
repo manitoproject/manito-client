@@ -1,11 +1,8 @@
 import { ForwardedRef, forwardRef, useEffect } from 'react';
 
-import { nicknameMaxLength } from '../../constants/regex-patterns';
-import { useDisableScroll, useOutsideClick } from '../../hooks';
-import { useModalActions, useModalIndex } from '../../stores/modal-store';
-import RadioButton from '../common/button/radio-button';
-import Input from '../common/input';
-import { Portal } from '../common/portal';
+import RadioButton from '@/components/common/button/radio-button';
+import Input from '@/components/common/input';
+import { Portal } from '@/components/common/portal';
 import {
   StyledButton,
   StyledButtonWrapper,
@@ -13,8 +10,14 @@ import {
   StyledRadioFormTitleWrapper,
   StyledRadioFormWrapper,
   StyledTitleWrapper,
-} from './modal.style';
-import ModalContext, { useModal, useModalContext } from './modal-context';
+} from '@/components/modal/modal.style';
+import ModalContext, {
+  useModal,
+  useModalContext,
+} from '@/components/modal/modal-context';
+import { nicknameMaxLength } from '@/constants/regex-patterns';
+import { useDisableScroll, useOutsideClick } from '@/hooks';
+import { useModalActions, useModalIndex } from '@/stores/modal-store';
 
 const LABELS = ['공개로 작성할래요.', '익명으로 작성할래요.'];
 

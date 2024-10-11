@@ -1,13 +1,13 @@
 import styled from '@emotion/styled';
 import { Suspense, useState } from 'react';
 
-import MyInfo from '../components/my/info';
-import ActivityTab from '../components/my/menu/activity-tab';
-import CategoryTab from '../components/my/menu/category-tab';
-import MyMessageList from '../components/my/message/message-list';
-import MyPaperList from '../components/my/paper/paper-list';
-import { MyMessageListSkeleton } from '../components/skeletons/skeletons';
-import { useSetHeader } from '../hooks';
+import MyInfo from '@/components/my/info';
+import ActivityTab from '@/components/my/menu/activity-tab';
+import CategoryTab from '@/components/my/menu/category-tab';
+import MyMessageList from '@/components/my/message/message-list';
+import MyPaperList from '@/components/my/paper/paper-list';
+import { MyMessageListSkeleton } from '@/components/skeletons/skeletons';
+import { useSetHeader } from '@/hooks';
 
 const categoryList: Category[] = ['ROLLING_PAPER', 'CAKE', 'TREASURE'];
 

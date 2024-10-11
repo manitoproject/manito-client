@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 import { useRef } from 'react';
 
-import { Button } from '../../common/button/buttons';
-import BottomSheetheader from './header';
+import { Button } from '@/components/common/button/buttons';
+import BottomSheetheader from '@/components/rollingpaper/bottom-sheet/header';
 
 interface BottomSheetButton {
   disabled: boolean;

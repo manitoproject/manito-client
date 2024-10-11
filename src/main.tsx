@@ -6,11 +6,11 @@ import ReactDOM from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
 import { RouterProvider } from 'react-router-dom';
 
-import ReactHelmet from './helmet';
-import { enableMocking } from './mocks/browser';
-import router from './router';
-import global from './styles/global';
-import theme from './styles/theme';
+import ReactHelmet from '@/helmet';
+import { enableMocking } from '@/mocks/browser';
+import router from '@/router';
+import global from '@/styles/global';
+import theme from '@/styles/theme';
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { refetchOnWindowFocus: false, retry: 0 } },

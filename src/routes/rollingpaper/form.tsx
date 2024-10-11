@@ -2,27 +2,27 @@ import { useEffect, useState } from 'react';
 import { Sheet } from 'react-modal-sheet';
 import { useNavigate } from 'react-router-dom';
 
-import { Button } from '../../components/common/button/buttons';
-import MessageCreateModal from '../../components/modal/message-create-modal';
-import BottomSheetButton from '../../components/rollingpaper/bottom-sheet/button';
-import EmojiSheet from '../../components/rollingpaper/bottom-sheet/emoji-sheet/emoji-sheet';
-import ColorList from '../../components/rollingpaper/bottom-sheet/font-sheet/color-list';
-import FontList from '../../components/rollingpaper/bottom-sheet/font-sheet/font-list';
-import FontSheet from '../../components/rollingpaper/bottom-sheet/font-sheet/font-sheet';
-import BottomSheetheader from '../../components/rollingpaper/bottom-sheet/header';
-import EmojiSkin from '../../components/rollingpaper/emoji-skin';
-import { findEmojiSvgFromTheme } from '../../constants/emojis';
-import { useMessageInfo, useSetHeader } from '../../hooks';
-import { useEditMessage } from '../../queries/message';
-import { ColorName, FontNameWithoutAppleFont } from '../../styles/theme';
+import { Button } from '@/components/common/button/buttons';
+import MessageCreateModal from '@/components/modal/message-create-modal';
+import BottomSheetButton from '@/components/rollingpaper/bottom-sheet/button';
+import EmojiSheet from '@/components/rollingpaper/bottom-sheet/emoji-sheet/emoji-sheet';
+import ColorList from '@/components/rollingpaper/bottom-sheet/font-sheet/color-list';
+import FontList from '@/components/rollingpaper/bottom-sheet/font-sheet/font-list';
+import FontSheet from '@/components/rollingpaper/bottom-sheet/font-sheet/font-sheet';
+import BottomSheetheader from '@/components/rollingpaper/bottom-sheet/header';
+import EmojiSkin from '@/components/rollingpaper/emoji-skin';
+import { findEmojiSvgFromTheme } from '@/constants/emojis';
+import { useMessageInfo, useSetHeader } from '@/hooks';
+import { useEditMessage } from '@/queries/message';
 import {
   StyledCustomSheet,
   StyledRollingFormEmojiWrapper,
   StyledRollingFormWrapper,
   StyledSheetContentWrapper,
-} from './form.style';
-import { BG_BY_THEME } from './list';
-import { StyledBackdrop } from './list.style';
+} from '@/routes/rollingpaper/form.style';
+import { BG_BY_THEME } from '@/routes/rollingpaper/list';
+import { StyledBackdrop } from '@/routes/rollingpaper/list.style';
+import { ColorName, FontNameWithoutAppleFont } from '@/styles/theme';
 
 export default function RollingpaperForm() {
   const messageInfo = useMessageInfo();

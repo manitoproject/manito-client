@@ -1,4 +1,4 @@
-import ErrorComponent from '../components/common/error';
+import ErrorComponent from '@/components/common/error';
 
 export default function ErrorPage() {
   // if (!isRouteErrorResponse(error)) {

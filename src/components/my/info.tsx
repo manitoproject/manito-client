@@ -2,10 +2,10 @@ import styled from '@emotion/styled';
 import { Suspense } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Setting } from '../../assets/svg/icons';
-import routes from '../../routes';
-import { MyProfileSkeleton } from '../skeletons/skeletons';
-import MyProfile from './profile';
+import { Setting } from '@/assets/svg/icons';
+import MyProfile from '@/components/my/profile';
+import { MyProfileSkeleton } from '@/components/skeletons/skeletons';
+import routes from '@/routes';
 
 export default function MyInfo() {
   return (

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { SetHeaderStore, useHeaderActions } from '../stores/header-store';
+import { SetHeaderStore, useHeaderActions } from '@/stores/header-store';
 
 export default function useSetHeader({
   bg,

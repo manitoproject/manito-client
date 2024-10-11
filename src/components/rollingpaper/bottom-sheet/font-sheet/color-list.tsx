@@ -1,6 +1,9 @@
-import { colors } from '../../../../constants/fonts';
-import { ColorName } from '../../../../styles/theme';
-import { StyledColorItem, StyledColorList } from './color-list.style';
+import {
+  StyledColorItem,
+  StyledColorList,
+} from '@/components/rollingpaper/bottom-sheet/font-sheet/color-list.style';
+import { colors } from '@/constants/fonts';
+import { ColorName } from '@/styles/theme';
 
 export interface ColorListProps {
   activeColor: ColorName;

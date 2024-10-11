@@ -2,8 +2,8 @@ import {
   AnimalBgThumbnail,
   NatureBgThumbnail,
   SpaceBgThumbnail,
-} from '../assets/imgs';
-import { Message } from '../types/message';
+} from '@/assets/imgs';
+import { Message } from '@/types/message';
 
 const ROLLING_THEME_NAME: RollingThemeName[] = ['nature', 'space', 'animal'];
 

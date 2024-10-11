@@ -1,4 +1,4 @@
-import { ColorName, FontNameWithoutAppleFont } from '../styles/theme';
+import { ColorName, FontNameWithoutAppleFont } from '@/styles/theme';
 
 export type Font = {
   name: FontNameWithoutAppleFont;

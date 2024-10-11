@@ -1,6 +1,6 @@
 import { useCallback, useRef, useState } from 'react';
 
-import regex, { RegexType } from '../constants/regex-patterns';
+import regex, { RegexType } from '@/constants/regex-patterns';
 
 export default function useNameForm(type: RegexType) {
   const [name, setName] = useState('');

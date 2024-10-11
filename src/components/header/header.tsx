@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 
-import { HamburgerMenu, LeftChevron } from '../../assets/svg/icons';
-import routes from '../../routes';
-import { useHeader } from '../../stores/header-store';
-import { getFontSizeAndWeight } from '../../styles/mixins';
-import { ColorName } from '../../styles/theme';
+import { HamburgerMenu, LeftChevron } from '@/assets/svg/icons';
+import routes from '@/routes';
+import { useHeader } from '@/stores/header-store';
+import { getFontSizeAndWeight } from '@/styles/mixins';
+import { ColorName } from '@/styles/theme';
 
 interface HeaderProps {
   onSidebarOpen: () => void;

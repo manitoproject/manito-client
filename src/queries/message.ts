@@ -6,10 +6,10 @@ import {
 } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import routes from '../routes';
-import { createMessage, deleteMessage, editMessage } from '../services/message';
-import { useToastActions } from '../stores/toast-store';
-import queries from './query-key-factory';
+import queries from '@/queries/query-key-factory';
+import routes from '@/routes';
+import { createMessage, deleteMessage, editMessage } from '@/services/message';
+import { useToastActions } from '@/stores/toast-store';
 
 export const useCreateMessage = (paperId: number) => {
   const queryClient = useQueryClient();

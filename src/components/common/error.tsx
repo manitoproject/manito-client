@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { Manito } from '../../assets/svg/icons';
+import { Manito } from '@/assets/svg/icons';
 
 interface ErrorProps {
   children: React.ReactNode;

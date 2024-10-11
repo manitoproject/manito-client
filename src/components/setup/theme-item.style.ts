@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { ThemeItemProps } from './theme-item';
+import { ThemeItemProps } from '@/components/setup/theme-item';
 
 export const StyledThemeItem = styled.div<Pick<ThemeItemProps, 'isActive'>>`
   cursor: pointer;

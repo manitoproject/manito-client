@@ -3,12 +3,12 @@ import dayjs from 'dayjs';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Trash } from '../../../assets/svg/icons';
-import { useDeletePaper } from '../../../queries/paper';
-import routes from '../../../routes';
-import { getFontSizeAndWeight } from '../../../styles/mixins';
-import theme from '../../../styles/theme';
-import DeleteModal from '../../modal/delete-modal';
+import { Trash } from '@/assets/svg/icons';
+import DeleteModal from '@/components/modal/delete-modal';
+import { useDeletePaper } from '@/queries/paper';
+import routes from '@/routes';
+import { getFontSizeAndWeight } from '@/styles/mixins';
+import theme from '@/styles/theme';
 
 interface MyPaperItemProps {
   paper: Paper;

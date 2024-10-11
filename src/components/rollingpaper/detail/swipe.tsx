@@ -4,11 +4,11 @@ import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperType } from 'swiper/types';
 
-import { RightChevron } from '../../../assets/svg/icons';
-import { findEmojiSvgFromTheme } from '../../../constants/emojis';
-import { useBoundaryIndex } from '../../../hooks';
-import { Message } from '../../../types/message';
-import EmojiSkin from '../emoji-skin';
+import { RightChevron } from '@/assets/svg/icons';
+import EmojiSkin from '@/components/rollingpaper/emoji-skin';
+import { findEmojiSvgFromTheme } from '@/constants/emojis';
+import { useBoundaryIndex } from '@/hooks';
+import { Message } from '@/types/message';
 
 interface DetailSwiperProps {
   messages: Message<UserIdAndNickname>[];

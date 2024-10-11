@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import queries from './query-key-factory';
+import queries from '@/queries/query-key-factory';
 
 export const useTokenQuery = (code: string | null) => {
   return useQuery({

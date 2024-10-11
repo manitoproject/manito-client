@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 
-import { getFontSizeAndWeight } from '../../styles/mixins';
-import { InputProps } from './input';
+import { InputProps } from '@/components/common/input';
+import { getFontSizeAndWeight } from '@/styles/mixins';
 
-export const StyledWrapper = styled.div<Pick<InputProps, 'isError'>>`
+export const StyledInputWrapper = styled.div<Pick<InputProps, 'isError'>>`
   display: flex;
   flex-direction: column;
   gap: 4px;

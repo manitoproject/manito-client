@@ -1,10 +1,10 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-import { Font, fonts } from '../../constants/fonts';
-import { getTextareaSize } from '../../styles/mixins';
-import { ColorName } from '../../styles/theme';
-import { Message } from '../../types/message';
+import { Font, fonts } from '@/constants/fonts';
+import { getTextareaSize } from '@/styles/mixins';
+import { ColorName } from '@/styles/theme';
+import { Message } from '@/types/message';
 
 interface EmojiItemProps {
   children: React.ReactNode;

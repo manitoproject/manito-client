@@ -2,9 +2,12 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
-import { getFontSizeAndWeight } from '../../../styles/mixins';
-import { ThemeType } from '../../../styles/theme';
-import { CommonButtonProps, LinkButtonProps } from './buttons';
+import {
+  CommonButtonProps,
+  LinkButtonProps,
+} from '@/components/common/button/buttons';
+import { getFontSizeAndWeight } from '@/styles/mixins';
+import { ThemeType } from '@/styles/theme';
 
 const commonButtonStyle = ({
   backgroundColor,

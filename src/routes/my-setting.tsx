@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
-import { useSetHeader } from '../hooks';
-import { useLogout } from '../queries/users';
-import routes from '../routes';
-import { getFontSizeAndWeight } from '../styles/mixins';
+import { useSetHeader } from '@/hooks';
+import { useLogout } from '@/queries/users';
+import routes from '@/routes';
+import { getFontSizeAndWeight } from '@/styles/mixins';
 
 export default function MySetting() {
   const { mutate } = useLogout();
