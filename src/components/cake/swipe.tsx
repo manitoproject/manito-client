@@ -1,70 +1,66 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { useRef } from 'react';
 import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperType } from 'swiper/types';
 
-import EmojiSkin from '@/components/rollingpaper/emoji-skin';
 import SwipeNavigation from '@/components/swipe/swipe-navigation';
-import { findEmojiSvgFromTheme } from '@/constants/emojis';
 import { useBoundaryIndex } from '@/hooks';
-import { Message } from '@/types/message';
+import { THEME_PALETTES } from '@/routes/cake/list';
 
-interface DetailSwiperProps {
-  messages: Message<UserIdAndNickname>[];
+interface CakeSwipeProps {
   activeIndex: number;
   setActiveIndex: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export default function MessageSwipe({
-  messages,
+export default function CakeSwipe({
   activeIndex,
   setActiveIndex,
-}: DetailSwiperProps) {
+}: CakeSwipeProps) {
   const swiperRef = useRef<SwiperType>();
 
   const { isBeginning, isEnd, onBoundaryUpdate } = useBoundaryIndex(
     activeIndex,
-    messages.length,
+    THEME_PALETTES.length,
   );
-
   const handleSlideChange = (e: SwiperType) => {
     const { isBeginning, isEnd, activeIndex } = e;
     onBoundaryUpdate(isBeginning, isEnd);
     setActiveIndex(activeIndex);
   };
-
   return (
-    <StyledSwiper
-      initialSlide={activeIndex}
-      onBeforeInit={(swiper) => {
-        swiperRef.current = swiper;
-      }}
-      modules={[Navigation]}
-      onSlideChange={handleSlideChange}
-    >
-      {messages?.map((message) => {
-        const emoji = findEmojiSvgFromTheme(message.theme);
-        return (
-          <SwiperSlide key={message.id}>
-            <EmojiSkin message={message}>
-              {emoji?.svg && <emoji.svg />}
-              <p>{message.content}</p>
-            </EmojiSkin>
+    <>
+      <StyledSwiper
+        initialSlide={activeIndex}
+        onBeforeInit={(swiper) => {
+          swiperRef.current = swiper;
+        }}
+        resistanceRatio={0.1}
+        onSlideChange={handleSlideChange}
+        modules={[Navigation]}
+      >
+        {THEME_PALETTES.map((theme) => (
+          <SwiperSlide key={theme.bgUrl}>
+            <img src={theme.bgUrl} alt={theme.bgUrl} />
           </SwiperSlide>
-        );
-      })}
+        ))}
+      </StyledSwiper>
       <SwipeNavigation
         isBeginning={isBeginning}
         isEnd={isEnd}
-        onSlidePrev={() => swiperRef.current?.slidePrev()}
         onSlideNext={() => swiperRef.current?.slideNext()}
+        onSlidePrev={() => swiperRef.current?.slidePrev()}
       />
-    </StyledSwiper>
+    </>
   );
 }
-
 const StyledSwiper = styled(Swiper)`
-  width: 100%;
-  position: relative;
+  ${({ theme }) => css`
+    position: absolute;
+    top: -${theme.sizes.header};
+    height: 100vh;
+    width: ${theme.sizes.mobile};
+    transform: ${`translateX(-${theme.sizes.padding})`};
+  `}
 `;

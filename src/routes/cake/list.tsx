@@ -8,38 +8,52 @@ import {
   VanillaBgOriginal,
 } from '@/assets/imgs';
 import { EditSquare } from '@/assets/svg/icons';
+import CakeSwipe from '@/components/cake/swipe';
 import DetailHeader from '@/components/rollingpaper/list/header/detail-header';
 import { useSetHeader } from '@/hooks';
 import { usePaperDetailQuery } from '@/queries/paper';
 import routes from '@/routes';
 import {
-  StyledBackdrop,
   StyledListWrapper,
   StyledRollingList,
 } from '@/routes/rollingpaper/list.style';
+import { ColorName } from '@/styles/theme';
 
-const THEME_PALETTES: Array<{ btnColor: string; bgUrl: string }> = [
-  { btnColor: '#F9BBC8', bgUrl: StrawberryBgOriginal },
-  { btnColor: '#74342A', bgUrl: ChocolateBgOriginal },
-  { btnColor: '#FE7D3F', bgUrl: VanillaBgOriginal },
+export const THEME_PALETTES: Array<{
+  btnColor: string;
+  bgUrl: string;
+  headerColor: ColorName;
+}> = [
+  { btnColor: '#F9BBC8', bgUrl: StrawberryBgOriginal, headerColor: 'pink-300' },
+  {
+    btnColor: '#74342A',
+    bgUrl: ChocolateBgOriginal,
+    headerColor: 'chocolate-300',
+  },
+  { btnColor: '#FE7D3F', bgUrl: VanillaBgOriginal, headerColor: 'vanilla-300' },
 ];
 
 export default function CakeList() {
-  const [bgIndex, setBgIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
   const navigate = useNavigate();
   const { data } = usePaperDetailQuery();
   const paper = data?.data;
-  useSetHeader({ title: paper?.title, bg: 'pink-300', color: 'white' });
+
+  useSetHeader({
+    title: paper?.title,
+    bg: THEME_PALETTES[activeIndex].headerColor,
+    color: 'white',
+  });
 
   return (
     <StyledRollingList>
       <StyledListWrapper>
         <DetailHeader paperId={paper?.id} />
       </StyledListWrapper>
-      <StyledBackdrop bg={THEME_PALETTES[bgIndex].bgUrl} />
+      <CakeSwipe activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
       <StyledWriteButton
-        onClick={() => navigate(routes.cake.editor(bgIndex))}
-        bg={THEME_PALETTES[bgIndex].btnColor}
+        onClick={() => navigate(routes.cake.editor(activeIndex))}
+        bg={THEME_PALETTES[activeIndex].btnColor}
       >
         <EditSquare width={40} height={40} fill="#fff" />
       </StyledWriteButton>
@@ -51,7 +65,6 @@ const StyledWriteButton = styled.button<{ bg: string }>`
   z-index: 50;
   padding: 10px;
   border-radius: 8px;
-
   background-color: ${({ bg }) => bg};
   width: fit-content;
   position: absolute;
