@@ -1,6 +1,9 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 
+import Decorations from '@/components/cake/decorations';
+import { Button } from '@/components/common/button/buttons';
+import { DecorationType } from '@/constants/cake-decoration';
 import { useSetHeader } from '@/hooks';
 import { getFontSizeAndWeight } from '@/styles/mixins';
 import theme from '@/styles/theme';
@@ -28,8 +31,16 @@ const DECORATIONS: { text: string; fontColor: string; bgColor: string }[] = [
   },
 ];
 
+const THEME_TAB_MAP: DecorationType[] = [
+  'chocolate',
+  'vanilla',
+  'strawberry',
+  'white',
+];
+
 export default function CakeEditor() {
   const [activeTab, setActiveTab] = useState(0);
+  const [activeDeco, setActiveDeco] = useState('');
   useSetHeader({ rightBtn: false, title: '장식선택' });
   return (
     <StyledWrapper>
@@ -41,7 +52,14 @@ export default function CakeEditor() {
           </StyledList>
         ))}
       </ul>
-      <div>asd</div>
+      <Decorations
+        activeDeco={activeDeco}
+        setActiveDeco={setActiveDeco}
+        activeTab={THEME_TAB_MAP[activeTab]}
+      />
+      <StyledButtonWrapper>
+        <Button disabled={!activeDeco}>선택하기</Button>
+      </StyledButtonWrapper>
     </StyledWrapper>
   );
 }
@@ -74,4 +92,8 @@ const StyledList = styled.li<{ isActive: boolean; index: number }>`
       isActive ? DECORATIONS[index].fontColor : theme.colors['gray-500']};
     ${getFontSizeAndWeight('heading4', 'medium')}
   }
+`;
+
+const StyledButtonWrapper = styled.div`
+  margin-top: auto;
 `;
