@@ -3,7 +3,7 @@ import 'swiper/css';
 import styled from '@emotion/styled';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import ThemeItem from '@/components/setup/theme-item';
+import ThemeItem from '@/components/rollingpaper/setup/theme-item';
 import themeList from '@/constants/theme-list';
 import { getFontSizeAndWeight } from '@/styles/mixins';
 

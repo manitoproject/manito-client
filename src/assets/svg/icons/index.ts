@@ -19,4 +19,5 @@ export { default as RadioButton } from './radio-button.svg?react';
 export { default as RadioButtonActive } from './radio-button-active.svg?react';
 export { default as RightChevron } from './right-chevron.svg?react';
 export { default as Setting } from './setting.svg?react';
+export { default as SmsEdit } from './sms-edit.svg?react';
 export { default as Trash } from './trash.svg?react';

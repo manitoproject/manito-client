@@ -2,7 +2,8 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import routes from '@/routes';
 import AuthGuard from '@/routes/auth-guard';
-import CakeEditor from '@/routes/cake/editor';
+import CakeDecorate from '@/routes/cake/decorate';
+import CakeForm from '@/routes/cake/form';
 import CakeListPage from '@/routes/cake/list';
 import CakeSetup from '@/routes/cake/setup';
 import Contact from '@/routes/contact';
@@ -87,8 +88,12 @@ const router = () =>
                       element: <CakeListPage />,
                     },
                     {
-                      path: routes.cake.editor(),
-                      element: <CakeEditor />,
+                      path: routes.cake.decorate(),
+                      element: <CakeDecorate />,
+                    },
+                    {
+                      path: routes.cake.form(),
+                      element: <CakeForm />,
                     },
                   ],
                 },

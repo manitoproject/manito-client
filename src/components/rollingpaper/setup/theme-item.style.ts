@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { ThemeItemProps } from '@/components/setup/theme-item';
+import { ThemeItemProps } from '@/components/rollingpaper/setup/theme-item';
 
 export const StyledThemeItem = styled.div<Pick<ThemeItemProps, 'isActive'>>`
   cursor: pointer;

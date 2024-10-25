@@ -16,8 +16,7 @@ export default function useMessageInfo():
   const [searchParams] = useSearchParams();
   const { id, type } = useParams();
   const activeTab = searchParams.get('activeTab');
-  // if (!type || !state || !id) throw new Error();
-  if (!state || !id) throw new Error();
 
+  if (!state || !id) throw new Error();
   return { ...state, paperId: +id, type, activeTab, pathname };
 }

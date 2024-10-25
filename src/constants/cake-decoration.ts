@@ -6,7 +6,7 @@ import {
   ChocolateBearCookie,
   ChocolateCherryWhippedcream,
   ChocolateChipRollcake,
-  ChocolateCircleCookies,
+  ChocolateCircleCookie,
   ChocolateCoatingChocolate,
   ChocolateCookie,
   ChocolateCream,
@@ -21,7 +21,7 @@ import {
   StrawberryCreamDonut,
   StrawberryHeartCookie,
   StrawberryMacaroon,
-  StrawberryRabbitCookies,
+  StrawberryRabbitCookie,
   StrawberryRibbonCream,
   StrawberryRollcake,
   StrawberrySyrupIceCream,
@@ -32,7 +32,7 @@ import {
   VanillaCream,
   VanillaCreamDount,
   VanillaFlowerCookie,
-  VanillaHeartCookies,
+  VanillaHeartCookie,
   VanillaMacaroon,
   VanillaRabbitCookie,
   VanillaRibbon,
@@ -53,6 +53,17 @@ import {
 
 export type DecorationType = 'chocolate' | 'vanilla' | 'white' | 'strawberry';
 
+export const getDecorationSvg = (deco: string) => {
+  const all = [
+    ...DECORATIONS.chocolate,
+    ...DECORATIONS.strawberry,
+    ...DECORATIONS.vanilla,
+    ...DECORATIONS.white,
+  ];
+  const foundDeco = all.find((item) => item.name === deco)?.svg;
+  return foundDeco || all[0].svg;
+};
+
 export const DECORATIONS: {
   [key in DecorationType]: {
     name: string;
@@ -62,7 +73,7 @@ export const DECORATIONS: {
   chocolate: [
     { name: 'ChocolateCookie', svg: ChocolateCookie },
     { name: 'ChocolateFlowerCookie', svg: ChocolateFlowerCookie },
-    { name: 'ChocolateCircleCookies', svg: ChocolateCircleCookies },
+    { name: 'ChocolateCircleCookie', svg: ChocolateCircleCookie },
     { name: 'ChocolateBearChip', svg: ChocolateBearChip },
     { name: 'ChocolateBearCookie', svg: ChocolateBearCookie },
     { name: 'ChocolateCreameDount', svg: ChocolateCreameDount },
@@ -74,7 +85,7 @@ export const DECORATIONS: {
     { name: 'ChocolateCoatingChocolate', svg: ChocolateCoatingChocolate },
   ],
   vanilla: [
-    { name: 'VanillaHeartCookies', svg: VanillaHeartCookies },
+    { name: 'VanillaHeartCookie', svg: VanillaHeartCookie },
     { name: 'VanillaFlowerCookie', svg: VanillaFlowerCookie },
     { name: 'VanillaBakingCookie', svg: VanillaBakingCookie },
     { name: 'VanillaRibbon', svg: VanillaRibbon },
@@ -92,7 +103,7 @@ export const DECORATIONS: {
     { name: 'StrawberryCookie', svg: StrawberryCookie },
     { name: 'StrawberryCatChip', svg: StrawberryCatChip },
     { name: 'StrawberrySyrupIceCream', svg: StrawberrySyrupIceCream },
-    { name: 'StrawberryRabbitCookies', svg: StrawberryRabbitCookies },
+    { name: 'StrawberryRabbitCookie', svg: StrawberryRabbitCookie },
     { name: 'StrawberryCreamDonut', svg: StrawberryCreamDonut },
     { name: 'StrawberryCream', svg: StrawberryCream },
     { name: 'StrawberryRibbonCream', svg: StrawberryRibbonCream },

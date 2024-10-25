@@ -38,7 +38,7 @@ const StyledWrapper = styled.div<{ isOpen: boolean }>`
   gap: 8px;
   display: flex;
   flex-direction: column;
-  z-index: 1;
+  z-index: 50;
   position: fixed;
   max-width: ${(props) => props.theme.sizes.mobile};
   width: 100%;

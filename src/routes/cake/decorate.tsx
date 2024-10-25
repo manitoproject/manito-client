@@ -1,10 +1,13 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import Decorations from '@/components/cake/decorations';
 import { Button } from '@/components/common/button/buttons';
 import { DecorationType } from '@/constants/cake-decoration';
 import { useSetHeader } from '@/hooks';
+import routes from '@/routes';
+import { useCakeMessageActions } from '@/stores/cake-message-store';
 import { getFontSizeAndWeight } from '@/styles/mixins';
 import theme from '@/styles/theme';
 
@@ -38,10 +41,19 @@ const THEME_TAB_MAP: DecorationType[] = [
   'white',
 ];
 
-export default function CakeEditor() {
+export default function CakeDecorate() {
   const [activeTab, setActiveTab] = useState(0);
   const [activeDeco, setActiveDeco] = useState('');
+  const { setInfo } = useCakeMessageActions();
+  const navigate = useNavigate();
+  const location = useLocation();
   useSetHeader({ rightBtn: false, title: '장식선택' });
+  const handleNextStep = () => {
+    navigate(routes.cake.form('create', location.state?.id), {
+      state: { theme: THEME_TAB_MAP[activeTab] },
+    });
+    setInfo({ decoration: activeDeco });
+  };
   return (
     <StyledWrapper>
       <h2>케이크 장식을 선택해주세요.</h2>
@@ -58,7 +70,9 @@ export default function CakeEditor() {
         activeTab={THEME_TAB_MAP[activeTab]}
       />
       <StyledButtonWrapper>
-        <Button disabled={!activeDeco}>선택하기</Button>
+        <Button onClick={handleNextStep} disabled={!activeDeco}>
+          선택하기
+        </Button>
       </StyledButtonWrapper>
     </StyledWrapper>
   );

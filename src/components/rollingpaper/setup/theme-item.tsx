@@ -2,7 +2,7 @@ import { RadioButton, RadioButtonActive } from '@/assets/svg/icons';
 import {
   StyledThemeItem,
   StyledTitle,
-} from '@/components/setup/theme-item.style';
+} from '@/components/rollingpaper/setup/theme-item.style';
 
 export interface ThemeItemProps {
   isActive: boolean;
