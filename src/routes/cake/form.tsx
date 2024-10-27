@@ -1,9 +1,11 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 import { Sheet } from 'react-modal-sheet';
+import { useParams } from 'react-router-dom';
 
 import { SmsEdit } from '@/assets/svg/icons';
 import { Button } from '@/components/common/button/buttons';
+import MessageCreateModal from '@/components/modal/message-create-modal';
 import BottomSheetButton from '@/components/rollingpaper/bottom-sheet/button';
 import FontList from '@/components/rollingpaper/bottom-sheet/font-sheet/font-list';
 import BottomSheetheader from '@/components/rollingpaper/bottom-sheet/header';
@@ -15,7 +17,7 @@ import {
   StyledSheetContentWrapper,
 } from '@/routes/rollingpaper/form.style';
 import { StyledBackdrop } from '@/routes/rollingpaper/list.style';
-import { useCakeMessageInfo } from '@/stores/cake-message-store';
+import { useMessageInfo } from '@/stores/message-store';
 import { getFontSizeAndWeight } from '@/styles/mixins';
 import { StyledContentOverlay } from '@/styles/styled';
 import { ColorName, FontNameWithoutAppleFont } from '@/styles/theme';
@@ -28,24 +30,25 @@ const COLOR_MAP: Record<DecorationType, ColorName> = {
 };
 
 export default function CakeForm() {
+  const params = useParams();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [content, setContent] = useState('');
   const [isFontSheetOpen, setIsFontSheetOpen] = useState(true);
   const [isButtonOpen, setIsButtonOpen] = useState(false);
   const [activeFont, setActiveFont] =
     useState<FontNameWithoutAppleFont>('Cafe24Ssurround');
-  const { bg, decoration } = useCakeMessageInfo();
+  const { bg, theme } = useMessageInfo();
   useSetHeader({ rightBtn: false, title: '메시지 작성' });
   const foundDecoColor = Object.keys(COLOR_MAP).find((color) =>
-    decoration?.toLowerCase().includes(color),
+    theme?.toLowerCase().includes(color),
   );
   const font = fonts.find((font) => {
     return font.name === activeFont;
   });
-
   const decoColor =
     COLOR_MAP[(foundDecoColor as DecorationType) ?? 'chocolate'];
-  if (!bg || !decoration) throw new Error();
-  const DecorationSvg = getDecorationSvg(decoration);
+  if (!bg || !theme) throw new Error();
+  const DecorationSvg = getDecorationSvg(theme);
 
   return (
     <StyledWrapper>
@@ -80,7 +83,12 @@ export default function CakeForm() {
           <Sheet.Content>
             <StyledSheetContentWrapper>
               <FontList activeFont={activeFont} setActiveFont={setActiveFont} />
-              <Button disabled={!content.length}>작성완료</Button>
+              <Button
+                onClick={() => setIsModalOpen(true)}
+                disabled={!content.length}
+              >
+                작성완료
+              </Button>
             </StyledSheetContentWrapper>
           </Sheet.Content>
         </Sheet.Container>
@@ -89,10 +97,21 @@ export default function CakeForm() {
         isOpen={isButtonOpen}
         onOpen={() => setIsFontSheetOpen(true)}
         disabled={!content.length}
-        onClick={() => console.log('sdf')}
+        onClick={() => setIsModalOpen(true)}
       >
         {'작성완료'}
       </BottomSheetButton>
+      {isModalOpen && (
+        <MessageCreateModal
+          color="gray-900"
+          font={activeFont}
+          id={Number(params.id) ?? 1}
+          isOpen={isModalOpen}
+          content={content}
+          setIsOpen={setIsModalOpen}
+          contentType="cake"
+        />
+      )}
       <StyledContentOverlay />
       <StyledBackdrop bg={bg} />
     </StyledWrapper>
@@ -136,7 +155,7 @@ const StyledWrapper = styled.div`
 `;
 
 const StyledNotice = styled.div<{ color: ColorName }>`
-  div:first-child {
+  div {
     padding: 10px;
     border-radius: 999px;
     background-color: ${({ color, theme }) => theme.colors[color]};

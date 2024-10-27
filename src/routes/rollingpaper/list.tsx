@@ -15,7 +15,7 @@ import {
   StyledListWrapper,
   StyledRollingList,
 } from '@/routes/rollingpaper/list.style';
-import { useMessageActions } from '@/stores/message-store';
+import { useMessageActions } from '@/stores/message-index-store';
 import { ColorName } from '@/styles/theme';
 
 export const BG_BY_THEME: Record<

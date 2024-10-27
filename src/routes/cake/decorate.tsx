@@ -7,7 +7,7 @@ import { Button } from '@/components/common/button/buttons';
 import { DecorationType } from '@/constants/cake-decoration';
 import { useSetHeader } from '@/hooks';
 import routes from '@/routes';
-import { useCakeMessageActions } from '@/stores/cake-message-store';
+import { useMessageActions } from '@/stores/message-store';
 import { getFontSizeAndWeight } from '@/styles/mixins';
 import theme from '@/styles/theme';
 
@@ -44,15 +44,13 @@ const THEME_TAB_MAP: DecorationType[] = [
 export default function CakeDecorate() {
   const [activeTab, setActiveTab] = useState(0);
   const [activeDeco, setActiveDeco] = useState('');
-  const { setInfo } = useCakeMessageActions();
+  const { setInfo } = useMessageActions();
   const navigate = useNavigate();
   const location = useLocation();
   useSetHeader({ rightBtn: false, title: '장식선택' });
   const handleNextStep = () => {
-    navigate(routes.cake.form('create', location.state?.id), {
-      state: { theme: THEME_TAB_MAP[activeTab] },
-    });
-    setInfo({ decoration: activeDeco });
+    navigate(routes.cake.form('create', location.state?.id));
+    setInfo({ theme: activeDeco });
   };
   return (
     <StyledWrapper>

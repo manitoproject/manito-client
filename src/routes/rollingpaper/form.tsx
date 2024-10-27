@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Sheet } from 'react-modal-sheet';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { Button } from '@/components/common/button/buttons';
 import MessageCreateModal from '@/components/modal/message-create-modal';
@@ -27,6 +27,7 @@ import { ColorName, FontNameWithoutAppleFont } from '@/styles/theme';
 export default function RollingpaperForm() {
   const messageInfo = useMessageInfo();
   const navigate = useNavigate();
+  const params = useParams();
   const isEditing = 'font' in messageInfo && messageInfo.type === 'edit';
   const isActiveFontTab = messageInfo.activeTab === 'font';
   const [isEmojiSheetOpen, setIsEmojiSheetOpen] = useState(false);
@@ -188,16 +189,13 @@ export default function RollingpaperForm() {
 
       {isModalOpen && (
         <MessageCreateModal
+          id={Number(params.id)}
           color={activeColor}
           font={activeFont}
+          contentType="rollingpaper"
           isOpen={isModalOpen}
           content={content}
           setIsOpen={setIsModalOpen}
-          messageInfo={{
-            emoji: activeEmoji,
-            paperId: messageInfo.paperId,
-            position: messageInfo.position,
-          }}
         />
       )}
       <BottomSheetButton

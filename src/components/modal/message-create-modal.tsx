@@ -1,33 +1,34 @@
 import { Modal } from '@/components/modal';
 import { useNameForm } from '@/hooks';
 import { useCreateMessage } from '@/queries/message';
+import { useMessageInfo } from '@/stores/message-store';
 import { useModalIndex } from '@/stores/modal-store';
 import theme, { ColorName, FontNameWithoutAppleFont } from '@/styles/theme';
+
+export type Content = 'cake' | 'rollingpaper';
 
 interface MessageCreateModalProps {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  content: string;
+  contentType: Content;
   font: FontNameWithoutAppleFont;
   color: ColorName;
-  content: string;
-  messageInfo: {
-    position: number;
-    paperId: number;
-    emoji: string;
-  };
+  id: number;
 }
 
 export default function MessageCreateModal({
   isOpen,
-  color,
-  font,
   setIsOpen,
   content,
-  messageInfo,
+  contentType,
+  color,
+  font,
+  id,
 }: MessageCreateModalProps) {
-  const { emoji, paperId, position } = messageInfo;
+  const info = useMessageInfo();
   const activeModalIndex = useModalIndex();
-  const { mutate, isPending } = useCreateMessage(+paperId);
+  const { mutate, isPending } = useCreateMessage(id, contentType);
   const {
     handleNameChange,
     handleNameReset,
@@ -36,14 +37,16 @@ export default function MessageCreateModal({
     nameRef: nicknameRef,
   } = useNameForm('nickname');
   const handleMessageSubmit = () => {
+    if (!info.position || !info.theme)
+      return console.log('message 정보가 없음');
     mutate({
       font,
       content: content,
       fontColor: color,
-      position,
-      theme: emoji,
+      position: info.position,
+      theme: info.theme,
       isPublic: activeModalIndex === 0 ? 'Y' : 'N',
-      paperId: +paperId,
+      paperId: id,
       anonymous: activeModalIndex === 1 ? nickname : '',
     });
   };

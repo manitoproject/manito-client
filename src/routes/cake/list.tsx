@@ -11,13 +11,15 @@ import { EditSquare } from '@/assets/svg/icons';
 import CakeSwipe from '@/components/cake/swipe';
 import DetailHeader from '@/components/rollingpaper/list/header/detail-header';
 import { useSetHeader } from '@/hooks';
+import { usePaperMessagesQuery } from '@/queries/message';
 import { usePaperDetailQuery } from '@/queries/paper';
 import routes from '@/routes';
 import {
   StyledListWrapper,
   StyledRollingList,
 } from '@/routes/rollingpaper/list.style';
-import { useCakeMessageActions } from '@/stores/cake-message-store';
+import { useMessageActions } from '@/stores/message-store';
+import { useToastActions } from '@/stores/toast-store';
 import { ColorName } from '@/styles/theme';
 
 export const THEME_PALETTES: Array<{
@@ -34,13 +36,14 @@ export const THEME_PALETTES: Array<{
   { btnColor: '#FE7D3F', bgUrl: VanillaBgOriginal, headerColor: 'vanilla-300' },
 ];
 
-const POSITION = 0;
 export default function CakeList() {
+  const { data: MessageData } = usePaperMessagesQuery();
   const [activeIndex, setActiveIndex] = useState(0);
   const navigate = useNavigate();
-  const { setInfo } = useCakeMessageActions();
+  const { setInfo } = useMessageActions();
   const { data } = usePaperDetailQuery();
   const paper = data?.data;
+  const { add } = useToastActions();
 
   useSetHeader({
     title: paper?.title,
@@ -49,12 +52,13 @@ export default function CakeList() {
   });
 
   const handleWrite = () => {
-    navigate(routes.cake.decorate(), {
-      state: { id: data?.data?.id },
-    });
+    if (MessageData?.data && MessageData.data.length >= 39) {
+      return add('작성할 수 있는 공간이 없습니다.');
+    }
+    navigate(routes.cake.decorate(), { state: { id: data?.data?.id } });
     setInfo({
       bg: THEME_PALETTES[activeIndex].bgUrl,
-      position: POSITION,
+      position: MessageData?.data?.length,
     });
   };
 

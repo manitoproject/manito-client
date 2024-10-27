@@ -6,12 +6,13 @@ import {
 } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 
+import { Content } from '@/components/modal/message-create-modal';
 import queries from '@/queries/query-key-factory';
 import routes from '@/routes';
 import { createMessage, deleteMessage, editMessage } from '@/services/message';
 import { useToastActions } from '@/stores/toast-store';
 
-export const useCreateMessage = (paperId: number) => {
+export const useCreateMessage = (paperId: number, content: Content) => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const toastActions = useToastActions();
@@ -19,13 +20,13 @@ export const useCreateMessage = (paperId: number) => {
     mutationFn: createMessage,
     onSuccess: (data) => {
       if (data.result === 'Success') {
-        navigate(routes.rollingpaper.list(paperId), { replace: true });
+        navigate(routes[content].list(paperId), { replace: true });
         queryClient.invalidateQueries({ queryKey: queries.messages._def });
       }
       if (data.result === 'Fail') {
         if (data.description === 'Position is not available') {
           toastActions.add('이미 자리에 메시지가 존재합니다.');
-          navigate(routes.rollingpaper.list(paperId));
+          navigate(routes[content].list(paperId));
           queryClient.invalidateQueries({ queryKey: queries.messages._def });
         }
       }

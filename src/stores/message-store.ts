@@ -1,52 +1,44 @@
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 
-import { Message } from '@/types/message';
+type Message = {
+  position: number | null;
+  theme: string | null;
+  bg: string | null;
+};
 
-const INIT_LIST = Array(8).fill(null);
-const MAX_LIST_LENGTH = 56;
-
-interface MessageState {
-  list: Array<null | Message<unknown>>;
+interface CakeMessageStore {
+  message: Message;
   actions: {
-    snycList: (serverData?: Message<unknown>[]) => void;
     reset: () => void;
+    setInfo: (info: Partial<Message>) => void;
   };
 }
 
-const useMessageStore = create<MessageState>()(
+const useMessageStore = create<CakeMessageStore>()(
   devtools((set) => ({
-    list: INIT_LIST,
+    message: {
+      bg: null,
+      theme: null,
+      position: null,
+    },
     actions: {
-      snycList: (serverData?: Message<unknown>[]) =>
-        set((state) => {
-          if (!serverData?.length) return { list: state.list };
-          const neededLength = Math.ceil(serverData.length / 8) * 8;
-          let newList: Array<null | Message<unknown>> =
-            Array(neededLength).fill(null);
-          serverData.forEach((item) => {
-            newList[item.position] = item;
-          });
-
-          if (!newList.includes(null) && newList.length % 8 === 0) {
-            newList = [...newList, ...INIT_LIST];
-          }
-
-          if (newList.length > MAX_LIST_LENGTH) {
-            newList = newList.slice(0, MAX_LIST_LENGTH);
-          }
-          return { list: newList };
-        }),
-
       reset: () =>
         set({
-          list: INIT_LIST,
+          message: {
+            bg: null,
+            theme: null,
+            position: null,
+          },
         }),
+      setInfo: (info: Partial<Message>) =>
+        set((state) => ({
+          message: { ...state.message, ...info },
+        })),
     },
   })),
 );
 
-export const useMessageList = () => useMessageStore((state) => state.list);
-
+export const useMessageInfo = () => useMessageStore((state) => state.message);
 export const useMessageActions = () =>
   useMessageStore((state) => state.actions);
