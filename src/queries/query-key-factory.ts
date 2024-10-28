@@ -29,7 +29,7 @@ const users = createQueryKeys('users', {
 const papers = createQueryKeys('papers', {
   user: (userId?: number) => ({
     queryKey: [userId],
-    queryFn: () => getPaperByUserId(userId),
+    queryFn: () => (userId ? getPaperByUserId(userId) : null),
   }),
   detail: (paperId?: string) => ({
     queryKey: [paperId],

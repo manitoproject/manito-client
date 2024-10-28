@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { createSearchParams, useNavigate } from 'react-router-dom';
 
 import { AddCircle } from '@/assets/svg/icons';
 import LoginModal from '@/components/modal/login-modal';
@@ -8,7 +8,7 @@ import {
   StyledEmptySvg,
   StyledItem,
 } from '@/components/rollingpaper/list/item.style';
-import emojis from '@/constants/emojis';
+import { ROLLINGPAPER_EMOJI_MAP } from '@/constants/rolling-paper';
 import { usePaperDetailQuery } from '@/queries/paper';
 import routes from '@/routes';
 import { Message } from '@/types/message';
@@ -24,9 +24,9 @@ export default function MessageItem({ message, position }: MessageItemProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { data: PaperDetailData } = usePaperDetailQuery();
   const paper = PaperDetailData?.data;
-  const EmojiSvg = emojis[paper?.theme as RollingThemeName]?.find(
-    (item) => item.name === message?.theme,
-  )?.svg;
+  const EmojiSvg = ROLLINGPAPER_EMOJI_MAP[
+    paper?.theme as RollingThemeName
+  ]?.find((item) => item.name === message?.theme)?.svg;
 
   const handleCreateMessage = () => {
     if (token.getAccessToken()) {
@@ -37,16 +37,23 @@ export default function MessageItem({ message, position }: MessageItemProps) {
     return setIsModalOpen(true);
   };
 
-  const handleClick = async () => {
-    navigate(routes.rollingpaper.detail(message?.paperId), {
-      state: message?.id,
+  const handleViewMessageItem = async (paperId: number, messageId: number) => {
+    navigate({
+      pathname: routes.rollingpaper.detail(paperId),
+      search: createSearchParams({
+        id: String(messageId),
+      }).toString(),
     });
   };
 
   return (
     <>
       {PaperDetailData?.data && message ? (
-        <EmojiSkin onClick={handleClick} isSmall message={message}>
+        <EmojiSkin
+          onClick={() => handleViewMessageItem(message.paperId, message.id)}
+          isSmall
+          message={message}
+        >
           {EmojiSvg ? <EmojiSvg /> : <StyledEmptySvg />}
           <p>{message.content}</p>
         </EmojiSkin>

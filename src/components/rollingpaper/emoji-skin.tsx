@@ -1,10 +1,11 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-import { Font, fonts } from '@/constants/fonts';
+import { Font } from '@/constants/fonts';
 import { getTextareaSize } from '@/styles/mixins';
 import { ColorName } from '@/styles/theme';
 import { Message } from '@/types/message';
+import { findFontByName } from '@/utils/common';
 
 interface EmojiItemProps {
   children: React.ReactNode;
@@ -32,9 +33,7 @@ export default function EmojiSkin({
   onClick,
   message,
 }: EmojiItemProps) {
-  const font = fonts.find((font) => {
-    return font.name === message.font;
-  });
+  const font = findFontByName(message.font);
   const emojiType = EMOJI_TYPE.find((type, i) => {
     if (EMOJI_TYPE.length - 1 === i) return true;
     return message.theme?.includes(type);

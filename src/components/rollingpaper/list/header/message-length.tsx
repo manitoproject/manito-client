@@ -1,11 +1,11 @@
 import { usePaperMessagesQuery } from '@/queries/message';
 
 export default function DetailMessagelength() {
-  const { data: messageData } = usePaperMessagesQuery();
+  const { data: messages } = usePaperMessagesQuery();
 
   return (
     <span>
-      <strong>{messageData?.data?.length}</strong>
+      <strong>{messages?.length}</strong>
       개의 작성물
     </span>
   );

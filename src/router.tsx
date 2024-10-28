@@ -3,6 +3,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import routes from '@/routes';
 import AuthGuard from '@/routes/auth-guard';
 import CakeDecorate from '@/routes/cake/decorate';
+import CakeDetail from '@/routes/cake/detail';
 import CakeForm from '@/routes/cake/form';
 import CakeListPage from '@/routes/cake/list';
 import CakeSetup from '@/routes/cake/setup';
@@ -94,6 +95,10 @@ const router = () =>
                     {
                       path: routes.cake.form(),
                       element: <CakeForm />,
+                    },
+                    {
+                      path: routes.cake.detail(),
+                      element: <CakeDetail />,
                     },
                   ],
                 },

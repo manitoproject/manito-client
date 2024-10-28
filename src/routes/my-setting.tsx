@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
-import { useSetHeader } from '@/hooks';
+import ReactHelmet from '@/helmet';
+import useSetHeader from '@/hooks/set-header';
 import { useLogout } from '@/queries/users';
 import routes from '@/routes';
 import { getFontSizeAndWeight } from '@/styles/mixins';
@@ -34,6 +35,7 @@ export default function MySetting() {
           </StyledListItem>
         </StyledList>
       </StyledListWarpper>
+      <ReactHelmet title="설정 - 마니또" />
     </StyledWrapper>
   );
 }

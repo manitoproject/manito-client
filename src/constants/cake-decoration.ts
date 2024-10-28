@@ -1,6 +1,11 @@
 import { FunctionComponent, SVGAttributes } from 'react';
 
 import {
+  ChocolateBgOriginal,
+  StrawberryBgOriginal,
+  VanillaBgOriginal,
+} from '@/assets/imgs';
+import {
   ChocolateBall,
   ChocolateBearChip,
   ChocolateBearCookie,
@@ -50,21 +55,76 @@ import {
   WhiteIceCream,
   WhiteMacaroon,
 } from '@/assets/svg/decorations';
+import { ROLLINGPAPER_EMOJI_MAP } from '@/constants/rolling-paper';
+import { ColorName } from '@/styles/theme';
 
 export type DecorationType = 'chocolate' | 'vanilla' | 'white' | 'strawberry';
-
-export const getDecorationSvg = (deco: string) => {
+export type CakeTheme = {
+  labelKor: string;
+  labelEng: DecorationType;
+  fontColor: ColorName;
+  bgColor: ColorName;
+};
+export const findSvgByThemeName = (name: string) => {
   const all = [
-    ...DECORATIONS.chocolate,
-    ...DECORATIONS.strawberry,
-    ...DECORATIONS.vanilla,
-    ...DECORATIONS.white,
+    ...CAKE_DECORATIONS.chocolate,
+    ...CAKE_DECORATIONS.strawberry,
+    ...CAKE_DECORATIONS.vanilla,
+    ...CAKE_DECORATIONS.white,
+    ...ROLLINGPAPER_EMOJI_MAP.animal,
+    ...ROLLINGPAPER_EMOJI_MAP.nature,
+    ...ROLLINGPAPER_EMOJI_MAP.space,
   ];
-  const foundDeco = all.find((item) => item.name === deco)?.svg;
-  return foundDeco || all[0].svg;
+  return all.find((item) => item.name === name)?.svg;
+};
+export const findCakeThemeStyle = (thmeName: string) => {
+  return CAKE_THEME_STYLES.find((theme) =>
+    thmeName.toLowerCase().includes(theme.labelEng),
+  );
 };
 
-export const DECORATIONS: {
+export const CAKE_THEME_PALETTES: Array<{
+  btnColor: string;
+  bgUrl: string;
+  headerColor: ColorName;
+}> = [
+  { btnColor: '#F9BBC8', bgUrl: StrawberryBgOriginal, headerColor: 'pink-300' },
+  {
+    btnColor: '#74342A',
+    bgUrl: ChocolateBgOriginal,
+    headerColor: 'chocolate-300',
+  },
+  { btnColor: '#FE7D3F', bgUrl: VanillaBgOriginal, headerColor: 'vanilla-300' },
+];
+
+export const CAKE_THEME_STYLES: CakeTheme[] = [
+  {
+    labelKor: '초코',
+    labelEng: 'chocolate',
+    fontColor: 'chocolate-300',
+    bgColor: 'chocolate-100',
+  },
+  {
+    labelKor: '바닐라',
+    labelEng: 'vanilla',
+    fontColor: 'vanilla-300',
+    bgColor: 'vanilla-100',
+  },
+  {
+    labelKor: '딸기',
+    labelEng: 'strawberry',
+    fontColor: 'pink-300',
+    bgColor: 'pink-100',
+  },
+  {
+    labelKor: '화이트',
+    labelEng: 'white',
+    fontColor: 'gray-800',
+    bgColor: 'gray-100',
+  },
+];
+
+export const CAKE_DECORATIONS: {
   [key in DecorationType]: {
     name: string;
     svg: FunctionComponent<SVGAttributes<SVGElement>>;

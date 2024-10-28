@@ -30,6 +30,8 @@ const routes = {
     decorate: () => `${routes.cake.default}/decorate` as const,
     form: (type?: 'create' | 'edit', id?: number) =>
       `${routes.cake.default}/${id || ':id'}/${type || ':type'}` as const,
+    detail: (id?: number) =>
+      `${routes.cake.default}/${id ?? ':id'}/detail` as const,
   },
   treasure: {
     default: '/treasure' as const,
@@ -37,6 +39,8 @@ const routes = {
     list: (id?: number) => `${routes.treasure.default}/${id ?? ':id'}` as const,
     detail: (id?: number) =>
       `${routes.treasure.default}/${id ?? ':id'}/detail` as const,
+    form: (type?: 'create' | 'edit', id?: number) =>
+      `${routes.cake.default}/${id || ':id'}/${type || ':type'}` as const,
   },
 };
 

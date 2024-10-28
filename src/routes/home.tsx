@@ -10,7 +10,8 @@ import {
 } from '@/assets/imgs';
 import Greeting from '@/components/home/greeting';
 import { GreetingSkeleton } from '@/components/skeletons/skeletons';
-import { useSetHeader } from '@/hooks';
+import ReactHelmet from '@/helmet';
+import useSetHeader from '@/hooks/set-header';
 import routes from '@/routes';
 
 const CONTENTS = [
@@ -65,6 +66,7 @@ export default function Home() {
           })}
         </StyeldContents>
       </section>
+      <ReactHelmet title="메인페이지 - 마니또" />
     </StyledWrapper>
   );
 }

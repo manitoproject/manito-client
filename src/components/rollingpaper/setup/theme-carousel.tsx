@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import ThemeItem from '@/components/rollingpaper/setup/theme-item';
-import themeList from '@/constants/theme-list';
+import { ROLLINGPAPER_THEMES } from '@/constants/rolling-paper';
 import { getFontSizeAndWeight } from '@/styles/mixins';
 
 interface ThemeCarouselProps {
@@ -25,7 +25,7 @@ export default function ThemeCarousel({
           slidesPerView="auto"
           slideToClickedSlide
         >
-          {themeList.map(({ themeKor, img }, i) => (
+          {ROLLINGPAPER_THEMES.map(({ themeKor, img }, i) => (
             <SwiperSlide key={themeKor}>
               <ThemeItem
                 onClick={() => onActiveIndexChange(i)}

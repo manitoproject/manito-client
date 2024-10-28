@@ -13,8 +13,9 @@ export default function MessageList() {
   const { data, isLoading } = usePaperMessagesQuery();
   const messageList = useMessageList();
   const messageActions = useMessageActions();
+
   useEffect(() => {
-    messageActions.snycList(data?.data);
+    messageActions.snycList(data);
   }, [data, messageActions]);
 
   if (isLoading) return <MyMessageListSkeleton />;

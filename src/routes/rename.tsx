@@ -2,7 +2,9 @@ import { kakaoProfile } from '@/assets/imgs';
 import { Button } from '@/components/common/button/buttons';
 import NameForm from '@/components/common/name-form';
 import { nicknameMaxLength } from '@/constants/regex-patterns';
-import { useNameForm, useSetHeader } from '@/hooks';
+import ReactHelmet from '@/helmet';
+import useNameForm from '@/hooks/name-form';
+import useSetHeader from '@/hooks/set-header';
 import {
   useNicknameChange,
   useProfileChange,
@@ -62,6 +64,7 @@ export default function Rename() {
           수정하기
         </Button>
       </div>
+      <ReactHelmet title="프로필 수정 - 마니또" />
     </StyledRenameWrapper>
   );
 }

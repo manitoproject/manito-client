@@ -3,51 +3,51 @@ import styled from '@emotion/styled';
 import AuthorInfo from '@/components/rollingpaper/detail/author-info';
 import DetailMessageButtons from '@/components/rollingpaper/detail/buttons';
 import MessageSwipe from '@/components/swipe/message-swipe';
-import { ROLLINGPAPER_BG_MAP } from '@/constants/rolling-paper';
+import { CAKE_THEME_PALETTES } from '@/constants/cake-decoration';
 import ReactHelmet, { TITLE } from '@/helmet';
 import useMessageDetail from '@/hooks/message-detail';
 import useSetHeader from '@/hooks/set-header';
 import { usePaperDetailQuery } from '@/queries/paper';
 import { StyledBackdrop } from '@/routes/rollingpaper/list.style';
+import { StyledContentOverlay } from '@/styles/styled';
 
-export default function RollingpaperDetail() {
+export default function CakeDetail() {
   const { activeIndex, messages, setActiveIndex } = useMessageDetail();
   const { data: paperData } = usePaperDetailQuery();
-
-  const paper = paperData?.data;
-  useSetHeader({
-    title: paper?.title,
-    bg: ROLLINGPAPER_BG_MAP[paper?.theme ?? 'animal'].bgColor,
-    color: paper?.theme === 'animal' ? undefined : 'white',
-  });
+  useSetHeader({ title: '상세 보기' });
 
   if (!messages?.length) return null;
   const currentMessage = messages[activeIndex];
-
   return (
     <StyledWrapper>
+      <StyledBackdrop
+        bg={
+          CAKE_THEME_PALETTES[
+            activeIndex + 1 <= 13 ? 0 : activeIndex + 1 <= 26 ? 1 : 2
+          ].bgUrl
+        }
+      />
+      <StyledContentOverlay opacity={20} />
       <div>
         <MessageSwipe
-          category="rollingpaper"
+          category="cake"
           messages={messages}
           activeIndex={activeIndex}
           setActiveIndex={setActiveIndex}
         />
         <AuthorInfo
+          isNicknameWhite={activeIndex + 1 > 13 && activeIndex + 1 < 27}
           activeIndex={activeIndex}
           nickname={currentMessage?.anonymous || currentMessage?.user?.nickname}
           totalIndex={messages?.length}
         />
       </div>
       <DetailMessageButtons
-        category="rollingpaper"
+        category="cake"
         authorId={paperData?.data?.userId}
         message={currentMessage}
       />
       <ReactHelmet title={`${paperData?.data?.title} - ${TITLE}`} />
-      <StyledBackdrop
-        bg={ROLLINGPAPER_BG_MAP[paperData?.data?.theme ?? 'animal'].bgUrl}
-      />
     </StyledWrapper>
   );
 }

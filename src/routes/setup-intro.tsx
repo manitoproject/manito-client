@@ -4,7 +4,8 @@ import { useParams } from 'react-router-dom';
 import makeCakeBg from '@/assets/imgs/intro/make-a-cake-bgx4@4x-100.webp';
 import rollingBg from '@/assets/imgs/intro/rollring-paper-B@4x-1004.webp';
 import { LinkButton } from '@/components/common/button/buttons';
-import { useSetHeader } from '@/hooks';
+import ReactHelmet from '@/helmet';
+import useSetHeader from '@/hooks/set-header';
 import { useMessageCounts } from '@/queries/message';
 import routes from '@/routes';
 import { getFontSizeAndWeight, StyledFixedBackground } from '@/styles/mixins';
@@ -51,6 +52,7 @@ export default function SetupIntro() {
         <LinkButton to={currentTheme.path}>시작하기</LinkButton>
       </StyledButtonWrapper>
       <StyledBackdrop bg={currentTheme.bgUrl} />
+      <ReactHelmet title={`${currentTheme.title} - 마니또`} />
     </StyledWrapper>
   );
 }

@@ -1,8 +1,7 @@
 import styled from '@emotion/styled';
 
 import MyPaperItem from '@/components/my/paper/paper-item';
-import { MyPaperListSkeleton } from '@/components/skeletons/skeletons';
-import { useUserPaperQuery } from '@/queries/paper';
+import { useUserPaperSuspenseQuery } from '@/queries/paper';
 import { useUserQuery } from '@/queries/users';
 
 interface MyPaperListProps {
@@ -11,13 +10,11 @@ interface MyPaperListProps {
 
 export default function MyPaperList({ activeCagegory }: MyPaperListProps) {
   const { data: userData } = useUserQuery();
-  const { data, isLoading } = useUserPaperQuery(userData?.data?.id);
+  const { data } = useUserPaperSuspenseQuery(userData?.data?.id);
 
-  const filteredList = data?.data?.filter(
+  const filteredList = data?.filter(
     (paper) => paper.category === activeCagegory,
   );
-
-  if (isLoading) return <MyPaperListSkeleton />;
 
   return (
     <StyledList>

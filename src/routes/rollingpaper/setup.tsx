@@ -4,8 +4,10 @@ import { Button } from '@/components/common/button/buttons';
 import NameForm from '@/components/common/name-form';
 import ThemeCarousel from '@/components/rollingpaper/setup/theme-carousel';
 import { titleMaxLength } from '@/constants/regex-patterns';
-import themeList from '@/constants/theme-list';
-import { useNameForm, useSetHeader } from '@/hooks';
+import { ROLLINGPAPER_THEMES } from '@/constants/rolling-paper';
+import ReactHelmet from '@/helmet';
+import useNameForm from '@/hooks/name-form';
+import useSetHeader from '@/hooks/set-header';
 import { useCreatePaper } from '@/queries/paper';
 import {
   StyledHeading,
@@ -22,7 +24,7 @@ export default function RollingpaperSetup() {
   const handleSubmit = () => {
     mutate({
       category: 'ROLLING_PAPER',
-      theme: themeList[activeThemeIndex].themeEng,
+      theme: ROLLINGPAPER_THEMES[activeThemeIndex].themeEng,
       title: name,
     });
   };
@@ -56,6 +58,7 @@ export default function RollingpaperSetup() {
       >
         시작하기
       </Button>
+      <ReactHelmet title={`롤링페이퍼 테마선택 - 마니또`} />
     </StyledWrapper>
   );
 }

@@ -1,6 +1,14 @@
 import { FunctionComponent, SVGAttributes } from 'react';
 
 import {
+  AnimalBgOriginal,
+  AnimalBgThumbnail,
+  NatureBgOriginal,
+  NatureBgThumbnail,
+  SpaceBgOriginal,
+  SpaceBgThumbnail,
+} from '@/assets/imgs';
+import {
   AnimalCatPawsCircleLetter,
   AnimalCatPawsCloverLetter,
   AnimalCatPawsSquareLetter,
@@ -38,13 +46,52 @@ import {
   SpaceTableclothPolygon,
   SpaceTableclothPolygonBright,
 } from '@/assets/svg/emoji';
+import { ColorName } from '@/styles/theme';
+import { Message } from '@/types/message';
 
-export const findEmojiSvgFromTheme = (name: string) =>
-  [...emojis.animal, ...emojis.nature, ...emojis.space].find(
-    (item) => item.name === name,
-  );
+const ROLLING_THEME_NAMES: RollingThemeName[] = ['nature', 'space', 'animal'];
 
-const emojis: {
+export const CATEGORY_MAP: Record<Category, CategoryLowerCase> = {
+  CAKE: 'cake',
+  ROLLING_PAPER: 'rollingpaper',
+  TREASURE: 'treasure',
+};
+
+export const ROLLINGPAPER_BG_MAP: Record<
+  RollingThemeName,
+  { bgColor: ColorName; bgUrl: string }
+> = {
+  animal: { bgColor: 'white', bgUrl: AnimalBgOriginal },
+  space: { bgColor: 'powderBlue-900', bgUrl: SpaceBgOriginal },
+  nature: { bgColor: 'powderBlue-800', bgUrl: NatureBgOriginal },
+};
+
+export const getRollingThemeName = (
+  message: Message<unknown>,
+): RollingThemeName | undefined => {
+  const messageTheme = message.theme.toLowerCase();
+  return ROLLING_THEME_NAMES.find((name) => messageTheme.includes(name));
+};
+
+export const ROLLINGPAPER_THEMES: Theme[] = [
+  {
+    themeKor: '우주',
+    themeEng: 'space',
+    img: SpaceBgThumbnail,
+  },
+  {
+    themeKor: '자연',
+    themeEng: 'nature',
+    img: NatureBgThumbnail,
+  },
+  {
+    themeKor: '멍냥',
+    themeEng: 'animal',
+    img: AnimalBgThumbnail,
+  },
+];
+
+export const ROLLINGPAPER_EMOJI_MAP: {
   [key in RollingThemeName]: {
     name: string;
     svg: FunctionComponent<SVGAttributes<SVGElement>>;
@@ -201,5 +248,3 @@ const emojis: {
     },
   ],
 };
-
-export default emojis;

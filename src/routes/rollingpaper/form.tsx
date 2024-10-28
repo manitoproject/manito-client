@@ -11,8 +11,11 @@ import FontList from '@/components/rollingpaper/bottom-sheet/font-sheet/font-lis
 import FontSheet from '@/components/rollingpaper/bottom-sheet/font-sheet/font-sheet';
 import BottomSheetheader from '@/components/rollingpaper/bottom-sheet/header';
 import EmojiSkin from '@/components/rollingpaper/emoji-skin';
-import { findEmojiSvgFromTheme } from '@/constants/emojis';
-import { useMessageInfo, useSetHeader } from '@/hooks';
+import { findSvgByThemeName } from '@/constants/cake-decoration';
+import { ROLLINGPAPER_BG_MAP } from '@/constants/rolling-paper';
+import ReactHelmet from '@/helmet';
+import useMessageInfo from '@/hooks/message-info';
+import useSetHeader from '@/hooks/set-header';
 import { useEditMessage } from '@/queries/message';
 import {
   StyledCustomSheet,
@@ -20,7 +23,6 @@ import {
   StyledRollingFormWrapper,
   StyledSheetContentWrapper,
 } from '@/routes/rollingpaper/form.style';
-import { BG_BY_THEME } from '@/routes/rollingpaper/list';
 import { StyledBackdrop } from '@/routes/rollingpaper/list.style';
 import { ColorName, FontNameWithoutAppleFont } from '@/styles/theme';
 
@@ -37,7 +39,7 @@ export default function RollingpaperForm() {
   );
   const [isButtonOpen, setIsButtonOpen] = useState(false);
   const [activeMenuIndex, setActiveMenuIndex] = useState(0);
-  const emoji = findEmojiSvgFromTheme(activeEmoji);
+  const Svg = findSvgByThemeName(activeEmoji);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeFont, setActiveFont] = useState<FontNameWithoutAppleFont>(
     isEditing ? messageInfo.font : 'Cafe24Ssurround',
@@ -48,7 +50,7 @@ export default function RollingpaperForm() {
   const [content, setContent] = useState(isEditing ? messageInfo.content : '');
   useSetHeader({
     title: messageInfo.type === 'create' ? '편지 작성' : '수정하기',
-    bg: BG_BY_THEME[messageInfo.paperTheme].bgColor,
+    bg: ROLLINGPAPER_BG_MAP[messageInfo.paperTheme].bgColor,
     color: messageInfo.paperTheme === 'animal' ? undefined : 'white',
   });
 
@@ -101,7 +103,7 @@ export default function RollingpaperForm() {
 
   return (
     <StyledRollingFormWrapper>
-      <StyledBackdrop bg={BG_BY_THEME[messageInfo.paperTheme].bgUrl} />
+      <StyledBackdrop bg={ROLLINGPAPER_BG_MAP[messageInfo.paperTheme].bgUrl} />
       <StyledRollingFormEmojiWrapper
         isEmojiTab={!isActiveFontTab && !isEditing}
       >
@@ -109,10 +111,10 @@ export default function RollingpaperForm() {
           message={{
             font: activeFont,
             fontColor: activeColor,
-            theme: emoji?.name,
+            theme: activeEmoji,
           }}
         >
-          {emoji && <emoji.svg />}
+          {Svg && <Svg />}
           {activeEmoji && (
             <textarea
               disabled={checkTextareaDisabled()}
@@ -206,6 +208,11 @@ export default function RollingpaperForm() {
       >
         {isActiveFontTab || isEditing ? '작성 완료' : '편지 선택하기'}
       </BottomSheetButton>
+      <ReactHelmet
+        title={`${
+          messageInfo.type === 'create' ? '편지 작성' : '편지 수정'
+        } - 마니또`}
+      />
     </StyledRollingFormWrapper>
   );
 }

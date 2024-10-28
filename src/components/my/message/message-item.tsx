@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { createSearchParams, useNavigate } from 'react-router-dom';
 
 import { EditSquare, Trash } from '@/assets/svg/icons';
 import DeleteModal from '@/components/modal/delete-modal';
@@ -9,8 +9,8 @@ import {
   StyledMessageItem,
   StyledTrashButton,
 } from '@/components/rollingpaper/list/item.style';
-import { findEmojiSvgFromTheme } from '@/constants/emojis';
-import { getRollingThemeName } from '@/constants/theme-list';
+import { findSvgByThemeName } from '@/constants/cake-decoration';
+import { getRollingThemeName } from '@/constants/rolling-paper';
 import { useDeleteMessage } from '@/queries/message';
 import routes from '@/routes';
 import theme from '@/styles/theme';
@@ -18,17 +18,21 @@ import { Message } from '@/types/message';
 
 interface MyMessageItemProps {
   message: Message<User>;
+  activeCagegory: CategoryLowerCase;
 }
-export default function MyMessageItem({ message }: MyMessageItemProps) {
+export default function MyMessageItem({
+  message,
+  activeCagegory,
+}: MyMessageItemProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { mutate } = useDeleteMessage({
     paperId: message.paperId,
   });
   const navigate = useNavigate();
-  const EmojiSvg = findEmojiSvgFromTheme(message.theme)?.svg;
+  const Svg = findSvgByThemeName(message.theme);
 
   const handleEditMessage = () => {
-    navigate(routes.rollingpaper.form('edit', message.paperId), {
+    navigate(routes[activeCagegory].form('edit', message.paperId), {
       state: {
         ...message,
         paperTheme: getRollingThemeName(message),
@@ -36,9 +40,10 @@ export default function MyMessageItem({ message }: MyMessageItemProps) {
     });
   };
 
-  const handleClick = async () => {
-    navigate(routes.rollingpaper.list(message.paperId), {
-      state: message.id,
+  const handleViewDetailItem = async () => {
+    navigate({
+      pathname: routes[activeCagegory].detail(message.paperId),
+      search: createSearchParams({ id: String(message.id) }).toString(),
     });
   };
 
@@ -51,13 +56,13 @@ export default function MyMessageItem({ message }: MyMessageItemProps) {
         <Trash width={24} height={24} fill={theme.colors['gray-700']} />
       </StyledTrashButton>
       <EmojiSkin
-        onClick={handleClick}
+        onClick={handleViewDetailItem}
         paperId={message.paperId}
         isSmall
         message={message}
       >
-        {EmojiSvg && <EmojiSvg />}
-        <p>{message.content}</p>
+        {Svg && <Svg />}
+        <p>{activeCagegory === 'rollingpaper' && message.content}</p>
       </EmojiSkin>
       {isModalOpen && (
         <DeleteModal

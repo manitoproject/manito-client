@@ -4,13 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import { Clip, KakaoFill } from '@/assets/svg/icons';
 import { Modal } from '@/components/modal';
 import LoginModal from '@/components/modal/login-modal';
+import { Content } from '@/components/modal/message-create-modal';
 import {
   StyledModalLink,
   StyledModalLinks,
   StyledRollingHeader,
 } from '@/components/rollingpaper/list/header/detail-header.style';
 import DetailMessagelength from '@/components/rollingpaper/list/header/message-length';
-import { useShare } from '@/hooks';
+import useShare from '@/hooks/share';
 import { usePaperMessagesQuery } from '@/queries/message';
 import { usePaperDetailQuery } from '@/queries/paper';
 import { useUserQuery } from '@/queries/users';
@@ -20,12 +21,13 @@ import theme from '@/styles/theme';
 
 interface DetailHeaderProps {
   paperId?: number;
+  content: Content;
 }
 
-export default function DetailHeader({ paperId }: DetailHeaderProps) {
+export default function DetailHeader({ paperId, content }: DetailHeaderProps) {
   const [isCopyModalOpen, setIsCopyModalOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-  const { data } = usePaperMessagesQuery();
+  const { data: messages } = usePaperMessagesQuery();
   const { data: PaperData } = usePaperDetailQuery();
   const { data: userData } = useUserQuery();
   const toastActions = useToastActions();
@@ -33,8 +35,7 @@ export default function DetailHeader({ paperId }: DetailHeaderProps) {
   const navigate = useNavigate();
 
   const handleShowDetailMessage = () => {
-    if (data?.data?.length)
-      return navigate(routes.rollingpaper.detail(paperId));
+    if (messages?.length) return navigate(routes[content].detail(paperId));
     toastActions.add('상세보기 내역이 없습니다.');
   };
 

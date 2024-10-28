@@ -1,4 +1,9 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import {
+  useMutation,
+  useQuery,
+  useQueryClient,
+  useSuspenseQuery,
+} from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import queries from '@/queries/query-key-factory';
@@ -20,11 +25,17 @@ export const useCreatePaper = (content: CategoryLowerCase) => {
   });
 };
 
-export const useUserPaperQuery = (userId?: number) => {
-  return useQuery({
+export const useUserPaperSuspenseQuery = (userId?: number) => {
+  return useSuspenseQuery({
     ...queries.papers.user(userId),
     staleTime: 1000 * 60 * 60,
-    enabled: !!userId,
+    select: (data) => {
+      if (data?.data) {
+        const newData = [...data.data];
+        return newData.reverse();
+      }
+      return data?.data;
+    },
   });
 };
 

@@ -2,15 +2,12 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import {
-  ChocolateBgOriginal,
-  StrawberryBgOriginal,
-  VanillaBgOriginal,
-} from '@/assets/imgs';
 import { EditSquare } from '@/assets/svg/icons';
 import CakeSwipe from '@/components/cake/swipe';
 import DetailHeader from '@/components/rollingpaper/list/header/detail-header';
-import { useSetHeader } from '@/hooks';
+import { CAKE_THEME_PALETTES } from '@/constants/cake-decoration';
+import ReactHelmet, { TITLE } from '@/helmet';
+import useSetHeader from '@/hooks/set-header';
 import { usePaperMessagesQuery } from '@/queries/message';
 import { usePaperDetailQuery } from '@/queries/paper';
 import routes from '@/routes';
@@ -20,21 +17,6 @@ import {
 } from '@/routes/rollingpaper/list.style';
 import { useMessageActions } from '@/stores/message-store';
 import { useToastActions } from '@/stores/toast-store';
-import { ColorName } from '@/styles/theme';
-
-export const THEME_PALETTES: Array<{
-  btnColor: string;
-  bgUrl: string;
-  headerColor: ColorName;
-}> = [
-  { btnColor: '#F9BBC8', bgUrl: StrawberryBgOriginal, headerColor: 'pink-300' },
-  {
-    btnColor: '#74342A',
-    bgUrl: ChocolateBgOriginal,
-    headerColor: 'chocolate-300',
-  },
-  { btnColor: '#FE7D3F', bgUrl: VanillaBgOriginal, headerColor: 'vanilla-300' },
-];
 
 export default function CakeList() {
   const { data: MessageData } = usePaperMessagesQuery();
@@ -47,33 +29,33 @@ export default function CakeList() {
 
   useSetHeader({
     title: paper?.title,
-    bg: THEME_PALETTES[activeIndex].headerColor,
+    bg: CAKE_THEME_PALETTES[activeIndex].headerColor,
     color: 'white',
   });
-
   const handleWrite = () => {
-    if (MessageData?.data && MessageData.data.length >= 39) {
+    if (MessageData && MessageData.length >= 39) {
       return add('작성할 수 있는 공간이 없습니다.');
     }
     navigate(routes.cake.decorate(), { state: { id: data?.data?.id } });
     setInfo({
-      bg: THEME_PALETTES[activeIndex].bgUrl,
-      position: MessageData?.data?.length,
+      bg: CAKE_THEME_PALETTES[activeIndex].bgUrl,
+      position: MessageData?.length,
     });
   };
 
   return (
     <StyledRollingList>
       <StyledListWrapper>
-        <DetailHeader paperId={paper?.id} />
+        <DetailHeader paperId={paper?.id} content="cake" />
       </StyledListWrapper>
       <CakeSwipe activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
       <StyledWriteButton
         onClick={handleWrite}
-        bg={THEME_PALETTES[activeIndex].btnColor}
+        bg={CAKE_THEME_PALETTES[activeIndex].btnColor}
       >
         <EditSquare width={40} height={40} fill="#fff" />
       </StyledWriteButton>
+      <ReactHelmet title={`${data?.data?.title} - ${TITLE}`} />
     </StyledRollingList>
   );
 }

@@ -4,22 +4,25 @@ import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperType } from 'swiper/types';
 
+import CakeTextarea from '@/components/cake/textarea';
 import EmojiSkin from '@/components/rollingpaper/emoji-skin';
-import SwipeNavigation from '@/components/swipe/swipe-navigation';
-import { findEmojiSvgFromTheme } from '@/constants/emojis';
-import { useBoundaryIndex } from '@/hooks';
+import SwipeNavigation from '@/components/swipe/navigation';
+import { findSvgByThemeName } from '@/constants/cake-decoration';
+import useBoundaryIndex from '@/hooks/boundary-index';
 import { Message } from '@/types/message';
 
 interface DetailSwiperProps {
   messages: Message<UserIdAndNickname>[];
   activeIndex: number;
   setActiveIndex: React.Dispatch<React.SetStateAction<number>>;
+  category: CategoryLowerCase;
 }
 
 export default function MessageSwipe({
   messages,
   activeIndex,
   setActiveIndex,
+  category,
 }: DetailSwiperProps) {
   const swiperRef = useRef<SwiperType>();
 
@@ -44,13 +47,24 @@ export default function MessageSwipe({
       onSlideChange={handleSlideChange}
     >
       {messages?.map((message) => {
-        const emoji = findEmojiSvgFromTheme(message.theme);
+        if (category === 'rollingpaper') {
+          const Svg = findSvgByThemeName(message.theme);
+          return (
+            <SwiperSlide key={message.id}>
+              <EmojiSkin message={message}>
+                {Svg && <Svg />}
+                <p>{message.content}</p>
+              </EmojiSkin>
+            </SwiperSlide>
+          );
+        }
         return (
           <SwiperSlide key={message.id}>
-            <EmojiSkin message={message}>
-              {emoji?.svg && <emoji.svg />}
-              <p>{message.content}</p>
-            </EmojiSkin>
+            <CakeTextarea
+              content={message.content}
+              fontName={message.font}
+              themeName={message.theme}
+            />
           </SwiperSlide>
         );
       })}

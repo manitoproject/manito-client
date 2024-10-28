@@ -1,6 +1,10 @@
 import styled from '@emotion/styled';
 
-import { DECORATIONS, DecorationType } from '@/constants/cake-decoration';
+import {
+  CAKE_DECORATIONS,
+  CAKE_THEME_STYLES,
+  DecorationType,
+} from '@/constants/cake-decoration';
 import { ColorName } from '@/styles/theme';
 
 interface DecorationsProps {
@@ -9,27 +13,23 @@ interface DecorationsProps {
   activeDeco: string;
 }
 
-type DecorationColors = { bg: ColorName; border: ColorName };
-
-const DECORATION_COLOR_MAP: Record<DecorationType, DecorationColors> = {
-  chocolate: { bg: 'chocolate-100', border: 'chocolate-300' },
-  vanilla: { bg: 'vanilla-100', border: 'vanilla-300' },
-  strawberry: { bg: 'pink-100', border: 'pink-300' },
-  white: { bg: 'gray-300', border: 'gray-800' },
-};
-
 export default function Decorations({
   activeTab,
   setActiveDeco,
   activeDeco,
 }: DecorationsProps) {
+  const theme = CAKE_THEME_STYLES.find(
+    (cakeTheme) => cakeTheme.labelEng === activeTab,
+  );
+
+  if (!theme) return null;
   return (
     <StyledDecoItem>
-      {DECORATIONS[activeTab].map((deco) => (
+      {CAKE_DECORATIONS[activeTab].map((deco) => (
         <StyledButton
           isActive={activeDeco === deco.name}
-          bg={DECORATION_COLOR_MAP[activeTab].bg}
-          border={DECORATION_COLOR_MAP[activeTab].border}
+          bg={theme.bgColor}
+          border={theme.fontColor}
           key={deco.name}
           type="button"
           onClick={() => setActiveDeco(deco.name)}
@@ -58,6 +58,8 @@ const StyledButton = styled.button<{
   justify-content: center;
   align-items: center;
   border-radius: 4px;
-  width: 96px;
-  height: 96px;
+  max-width: 96px;
+  width: 100%;
+  height: 100%;
+  max-height: 96px;
 `;

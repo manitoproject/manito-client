@@ -2,7 +2,8 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 
 import { Button } from '@/components/common/button/buttons';
-import { useSetHeader } from '@/hooks';
+import ReactHelmet from '@/helmet';
+import useSetHeader from '@/hooks/set-header';
 import { useSendFeedbackMessage } from '@/queries/contact';
 import { useUserQuery } from '@/queries/users';
 import { getFontSizeAndWeight } from '@/styles/mixins';
@@ -42,6 +43,7 @@ export default function Contact() {
           문의하기
         </Button>
       </div>
+      <ReactHelmet title="문의하기 - 마니또" />
     </StyledWrapper>
   );
 }

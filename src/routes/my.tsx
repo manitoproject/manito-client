@@ -6,15 +6,21 @@ import ActivityTab from '@/components/my/menu/activity-tab';
 import CategoryTab from '@/components/my/menu/category-tab';
 import MyMessageList from '@/components/my/message/message-list';
 import MyPaperList from '@/components/my/paper/paper-list';
-import { MyMessageListSkeleton } from '@/components/skeletons/skeletons';
-import { useSetHeader } from '@/hooks';
+import {
+  MyMessageListSkeleton,
+  MyPaperListSkeleton,
+} from '@/components/skeletons/skeletons';
+import { CATEGORY_MAP } from '@/constants/rolling-paper';
+import ReactHelmet from '@/helmet';
+import useSetHeader from '@/hooks/set-header';
 
 const categoryList: Category[] = ['ROLLING_PAPER', 'CAKE', 'TREASURE'];
 
 export default function My() {
   const [activeActivityTabIndex, setActiveActivityTabIndex] = useState(0);
   const [activeCategoryTabIndex, setActiveCategoryTabIndex] = useState(0);
-  const activeCagegory: Category = categoryList[activeCategoryTabIndex];
+  const activeCagegory: CategoryLowerCase =
+    CATEGORY_MAP[categoryList[activeCategoryTabIndex]];
   useSetHeader({ title: '마이 페이지' });
   return (
     <StyledWrapper>
@@ -30,13 +36,18 @@ export default function My() {
           setActiveIndex={setActiveCategoryTabIndex}
         />
         {!activeActivityTabIndex ? (
-          <MyPaperList activeCagegory={activeCagegory} />
+          <Suspense fallback={<MyPaperListSkeleton />}>
+            <MyPaperList
+              activeCagegory={categoryList[activeCategoryTabIndex]}
+            />
+          </Suspense>
         ) : (
           <Suspense fallback={<MyMessageListSkeleton />}>
-            <MyMessageList />
+            <MyMessageList activeCagegory={activeCagegory} />
           </Suspense>
         )}
       </StyledContentsWrapper>
+      <ReactHelmet title="마이페이지 - 마니또" />
     </StyledWrapper>
   );
 }

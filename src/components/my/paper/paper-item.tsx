@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 import { Trash } from '@/assets/svg/icons';
 import DeleteModal from '@/components/modal/delete-modal';
+import { CATEGORY_MAP } from '@/constants/rolling-paper';
 import { useDeletePaper } from '@/queries/paper';
 import routes from '@/routes';
 import { getFontSizeAndWeight } from '@/styles/mixins';
@@ -13,12 +14,6 @@ import theme from '@/styles/theme';
 interface MyPaperItemProps {
   paper: Paper;
 }
-
-const CATEGORY_MAP: Record<Category, CategoryLowerCase> = {
-  CAKE: 'cake',
-  ROLLING_PAPER: 'rollingpaper',
-  TREASURE: 'treasure',
-};
 
 export default function MyPaperItem({ paper }: MyPaperItemProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);

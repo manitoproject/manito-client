@@ -1,5 +1,5 @@
 import { Modal } from '@/components/modal';
-import { useNameForm } from '@/hooks';
+import useNameForm from '@/hooks/name-form';
 import { useCreateMessage } from '@/queries/message';
 import { useMessageInfo } from '@/stores/message-store';
 import { useModalIndex } from '@/stores/modal-store';
@@ -37,7 +37,7 @@ export default function MessageCreateModal({
     nameRef: nicknameRef,
   } = useNameForm('nickname');
   const handleMessageSubmit = () => {
-    if (!info.position || !info.theme)
+    if (info.position === null || !info.theme)
       return console.log('message 정보가 없음');
     mutate({
       font,

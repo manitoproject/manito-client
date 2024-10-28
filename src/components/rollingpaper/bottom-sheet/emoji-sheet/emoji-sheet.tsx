@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import React from 'react';
 
-import emojis from '@/constants/emojis';
+import { ROLLINGPAPER_EMOJI_MAP } from '@/constants/rolling-paper';
 
 interface EmojiContentProps {
   theme: RollingThemeName;
@@ -19,7 +19,7 @@ export default function EmojiSheet({
   };
   return (
     <StyledWrapper>
-      {emojis[theme].map((emoji) => (
+      {ROLLINGPAPER_EMOJI_MAP[theme].map((emoji) => (
         <StyledItem
           isActive={activeEmoji === emoji.name}
           key={emoji.name}

@@ -36,10 +36,17 @@ export const useCreateMessage = (paperId: number, content: Content) => {
 
 export const usePaperMessagesQuery = () => {
   const { id } = useParams();
-  return useQuery({
+  const query = useQuery({
     ...queries.messages.paper(Number(id)),
     enabled: !!id,
+    select: (data) => {
+      return data?.data?.sort((a, b) => a.position - b.position);
+    },
   });
+
+  if (query.isError) throw new Error('usePaperMessagesQuery fetching error');
+
+  return query;
 };
 
 export const useUserMessagesSuspenseQuery = () => {

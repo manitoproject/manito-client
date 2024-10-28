@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button } from '@/components/common/button/buttons';
 import DeleteModal from '@/components/modal/delete-modal';
-import { getRollingThemeName } from '@/constants/theme-list';
+import { getRollingThemeName } from '@/constants/rolling-paper';
 import { useDeleteMessage } from '@/queries/message';
 import { useUserQuery } from '@/queries/users';
 import routes from '@/routes';
@@ -12,10 +12,12 @@ import theme from '@/styles/theme';
 import { Message } from '@/types/message';
 import { token } from '@/utils/storage';
 
-interface AuthButtonsProps extends DetailMessageButtonsProps {}
+interface AuthButtonsProps
+  extends Omit<DetailMessageButtonsProps, 'category'> {}
 interface DetailMessageButtonsProps {
   message: Message<UserIdAndNickname>;
   authorId?: number;
+  category: CategoryLowerCase;
 }
 
 function AuthButtons({ message, authorId }: AuthButtonsProps) {
@@ -64,6 +66,7 @@ function AuthButtons({ message, authorId }: AuthButtonsProps) {
 export default function DetailMessageButtons({
   message,
   authorId,
+  category,
 }: DetailMessageButtonsProps) {
   const navigate = useNavigate();
   return (
@@ -74,7 +77,7 @@ export default function DetailMessageButtons({
           color: theme.colors.black,
           border: `1px solid ${theme.colors['gray-300']}`,
         }}
-        onClick={() => navigate(routes.rollingpaper.list(message.paperId))}
+        onClick={() => navigate(routes[category].list(message.paperId))}
       >
         닫기
       </Button>
