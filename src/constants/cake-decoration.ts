@@ -77,12 +77,21 @@ export const findSvgByThemeName = (name: string) => {
   ];
   return all.find((item) => item.name === name)?.svg;
 };
+
+export const findBgByPosition = (position: number) => {
+  if (position <= 13) {
+    return CAKE_THEME_PALETTES[0].bgUrl;
+  } else if (position <= 26) {
+    return CAKE_THEME_PALETTES[1].bgUrl;
+  }
+  return CAKE_THEME_PALETTES[2].bgUrl;
+};
+
 export const findCakeThemeStyle = (thmeName: string) => {
   return CAKE_THEME_STYLES.find((theme) =>
     thmeName.toLowerCase().includes(theme.labelEng),
   );
 };
-
 export const CAKE_THEME_PALETTES: Array<{
   btnColor: string;
   bgUrl: string;

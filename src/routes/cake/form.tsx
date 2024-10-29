@@ -32,7 +32,10 @@ export default function CakeForm() {
   const [activeFont, setActiveFont] =
     useState<FontNameWithoutAppleFont>('Cafe24Ssurround');
   const { bg, theme } = useMessageInfo();
-  useSetHeader({ rightBtn: false, title: '메시지 작성' });
+  useSetHeader({
+    rightBtn: false,
+    title: params.type === 'create' ? '메시지 작성 ' : '메시지 수정',
+  });
   if (!bg || !theme || !params.id) throw new Error();
   const style = findCakeThemeStyle(theme);
 
@@ -114,6 +117,10 @@ export default function CakeForm() {
 
 const StyledWrapper = styled.div`
   width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 13%;
 `;
 
 const StyledNotice = styled.div<{ color: ColorName | undefined }>`

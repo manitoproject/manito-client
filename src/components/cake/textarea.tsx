@@ -44,18 +44,19 @@ const StyledTextareaWarpper = styled.div<{
   border: ColorName | undefined;
   font?: Font;
 }>`
-  svg {
-    position: absolute;
-    bottom: 212px;
-  }
   position: relative;
   z-index: 50;
   padding: 12px;
+  width: 100%;
   display: flex;
   align-items: center;
-  top: 96px;
   border-radius: 12px;
   background-color: ${({ bg, theme }) => bg && theme.colors[bg]};
+  svg {
+    position: absolute;
+    bottom: 212px;
+    z-index: 9999999999;
+  }
   textarea {
     font-size: 18px;
     font-weight: ${({ font }) => font?.fontWeight};

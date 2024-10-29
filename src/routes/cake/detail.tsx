@@ -28,7 +28,7 @@ export default function CakeDetail() {
         }
       />
       <StyledContentOverlay opacity={20} />
-      <div>
+      <StyledContentWrapper>
         <MessageSwipe
           category="cake"
           messages={messages}
@@ -41,7 +41,7 @@ export default function CakeDetail() {
           nickname={currentMessage?.anonymous || currentMessage?.user?.nickname}
           totalIndex={messages?.length}
         />
-      </div>
+      </StyledContentWrapper>
       <DetailMessageButtons
         category="cake"
         authorId={paperData?.data?.userId}
@@ -63,4 +63,14 @@ const StyledWrapper = styled.div`
     justify-content: center;
     margin-bottom: ${({ theme }) => theme.sizes.paddingTop};
   }
+`;
+
+const StyledContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  gap: 12px;
+  top: -10%;
+  position: relative;
 `;

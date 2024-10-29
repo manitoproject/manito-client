@@ -32,6 +32,7 @@ const router = () =>
           path: routes.landing,
           element: <Landing />,
         },
+
         {
           path: routes.kakakoRedirection,
           element: <KakaoRedirection />,

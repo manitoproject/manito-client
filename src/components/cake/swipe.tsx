@@ -116,16 +116,16 @@ const StyledSlide = styled(SwiperSlide)`
 
 const StyledDecoList = styled.div`
   position: absolute;
-  top: 132px;
+  top: 20vh;
   width: 100%;
   display: flex;
-  gap: 101px;
+  gap: 9vh;
   flex-direction: column;
   padding: ${({ theme }) => `0 ${theme.sizes.padding}`};
   z-index: 1;
   div {
-    display: flex;
     justify-content: space-around;
+    display: flex;
   }
   button {
     display: flex;

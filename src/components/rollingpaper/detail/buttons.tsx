@@ -12,15 +12,14 @@ import theme from '@/styles/theme';
 import { Message } from '@/types/message';
 import { token } from '@/utils/storage';
 
-interface AuthButtonsProps
-  extends Omit<DetailMessageButtonsProps, 'category'> {}
+interface AuthButtonsProps extends DetailMessageButtonsProps {}
 interface DetailMessageButtonsProps {
   message: Message<UserIdAndNickname>;
   authorId?: number;
   category: CategoryLowerCase;
 }
 
-function AuthButtons({ message, authorId }: AuthButtonsProps) {
+function AuthButtons({ message, authorId, category }: AuthButtonsProps) {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { data: userData } = useUserQuery();
@@ -35,7 +34,7 @@ function AuthButtons({ message, authorId }: AuthButtonsProps) {
         <Button
           css={{ background: theme.colors['powderBlue-900'] }}
           onClick={() => {
-            navigate(routes.rollingpaper.form('edit', message?.paperId), {
+            navigate(routes[category].form('edit', message?.paperId), {
               state: {
                 ...message,
                 paperTheme: getRollingThemeName(message),
@@ -83,7 +82,11 @@ export default function DetailMessageButtons({
       </Button>
 
       {token.getAccessToken() && (
-        <AuthButtons message={message} authorId={authorId} />
+        <AuthButtons
+          category={category}
+          message={message}
+          authorId={authorId}
+        />
       )}
     </StyledDetailMessageButtons>
   );

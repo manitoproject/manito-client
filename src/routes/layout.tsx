@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, ScrollRestoration } from 'react-router-dom';
 
 import Toast from '@/components/common/toast';
 import Header from '@/components/header/header';
@@ -42,6 +42,7 @@ export default function Layout() {
           onToggleModal={() => setIsLoginModalOpen((prev) => !prev)}
         />
       )}
+      <ScrollRestoration />
     </StyledWrapper>
   );
 }

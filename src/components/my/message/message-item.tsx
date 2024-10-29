@@ -9,10 +9,14 @@ import {
   StyledMessageItem,
   StyledTrashButton,
 } from '@/components/rollingpaper/list/item.style';
-import { findSvgByThemeName } from '@/constants/cake-decoration';
+import {
+  findBgByPosition,
+  findSvgByThemeName,
+} from '@/constants/cake-decoration';
 import { getRollingThemeName } from '@/constants/rolling-paper';
 import { useDeleteMessage } from '@/queries/message';
 import routes from '@/routes';
+import { useMessageActions } from '@/stores/message-store';
 import theme from '@/styles/theme';
 import { Message } from '@/types/message';
 
@@ -24,6 +28,7 @@ export default function MyMessageItem({
   message,
   activeCagegory,
 }: MyMessageItemProps) {
+  const { setInfo } = useMessageActions();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { mutate } = useDeleteMessage({
     paperId: message.paperId,
@@ -37,6 +42,11 @@ export default function MyMessageItem({
         ...message,
         paperTheme: getRollingThemeName(message),
       },
+    });
+    setInfo({
+      position: message.position,
+      theme: message.theme,
+      bg: findBgByPosition(message.position),
     });
   };
 

@@ -39,6 +39,7 @@ export default function MessageSwipe({
 
   return (
     <StyledSwiper
+      isCakeTheme={category === 'cake'}
       initialSlide={activeIndex}
       onBeforeInit={(swiper) => {
         swiperRef.current = swiper;
@@ -59,13 +60,13 @@ export default function MessageSwipe({
           );
         }
         return (
-          <SwiperSlide key={message.id}>
+          <StyledSlide key={message.id}>
             <CakeTextarea
               content={message.content}
               fontName={message.font}
               themeName={message.theme}
             />
-          </SwiperSlide>
+          </StyledSlide>
         );
       })}
       <SwipeNavigation
@@ -78,7 +79,13 @@ export default function MessageSwipe({
   );
 }
 
-const StyledSwiper = styled(Swiper)`
+const StyledSwiper = styled(Swiper)<{ isCakeTheme?: boolean }>`
   width: 100%;
   position: relative;
+  height: ${({ isCakeTheme }) => isCakeTheme && '310px'};
+`;
+
+const StyledSlide = styled(SwiperSlide)`
+  display: flex;
+  align-items: end;
 `;
