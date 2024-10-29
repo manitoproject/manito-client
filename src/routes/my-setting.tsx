@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
 import ReactHelmet from '@/helmet';
-import useSetHeader from '@/hooks/set-header';
+import useSetHeader from '@/hooks/use-set-header';
 import { useLogout } from '@/queries/users';
 import routes from '@/routes';
 import { getFontSizeAndWeight } from '@/styles/mixins';

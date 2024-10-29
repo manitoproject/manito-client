@@ -6,8 +6,8 @@ import ThemeCarousel from '@/components/rollingpaper/setup/theme-carousel';
 import { titleMaxLength } from '@/constants/regex-patterns';
 import { ROLLINGPAPER_THEMES } from '@/constants/rolling-paper';
 import ReactHelmet from '@/helmet';
-import useNameForm from '@/hooks/name-form';
-import useSetHeader from '@/hooks/set-header';
+import useNameForm from '@/hooks/use-name-form';
+import useSetHeader from '@/hooks/use-set-header';
 import { useCreatePaper } from '@/queries/paper';
 import {
   StyledHeading,

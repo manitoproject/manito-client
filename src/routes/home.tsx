@@ -11,7 +11,7 @@ import {
 import Greeting from '@/components/home/greeting';
 import { GreetingSkeleton } from '@/components/skeletons/skeletons';
 import ReactHelmet from '@/helmet';
-import useSetHeader from '@/hooks/set-header';
+import useSetHeader from '@/hooks/use-set-header';
 import routes from '@/routes';
 
 const CONTENTS = [

@@ -7,7 +7,7 @@ import CakeSwipe from '@/components/cake/swipe';
 import DetailHeader from '@/components/rollingpaper/list/header/detail-header';
 import { CAKE_THEME_PALETTES } from '@/constants/cake-decoration';
 import ReactHelmet, { TITLE } from '@/helmet';
-import useSetHeader from '@/hooks/set-header';
+import useSetHeader from '@/hooks/use-set-header';
 import { usePaperMessagesQuery } from '@/queries/message';
 import { usePaperDetailQuery } from '@/queries/paper';
 import routes from '@/routes';

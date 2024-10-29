@@ -14,8 +14,8 @@ import EmojiSkin from '@/components/rollingpaper/emoji-skin';
 import { findSvgByThemeName } from '@/constants/cake-decoration';
 import { ROLLINGPAPER_BG_MAP } from '@/constants/rolling-paper';
 import ReactHelmet from '@/helmet';
-import useMessageInfo from '@/hooks/message-info';
-import useSetHeader from '@/hooks/set-header';
+import useMessageInfo from '@/hooks/use-message-info';
+import useSetHeader from '@/hooks/use-set-header';
 import { useEditMessage } from '@/queries/message';
 import {
   StyledCustomSheet,

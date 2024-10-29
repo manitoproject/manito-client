@@ -3,8 +3,8 @@ import { Button } from '@/components/common/button/buttons';
 import NameForm from '@/components/common/name-form';
 import { nicknameMaxLength } from '@/constants/regex-patterns';
 import ReactHelmet from '@/helmet';
-import useNameForm from '@/hooks/name-form';
-import useSetHeader from '@/hooks/set-header';
+import useNameForm from '@/hooks/use-name-form';
+import useSetHeader from '@/hooks/use-set-header';
 import {
   useNicknameChange,
   useProfileChange,

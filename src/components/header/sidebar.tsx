@@ -10,7 +10,7 @@ import {
   StyledNicknameWrapper,
   StyledOverlay,
 } from '@/components/header/sidebar.style';
-import useOutsideClick from '@/hooks/common/outside-click';
+import useOutsideClick from '@/hooks/common/use-outside-click';
 import { useLogout, useUserQuery } from '@/queries/users';
 import routes from '@/routes';
 

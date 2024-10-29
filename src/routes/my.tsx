@@ -12,7 +12,7 @@ import {
 } from '@/components/skeletons/skeletons';
 import { CATEGORY_MAP } from '@/constants/rolling-paper';
 import ReactHelmet from '@/helmet';
-import useSetHeader from '@/hooks/set-header';
+import useSetHeader from '@/hooks/use-set-header';
 
 const categoryList: Category[] = ['ROLLING_PAPER', 'CAKE', 'TREASURE'];
 

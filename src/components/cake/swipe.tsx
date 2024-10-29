@@ -10,7 +10,7 @@ import {
   CAKE_THEME_PALETTES,
   findSvgByThemeName,
 } from '@/constants/cake-decoration';
-import useBoundaryIndex from '@/hooks/boundary-index';
+import useBoundaryIndex from '@/hooks/use-boundary-index';
 import { usePaperMessagesQuery } from '@/queries/message';
 import routes from '@/routes';
 

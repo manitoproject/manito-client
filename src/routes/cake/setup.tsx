@@ -1,8 +1,8 @@
 import { Button } from '@/components/common/button/buttons';
 import NameForm from '@/components/common/name-form';
 import { titleMaxLength } from '@/constants/regex-patterns';
-import useNameForm from '@/hooks/name-form';
-import useSetHeader from '@/hooks/set-header';
+import useNameForm from '@/hooks/use-name-form';
+import useSetHeader from '@/hooks/use-set-header';
 import { useCreatePaper } from '@/queries/paper';
 import {
   StyledHeading,

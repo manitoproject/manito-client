@@ -5,8 +5,8 @@ import DetailMessageButtons from '@/components/rollingpaper/detail/buttons';
 import MessageSwipe from '@/components/swipe/message-swipe';
 import { ROLLINGPAPER_BG_MAP } from '@/constants/rolling-paper';
 import ReactHelmet, { TITLE } from '@/helmet';
-import useMessageDetail from '@/hooks/message-detail';
-import useSetHeader from '@/hooks/set-header';
+import useMessageDetail from '@/hooks/use-message-detail';
+import useSetHeader from '@/hooks/use-set-header';
 import { usePaperDetailQuery } from '@/queries/paper';
 import { StyledBackdrop } from '@/routes/rollingpaper/list.style';
 

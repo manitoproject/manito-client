@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import { Button } from '@/components/common/button/buttons';
 import ReactHelmet from '@/helmet';
-import useSetHeader from '@/hooks/set-header';
+import useSetHeader from '@/hooks/use-set-header';
 import { useSendFeedbackMessage } from '@/queries/contact';
 import { useUserQuery } from '@/queries/users';
 import { getFontSizeAndWeight } from '@/styles/mixins';

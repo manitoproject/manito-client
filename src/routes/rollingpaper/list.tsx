@@ -4,7 +4,7 @@ import DetailHeader from '@/components/rollingpaper/list/header/detail-header';
 import MessageList from '@/components/rollingpaper/list/message-list';
 import { ROLLINGPAPER_BG_MAP } from '@/constants/rolling-paper';
 import ReactHelmet, { TITLE } from '@/helmet';
-import useSetHeader from '@/hooks/set-header';
+import useSetHeader from '@/hooks/use-set-header';
 import { usePaperDetailQuery } from '@/queries/paper';
 import {
   StyledBackdrop,

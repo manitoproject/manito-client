@@ -11,7 +11,7 @@ import {
   StyledRollingHeader,
 } from '@/components/rollingpaper/list/header/detail-header.style';
 import DetailMessagelength from '@/components/rollingpaper/list/header/message-length';
-import useShare from '@/hooks/share';
+import useShare from '@/hooks/use-share';
 import { usePaperMessagesQuery } from '@/queries/message';
 import { usePaperDetailQuery } from '@/queries/paper';
 import { useUserQuery } from '@/queries/users';

@@ -10,7 +10,7 @@ import {
   DecorationType,
 } from '@/constants/cake-decoration';
 import ReactHelmet from '@/helmet';
-import useSetHeader from '@/hooks/set-header';
+import useSetHeader from '@/hooks/use-set-header';
 import routes from '@/routes';
 import { useMessageActions } from '@/stores/message-store';
 import { getFontSizeAndWeight } from '@/styles/mixins';

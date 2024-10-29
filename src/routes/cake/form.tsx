@@ -12,7 +12,7 @@ import FontList from '@/components/rollingpaper/bottom-sheet/font-sheet/font-lis
 import BottomSheetheader from '@/components/rollingpaper/bottom-sheet/header';
 import { findCakeThemeStyle } from '@/constants/cake-decoration';
 import ReactHelmet from '@/helmet';
-import useSetHeader from '@/hooks/set-header';
+import useSetHeader from '@/hooks/use-set-header';
 import {
   StyledCustomSheet,
   StyledSheetContentWrapper,
