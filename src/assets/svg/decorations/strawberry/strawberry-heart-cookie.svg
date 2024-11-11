@@ -2,47 +2,47 @@
 <svg id="_레이어_1" data-name="레이어_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 148 148">
   <defs>
     <style>
-      .cls-1 {
+      .strawberry-heart-cookie-1 {
         fill: #572212;
       }
 
-      .cls-2 {
+      .strawberry-heart-cookie-2 {
         fill: #99605c;
       }
 
-      .cls-3 {
+      .strawberry-heart-cookie-3 {
         fill: #723d33;
       }
 
-      .cls-4 {
-        fill: url(#_무제_그라디언트_25);
+      .strawberry-heart-cookie-4 {
+        fill: url(#strawberry-heart-cookie-gradient_25);
       }
 
-      .cls-5 {
+      .strawberry-heart-cookie-5 {
         fill: #fff;
       }
 
-      .cls-6 {
+      .strawberry-heart-cookie-6 {
         fill: #ff578f;
       }
 
-      .cls-7 {
+      .strawberry-heart-cookie-7 {
         fill: #602b1e;
       }
 
-      .cls-8 {
+      .strawberry-heart-cookie-8 {
         fill: #49190f;
       }
 
-      .cls-9 {
+      .strawberry-heart-cookie-9 {
         fill: #88a8f8;
       }
 
-      .cls-10 {
+      .strawberry-heart-cookie-10 {
         fill: #824c45;
       }
     </style>
-    <radialGradient id="_무제_그라디언트_25" data-name="무제 그라디언트 25" cx="74" cy="74" fx="74" fy="74" r="64" gradientUnits="userSpaceOnUse">
+    <radialGradient id="strawberry-heart-cookie-gradient_25" data-name="무제 그라디언트 25" cx="74" cy="74" fx="74" fy="74" r="64" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#ffc5d8"/>
       <stop offset=".44" stop-color="#ffc5d8"/>
       <stop offset=".65" stop-color="#ff8ab7"/>
@@ -50,58 +50,58 @@
     </radialGradient>
   </defs>
   <g>
-    <path class="cls-4" d="M79.62,11.12l6.37,2.64h6.89c3.89,0,7.63,1.55,10.38,4.3l4.87,4.87,6.37,2.64c3.6,1.49,6.46,4.35,7.95,7.95l2.64,6.37,4.87,4.87c2.75,2.75,4.3,6.49,4.3,10.38v6.89l2.64,6.37c1.49,3.6,1.49,7.64,0,11.24l-2.64,6.37v6.89c0,3.89-1.55,7.63-4.3,10.38l-4.87,4.87-2.64,6.37c-1.49,3.6-4.35,6.46-7.95,7.95l-6.37,2.64-4.87,4.87c-2.75,2.75-6.49,4.3-10.38,4.3h-6.89l-6.37,2.64c-3.6,1.49-7.64,1.49-11.24,0l-6.37-2.64h-6.89c-3.89,0-7.63-1.55-10.38-4.3l-4.87-4.87-6.37-2.64c-3.6-1.49-6.46-4.35-7.95-7.95l-2.64-6.37-4.87-4.87c-2.75-2.75-4.3-6.49-4.3-10.38v-6.89l-2.64-6.37c-1.49-3.6-1.49-7.64,0-11.24l2.64-6.37v-6.89c0-3.89,1.55-7.63,4.3-10.38l4.87-4.87,2.64-6.37c1.49-3.6,4.35-6.46,7.95-7.95l6.37-2.64,4.87-4.87c2.75-2.75,6.49-4.3,10.38-4.3h6.89l6.37-2.64c3.6-1.49,7.64-1.49,11.24,0Z"/>
-    <rect class="cls-9" x="91.99" y="17.01" width="3.26" height="7.57" rx="1.63" ry="1.63" transform="translate(15.71 76.71) rotate(-48.19)"/>
-    <rect class="cls-9" x="74.51" y="33.61" width="3.26" height="7.57" rx="1.63" ry="1.63" transform="translate(24.63 -30) rotate(26.45)"/>
-    <rect class="cls-5" x="59.12" y="27.09" width="3.26" height="7.57" rx="1.63" ry="1.63" transform="translate(-5.89 45.14) rotate(-39.02)"/>
-    <rect class="cls-1" x="17.29" y="69.18" width="3.26" height="7.57" rx="1.63" ry="1.63" transform="translate(-51.11 100.84) rotate(-97.17)"/>
-    <rect class="cls-9" x="66.33" y="124.94" width="3.26" height="7.57" rx="1.63" ry="1.63" transform="translate(-51.27 212.21) rotate(-97.17)"/>
-    <rect class="cls-1" x="125.69" y="60.37" width="3.26" height="7.57" rx="1.63" ry="1.63" transform="translate(27.06 165.52) rotate(-72.06)"/>
-    <rect class="cls-5" x="122.43" y="46.42" width="3.26" height="7.57" rx="1.63" ry="1.63" transform="translate(34.33 -49.09) rotate(25.87)"/>
-    <rect class="cls-5" x="24.69" y="93.03" width="3.26" height="7.57" rx="1.63" ry="1.63" transform="translate(-73.99 95.29) rotate(-73.92)"/>
-    <rect class="cls-5" x="73.03" y="13.15" width="3.26" height="5.49" rx="1.63" ry="1.63" transform="translate(22.81 -40.12) rotate(35.19)"/>
-    <rect class="cls-9" x="115.82" y="35.98" width="3.26" height="5.49" rx="1.63" ry="1.63" transform="translate(-5.46 25) rotate(-11.88)"/>
-    <rect class="cls-5" x="89.99" y="27.63" width="3.26" height="5.49" rx="1.63" ry="1.63" transform="translate(81.76 -65.64) rotate(65.8)"/>
-    <rect class="cls-9" x="124.86" y="73.59" width="3.26" height="5.49" rx="1.63" ry="1.63" transform="translate(-21.06 83.69) rotate(-33.96)"/>
-    <rect class="cls-9" x="96.01" y="118.66" width="3.26" height="5.49" rx="1.63" ry="1.63" transform="translate(-51.17 75.27) rotate(-33.96)"/>
-    <rect class="cls-6" x="108.45" y="102.05" width="3.26" height="5.49" rx="1.63" ry="1.63" transform="translate(88.6 -45.66) rotate(38.28)"/>
-    <rect class="cls-5" x="53.56" y="119.68" width="3.26" height="5.49" rx="1.63" ry="1.63" transform="translate(-58.98 51.72) rotate(-33.96)"/>
-    <rect class="cls-9" x="25.38" y="81.76" width="3.26" height="5.49" rx="1.63" ry="1.63"/>
-    <rect class="cls-9" x="18.99" y="58.15" width="3.26" height="5.49" rx="1.63" ry="1.63" transform="translate(49.1 3.26) rotate(45)"/>
-    <rect class="cls-6" x="33.73" y="104.37" width="3.26" height="5.49" rx="1.63" ry="1.63" transform="translate(33.44 -5.67) rotate(17.29)"/>
-    <rect class="cls-6" x="29.69" y="36.81" width="3.26" height="5.49" rx="1.63" ry="1.63" transform="translate(63.09 .37) rotate(77.41)"/>
-    <rect class="cls-1" x="53.12" y="17.05" width="3.26" height="9.9" rx="1.63" ry="1.63" transform="translate(55.9 -36.99) rotate(69.23)"/>
-    <rect class="cls-5" x="21.99" y="44.83" width="3.26" height="9.9" rx="1.63" ry="1.63" transform="translate(54.92 4.44) rotate(60)"/>
-    <rect class="cls-9" x="119.99" y="93.22" width="3.26" height="9.9" rx="1.63" ry="1.63" transform="translate(231.08 -13.4) rotate(95.54)"/>
-    <rect class="cls-5" x="107.73" y="110.79" width="3.26" height="9.9" rx="1.63" ry="1.63" transform="translate(225.1 6.38) rotate(90)"/>
-    <rect class="cls-9" x="39.56" y="25.69" width="3.26" height="11.84" rx="1.63" ry="1.63" transform="translate(82.28 -.14) rotate(104.81)"/>
-    <rect class="cls-9" x="41.48" y="110.13" width="3.26" height="11.84" rx="1.63" ry="1.63" transform="translate(-20.04 222.52) rotate(-128.95)"/>
-    <rect class="cls-1" x="82" y="117.69" width="3.26" height="11.84" rx="1.63" ry="1.63" transform="translate(-56.04 176.2) rotate(-76.55)"/>
-    <rect class="cls-5" x="123.04" y="81.6" width="3.26" height="11.84" rx="1.63" ry="1.63" transform="translate(83.68 234.23) rotate(-109.46)"/>
-    <rect class="cls-6" x="105.17" y="25" width="3.26" height="11.84" rx="1.63" ry="1.63" transform="translate(113.23 141.92) rotate(-109.46)"/>
-    <rect class="cls-6" x="74.91" y="19.69" width="3.26" height="11.84" rx="1.63" ry="1.63" transform="translate(24.5 87.3) rotate(-68.35)"/>
+    <path class="strawberry-heart-cookie-4" d="M79.62,11.12l6.37,2.64h6.89c3.89,0,7.63,1.55,10.38,4.3l4.87,4.87,6.37,2.64c3.6,1.49,6.46,4.35,7.95,7.95l2.64,6.37,4.87,4.87c2.75,2.75,4.3,6.49,4.3,10.38v6.89l2.64,6.37c1.49,3.6,1.49,7.64,0,11.24l-2.64,6.37v6.89c0,3.89-1.55,7.63-4.3,10.38l-4.87,4.87-2.64,6.37c-1.49,3.6-4.35,6.46-7.95,7.95l-6.37,2.64-4.87,4.87c-2.75,2.75-6.49,4.3-10.38,4.3h-6.89l-6.37,2.64c-3.6,1.49-7.64,1.49-11.24,0l-6.37-2.64h-6.89c-3.89,0-7.63-1.55-10.38-4.3l-4.87-4.87-6.37-2.64c-3.6-1.49-6.46-4.35-7.95-7.95l-2.64-6.37-4.87-4.87c-2.75-2.75-4.3-6.49-4.3-10.38v-6.89l-2.64-6.37c-1.49-3.6-1.49-7.64,0-11.24l2.64-6.37v-6.89c0-3.89,1.55-7.63,4.3-10.38l4.87-4.87,2.64-6.37c1.49-3.6,4.35-6.46,7.95-7.95l6.37-2.64,4.87-4.87c2.75-2.75,6.49-4.3,10.38-4.3h6.89l6.37-2.64c3.6-1.49,7.64-1.49,11.24,0Z"/>
+    <rect class="strawberry-heart-cookie-9" x="91.99" y="17.01" width="3.26" height="7.57" rx="1.63" ry="1.63" transform="translate(15.71 76.71) rotate(-48.19)"/>
+    <rect class="strawberry-heart-cookie-9" x="74.51" y="33.61" width="3.26" height="7.57" rx="1.63" ry="1.63" transform="translate(24.63 -30) rotate(26.45)"/>
+    <rect class="strawberry-heart-cookie-5" x="59.12" y="27.09" width="3.26" height="7.57" rx="1.63" ry="1.63" transform="translate(-5.89 45.14) rotate(-39.02)"/>
+    <rect class="strawberry-heart-cookie-1" x="17.29" y="69.18" width="3.26" height="7.57" rx="1.63" ry="1.63" transform="translate(-51.11 100.84) rotate(-97.17)"/>
+    <rect class="strawberry-heart-cookie-9" x="66.33" y="124.94" width="3.26" height="7.57" rx="1.63" ry="1.63" transform="translate(-51.27 212.21) rotate(-97.17)"/>
+    <rect class="strawberry-heart-cookie-1" x="125.69" y="60.37" width="3.26" height="7.57" rx="1.63" ry="1.63" transform="translate(27.06 165.52) rotate(-72.06)"/>
+    <rect class="strawberry-heart-cookie-5" x="122.43" y="46.42" width="3.26" height="7.57" rx="1.63" ry="1.63" transform="translate(34.33 -49.09) rotate(25.87)"/>
+    <rect class="strawberry-heart-cookie-5" x="24.69" y="93.03" width="3.26" height="7.57" rx="1.63" ry="1.63" transform="translate(-73.99 95.29) rotate(-73.92)"/>
+    <rect class="strawberry-heart-cookie-5" x="73.03" y="13.15" width="3.26" height="5.49" rx="1.63" ry="1.63" transform="translate(22.81 -40.12) rotate(35.19)"/>
+    <rect class="strawberry-heart-cookie-9" x="115.82" y="35.98" width="3.26" height="5.49" rx="1.63" ry="1.63" transform="translate(-5.46 25) rotate(-11.88)"/>
+    <rect class="strawberry-heart-cookie-5" x="89.99" y="27.63" width="3.26" height="5.49" rx="1.63" ry="1.63" transform="translate(81.76 -65.64) rotate(65.8)"/>
+    <rect class="strawberry-heart-cookie-9" x="124.86" y="73.59" width="3.26" height="5.49" rx="1.63" ry="1.63" transform="translate(-21.06 83.69) rotate(-33.96)"/>
+    <rect class="strawberry-heart-cookie-9" x="96.01" y="118.66" width="3.26" height="5.49" rx="1.63" ry="1.63" transform="translate(-51.17 75.27) rotate(-33.96)"/>
+    <rect class="strawberry-heart-cookie-6" x="108.45" y="102.05" width="3.26" height="5.49" rx="1.63" ry="1.63" transform="translate(88.6 -45.66) rotate(38.28)"/>
+    <rect class="strawberry-heart-cookie-5" x="53.56" y="119.68" width="3.26" height="5.49" rx="1.63" ry="1.63" transform="translate(-58.98 51.72) rotate(-33.96)"/>
+    <rect class="strawberry-heart-cookie-9" x="25.38" y="81.76" width="3.26" height="5.49" rx="1.63" ry="1.63"/>
+    <rect class="strawberry-heart-cookie-9" x="18.99" y="58.15" width="3.26" height="5.49" rx="1.63" ry="1.63" transform="translate(49.1 3.26) rotate(45)"/>
+    <rect class="strawberry-heart-cookie-6" x="33.73" y="104.37" width="3.26" height="5.49" rx="1.63" ry="1.63" transform="translate(33.44 -5.67) rotate(17.29)"/>
+    <rect class="strawberry-heart-cookie-6" x="29.69" y="36.81" width="3.26" height="5.49" rx="1.63" ry="1.63" transform="translate(63.09 .37) rotate(77.41)"/>
+    <rect class="strawberry-heart-cookie-1" x="53.12" y="17.05" width="3.26" height="9.9" rx="1.63" ry="1.63" transform="translate(55.9 -36.99) rotate(69.23)"/>
+    <rect class="strawberry-heart-cookie-5" x="21.99" y="44.83" width="3.26" height="9.9" rx="1.63" ry="1.63" transform="translate(54.92 4.44) rotate(60)"/>
+    <rect class="strawberry-heart-cookie-9" x="119.99" y="93.22" width="3.26" height="9.9" rx="1.63" ry="1.63" transform="translate(231.08 -13.4) rotate(95.54)"/>
+    <rect class="strawberry-heart-cookie-5" x="107.73" y="110.79" width="3.26" height="9.9" rx="1.63" ry="1.63" transform="translate(225.1 6.38) rotate(90)"/>
+    <rect class="strawberry-heart-cookie-9" x="39.56" y="25.69" width="3.26" height="11.84" rx="1.63" ry="1.63" transform="translate(82.28 -.14) rotate(104.81)"/>
+    <rect class="strawberry-heart-cookie-9" x="41.48" y="110.13" width="3.26" height="11.84" rx="1.63" ry="1.63" transform="translate(-20.04 222.52) rotate(-128.95)"/>
+    <rect class="strawberry-heart-cookie-1" x="82" y="117.69" width="3.26" height="11.84" rx="1.63" ry="1.63" transform="translate(-56.04 176.2) rotate(-76.55)"/>
+    <rect class="strawberry-heart-cookie-5" x="123.04" y="81.6" width="3.26" height="11.84" rx="1.63" ry="1.63" transform="translate(83.68 234.23) rotate(-109.46)"/>
+    <rect class="strawberry-heart-cookie-6" x="105.17" y="25" width="3.26" height="11.84" rx="1.63" ry="1.63" transform="translate(113.23 141.92) rotate(-109.46)"/>
+    <rect class="strawberry-heart-cookie-6" x="74.91" y="19.69" width="3.26" height="11.84" rx="1.63" ry="1.63" transform="translate(24.5 87.3) rotate(-68.35)"/>
   </g>
   <g>
-    <path class="cls-6" d="M116.18,49.44c-16.26-25.93-41.64-.29-41.82-.1-.2-.22-24.34-26.97-41.78-1.84-17.51,25.23,11.5,58.18,40.14,72.12l.06-2.38-.06,2.38c29.26-12.59,59.77-44.15,43.46-70.17Z"/>
+    <path class="strawberry-heart-cookie-6" d="M116.18,49.44c-16.26-25.93-41.64-.29-41.82-.1-.2-.22-24.34-26.97-41.78-1.84-17.51,25.23,11.5,58.18,40.14,72.12l.06-2.38-.06,2.38c29.26-12.59,59.77-44.15,43.46-70.17Z"/>
     <g>
-      <path class="cls-1" d="M110.65,53.07c-14.25-22.72-36.49-.25-36.65-.09-.17-.19-21.34-23.64-36.62-1.61-15.34,22.11,10.08,50.99,35.18,63.2l.05-2.09-.05,2.09c25.65-11.03,52.38-38.69,38.09-61.5Z"/>
-      <path class="cls-8" d="M53.67,77.69c.74-11.95,6.3-22.45,14.67-29.74-7.33-5.52-20.64-11.91-31.16,3.25-14.27,20.57,6.73,46.98,29.94,60.4-8.97-8.44-14.27-20.66-13.45-33.92Z"/>
+      <path class="strawberry-heart-cookie-1" d="M110.65,53.07c-14.25-22.72-36.49-.25-36.65-.09-.17-.19-21.34-23.64-36.62-1.61-15.34,22.11,10.08,50.99,35.18,63.2l.05-2.09-.05,2.09c25.65-11.03,52.38-38.69,38.09-61.5Z"/>
+      <path class="strawberry-heart-cookie-8" d="M53.67,77.69c.74-11.95,6.3-22.45,14.67-29.74-7.33-5.52-20.64-11.91-31.16,3.25-14.27,20.57,6.73,46.98,29.94,60.4-8.97-8.44-14.27-20.66-13.45-33.92Z"/>
       <g>
         <g>
-          <circle class="cls-7" cx="98.33" cy="61.14" r="14.57"/>
-          <circle class="cls-3" cx="100.25" cy="59.09" r="11.69"/>
-          <circle class="cls-10" cx="102.64" cy="57.48" r="8.95"/>
-          <polygon class="cls-5" points="109.59 44.53 109.3 51.15 114.13 55.67 107.52 55.38 102.99 60.21 103.28 53.6 98.45 49.08 105.06 49.36 109.59 44.53"/>
+          <circle class="strawberry-heart-cookie-7" cx="98.33" cy="61.14" r="14.57"/>
+          <circle class="strawberry-heart-cookie-3" cx="100.25" cy="59.09" r="11.69"/>
+          <circle class="strawberry-heart-cookie-10" cx="102.64" cy="57.48" r="8.95"/>
+          <polygon class="strawberry-heart-cookie-5" points="109.59 44.53 109.3 51.15 114.13 55.67 107.52 55.38 102.99 60.21 103.28 53.6 98.45 49.08 105.06 49.36 109.59 44.53"/>
           <g>
-            <circle class="cls-2" cx="108.2" cy="60.44" r="1.58"/>
-            <circle class="cls-5" cx="108.5" cy="59.97" r="1.01"/>
+            <circle class="strawberry-heart-cookie-2" cx="108.2" cy="60.44" r="1.58"/>
+            <circle class="strawberry-heart-cookie-5" cx="108.5" cy="59.97" r="1.01"/>
           </g>
           <g>
-            <circle class="cls-2" cx="104.82" cy="62.94" r="1.26"/>
-            <circle class="cls-5" cx="105.05" cy="62.57" r=".81"/>
+            <circle class="strawberry-heart-cookie-2" cx="104.82" cy="62.94" r="1.26"/>
+            <circle class="strawberry-heart-cookie-5" cx="105.05" cy="62.57" r=".81"/>
           </g>
         </g>
-        <path class="cls-3" d="M101.72,83.38c-4.98,10.84-14.65,18.87-25.15,24.08-.51.29-1.02-.48-.54-.84,1.12-.87,2.26-1.69,3.35-2.58,6.24-5.16,11.62-11.69,14.73-19.2.44-1.1.91-2.34,1.15-3.47,1.01-5.22,8.55-2.92,6.47,2.01h0Z"/>
+        <path class="strawberry-heart-cookie-3" d="M101.72,83.38c-4.98,10.84-14.65,18.87-25.15,24.08-.51.29-1.02-.48-.54-.84,1.12-.87,2.26-1.69,3.35-2.58,6.24-5.16,11.62-11.69,14.73-19.2.44-1.1.91-2.34,1.15-3.47,1.01-5.22,8.55-2.92,6.47,2.01h0Z"/>
       </g>
     </g>
   </g>

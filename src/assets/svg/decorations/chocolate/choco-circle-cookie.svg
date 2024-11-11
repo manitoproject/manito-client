@@ -2,110 +2,110 @@
 <svg id="_레이어_1" data-name="레이어_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 148 148">
   <defs>
     <style>
-      .cls-1 {
+      .choco-circle-cookie-1 {
         fill: #ff769d;
       }
 
-      .cls-2 {
+      .choco-circle-cookie-2 {
         fill: #572212;
       }
 
-      .cls-3 {
+      .choco-circle-cookie-3 {
         fill: #ffa6ca;
       }
 
-      .cls-4 {
+      .choco-circle-cookie-4 {
         fill: #fff;
       }
 
-      .cls-5 {
+      .choco-circle-cookie-5 {
         fill: #ffb8d8;
       }
 
-      .cls-6 {
+      .choco-circle-cookie-6 {
         fill: #ff8ab1;
       }
 
-      .cls-7 {
-        fill: url(#_무제_그라디언트_17);
+      .choco-circle-cookie-7 {
+        fill: url(#choco-circle-cookie-gradient_17);
       }
 
-      .cls-8 {
+      .choco-circle-cookie-8 {
         fill: #88a8f8;
       }
 
-      .cls-9 {
+      .choco-circle-cookie-9 {
         fill: #ff6196;
       }
 
-      .cls-10 {
+      .choco-circle-cookie-10 {
         fill: #ffd7eb;
       }
 
-      .cls-11 {
-        fill: url(#_무제_그라디언트_17-2);
+      .choco-circle-cookie-11 {
+        fill: url(#choco-circle-cookie-gradient_17-2);
       }
 
-      .cls-12 {
+      .choco-circle-cookie-12 {
         fill: #ff8da8;
       }
     </style>
-    <radialGradient id="_무제_그라디언트_17" data-name="무제 그라디언트 17" cx="74" cy="74" fx="74" fy="74" r="64" gradientUnits="userSpaceOnUse">
+    <radialGradient id="choco-circle-cookie-gradient_17" data-name="무제 그라디언트 17" cx="74" cy="74" fx="74" fy="74" r="64" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#d9998a"/>
       <stop offset=".65" stop-color="#945745"/>
       <stop offset="1" stop-color="#572212"/>
     </radialGradient>
-    <radialGradient id="_무제_그라디언트_17-2" data-name="무제 그라디언트 17" cx="73.73" cy="73.87" fx="73.73" fy="73.87" r="40.29" xlink:href="#_무제_그라디언트_17"/>
+    <radialGradient id="choco-circle-cookie-gradient_17-2" data-name="무제 그라디언트 17" cx="73.73" cy="73.87" fx="73.73" fy="73.87" r="40.29" xlink:href="#choco-circle-cookie-gradient_17"/>
   </defs>
   <g>
-    <path class="cls-7" d="M79.62,11.12l6.37,2.64h6.89c3.89,0,7.63,1.55,10.38,4.3l4.87,4.87,6.37,2.64c3.6,1.49,6.46,4.35,7.95,7.95l2.64,6.37,4.87,4.87c2.75,2.75,4.3,6.49,4.3,10.38v6.89l2.64,6.37c1.49,3.6,1.49,7.64,0,11.24l-2.64,6.37v6.89c0,3.89-1.55,7.63-4.3,10.38l-4.87,4.87-2.64,6.37c-1.49,3.6-4.35,6.46-7.95,7.95l-6.37,2.64-4.87,4.87c-2.75,2.75-6.49,4.3-10.38,4.3h-6.89l-6.37,2.64c-3.6,1.49-7.64,1.49-11.24,0l-6.37-2.64h-6.89c-3.89,0-7.63-1.55-10.38-4.3l-4.87-4.87-6.37-2.64c-3.6-1.49-6.46-4.35-7.95-7.95l-2.64-6.37-4.87-4.87c-2.75-2.75-4.3-6.49-4.3-10.38v-6.89l-2.64-6.37c-1.49-3.6-1.49-7.64,0-11.24l2.64-6.37v-6.89c0-3.89,1.55-7.63,4.3-10.38l4.87-4.87,2.64-6.37c1.49-3.6,4.35-6.46,7.95-7.95l6.37-2.64,4.87-4.87c2.75-2.75,6.49-4.3,10.38-4.3h6.89l6.37-2.64c3.6-1.49,7.64-1.49,11.24,0Z"/>
+    <path class="choco-circle-cookie-7" d="M79.62,11.12l6.37,2.64h6.89c3.89,0,7.63,1.55,10.38,4.3l4.87,4.87,6.37,2.64c3.6,1.49,6.46,4.35,7.95,7.95l2.64,6.37,4.87,4.87c2.75,2.75,4.3,6.49,4.3,10.38v6.89l2.64,6.37c1.49,3.6,1.49,7.64,0,11.24l-2.64,6.37v6.89c0,3.89-1.55,7.63-4.3,10.38l-4.87,4.87-2.64,6.37c-1.49,3.6-4.35,6.46-7.95,7.95l-6.37,2.64-4.87,4.87c-2.75,2.75-6.49,4.3-10.38,4.3h-6.89l-6.37,2.64c-3.6,1.49-7.64,1.49-11.24,0l-6.37-2.64h-6.89c-3.89,0-7.63-1.55-10.38-4.3l-4.87-4.87-6.37-2.64c-3.6-1.49-6.46-4.35-7.95-7.95l-2.64-6.37-4.87-4.87c-2.75-2.75-4.3-6.49-4.3-10.38v-6.89l-2.64-6.37c-1.49-3.6-1.49-7.64,0-11.24l2.64-6.37v-6.89c0-3.89,1.55-7.63,4.3-10.38l4.87-4.87,2.64-6.37c1.49-3.6,4.35-6.46,7.95-7.95l6.37-2.64,4.87-4.87c2.75-2.75,6.49-4.3,10.38-4.3h6.89l6.37-2.64c3.6-1.49,7.64-1.49,11.24,0Z"/>
     <g>
-      <circle class="cls-12" cx="64.25" cy="25.36" r="2.03"/>
-      <circle class="cls-12" cx="22.44" cy="50.78" r="2.03"/>
-      <circle class="cls-12" cx="105.94" cy="39.59" r="1.53"/>
-      <circle class="cls-8" cx="49.13" cy="34.13" r="1.53"/>
-      <circle class="cls-8" cx="29.69" cy="66.03" r="1.53"/>
-      <circle class="cls-12" cx="30.83" cy="109.24" r="1.53"/>
-      <circle class="cls-2" cx="49.72" cy="124.13" r="1.53"/>
-      <circle class="cls-4" cx="101.36" cy="28.41" r="2.03"/>
-      <circle class="cls-2" cx="22.32" cy="84.58" r="2.03"/>
-      <circle class="cls-8" cx="45.32" cy="111.65" r="2.03"/>
-      <circle class="cls-4" cx="68.58" cy="129.32" r="2.03"/>
-      <circle class="cls-4" cx="123.35" cy="99.6" r="2.03"/>
-      <circle class="cls-8" cx="96.41" cy="114.21" r="2.03"/>
-      <circle class="cls-12" cx="127.8" cy="77.72" r="1.89"/>
-      <circle class="cls-2" cx="128.05" cy="60.94" r="2.03"/>
-      <circle class="cls-2" cx="87.64" cy="30.44" r="1.53"/>
-      <circle class="cls-4" cx="32.48" cy="34.24" r="1.53"/>
-      <circle class="cls-12" cx="109.63" cy="104.92" r="1.53"/>
-      <circle class="cls-12" cx="119.41" cy="50.01" r="1.53"/>
-      <circle class="cls-2" cx="118.99" cy="87.78" r="1.53"/>
-      <circle class="cls-12" cx="91.16" cy="127.56" r="1.53"/>
-      <circle class="cls-4" cx="78.74" cy="19.89" r="1.4"/>
-      <circle class="cls-8" cx="118.14" cy="36.8" r=".95"/>
-      <circle class="cls-2" cx="53.2" cy="20.78" r=".95"/>
-      <circle class="cls-2" cx="36.29" cy="45.74" r=".95"/>
-      <circle class="cls-4" cx="33.12" cy="94.67" r=".95"/>
-      <circle class="cls-12" cx="16.47" cy="72.49" r=".95"/>
-      <circle class="cls-2" cx="110.39" cy="116.95" r=".95"/>
-      <circle class="cls-2" cx="78.36" cy="118.09" r=".95"/>
-      <circle class="cls-12" cx="61.75" cy="118.08" r="1.29"/>
-      <circle class="cls-4" cx="119.16" cy="69.71" r=".95"/>
+      <circle class="choco-circle-cookie-12" cx="64.25" cy="25.36" r="2.03"/>
+      <circle class="choco-circle-cookie-12" cx="22.44" cy="50.78" r="2.03"/>
+      <circle class="choco-circle-cookie-12" cx="105.94" cy="39.59" r="1.53"/>
+      <circle class="choco-circle-cookie-8" cx="49.13" cy="34.13" r="1.53"/>
+      <circle class="choco-circle-cookie-8" cx="29.69" cy="66.03" r="1.53"/>
+      <circle class="choco-circle-cookie-12" cx="30.83" cy="109.24" r="1.53"/>
+      <circle class="choco-circle-cookie-2" cx="49.72" cy="124.13" r="1.53"/>
+      <circle class="choco-circle-cookie-4" cx="101.36" cy="28.41" r="2.03"/>
+      <circle class="choco-circle-cookie-2" cx="22.32" cy="84.58" r="2.03"/>
+      <circle class="choco-circle-cookie-8" cx="45.32" cy="111.65" r="2.03"/>
+      <circle class="choco-circle-cookie-4" cx="68.58" cy="129.32" r="2.03"/>
+      <circle class="choco-circle-cookie-4" cx="123.35" cy="99.6" r="2.03"/>
+      <circle class="choco-circle-cookie-8" cx="96.41" cy="114.21" r="2.03"/>
+      <circle class="choco-circle-cookie-12" cx="127.8" cy="77.72" r="1.89"/>
+      <circle class="choco-circle-cookie-2" cx="128.05" cy="60.94" r="2.03"/>
+      <circle class="choco-circle-cookie-2" cx="87.64" cy="30.44" r="1.53"/>
+      <circle class="choco-circle-cookie-4" cx="32.48" cy="34.24" r="1.53"/>
+      <circle class="choco-circle-cookie-12" cx="109.63" cy="104.92" r="1.53"/>
+      <circle class="choco-circle-cookie-12" cx="119.41" cy="50.01" r="1.53"/>
+      <circle class="choco-circle-cookie-2" cx="118.99" cy="87.78" r="1.53"/>
+      <circle class="choco-circle-cookie-12" cx="91.16" cy="127.56" r="1.53"/>
+      <circle class="choco-circle-cookie-4" cx="78.74" cy="19.89" r="1.4"/>
+      <circle class="choco-circle-cookie-8" cx="118.14" cy="36.8" r=".95"/>
+      <circle class="choco-circle-cookie-2" cx="53.2" cy="20.78" r=".95"/>
+      <circle class="choco-circle-cookie-2" cx="36.29" cy="45.74" r=".95"/>
+      <circle class="choco-circle-cookie-4" cx="33.12" cy="94.67" r=".95"/>
+      <circle class="choco-circle-cookie-12" cx="16.47" cy="72.49" r=".95"/>
+      <circle class="choco-circle-cookie-2" cx="110.39" cy="116.95" r=".95"/>
+      <circle class="choco-circle-cookie-2" cx="78.36" cy="118.09" r=".95"/>
+      <circle class="choco-circle-cookie-12" cx="61.75" cy="118.08" r="1.29"/>
+      <circle class="choco-circle-cookie-4" cx="119.16" cy="69.71" r=".95"/>
     </g>
   </g>
   <g>
-    <circle class="cls-11" cx="73.73" cy="73.87" r="40.29"/>
+    <circle class="choco-circle-cookie-11" cx="73.73" cy="73.87" r="40.29"/>
     <g>
-      <circle class="cls-1" cx="73.77" cy="73.87" r="36.09"/>
-      <path class="cls-9" d="M101.19,97.23c-6.61,7.79-16.48,12.73-27.51,12.73-19.94,0-36.09-16.15-36.09-36.09,0-14.6,8.66-27.16,21.12-32.85-5.36,6.3-8.58,14.46-8.58,23.36,0,19.94,16.15,36.09,36.09,36.09,5.34,0,10.41-1.16,14.97-3.24Z"/>
+      <circle class="choco-circle-cookie-1" cx="73.77" cy="73.87" r="36.09"/>
+      <path class="choco-circle-cookie-9" d="M101.19,97.23c-6.61,7.79-16.48,12.73-27.51,12.73-19.94,0-36.09-16.15-36.09-36.09,0-14.6,8.66-27.16,21.12-32.85-5.36,6.3-8.58,14.46-8.58,23.36,0,19.94,16.15,36.09,36.09,36.09,5.34,0,10.41-1.16,14.97-3.24Z"/>
       <g>
-        <circle class="cls-6" cx="83.49" cy="65.17" r="19.83"/>
-        <circle class="cls-3" cx="84.76" cy="64.53" r="15.93"/>
-        <circle class="cls-5" cx="84.76" cy="64.53" r="11.53"/>
-        <circle class="cls-10" cx="80.94" cy="70.89" r="2.21"/>
-        <circle class="cls-10" cx="86.5" cy="71.56" r="1.53"/>
-        <polygon class="cls-4" points="98.13 62.38 91.79 61.78 87.2 66.2 87.81 59.85 83.39 55.27 89.73 55.87 94.32 51.45 93.71 57.8 98.13 62.38"/>
-        <polygon class="cls-4" points="96.32 71.5 93.78 70.08 91.05 71.08 92.47 68.54 91.47 65.8 94.01 67.23 96.75 66.23 95.32 68.77 96.32 71.5"/>
+        <circle class="choco-circle-cookie-6" cx="83.49" cy="65.17" r="19.83"/>
+        <circle class="choco-circle-cookie-3" cx="84.76" cy="64.53" r="15.93"/>
+        <circle class="choco-circle-cookie-5" cx="84.76" cy="64.53" r="11.53"/>
+        <circle class="choco-circle-cookie-10" cx="80.94" cy="70.89" r="2.21"/>
+        <circle class="choco-circle-cookie-10" cx="86.5" cy="71.56" r="1.53"/>
+        <polygon class="choco-circle-cookie-4" points="98.13 62.38 91.79 61.78 87.2 66.2 87.81 59.85 83.39 55.27 89.73 55.87 94.32 51.45 93.71 57.8 98.13 62.38"/>
+        <polygon class="choco-circle-cookie-4" points="96.32 71.5 93.78 70.08 91.05 71.08 92.47 68.54 91.47 65.8 94.01 67.23 96.75 66.23 95.32 68.77 96.32 71.5"/>
       </g>
     </g>
   </g>
