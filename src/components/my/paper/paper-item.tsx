@@ -43,7 +43,6 @@ export default function MyPaperItem({ paper }: MyPaperItemProps) {
           isMessageDelete={false}
           handler={() => mutate(paper.id)}
           setIsOpen={setIsModalOpen}
-          isOpen={isModalOpen}
         />
       )}
     </StyledItem>

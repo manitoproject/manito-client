@@ -49,7 +49,6 @@ function AuthButtons({ message, authorId, category }: AuthButtonsProps) {
       {isModalOpen && (
         <DeleteModal
           isMessageDelete
-          isOpen={isModalOpen}
           setIsOpen={setIsModalOpen}
           handler={() => mutate(message?.id)}
         />

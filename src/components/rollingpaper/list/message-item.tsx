@@ -73,7 +73,6 @@ export default function MessageItem({ message, position }: MessageItemProps) {
       )}
       {isLoginModalOpen && (
         <LoginModal
-          isOpen={isLoginModalOpen}
           onToggleModal={() => setIsLoginModalOpen((prev) => !prev)}
         />
       )}

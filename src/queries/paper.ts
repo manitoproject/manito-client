@@ -42,7 +42,7 @@ export const useUserPaperSuspenseQuery = (userId?: number) => {
 export const usePaperDetailQuery = () => {
   const { id } = useParams();
   const query = useQuery({
-    ...queries.papers.detail(id),
+    ...queries.papers.detail(Number(id)),
     enabled: !!id,
   });
 

@@ -38,7 +38,6 @@ export default function Layout() {
       <Toast />
       {isLoginModalOpen && (
         <LoginModal
-          isOpen={isLoginModalOpen}
           onToggleModal={() => setIsLoginModalOpen((prev) => !prev)}
         />
       )}

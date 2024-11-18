@@ -13,11 +13,11 @@ import BottomSheetheader from '@/components/rollingpaper/bottom-sheet/header';
 import { findCakeThemeStyle } from '@/constants/cake-decoration';
 import ReactHelmet from '@/helmet';
 import useSetHeader from '@/hooks/use-set-header';
+import { StyledBackdrop } from '@/pages/rollingpaper/list.style';
 import {
   StyledCustomSheet,
   StyledSheetContentWrapper,
 } from '@/pages/rollingpaper/message.style';
-import { StyledBackdrop } from '@/pages/rollingpaper/list.style';
 import { useMessageInfo } from '@/stores/message-store';
 import { getFontSizeAndWeight } from '@/styles/mixins';
 import { StyledContentOverlay } from '@/styles/styled';
@@ -95,12 +95,11 @@ export default function CakeForm() {
       </BottomSheetButton>
       {isModalOpen && (
         <MessageCreateModal
+          emoji={theme}
           color="gray-900"
           font={activeFont}
-          id={Number(params.id)}
-          isOpen={isModalOpen}
           content={content}
-          setIsOpen={setIsModalOpen}
+          onCloseModal={() => setIsModalOpen(false)}
           contentType="cake"
         />
       )}

@@ -77,7 +77,6 @@ export default function MyMessageItem({
         <DeleteModal
           isMessageDelete
           setIsOpen={setIsModalOpen}
-          isOpen={isModalOpen}
           handler={() => mutate(message.id)}
         />
       )}
