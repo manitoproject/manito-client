@@ -1,6 +1,9 @@
-import { createBrowserRouter } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+} from 'react-router-dom';
 
-import AuthGuard from '@/pages/auth-guard';
 import CakeDecorate from '@/pages/cake/decorate';
 import CakeDetail from '@/pages/cake/detail';
 import CakeForm from '@/pages/cake/form';
@@ -25,108 +28,47 @@ import Signup from '@/pages/signup';
 import routes from '@/routes';
 
 const router = () =>
-  createBrowserRouter([
-    {
-      errorElement: <ErrorPage />,
-      children: [
-        {
-          path: routes.landing,
-          element: <Landing />,
-        },
-
-        {
-          path: routes.kakakoRedirection,
-          element: <KakaoRedirection />,
-        },
-        {
-          element: <AuthGuard />,
-          children: [
-            {
-              element: <Layout />,
-              children: [
-                {
-                  children: [
-                    {
-                      path: routes.signup,
-                      element: <Signup />,
-                    },
-                    {
-                      path: routes.home,
-                      element: <Home />,
-                    },
-                    {
-                      path: routes.my.default,
-                      element: <My />,
-                    },
-                    {
-                      path: routes.my.setting(),
-                      element: <MySetting />,
-                    },
-                    {
-                      path: routes.my.contact(),
-                      element: <Contact />,
-                    },
-                    {
-                      path: routes.my.rename(),
-                      element: <Rename />,
-                    },
-                    {
-                      path: routes.setupIntro(),
-                      element: <SetupIntro />,
-                    },
-                    {
-                      path: routes.rollingpaper.setup(),
-                      element: <RollingpaperSetup />,
-                    },
-                    {
-                      path: routes.rollingpaper.messageEdit(),
-                      element: <MessageEdit />,
-                    },
-                    {
-                      path: routes.rollingpaper.messageCreate(),
-                      element: <MessageCreate />,
-                    },
-                    {
-                      path: routes.cake.setup(),
-                      element: <CakeSetup />,
-                    },
-                    {
-                      path: routes.cake.list(),
-                      element: <CakeListPage />,
-                    },
-                    {
-                      path: routes.cake.decorate(),
-                      element: <CakeDecorate />,
-                    },
-                    {
-                      path: routes.cake.form(),
-                      element: <CakeForm />,
-                    },
-                    {
-                      path: routes.cake.detail(),
-                      element: <CakeDetail />,
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-        {
-          element: <Layout />,
-          children: [
-            {
-              path: routes.rollingpaper.list(),
-              element: <RollingpaperList />,
-            },
-            {
-              path: routes.rollingpaper.detail(),
-              element: <RollingpaperDetail />,
-            },
-          ],
-        },
-      ],
-    },
-  ]);
+  createBrowserRouter(
+    createRoutesFromElements(
+      <Route errorElement={<ErrorPage />}>
+        <Route path="/" element={<Landing />} />
+        <Route path={routes.kakakoRedirection} element={<KakaoRedirection />} />
+        <Route element={<Layout />}>
+          <Route path={routes.signup} element={<Signup />} />
+          <Route path={routes.home} element={<Home />} />
+          <Route path={routes.my.default} element={<My />} />
+          <Route path={routes.my.setting()} element={<MySetting />} />
+          <Route path={routes.my.contact()} element={<Contact />} />
+          <Route path={routes.my.rename()} element={<Rename />} />
+          <Route path={routes.setupIntro()} element={<SetupIntro />} />
+          <Route
+            path={routes.rollingpaper.list()}
+            element={<RollingpaperList />}
+          />
+          <Route
+            path={routes.rollingpaper.detail()}
+            element={<RollingpaperDetail />}
+          />
+          <Route
+            path={routes.rollingpaper.setup()}
+            element={<RollingpaperSetup />}
+          />
+          <Route
+            path={routes.rollingpaper.messageEdit()}
+            element={<MessageEdit />}
+          />
+          <Route
+            path={routes.rollingpaper.messageCreate()}
+            element={<MessageCreate />}
+          />
+          <Route path={routes.cake.setup()} element={<CakeSetup />} />
+          <Route path={routes.cake.list()} element={<CakeListPage />} />
+          <Route path={routes.cake.decorate()} element={<CakeDecorate />} />
+          <Route path={routes.cake.form()} element={<CakeForm />} />
+          <Route path={routes.cake.detail()} element={<CakeDetail />} />
+        </Route>
+      </Route>,
+    ),
+  );
 
 export default router;
