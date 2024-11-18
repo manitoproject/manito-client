@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { createSearchParams, useNavigate } from 'react-router-dom';
 
@@ -10,9 +11,9 @@ import {
 } from '@/components/rollingpaper/list/item.style';
 import { ROLLINGPAPER_EMOJI_MAP } from '@/constants/rolling-paper';
 import { usePaperDetailQuery } from '@/queries/paper';
+import queries from '@/queries/query-key-factory';
 import routes from '@/routes';
 import { Message } from '@/types/message';
-import { token } from '@/utils/storage';
 
 export interface MessageItemProps {
   message: Message<unknown> | null;
@@ -21,20 +22,25 @@ export interface MessageItemProps {
 
 export default function MessageItem({ message, position }: MessageItemProps) {
   const navigate = useNavigate();
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const { data: PaperDetailData } = usePaperDetailQuery();
+  const { data: userData } = useQuery({
+    ...queries.users.detail(),
+    select: (data) => data.data,
+  });
   const paper = PaperDetailData?.data;
   const EmojiSvg = ROLLINGPAPER_EMOJI_MAP[
     paper?.theme as RollingThemeName
   ]?.find((item) => item.name === message?.theme)?.svg;
 
   const handleCreateMessage = () => {
-    if (token.getAccessToken()) {
-      return navigate(`${routes.rollingpaper.form('create', paper?.id)}`, {
-        state: { paperTheme: paper?.theme, position },
+    if (userData) {
+      navigate(`${routes.rollingpaper.messageCreate(paper?.id)}`, {
+        state: { position },
       });
+    } else {
+      setIsLoginModalOpen(true);
     }
-    return setIsModalOpen(true);
   };
 
   const handleViewMessageItem = async (paperId: number, messageId: number) => {
@@ -65,10 +71,10 @@ export default function MessageItem({ message, position }: MessageItemProps) {
           </button>
         </StyledItem>
       )}
-      {isModalOpen && (
+      {isLoginModalOpen && (
         <LoginModal
-          isOpen={isModalOpen}
-          onToggleModal={() => setIsModalOpen((prev) => !prev)}
+          isOpen={isLoginModalOpen}
+          onToggleModal={() => setIsLoginModalOpen((prev) => !prev)}
         />
       )}
     </>

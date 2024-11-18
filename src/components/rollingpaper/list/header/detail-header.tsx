@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 
 import { Clip, KakaoFill } from '@/assets/svg/icons';
 import { Modal } from '@/components/modal';
+import { Content } from '@/components/modal/create-message-modal';
 import LoginModal from '@/components/modal/login-modal';
-import { Content } from '@/components/modal/message-create-modal';
 import {
   StyledModalLink,
   StyledModalLinks,
@@ -49,10 +49,7 @@ export default function DetailHeader({ paperId, content }: DetailHeaderProps) {
         </button>
       </div>
       {isCopyModalOpen && (
-        <Modal
-          isOpen={isCopyModalOpen}
-          onClick={() => setIsCopyModalOpen((prev) => !prev)}
-        >
+        <Modal onClick={() => setIsCopyModalOpen((prev) => !prev)}>
           <Modal.TitleWrapper>
             <Modal.Title>공유하기</Modal.Title>
           </Modal.TitleWrapper>
@@ -87,7 +84,6 @@ export default function DetailHeader({ paperId, content }: DetailHeaderProps) {
       )}
       {isLoginModalOpen && (
         <LoginModal
-          isOpen={isLoginModalOpen}
           onToggleModal={() => setIsLoginModalOpen((prev) => !prev)}
         />
       )}

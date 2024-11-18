@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import { Logo } from '@/assets/svg/icons';
 import { Button, KakaoLoginButton } from '@/components/common/button/buttons';
-import { StyledBrowserBackdrop } from '@/routes/layout.style';
+import { StyledBrowserBackdrop } from '@/pages/layout.style';
 import theme from '@/styles/theme';
 
 export default function Landing() {

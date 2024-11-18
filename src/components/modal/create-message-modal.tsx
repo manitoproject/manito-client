@@ -1,34 +1,37 @@
+import { useLocation, useParams } from 'react-router-dom';
+
 import { Modal } from '@/components/modal';
 import useNameForm from '@/hooks/use-name-form';
 import { useCreateMessage } from '@/queries/message';
-import { useMessageInfo } from '@/stores/message-store';
 import { useModalIndex } from '@/stores/modal-store';
 import theme, { ColorName, FontNameWithoutAppleFont } from '@/styles/theme';
 
 export type Content = 'cake' | 'rollingpaper';
 
-interface MessageCreateModalProps {
-  isOpen: boolean;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+interface CreateMessageModalProps {
+  onCloseModal: () => void;
   content: string;
   contentType: Content;
   font: FontNameWithoutAppleFont;
   color: ColorName;
-  id: number;
+  emoji: string;
 }
 
-export default function MessageCreateModal({
-  isOpen,
-  setIsOpen,
+export default function CreateMessageModal({
+  onCloseModal,
   content,
   contentType,
   color,
   font,
-  id,
-}: MessageCreateModalProps) {
-  const info = useMessageInfo();
+  emoji,
+}: CreateMessageModalProps) {
+  const params = useParams();
+  const location = useLocation();
   const activeModalIndex = useModalIndex();
-  const { mutate, isPending } = useCreateMessage(id, contentType);
+  const { mutate, isPending } = useCreateMessage(
+    Number(params.id),
+    contentType,
+  );
   const {
     handleNameChange,
     handleNameReset,
@@ -36,25 +39,25 @@ export default function MessageCreateModal({
     name: nickname,
     nameRef: nicknameRef,
   } = useNameForm('nickname');
+
   const handleMessageSubmit = () => {
-    if (info.position === null || !info.theme)
+    if (location.state?.position === null) {
       return console.log('message 정보가 없음');
+    }
     mutate({
       font,
       content: content,
       fontColor: color,
-      position: info.position,
-      theme: info.theme,
+      position: location.state.position,
+      theme: emoji,
       isPublic: activeModalIndex === 0 ? 'Y' : 'N',
-      paperId: id,
+      paperId: Number(params.id),
       anonymous: activeModalIndex === 1 ? nickname : '',
     });
   };
 
-  if (!isOpen) return null;
-
   return (
-    <Modal isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
+    <Modal onClick={onCloseModal}>
       <Modal.RadioForm
         handleNameChange={handleNameChange}
         handleNameReset={handleNameReset}
@@ -65,7 +68,7 @@ export default function MessageCreateModal({
       <Modal.Buttons>
         <Modal.Button
           css={{ border: `1px solid ${theme.colors['gray-300']}` }}
-          onClick={() => setIsOpen(false)}
+          onClick={onCloseModal}
         >
           닫기
         </Modal.Button>

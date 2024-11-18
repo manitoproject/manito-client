@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button } from '@/components/common/button/buttons';
 import DeleteModal from '@/components/modal/delete-modal';
-import { getRollingThemeName } from '@/constants/rolling-paper';
 import { useDeleteMessage } from '@/queries/message';
 import { useUserQuery } from '@/queries/users';
 import routes from '@/routes';
@@ -33,14 +32,11 @@ function AuthButtons({ message, authorId, category }: AuthButtonsProps) {
       {message?.user?.id === user?.id && (
         <Button
           css={{ background: theme.colors['powderBlue-900'] }}
-          onClick={() => {
-            navigate(routes[category].form('edit', message?.paperId), {
-              state: {
-                ...message,
-                paperTheme: getRollingThemeName(message),
-              },
-            });
-          }}
+          onClick={() =>
+            navigate(routes[category].messageEdit(message?.paperId), {
+              state: { id: message.id },
+            })
+          }
         >
           수정
         </Button>
@@ -62,7 +58,7 @@ function AuthButtons({ message, authorId, category }: AuthButtonsProps) {
   );
 }
 
-export default function DetailMessageButtons({
+export default function DetailPageBottomButtons({
   message,
   authorId,
   category,

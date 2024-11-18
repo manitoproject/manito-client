@@ -8,13 +8,13 @@ import DetailHeader from '@/components/rollingpaper/list/header/detail-header';
 import { CAKE_THEME_PALETTES } from '@/constants/cake-decoration';
 import ReactHelmet, { TITLE } from '@/helmet';
 import useSetHeader from '@/hooks/use-set-header';
-import { usePaperMessagesQuery } from '@/queries/message';
-import { usePaperDetailQuery } from '@/queries/paper';
-import routes from '@/routes';
 import {
   StyledListWrapper,
   StyledRollingList,
-} from '@/routes/rollingpaper/list.style';
+} from '@/pages/rollingpaper/list.style';
+import { usePaperMessagesQuery } from '@/queries/message';
+import { usePaperDetailQuery } from '@/queries/paper';
+import routes from '@/routes';
 import { useMessageActions } from '@/stores/message-store';
 import { useToastActions } from '@/stores/toast-store';
 

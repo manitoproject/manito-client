@@ -5,17 +5,13 @@ import routes from '@/routes';
 import theme from '@/styles/theme';
 
 interface LogoinModalProps {
-  isOpen: boolean;
   onToggleModal: () => void;
 }
 
-export default function LoginModal({
-  isOpen,
-  onToggleModal,
-}: LogoinModalProps) {
+export default function LoginModal({ onToggleModal }: LogoinModalProps) {
   const navigate = useNavigate();
   return (
-    <Modal isOpen={isOpen} onClick={onToggleModal}>
+    <Modal onClick={onToggleModal}>
       <Modal.TitleWrapper>
         <Modal.Title>
           로그인 후 이용할 수 있는

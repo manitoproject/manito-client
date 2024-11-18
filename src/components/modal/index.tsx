@@ -119,19 +119,17 @@ function Buttons({ children }: { children: React.ReactNode }) {
 
 function ModalMain({
   children,
-  isOpen,
   onClick,
 }: {
   children: React.ReactNode;
-  isOpen: boolean;
   onClick: () => void;
 }) {
   const { isError, setIsError } = useModal();
 
   const activeIndex = useModalIndex();
   const { setActiveIndex } = useModalActions();
-  const ref = useOutsideClick(onClick, isOpen);
-  useDisableScroll(isOpen);
+  const ref = useOutsideClick(onClick, true);
+  useDisableScroll();
 
   useEffect(() => {
     return () => setActiveIndex(0);

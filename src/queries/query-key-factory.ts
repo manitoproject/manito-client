@@ -31,7 +31,7 @@ const papers = createQueryKeys('papers', {
     queryKey: [userId],
     queryFn: () => (userId ? getPaperByUserId(userId) : null),
   }),
-  detail: (paperId?: string) => ({
+  detail: (paperId?: number) => ({
     queryKey: [paperId],
     queryFn: () => getPerperDetail(paperId),
   }),

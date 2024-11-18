@@ -2,9 +2,9 @@ import styled from '@emotion/styled';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { StyledBrowserBackdrop } from '@/pages/layout.style';
 import { useTokenQuery } from '@/queries/auth';
 import routes from '@/routes';
-import { StyledBrowserBackdrop } from '@/routes/layout.style';
 import { token } from '@/utils/storage';
 
 export default function KakaoRedirection() {

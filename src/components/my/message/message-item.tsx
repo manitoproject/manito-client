@@ -13,7 +13,7 @@ import {
   findBgByPosition,
   findSvgByThemeName,
 } from '@/constants/cake-decoration';
-import { getRollingThemeName } from '@/constants/rolling-paper';
+// import { getRollingThemeName } from '@/constants/rolling-paper';
 import { useDeleteMessage } from '@/queries/message';
 import routes from '@/routes';
 import { useMessageActions } from '@/stores/message-store';
@@ -37,10 +37,9 @@ export default function MyMessageItem({
   const Svg = findSvgByThemeName(message.theme);
 
   const handleEditMessage = () => {
-    navigate(routes[activeCagegory].form('edit', message.paperId), {
+    navigate(routes[activeCagegory].messageEdit(message.paperId), {
       state: {
-        ...message,
-        paperTheme: getRollingThemeName(message),
+        id: message.id,
       },
     });
     setInfo({

@@ -9,7 +9,7 @@ import {
   StyledBrowserBackdrop,
   StyledMain,
   StyledWrapper,
-} from '@/routes/layout.style';
+} from '@/pages/layout.style';
 import { token } from '@/utils/storage';
 
 export default function Layout() {

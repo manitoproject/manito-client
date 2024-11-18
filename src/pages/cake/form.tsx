@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 import { SmsEdit } from '@/assets/svg/icons';
 import CakeTextarea from '@/components/cake/textarea';
 import { Button } from '@/components/common/button/buttons';
-import MessageCreateModal from '@/components/modal/message-create-modal';
+import MessageCreateModal from '@/components/modal/create-message-modal';
 import BottomSheetButton from '@/components/rollingpaper/bottom-sheet/button';
 import FontList from '@/components/rollingpaper/bottom-sheet/font-sheet/font-list';
 import BottomSheetheader from '@/components/rollingpaper/bottom-sheet/header';
@@ -16,8 +16,8 @@ import useSetHeader from '@/hooks/use-set-header';
 import {
   StyledCustomSheet,
   StyledSheetContentWrapper,
-} from '@/routes/rollingpaper/form.style';
-import { StyledBackdrop } from '@/routes/rollingpaper/list.style';
+} from '@/pages/rollingpaper/message.style';
+import { StyledBackdrop } from '@/pages/rollingpaper/list.style';
 import { useMessageInfo } from '@/stores/message-store';
 import { getFontSizeAndWeight } from '@/styles/mixins';
 import { StyledContentOverlay } from '@/styles/styled';

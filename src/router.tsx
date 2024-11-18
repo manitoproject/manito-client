@@ -1,27 +1,28 @@
 import { createBrowserRouter } from 'react-router-dom';
 
+import AuthGuard from '@/pages/auth-guard';
+import CakeDecorate from '@/pages/cake/decorate';
+import CakeDetail from '@/pages/cake/detail';
+import CakeForm from '@/pages/cake/form';
+import CakeListPage from '@/pages/cake/list';
+import CakeSetup from '@/pages/cake/setup';
+import Contact from '@/pages/contact';
+import ErrorPage from '@/pages/error-page';
+import Home from '@/pages/home';
+import KakaoRedirection from '@/pages/kakako-redirection';
+import Landing from '@/pages/landing';
+import Layout from '@/pages/layout';
+import My from '@/pages/my';
+import MySetting from '@/pages/my-setting';
+import Rename from '@/pages/rename';
+import RollingpaperDetail from '@/pages/rollingpaper/detail';
+import RollingpaperList from '@/pages/rollingpaper/list';
+import MessageEdit from '@/pages/rollingpaper/message-edit';
+import MessageCreate from '@/pages/rollingpaper/messge-create';
+import RollingpaperSetup from '@/pages/rollingpaper/setup';
+import SetupIntro from '@/pages/setup-intro';
+import Signup from '@/pages/signup';
 import routes from '@/routes';
-import AuthGuard from '@/routes/auth-guard';
-import CakeDecorate from '@/routes/cake/decorate';
-import CakeDetail from '@/routes/cake/detail';
-import CakeForm from '@/routes/cake/form';
-import CakeListPage from '@/routes/cake/list';
-import CakeSetup from '@/routes/cake/setup';
-import Contact from '@/routes/contact';
-import ErrorPage from '@/routes/error-page';
-import Home from '@/routes/home';
-import KakaoRedirection from '@/routes/kakako-redirection';
-import Landing from '@/routes/landing';
-import Layout from '@/routes/layout';
-import My from '@/routes/my';
-import MySetting from '@/routes/my-setting';
-import Rename from '@/routes/rename';
-import RollingpaperDetail from '@/routes/rollingpaper/detail';
-import RollingpaperForm from '@/routes/rollingpaper/form';
-import RollingpaperList from '@/routes/rollingpaper/list';
-import RollingpaperSetup from '@/routes/rollingpaper/setup';
-import SetupIntro from '@/routes/setup-intro';
-import Signup from '@/routes/signup';
 
 const router = () =>
   createBrowserRouter([
@@ -78,8 +79,12 @@ const router = () =>
                       element: <RollingpaperSetup />,
                     },
                     {
-                      path: routes.rollingpaper.form(),
-                      element: <RollingpaperForm />,
+                      path: routes.rollingpaper.messageEdit(),
+                      element: <MessageEdit />,
+                    },
+                    {
+                      path: routes.rollingpaper.messageCreate(),
+                      element: <MessageCreate />,
                     },
                     {
                       path: routes.cake.setup(),

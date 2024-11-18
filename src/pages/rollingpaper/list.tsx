@@ -5,18 +5,19 @@ import MessageList from '@/components/rollingpaper/list/message-list';
 import { ROLLINGPAPER_BG_MAP } from '@/constants/rolling-paper';
 import ReactHelmet, { TITLE } from '@/helmet';
 import useSetHeader from '@/hooks/use-set-header';
-import { usePaperDetailQuery } from '@/queries/paper';
 import {
   StyledBackdrop,
   StyledListWrapper,
   StyledRollingList,
-} from '@/routes/rollingpaper/list.style';
+} from '@/pages/rollingpaper/list.style';
+import { usePaperDetailQuery } from '@/queries/paper';
 import { useMessageActions } from '@/stores/message-index-store';
 
 export default function RollingpaperList() {
   const { data } = usePaperDetailQuery();
   const paper = data?.data;
   const messageActions = useMessageActions();
+
   useSetHeader({
     title: paper?.title,
     bg: ROLLINGPAPER_BG_MAP[paper?.theme ?? 'animal'].bgColor,

@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 
-export default function useDisableScroll(status: boolean) {
+export default function useDisableScroll() {
   useEffect(() => {
-    if (status) document.body.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
     return () => {
       document.body.style.overflow = 'unset';
     };
-  }, [status]);
+  }, []);
 }

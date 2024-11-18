@@ -1,9 +1,10 @@
+import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { Sheet } from 'react-modal-sheet';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { Button } from '@/components/common/button/buttons';
-import MessageCreateModal from '@/components/modal/message-create-modal';
+import CreateMessageModal from '@/components/modal/create-message-modal';
 import BottomSheetButton from '@/components/rollingpaper/bottom-sheet/button';
 import EmojiSheet from '@/components/rollingpaper/bottom-sheet/emoji-sheet/emoji-sheet';
 import ColorList from '@/components/rollingpaper/bottom-sheet/font-sheet/color-list';
@@ -14,98 +15,72 @@ import EmojiSkin from '@/components/rollingpaper/emoji-skin';
 import { findSvgByThemeName } from '@/constants/cake-decoration';
 import { ROLLINGPAPER_BG_MAP } from '@/constants/rolling-paper';
 import ReactHelmet from '@/helmet';
-import useMessageInfo from '@/hooks/use-message-info';
 import useSetHeader from '@/hooks/use-set-header';
-import { useEditMessage } from '@/queries/message';
+import { StyledBackdrop } from '@/pages/rollingpaper/list.style';
 import {
   StyledCustomSheet,
   StyledRollingFormEmojiWrapper,
   StyledRollingFormWrapper,
   StyledSheetContentWrapper,
-} from '@/routes/rollingpaper/form.style';
-import { StyledBackdrop } from '@/routes/rollingpaper/list.style';
+} from '@/pages/rollingpaper/message.style';
+import queries from '@/queries/query-key-factory';
 import { ColorName, FontNameWithoutAppleFont } from '@/styles/theme';
 
-export default function RollingpaperForm() {
-  const messageInfo = useMessageInfo();
-  const navigate = useNavigate();
+export default function MessageCreatePage() {
   const params = useParams();
-  const isEditing = 'font' in messageInfo && messageInfo.type === 'edit';
-  const isActiveFontTab = messageInfo.activeTab === 'font';
+  const { data } = useQuery(queries.papers.detail(Number(params.id)));
+  const [isEmojiSelectionPage, setisEmojiSelectionPage] = useState(true);
   const [isEmojiSheetOpen, setIsEmojiSheetOpen] = useState(false);
   const [isFontSheetOpen, setIsFontSheetOpen] = useState(false);
-  const [activeEmoji, setActiveEmoji] = useState(
-    isEditing ? messageInfo.theme : '',
-  );
+  const [activeEmoji, setActiveEmoji] = useState('');
   const [isButtonOpen, setIsButtonOpen] = useState(false);
   const [activeMenuIndex, setActiveMenuIndex] = useState(0);
   const Svg = findSvgByThemeName(activeEmoji);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [activeFont, setActiveFont] = useState<FontNameWithoutAppleFont>(
-    isEditing ? messageInfo.font : 'Cafe24Ssurround',
-  );
-  const [activeColor, setActiveColor] = useState<ColorName>(
-    isEditing ? messageInfo.fontColor : 'white',
-  );
-  const [content, setContent] = useState(isEditing ? messageInfo.content : '');
+  const [activeFont, setActiveFont] =
+    useState<FontNameWithoutAppleFont>('Cafe24Ssurround');
+  const [activeColor, setActiveColor] = useState<ColorName>('white');
+  const [content, setContent] = useState('');
+
   useSetHeader({
-    title: messageInfo.type === 'create' ? '편지 작성' : '수정하기',
-    bg: ROLLINGPAPER_BG_MAP[messageInfo.paperTheme].bgColor,
-    color: messageInfo.paperTheme === 'animal' ? undefined : 'white',
+    title: isEmojiSelectionPage ? '편지 선택' : '편지 작성',
+    bg: ROLLINGPAPER_BG_MAP[data?.data?.theme ?? 'animal'].bgColor,
+    color: data?.data?.theme === 'animal' ? undefined : 'white',
   });
 
-  const { mutate } = useEditMessage(messageInfo.paperId);
   const handleMessageSubmit = () => {
-    if (isEditing) {
-      return mutate({
-        content,
-        font: activeFont,
-        fontColor: activeColor,
-        id: messageInfo.id,
-      });
+    if (isEmojiSelectionPage) {
+      setisEmojiSelectionPage(false);
+      setIsEmojiSheetOpen(false);
+      setIsFontSheetOpen(true);
+    } else {
+      setIsModalOpen(true);
     }
-    if (isActiveFontTab) return setIsModalOpen(true);
-    navigate(`${messageInfo.pathname}?activeTab=font`, {
-      state: messageInfo,
-    });
-    setIsEmojiSheetOpen(false);
-    setIsFontSheetOpen(true);
-  };
-
-  const checkTextareaDisabled = () => {
-    if (isEditing || isActiveFontTab) return false;
-    return true;
   };
 
   const handleOpenSheet = () => {
-    if (isEditing || isActiveFontTab) setIsFontSheetOpen(true);
-    else setIsEmojiSheetOpen(true);
-  };
-
-  const checkButtonDisable = () => {
-    if (isEditing || isActiveFontTab) {
-      return !content;
+    if (isEmojiSelectionPage) {
+      setIsEmojiSheetOpen(true);
+    } else {
+      setIsFontSheetOpen(true);
     }
-    return !activeEmoji;
   };
 
   useEffect(() => {
-    if (!isActiveFontTab && !isEditing) {
+    if (isEmojiSelectionPage) {
       setActiveMenuIndex(0);
       setIsEmojiSheetOpen(true);
       setIsFontSheetOpen(false);
     }
-  }, [isEditing, isActiveFontTab]);
-
-  useEffect(() => {
-    if (isEditing) setIsFontSheetOpen(true);
-  }, [isEditing]);
+  }, [isEmojiSelectionPage]);
 
   return (
     <StyledRollingFormWrapper>
-      <StyledBackdrop bg={ROLLINGPAPER_BG_MAP[messageInfo.paperTheme].bgUrl} />
+      <StyledBackdrop
+        bg={ROLLINGPAPER_BG_MAP[data?.data?.theme ?? 'animal'].bgUrl}
+      />
       <StyledRollingFormEmojiWrapper
-        isEmojiTab={!isActiveFontTab && !isEditing}
+        isEmojiSelectionPage={isEmojiSelectionPage}
       >
         <EmojiSkin
           message={{
@@ -117,7 +92,7 @@ export default function RollingpaperForm() {
           {Svg && <Svg />}
           {activeEmoji && (
             <textarea
-              disabled={checkTextareaDisabled()}
+              disabled={isEmojiSelectionPage}
               value={content}
               onChange={(e) => setContent(e.target.value)}
             />
@@ -148,7 +123,7 @@ export default function RollingpaperForm() {
                   />
                 ) : (
                   <ColorList
-                    theme={messageInfo.paperTheme}
+                    theme={data?.data?.theme ?? 'animal'}
                     activeColor={activeColor}
                     setActiveColor={setActiveColor}
                   />
@@ -178,10 +153,9 @@ export default function RollingpaperForm() {
               <EmojiSheet
                 activeEmoji={activeEmoji}
                 setActiveEmoji={setActiveEmoji}
-                theme={messageInfo.paperTheme}
+                theme={data?.data?.theme ?? 'animal'}
               />
               <Button onClick={handleMessageSubmit} disabled={!activeEmoji}>
-                {/* <Button onClick={handleNextSheet} disabled={!activeEmoji}> */}
                 편지 선택하기
               </Button>
             </StyledSheetContentWrapper>
@@ -190,29 +164,24 @@ export default function RollingpaperForm() {
       </StyledCustomSheet>
 
       {isModalOpen && (
-        <MessageCreateModal
-          id={Number(params.id)}
+        <CreateMessageModal
+          emoji={activeEmoji}
           color={activeColor}
           font={activeFont}
           contentType="rollingpaper"
-          isOpen={isModalOpen}
           content={content}
-          setIsOpen={setIsModalOpen}
+          onCloseModal={() => setIsModalOpen(false)}
         />
       )}
       <BottomSheetButton
         isOpen={isButtonOpen}
         onOpen={handleOpenSheet}
-        disabled={checkButtonDisable()}
+        disabled={isEmojiSelectionPage ? !activeColor : !content}
         onClick={handleMessageSubmit}
       >
-        {isActiveFontTab || isEditing ? '작성 완료' : '편지 선택하기'}
+        {isEmojiSelectionPage ? '편지 선택하기' : '작성 완료'}
       </BottomSheetButton>
-      <ReactHelmet
-        title={`${
-          messageInfo.type === 'create' ? '편지 작성' : '편지 수정'
-        } - 마니또`}
-      />
+      <ReactHelmet title={'편지 작성 - 마니또'} />
     </StyledRollingFormWrapper>
   );
 }

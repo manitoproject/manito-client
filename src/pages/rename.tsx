@@ -6,14 +6,14 @@ import ReactHelmet from '@/helmet';
 import useNameForm from '@/hooks/use-name-form';
 import useSetHeader from '@/hooks/use-set-header';
 import {
+  StyledAvartarWrapper,
+  StyledRenameWrapper,
+} from '@/pages/rename.style';
+import {
   useNicknameChange,
   useProfileChange,
   useUserQuery,
 } from '@/queries/users';
-import {
-  StyledAvartarWrapper,
-  StyledRenameWrapper,
-} from '@/routes/rename.style';
 
 export default function Rename() {
   const { data } = useUserQuery();

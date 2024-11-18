@@ -6,7 +6,7 @@ import {
 } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { Content } from '@/components/modal/message-create-modal';
+import { Content } from '@/components/modal/create-message-modal';
 import queries from '@/queries/query-key-factory';
 import routes from '@/routes';
 import { createMessage, deleteMessage, editMessage } from '@/services/message';
@@ -90,7 +90,8 @@ export const useDeleteMessage = ({
     },
   });
 };
-export const useEditMessage = (paperId: number) => {
+export const useEditMessage = () => {
+  const params = useParams();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   return useMutation({
@@ -99,7 +100,7 @@ export const useEditMessage = (paperId: number) => {
       if (data.result === 'Success') {
         navigate(-1);
         queryClient.invalidateQueries({
-          queryKey: queries.messages.paper(paperId).queryKey,
+          queryKey: queries.messages.paper(Number(params.id)).queryKey,
         });
         queryClient.invalidateQueries({
           queryKey: queries.messages.user._def,

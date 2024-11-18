@@ -1,6 +1,6 @@
 import { StyledGreetingDescription } from '@/components/home/greeting';
 import { SkeletonItem } from '@/components/skeletons/skeletons.style';
-import { StyledHeading } from '@/routes/rollingpaper/setup.style';
+import { StyledHeading } from '@/pages/rollingpaper/setup.style';
 
 export function MyProfileSkeleton() {
   return (

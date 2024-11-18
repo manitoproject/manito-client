@@ -6,13 +6,13 @@ export const StyledRollingFormWrapper = styled.div`
   width: 100%;
 `;
 export const StyledRollingFormEmojiWrapper = styled.div<{
-  isEmojiTab: boolean;
+  isEmojiSelectionPage?: boolean;
 }>`
   position: relative;
   z-index: 1;
   & > div:nth-of-type(1) {
-    transform: ${({ isEmojiTab }) =>
-      `translateY(${isEmojiTab ? '-45px' : '-24px'})`};
+    transform: ${({ isEmojiSelectionPage }) =>
+      `translateY(${isEmojiSelectionPage ? '-45px' : '-24px'})`};
   }
 `;
 
