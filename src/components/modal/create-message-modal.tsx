@@ -1,4 +1,4 @@
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { Modal } from '@/components/modal';
 import useNameForm from '@/hooks/use-name-form';
@@ -15,6 +15,7 @@ interface CreateMessageModalProps {
   font: FontNameWithoutAppleFont;
   color: ColorName;
   emoji: string;
+  position: number;
 }
 
 export default function CreateMessageModal({
@@ -24,9 +25,9 @@ export default function CreateMessageModal({
   color,
   font,
   emoji,
+  position,
 }: CreateMessageModalProps) {
   const params = useParams();
-  const location = useLocation();
   const activeModalIndex = useModalIndex();
   const { mutate, isPending } = useCreateMessage(
     Number(params.id),
@@ -41,14 +42,11 @@ export default function CreateMessageModal({
   } = useNameForm('nickname');
 
   const handleMessageSubmit = () => {
-    if (location.state?.position === null) {
-      return console.log('message 정보가 없음');
-    }
     mutate({
       font,
       content: content,
       fontColor: color,
-      position: location.state.position,
+      position,
       theme: emoji,
       isPublic: activeModalIndex === 0 ? 'Y' : 'N',
       paperId: Number(params.id),

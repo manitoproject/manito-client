@@ -4,12 +4,12 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button } from '@/components/common/button/buttons';
 import DeleteModal from '@/components/modal/delete-modal';
+import { token } from '@/lib/storage';
 import { useDeleteMessage } from '@/queries/message';
 import { useUserQuery } from '@/queries/users';
 import routes from '@/routes';
 import theme from '@/styles/theme';
 import { Message } from '@/types/message';
-import { token } from '@/utils/storage';
 
 interface AuthButtonsProps extends DetailMessageButtonsProps {}
 interface DetailMessageButtonsProps {

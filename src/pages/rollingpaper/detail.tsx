@@ -3,10 +3,10 @@ import styled from '@emotion/styled';
 import AuthorInfo from '@/components/rollingpaper/detail/author-info';
 import DetailPageBottomButtons from '@/components/rollingpaper/detail/buttons';
 import MessageSwipe from '@/components/swipe/message-swipe';
-import { ROLLINGPAPER_BG_MAP } from '@/constants/rolling-paper';
 import ReactHelmet, { TITLE } from '@/helmet';
 import useMessageDetail from '@/hooks/use-message-detail';
 import useSetHeader from '@/hooks/use-set-header';
+import { ROLLINGPAPER_BG_MAP } from '@/lib/rolling-paper';
 import { StyledBackdrop } from '@/pages/rollingpaper/list.style';
 import { usePaperDetailQuery } from '@/queries/paper';
 

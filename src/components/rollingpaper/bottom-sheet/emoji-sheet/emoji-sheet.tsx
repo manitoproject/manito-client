@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import React from 'react';
 
-import { ROLLINGPAPER_EMOJI_MAP } from '@/constants/rolling-paper';
+import { ROLLINGPAPER_EMOJI_MAP } from '@/lib/rolling-paper';
 
 interface EmojiContentProps {
   theme: RollingThemeName;

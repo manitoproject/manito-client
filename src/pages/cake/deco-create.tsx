@@ -1,43 +1,49 @@
 import styled from '@emotion/styled';
+import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { Sheet } from 'react-modal-sheet';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
-import { SmsEdit } from '@/assets/svg/icons';
 import CakeTextarea from '@/components/cake/textarea';
+import TopNotice from '@/components/cake/top-notice';
 import { Button } from '@/components/common/button/buttons';
 import MessageCreateModal from '@/components/modal/create-message-modal';
 import BottomSheetButton from '@/components/rollingpaper/bottom-sheet/button';
 import FontList from '@/components/rollingpaper/bottom-sheet/font-sheet/font-list';
 import BottomSheetheader from '@/components/rollingpaper/bottom-sheet/header';
-import { findCakeThemeStyle } from '@/constants/cake-decoration';
 import ReactHelmet from '@/helmet';
 import useSetHeader from '@/hooks/use-set-header';
+import { findBgByPosition, findCakeThemeStyle } from '@/lib/cake-decoration';
 import { StyledBackdrop } from '@/pages/rollingpaper/list.style';
 import {
   StyledCustomSheet,
   StyledSheetContentWrapper,
 } from '@/pages/rollingpaper/message.style';
-import { useMessageInfo } from '@/stores/message-store';
-import { getFontSizeAndWeight } from '@/styles/mixins';
+import queries from '@/queries/query-key-factory';
 import { StyledContentOverlay } from '@/styles/styled';
-import { ColorName, FontNameWithoutAppleFont } from '@/styles/theme';
+import { FontNameWithoutAppleFont } from '@/styles/theme';
 
-export default function CakeForm() {
+export default function DecoCreatePage() {
   const params = useParams();
+  const location = useLocation();
+  const { data: messagesData } = useQuery(
+    queries.messages.paper(Number(params.id)),
+  );
+  const position = messagesData?.data?.length ?? 0;
+  const activeTheme = location.state.theme;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [content, setContent] = useState('');
   const [isFontSheetOpen, setIsFontSheetOpen] = useState(false);
   const [isButtonOpen, setIsButtonOpen] = useState(false);
   const [activeFont, setActiveFont] =
     useState<FontNameWithoutAppleFont>('Cafe24Ssurround');
-  const { bg, theme } = useMessageInfo();
+  const bg = findBgByPosition(position);
+
   useSetHeader({
     rightBtn: false,
-    title: params.type === 'create' ? '메시지 작성 ' : '메시지 수정',
+    title: '메시지 작성',
   });
-  if (!bg || !theme || !params.id) throw new Error();
-  const style = findCakeThemeStyle(theme);
+  const style = findCakeThemeStyle(activeTheme);
 
   useEffect(() => {
     setIsFontSheetOpen(true);
@@ -45,18 +51,9 @@ export default function CakeForm() {
 
   return (
     <StyledWrapper>
-      <StyledNotice color={style?.bgColor}>
-        <div>
-          <SmsEdit />
-        </div>
-        <p>
-          나의 마니또에게
-          <br />
-          <span>짧은 메세지</span>를 작성해주세요.
-        </p>
-      </StyledNotice>
+      <TopNotice bgColor={style?.bgColor} />
       <CakeTextarea
-        themeName={theme}
+        themeName={activeTheme}
         content={content}
         setContent={setContent}
         fontName={activeFont}
@@ -91,11 +88,12 @@ export default function CakeForm() {
         disabled={!content.length}
         onClick={() => setIsModalOpen(true)}
       >
-        {'작성완료'}
+        작성완료
       </BottomSheetButton>
       {isModalOpen && (
         <MessageCreateModal
-          emoji={theme}
+          position={position}
+          emoji={activeTheme}
           color="gray-900"
           font={activeFont}
           content={content}
@@ -105,11 +103,7 @@ export default function CakeForm() {
       )}
       <StyledContentOverlay opacity={20} />
       <StyledBackdrop bg={bg} />
-      <ReactHelmet
-        title={`${
-          params.type === 'create' ? '메시지 작성 ' : '메시지 수정'
-        } - 마니또`}
-      />
+      <ReactHelmet title={'메시지 작성 - 마니또'} />
     </StyledWrapper>
   );
 }
@@ -120,25 +114,4 @@ const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 13%;
-`;
-
-const StyledNotice = styled.div<{ color: ColorName | undefined }>`
-  div {
-    padding: 10px;
-    border-radius: 999px;
-    background-color: ${({ color, theme }) => color && theme.colors[color]};
-  }
-
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  z-index: 50;
-  font-family: ${({ theme }) => theme.fontFamily.SpoqaHanSansNeo};
-  color: ${({ theme }) => theme.colors['gray-800']};
-  ${getFontSizeAndWeight('heading1', 'medium')};
-  span {
-    color: ${({ theme }) => theme.colors['gray-900']};
-    ${getFontSizeAndWeight('heading1', 'bold')};
-  }
 `;

@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import ThemeItem from '@/components/rollingpaper/setup/theme-item';
-import { ROLLINGPAPER_THEMES } from '@/constants/rolling-paper';
+import { ROLLINGPAPER_THEMES } from '@/lib/rolling-paper';
 import { getFontSizeAndWeight } from '@/styles/mixins';
 
 interface ThemeCarouselProps {

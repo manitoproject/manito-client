@@ -5,12 +5,12 @@ import Toast from '@/components/common/toast';
 import Header from '@/components/header/header';
 import Sidebar from '@/components/header/sidebar';
 import LoginModal from '@/components/modal/login-modal';
+import { token } from '@/lib/storage';
 import {
   StyledBrowserBackdrop,
   StyledMain,
   StyledWrapper,
 } from '@/pages/layout.style';
-import { token } from '@/utils/storage';
 
 export default function Layout() {
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);

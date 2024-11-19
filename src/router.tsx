@@ -4,9 +4,10 @@ import {
   Route,
 } from 'react-router-dom';
 
+import CakeDecoCreate from '@/pages/cake/deco-create';
+import CakeDecoEdit from '@/pages/cake/deco-edit';
 import CakeDecorate from '@/pages/cake/decorate';
 import CakeDetail from '@/pages/cake/detail';
-import CakeForm from '@/pages/cake/form';
 import CakeListPage from '@/pages/cake/list';
 import CakeSetup from '@/pages/cake/setup';
 import Contact from '@/pages/contact';
@@ -64,7 +65,11 @@ const router = () =>
           <Route path={routes.cake.setup()} element={<CakeSetup />} />
           <Route path={routes.cake.list()} element={<CakeListPage />} />
           <Route path={routes.cake.decorate()} element={<CakeDecorate />} />
-          <Route path={routes.cake.form()} element={<CakeForm />} />
+          <Route
+            path={routes.cake.messageCreate()}
+            element={<CakeDecoCreate />}
+          />
+          <Route path={routes.cake.messageEdit()} element={<CakeDecoEdit />} />
           <Route path={routes.cake.detail()} element={<CakeDetail />} />
         </Route>
       </Route>,

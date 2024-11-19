@@ -9,7 +9,7 @@ import {
   StyledEmptySvg,
   StyledItem,
 } from '@/components/rollingpaper/list/item.style';
-import { ROLLINGPAPER_EMOJI_MAP } from '@/constants/rolling-paper';
+import { ROLLINGPAPER_EMOJI_MAP } from '@/lib/rolling-paper';
 import { usePaperDetailQuery } from '@/queries/paper';
 import queries from '@/queries/query-key-factory';
 import routes from '@/routes';

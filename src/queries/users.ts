@@ -10,7 +10,7 @@ import queries from '@/queries/query-key-factory';
 import routes from '@/routes';
 import { changeNickname, changeProfile, logout } from '@/services/users';
 import { useToastActions } from '@/stores/toast-store';
-import { token } from '@/utils/storage';
+import { token } from '@/lib/storage';
 
 export const useUserSuspenseQuery = () => {
   return useSuspenseQuery({

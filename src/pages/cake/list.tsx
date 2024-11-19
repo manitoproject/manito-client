@@ -5,9 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import { EditSquare } from '@/assets/svg/icons';
 import CakeSwipe from '@/components/cake/swipe';
 import DetailHeader from '@/components/rollingpaper/list/header/detail-header';
-import { CAKE_THEME_PALETTES } from '@/constants/cake-decoration';
 import ReactHelmet, { TITLE } from '@/helmet';
 import useSetHeader from '@/hooks/use-set-header';
+import { CAKE_THEME_PALETTES } from '@/lib/cake-decoration';
 import {
   StyledListWrapper,
   StyledRollingList,
@@ -15,14 +15,12 @@ import {
 import { usePaperMessagesQuery } from '@/queries/message';
 import { usePaperDetailQuery } from '@/queries/paper';
 import routes from '@/routes';
-import { useMessageActions } from '@/stores/message-store';
 import { useToastActions } from '@/stores/toast-store';
 
 export default function CakeList() {
   const { data: MessageData } = usePaperMessagesQuery();
   const [activeIndex, setActiveIndex] = useState(0);
   const navigate = useNavigate();
-  const { setInfo } = useMessageActions();
   const { data } = usePaperDetailQuery();
   const paper = data?.data;
   const { add } = useToastActions();
@@ -37,10 +35,6 @@ export default function CakeList() {
       return add('작성할 수 있는 공간이 없습니다.');
     }
     navigate(routes.cake.decorate(), { state: { id: data?.data?.id } });
-    setInfo({
-      bg: CAKE_THEME_PALETTES[activeIndex].bgUrl,
-      position: MessageData?.length,
-    });
   };
 
   return (

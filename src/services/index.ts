@@ -1,6 +1,6 @@
 import axios, { CreateAxiosDefaults, isAxiosError } from 'axios';
 
-import { token } from '@/utils/storage';
+import { token } from '@/lib/storage';
 
 const defaultConfig: CreateAxiosDefaults = {
   baseURL: import.meta.env.VITE_BASE_URL,

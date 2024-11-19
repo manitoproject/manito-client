@@ -7,8 +7,8 @@ import { Swiper as SwiperType } from 'swiper/types';
 import CakeTextarea from '@/components/cake/textarea';
 import EmojiSkin from '@/components/rollingpaper/emoji-skin';
 import SwipeNavigation from '@/components/swipe/navigation';
-import { findSvgByThemeName } from '@/constants/cake-decoration';
 import useBoundaryIndex from '@/hooks/use-boundary-index';
+import { findSvgByThemeName } from '@/lib/cake-decoration';
 import { Message } from '@/types/message';
 
 interface DetailSwiperProps {

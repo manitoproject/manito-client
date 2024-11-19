@@ -10,10 +10,10 @@ import FontList from '@/components/rollingpaper/bottom-sheet/font-sheet/font-lis
 import FontSheet from '@/components/rollingpaper/bottom-sheet/font-sheet/font-sheet';
 import BottomSheetheader from '@/components/rollingpaper/bottom-sheet/header';
 import EmojiSkin from '@/components/rollingpaper/emoji-skin';
-import { findSvgByThemeName } from '@/constants/cake-decoration';
-import { ROLLINGPAPER_BG_MAP } from '@/constants/rolling-paper';
 import ReactHelmet from '@/helmet';
 import useSetHeader from '@/hooks/use-set-header';
+import { findSvgByThemeName } from '@/lib/cake-decoration';
+import { ROLLINGPAPER_BG_MAP } from '@/lib/rolling-paper';
 import { StyledBackdrop } from '@/pages/rollingpaper/list.style';
 import {
   StyledCustomSheet,

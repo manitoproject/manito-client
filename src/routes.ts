@@ -30,9 +30,8 @@ const routes = {
     form: (type?: 'create' | 'edit', id?: number) =>
       `${routes.cake.default}/${id || ':id'}/${type || ':type'}`,
     messageCreate: (id?: number) =>
-      `${routes.rollingpaper.default}/${id ?? ':id'}/create`,
-    messageEdit: (id?: number) =>
-      `${routes.rollingpaper.default}/${id ?? ':id'}/edit`,
+      `${routes.cake.default}/${id ?? ':id'}/create`,
+    messageEdit: (id?: number) => `${routes.cake.default}/${id ?? ':id'}/edit`,
     detail: (id?: number) => `${routes.cake.default}/${id ?? ':id'}/detail`,
   },
   treasure: {

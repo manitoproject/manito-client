@@ -5,12 +5,12 @@ import { Navigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/common/button/buttons';
 import SignupRadioButton from '@/components/common/button/signup-radio-button';
 import NameForm from '@/components/common/name-form';
-import { nicknameMaxLength } from '@/constants/regex-patterns';
 import useNameForm from '@/hooks/use-name-form';
 import useSetHeader from '@/hooks/use-set-header';
 import { useNicknameChange } from '@/queries/users';
 import routes from '@/routes';
 import { getFontSizeAndWeight } from '@/styles/mixins';
+import { nicknameMaxLength } from '@/lib/regex-patterns';
 
 export default function Signup() {
   const [activeRadioButtonIndex, setActiveRadioButtonIndex] = useState(0);

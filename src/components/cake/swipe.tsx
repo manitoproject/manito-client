@@ -6,11 +6,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperType } from 'swiper/types';
 
 import SwipeNavigation from '@/components/swipe/navigation';
-import {
-  CAKE_THEME_PALETTES,
-  findSvgByThemeName,
-} from '@/constants/cake-decoration';
 import useBoundaryIndex from '@/hooks/use-boundary-index';
+import { CAKE_THEME_PALETTES, findSvgByThemeName } from '@/lib/cake-decoration';
 import { usePaperMessagesQuery } from '@/queries/message';
 import routes from '@/routes';
 

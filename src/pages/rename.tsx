@@ -1,7 +1,6 @@
 import { kakaoProfile } from '@/assets/imgs';
 import { Button } from '@/components/common/button/buttons';
 import NameForm from '@/components/common/name-form';
-import { nicknameMaxLength } from '@/constants/regex-patterns';
 import ReactHelmet from '@/helmet';
 import useNameForm from '@/hooks/use-name-form';
 import useSetHeader from '@/hooks/use-set-header';
@@ -14,6 +13,7 @@ import {
   useProfileChange,
   useUserQuery,
 } from '@/queries/users';
+import { nicknameMaxLength } from '@/lib/regex-patterns';
 
 export default function Rename() {
   const { data } = useUserQuery();

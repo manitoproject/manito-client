@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { Sheet } from 'react-modal-sheet';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
 import { Button } from '@/components/common/button/buttons';
 import CreateMessageModal from '@/components/modal/create-message-modal';
@@ -12,10 +12,10 @@ import FontList from '@/components/rollingpaper/bottom-sheet/font-sheet/font-lis
 import FontSheet from '@/components/rollingpaper/bottom-sheet/font-sheet/font-sheet';
 import BottomSheetheader from '@/components/rollingpaper/bottom-sheet/header';
 import EmojiSkin from '@/components/rollingpaper/emoji-skin';
-import { findSvgByThemeName } from '@/constants/cake-decoration';
-import { ROLLINGPAPER_BG_MAP } from '@/constants/rolling-paper';
 import ReactHelmet from '@/helmet';
 import useSetHeader from '@/hooks/use-set-header';
+import { findSvgByThemeName } from '@/lib/cake-decoration';
+import { ROLLINGPAPER_BG_MAP } from '@/lib/rolling-paper';
 import { StyledBackdrop } from '@/pages/rollingpaper/list.style';
 import {
   StyledCustomSheet,
@@ -28,6 +28,7 @@ import { ColorName, FontNameWithoutAppleFont } from '@/styles/theme';
 
 export default function MessageCreatePage() {
   const params = useParams();
+  const location = useLocation();
   const { data } = useQuery(queries.papers.detail(Number(params.id)));
   const [isEmojiSelectionPage, setisEmojiSelectionPage] = useState(true);
   const [isEmojiSheetOpen, setIsEmojiSheetOpen] = useState(false);
@@ -165,6 +166,7 @@ export default function MessageCreatePage() {
 
       {isModalOpen && (
         <CreateMessageModal
+          position={location.state.position}
           emoji={activeEmoji}
           color={activeColor}
           font={activeFont}

@@ -4,27 +4,26 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import Decorations from '@/components/cake/decorations';
 import { Button } from '@/components/common/button/buttons';
+import ReactHelmet from '@/helmet';
+import useSetHeader from '@/hooks/use-set-header';
 import {
   CAKE_THEME_STYLES,
   CakeTheme,
   DecorationType,
-} from '@/constants/cake-decoration';
-import ReactHelmet from '@/helmet';
-import useSetHeader from '@/hooks/use-set-header';
+} from '@/lib/cake-decoration';
 import routes from '@/routes';
-import { useMessageActions } from '@/stores/message-store';
 import { getFontSizeAndWeight } from '@/styles/mixins';
 
 export default function CakeDecorate() {
   const [activeTab, setActiveTab] = useState<DecorationType>('chocolate');
   const [activeDeco, setActiveDeco] = useState('');
-  const { setInfo } = useMessageActions();
   const navigate = useNavigate();
   const location = useLocation();
   useSetHeader({ rightBtn: false, title: '장식선택' });
   const handleNextStep = () => {
-    navigate(routes.cake.form('create', location.state?.id));
-    setInfo({ theme: activeDeco });
+    navigate(routes.cake.messageCreate(location.state?.id), {
+      state: { theme: activeDeco },
+    });
   };
 
   return (

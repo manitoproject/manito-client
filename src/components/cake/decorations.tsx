@@ -4,7 +4,7 @@ import {
   CAKE_DECORATIONS,
   CAKE_THEME_STYLES,
   DecorationType,
-} from '@/constants/cake-decoration';
+} from '@/lib/cake-decoration';
 import { ColorName } from '@/styles/theme';
 
 interface DecorationsProps {

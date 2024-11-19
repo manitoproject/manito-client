@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 import { Trash } from '@/assets/svg/icons';
 import DeleteModal from '@/components/modal/delete-modal';
-import { CATEGORY_MAP } from '@/constants/rolling-paper';
+import { CATEGORY_MAP } from '@/lib/rolling-paper';
 import { useDeletePaper } from '@/queries/paper';
 import routes from '@/routes';
 import { getFontSizeAndWeight } from '@/styles/mixins';

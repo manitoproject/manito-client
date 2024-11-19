@@ -15,10 +15,10 @@ import ModalContext, {
   useModal,
   useModalContext,
 } from '@/components/modal/modal-context';
-import { nicknameMaxLength } from '@/constants/regex-patterns';
 import useDisableScroll from '@/hooks/common/use-disable-scroll';
 import useOutsideClick from '@/hooks/common/use-outside-click';
 import { useModalActions, useModalIndex } from '@/stores/modal-store';
+import { nicknameMaxLength } from '@/lib/regex-patterns';
 
 const LABELS = ['공개로 작성할래요.', '익명으로 작성할래요.'];
 

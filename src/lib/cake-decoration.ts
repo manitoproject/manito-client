@@ -55,7 +55,7 @@ import {
   WhiteIceCream,
   WhiteMacaroon,
 } from '@/assets/svg/decorations';
-import { ROLLINGPAPER_EMOJI_MAP } from '@/constants/rolling-paper';
+import { ROLLINGPAPER_EMOJI_MAP } from '@/lib/rolling-paper';
 import { ColorName } from '@/styles/theme';
 
 export type DecorationType = 'chocolate' | 'vanilla' | 'white' | 'strawberry';
