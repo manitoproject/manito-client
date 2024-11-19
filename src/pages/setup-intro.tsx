@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 
 import makeCakeBg from '@/assets/imgs/intro/make-a-cake-bgx4@4x-100.webp';
@@ -6,7 +7,7 @@ import rollingBg from '@/assets/imgs/intro/rollring-paper-B@4x-1004.webp';
 import { LinkButton } from '@/components/common/button/buttons';
 import ReactHelmet from '@/helmet';
 import useSetHeader from '@/hooks/use-set-header';
-import { useMessageCounts } from '@/queries/message';
+import { messageQueries } from '@/lib/query-factory';
 import routes from '@/routes';
 import { getFontSizeAndWeight, StyledFixedBackground } from '@/styles/mixins';
 import { ColorName } from '@/styles/theme';
@@ -34,7 +35,7 @@ export default function SetupIntro() {
   const { content } = useParams<{ content: CategoryLowerCase }>();
 
   if (!content) throw new Error('invalid parameter');
-  const { data } = useMessageCounts(content);
+  const { data } = useQuery(messageQueries.count(content));
   const currentTheme = CONTENTS[content];
   useSetHeader({
     title: currentTheme.title,
@@ -47,7 +48,7 @@ export default function SetupIntro() {
     <StyledWrapper>
       <StyledButtonWrapper>
         <div>
-          <span>{data?.data?.count}</span>명이 참여했어요
+          <span>{data?.count}</span>명이 참여했어요
         </div>
         <LinkButton to={currentTheme.path}>시작하기</LinkButton>
       </StyledButtonWrapper>

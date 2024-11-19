@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
-import { createSearchParams, useNavigate } from 'react-router-dom';
+import { createSearchParams, useNavigate, useParams } from 'react-router-dom';
 
 import { AddCircle } from '@/assets/svg/icons';
 import LoginModal from '@/components/modal/login-modal';
@@ -9,9 +9,8 @@ import {
   StyledEmptySvg,
   StyledItem,
 } from '@/components/rollingpaper/list/item.style';
+import { paperQueries, userQueries } from '@/lib/query-factory';
 import { ROLLINGPAPER_EMOJI_MAP } from '@/lib/rolling-paper';
-import { usePaperDetailQuery } from '@/queries/paper';
-import queries from '@/queries/query-key-factory';
 import routes from '@/routes';
 import { Message } from '@/types/message';
 
@@ -22,19 +21,16 @@ export interface MessageItemProps {
 
 export default function MessageItem({ message, position }: MessageItemProps) {
   const navigate = useNavigate();
+  const params = useParams();
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-  const { data: PaperDetailData } = usePaperDetailQuery();
-  const { data: userData } = useQuery({
-    ...queries.users.detail(),
-    select: (data) => data.data,
-  });
-  const paper = PaperDetailData?.data;
+  const { data: paper } = useQuery(paperQueries.detail(Number(params.id)));
+  const { data: user } = useQuery(userQueries.detail());
   const EmojiSvg = ROLLINGPAPER_EMOJI_MAP[
     paper?.theme as RollingThemeName
   ]?.find((item) => item.name === message?.theme)?.svg;
 
   const handleCreateMessage = () => {
-    if (userData) {
+    if (user) {
       navigate(`${routes.rollingpaper.messageCreate(paper?.id)}`, {
         state: { position },
       });
@@ -54,7 +50,7 @@ export default function MessageItem({ message, position }: MessageItemProps) {
 
   return (
     <>
-      {PaperDetailData?.data && message ? (
+      {paper && message ? (
         <EmojiSkin
           onClick={() => handleViewMessageItem(message.paperId, message.id)}
           isSmall

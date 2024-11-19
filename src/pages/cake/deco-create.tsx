@@ -14,22 +14,20 @@ import BottomSheetheader from '@/components/rollingpaper/bottom-sheet/header';
 import ReactHelmet from '@/helmet';
 import useSetHeader from '@/hooks/use-set-header';
 import { findBgByPosition, findCakeThemeStyle } from '@/lib/cake-decoration';
+import { messageQueries } from '@/lib/query-factory';
 import { StyledBackdrop } from '@/pages/rollingpaper/list.style';
 import {
   StyledCustomSheet,
   StyledSheetContentWrapper,
 } from '@/pages/rollingpaper/message.style';
-import queries from '@/queries/query-key-factory';
 import { StyledContentOverlay } from '@/styles/styled';
 import { FontNameWithoutAppleFont } from '@/styles/theme';
 
 export default function DecoCreatePage() {
   const params = useParams();
   const location = useLocation();
-  const { data: messagesData } = useQuery(
-    queries.messages.paper(Number(params.id)),
-  );
-  const position = messagesData?.data?.length ?? 0;
+  const { data: messages } = useQuery(messageQueries.paper(Number(params.id)));
+  const position = messages?.length ?? 0;
   const activeTheme = location.state.theme;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [content, setContent] = useState('');
@@ -37,18 +35,15 @@ export default function DecoCreatePage() {
   const [isButtonOpen, setIsButtonOpen] = useState(false);
   const [activeFont, setActiveFont] =
     useState<FontNameWithoutAppleFont>('Cafe24Ssurround');
-  const bg = findBgByPosition(position);
-
+  const bg = findBgByPosition(position + 1);
   useSetHeader({
     rightBtn: false,
     title: '메시지 작성',
   });
   const style = findCakeThemeStyle(activeTheme);
-
   useEffect(() => {
     setIsFontSheetOpen(true);
   }, []);
-
   return (
     <StyledWrapper>
       <TopNotice bgColor={style?.bgColor} />
@@ -92,7 +87,7 @@ export default function DecoCreatePage() {
       </BottomSheetButton>
       {isModalOpen && (
         <MessageCreateModal
-          position={position}
+          position={Date.now() / 1000}
           emoji={activeTheme}
           color="gray-900"
           font={activeFont}

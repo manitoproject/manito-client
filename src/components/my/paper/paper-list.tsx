@@ -1,18 +1,18 @@
 import styled from '@emotion/styled';
+import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 
 import MyPaperItem from '@/components/my/paper/paper-item';
-import { useUserPaperSuspenseQuery } from '@/queries/paper';
-import { useUserQuery } from '@/queries/users';
+import { paperQueries, userQueries } from '@/lib/query-factory';
 
 interface MyPaperListProps {
   activeCagegory: Category;
 }
 
 export default function MyPaperList({ activeCagegory }: MyPaperListProps) {
-  const { data: userData } = useUserQuery();
-  const { data } = useUserPaperSuspenseQuery(userData?.data?.id);
+  const { data: user } = useQuery(userQueries.detail());
+  const { data: papers } = useSuspenseQuery(paperQueries.user(user?.id));
 
-  const filteredList = data?.filter(
+  const filteredList = papers?.filter(
     (paper) => paper.category === activeCagegory,
   );
 

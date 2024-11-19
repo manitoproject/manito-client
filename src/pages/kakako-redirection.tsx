@@ -1,22 +1,24 @@
 import styled from '@emotion/styled';
+import { useQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
-import { StyledBrowserBackdrop } from '@/pages/layout.style';
-import { useTokenQuery } from '@/queries/auth';
-import routes from '@/routes';
+import { authQueries } from '@/lib/query-factory';
 import { token } from '@/lib/storage';
+import { StyledBrowserBackdrop } from '@/pages/layout.style';
+import routes from '@/routes';
 
 export default function KakaoRedirection() {
-  const code = new URL(location.href).searchParams.get('code');
-  const { data, isError } = useTokenQuery(code);
+  const [searchParams] = useSearchParams();
+  const code = searchParams.get('code');
+  const { data, isError } = useQuery(authQueries.auth(code));
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (data?.data) {
-      token.setAccessToken(data.data.accessToken);
-      if (data.data.isNewUser === 'Y') {
-        navigate(routes.signup, { replace: true, state: data.data.isNewUser });
+    if (data) {
+      token.setAccessToken(data.accessToken);
+      if (data.isNewUser === 'Y') {
+        navigate(routes.signup, { replace: true, state: data.isNewUser });
       } else {
         navigate(routes.home, { replace: true });
       }

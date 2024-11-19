@@ -9,21 +9,15 @@ import ReactHelmet, { TITLE } from '@/helmet';
 import useDetailIndex from '@/hooks/use-detail-index';
 import useSetHeader from '@/hooks/use-set-header';
 import { CAKE_THEME_PALETTES } from '@/lib/cake-decoration';
+import { messageQueries, paperQueries } from '@/lib/query-factory';
 import { StyledBackdrop } from '@/pages/rollingpaper/list.style';
-import queries from '@/queries/query-key-factory';
 import { StyledContentOverlay } from '@/styles/styled';
 
 export default function CakeDetail() {
   const params = useParams();
-  const { data: messages } = useQuery({
-    ...queries.messages.paper(Number(params.id)),
-    select: (data) => data?.data,
-  });
+  const { data: messages } = useQuery(messageQueries.paper(Number(params?.id)));
   const { activeIndex, setActiveIndex } = useDetailIndex(messages);
-  const { data: paper } = useQuery({
-    ...queries.papers.detail(Number(params.id)),
-    select: (data) => data?.data,
-  });
+  const { data: paper } = useQuery(paperQueries.detail(Number(params.id)));
   useSetHeader({ title: '상세 보기' });
 
   if (!messages?.length) return null;

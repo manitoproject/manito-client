@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -10,38 +11,37 @@ import {
   StyledModalLinks,
   StyledRollingHeader,
 } from '@/components/rollingpaper/list/header/detail-header.style';
-import DetailMessagelength from '@/components/rollingpaper/list/header/message-length';
 import useShare from '@/hooks/use-share';
-import { usePaperMessagesQuery } from '@/queries/message';
-import { usePaperDetailQuery } from '@/queries/paper';
-import { useUserQuery } from '@/queries/users';
+import { messageQueries, userQueries } from '@/lib/query-factory';
 import routes from '@/routes';
 import { useToastActions } from '@/stores/toast-store';
 import theme from '@/styles/theme';
 
 interface DetailHeaderProps {
-  paperId?: number;
+  paper?: Paper;
   content: Content;
 }
 
-export default function DetailHeader({ paperId, content }: DetailHeaderProps) {
+export default function DetailHeader({ paper, content }: DetailHeaderProps) {
   const [isCopyModalOpen, setIsCopyModalOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-  const { data: messages } = usePaperMessagesQuery();
-  const { data: PaperData } = usePaperDetailQuery();
-  const { data: userData } = useUserQuery();
+  const { data: messages } = useQuery(messageQueries.paper(paper?.id));
+  const { data: user } = useQuery(userQueries.detail());
   const toastActions = useToastActions();
   const { handleKakakoShare, handleUrlCopy } = useShare();
   const navigate = useNavigate();
 
   const handleShowDetailMessage = () => {
-    if (messages?.length) return navigate(routes[content].detail(paperId));
+    if (messages?.length) return navigate(routes[content].detail(paper?.id));
     toastActions.add('상세보기 내역이 없습니다.');
   };
 
   return (
     <StyledRollingHeader>
-      <DetailMessagelength />
+      <span>
+        <strong>{messages?.length}</strong>
+        개의 작성물
+      </span>
       <div>
         <button onClick={handleShowDetailMessage}>상세보기</button>
         <button onClick={() => setIsCopyModalOpen(true)}>
@@ -55,12 +55,7 @@ export default function DetailHeader({ paperId, content }: DetailHeaderProps) {
           </Modal.TitleWrapper>
           <StyledModalLinks>
             <StyledModalLink
-              onClick={() =>
-                handleKakakoShare(
-                  userData?.data?.originName,
-                  PaperData?.data?.title,
-                )
-              }
+              onClick={() => handleKakakoShare(user?.originName, paper?.title)}
             >
               <KakaoFill />
               <span>카카오톡</span>

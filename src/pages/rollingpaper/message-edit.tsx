@@ -13,7 +13,9 @@ import EmojiSkin from '@/components/rollingpaper/emoji-skin';
 import ReactHelmet from '@/helmet';
 import useSetHeader from '@/hooks/use-set-header';
 import { findSvgByThemeName } from '@/lib/cake-decoration';
+import { messageQueries, paperQueries } from '@/lib/query-factory';
 import { ROLLINGPAPER_BG_MAP } from '@/lib/rolling-paper';
+import { useEditMessage } from '@/mutations/message';
 import { StyledBackdrop } from '@/pages/rollingpaper/list.style';
 import {
   StyledCustomSheet,
@@ -21,20 +23,14 @@ import {
   StyledRollingFormWrapper,
   StyledSheetContentWrapper,
 } from '@/pages/rollingpaper/message.style';
-import { useEditMessage } from '@/queries/message';
-import queries from '@/queries/query-key-factory';
 import { ColorName, FontNameWithoutAppleFont } from '@/styles/theme';
 
 export default function MessageEditPage() {
   const params = useParams();
   const location = useLocation();
-  const { data: paperData } = useQuery(
-    queries.papers.detail(Number(params.id)),
-  );
-  const { data: messageData } = useQuery(
-    queries.messages.paper(Number(params.id)),
-  );
-  const currentMessage = messageData?.data?.find(
+  const { data: paper } = useQuery(paperQueries.detail(Number(params.id)));
+  const { data: messages } = useQuery(messageQueries.paper(Number(params.id)));
+  const currentMessage = messages?.find(
     (message) => message.id === location.state.id,
   );
   const [isFontSheetOpen, setIsFontSheetOpen] = useState(false);
@@ -51,11 +47,15 @@ export default function MessageEditPage() {
 
   useSetHeader({
     title: '수정하기',
-    bg: ROLLINGPAPER_BG_MAP[paperData?.data?.theme ?? 'animal'].bgColor,
-    color: paperData?.data?.theme === 'animal' ? undefined : 'white',
+    bg: ROLLINGPAPER_BG_MAP[paper?.theme ?? 'animal'].bgColor,
+    color: paper?.theme === 'animal' ? undefined : 'white',
   });
 
-  const { mutate } = useEditMessage();
+  const { mutate } = useEditMessage({
+    content: 'rollingpaper',
+    messageId: currentMessage?.id,
+    paperId: Number(params.id),
+  });
   const handleMessageSubmit = () => {
     mutate({
       content,
@@ -72,7 +72,7 @@ export default function MessageEditPage() {
   return (
     <StyledRollingFormWrapper>
       <StyledBackdrop
-        bg={ROLLINGPAPER_BG_MAP[paperData?.data?.theme ?? 'animal'].bgUrl}
+        bg={ROLLINGPAPER_BG_MAP[paper?.theme ?? 'animal'].bgUrl}
       />
       <StyledRollingFormEmojiWrapper>
         <EmojiSkin
@@ -113,7 +113,7 @@ export default function MessageEditPage() {
                   />
                 ) : (
                   <ColorList
-                    theme={paperData?.data?.theme ?? 'animal'}
+                    theme={paper?.theme ?? 'animal'}
                     activeColor={activeColor}
                     setActiveColor={setActiveColor}
                   />

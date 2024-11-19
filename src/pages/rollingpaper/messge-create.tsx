@@ -15,6 +15,7 @@ import EmojiSkin from '@/components/rollingpaper/emoji-skin';
 import ReactHelmet from '@/helmet';
 import useSetHeader from '@/hooks/use-set-header';
 import { findSvgByThemeName } from '@/lib/cake-decoration';
+import { paperQueries } from '@/lib/query-factory';
 import { ROLLINGPAPER_BG_MAP } from '@/lib/rolling-paper';
 import { StyledBackdrop } from '@/pages/rollingpaper/list.style';
 import {
@@ -23,13 +24,12 @@ import {
   StyledRollingFormWrapper,
   StyledSheetContentWrapper,
 } from '@/pages/rollingpaper/message.style';
-import queries from '@/queries/query-key-factory';
 import { ColorName, FontNameWithoutAppleFont } from '@/styles/theme';
 
 export default function MessageCreatePage() {
   const params = useParams();
   const location = useLocation();
-  const { data } = useQuery(queries.papers.detail(Number(params.id)));
+  const { data: paper } = useQuery(paperQueries.detail(Number(params.id)));
   const [isEmojiSelectionPage, setisEmojiSelectionPage] = useState(true);
   const [isEmojiSheetOpen, setIsEmojiSheetOpen] = useState(false);
   const [isFontSheetOpen, setIsFontSheetOpen] = useState(false);
@@ -45,8 +45,8 @@ export default function MessageCreatePage() {
 
   useSetHeader({
     title: isEmojiSelectionPage ? '편지 선택' : '편지 작성',
-    bg: ROLLINGPAPER_BG_MAP[data?.data?.theme ?? 'animal'].bgColor,
-    color: data?.data?.theme === 'animal' ? undefined : 'white',
+    bg: ROLLINGPAPER_BG_MAP[paper?.theme ?? 'animal'].bgColor,
+    color: paper?.theme === 'animal' ? undefined : 'white',
   });
 
   const handleMessageSubmit = () => {
@@ -78,7 +78,7 @@ export default function MessageCreatePage() {
   return (
     <StyledRollingFormWrapper>
       <StyledBackdrop
-        bg={ROLLINGPAPER_BG_MAP[data?.data?.theme ?? 'animal'].bgUrl}
+        bg={ROLLINGPAPER_BG_MAP[paper?.theme ?? 'animal'].bgUrl}
       />
       <StyledRollingFormEmojiWrapper
         isEmojiSelectionPage={isEmojiSelectionPage}
@@ -124,7 +124,7 @@ export default function MessageCreatePage() {
                   />
                 ) : (
                   <ColorList
-                    theme={data?.data?.theme ?? 'animal'}
+                    theme={paper?.theme ?? 'animal'}
                     activeColor={activeColor}
                     setActiveColor={setActiveColor}
                   />
@@ -154,7 +154,7 @@ export default function MessageCreatePage() {
               <EmojiSheet
                 activeEmoji={activeEmoji}
                 setActiveEmoji={setActiveEmoji}
-                theme={data?.data?.theme ?? 'animal'}
+                theme={paper?.theme ?? 'animal'}
               />
               <Button onClick={handleMessageSubmit} disabled={!activeEmoji}>
                 편지 선택하기

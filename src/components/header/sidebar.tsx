@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 
 import { kakaoProfile } from '@/assets/imgs';
@@ -11,7 +12,8 @@ import {
   StyledOverlay,
 } from '@/components/header/sidebar.style';
 import useOutsideClick from '@/hooks/common/use-outside-click';
-import { useLogout, useUserQuery } from '@/queries/users';
+import { userQueries } from '@/lib/query-factory';
+import { useLogout } from '@/mutations/users';
 import routes from '@/routes';
 
 export interface SideMenuProps {
@@ -38,7 +40,7 @@ const LINKS = [
 ];
 
 export default function Sidebar({ onClose, isOpen }: SideMenuProps) {
-  const { data } = useUserQuery();
+  const { data: user } = useQuery(userQueries.detail());
   const { mutate } = useLogout();
   const ref = useOutsideClick(() => onClose(), isOpen);
   // useDisableScroll(isOpen);
@@ -49,17 +51,17 @@ export default function Sidebar({ onClose, isOpen }: SideMenuProps) {
       <StyledNav ref={ref} isOpen={isOpen}>
         <StyledInnerNav isOpen={isOpen}>
           <StyledNicknameWrapper>
-            {data?.data ? (
+            {user ? (
               <>
                 <img
                   src={
-                    data?.data?.isOriginProfile === 'N'
+                    user?.isOriginProfile === 'N'
                       ? kakaoProfile
-                      : data?.data?.profileImage
+                      : user?.profileImage
                   }
                   alt="avatar"
                 />
-                <span>{data?.data?.nickname}</span>
+                <span>{user?.nickname}</span>
               </>
             ) : (
               <span>로그인이 필요합니다.</span>
@@ -69,7 +71,7 @@ export default function Sidebar({ onClose, isOpen }: SideMenuProps) {
             <div>
               <StyledNavLinks>
                 {LINKS.map((link) => {
-                  if (!data?.data && link.name === '마이 페이지') return;
+                  if (!user && link.name === '마이 페이지') return;
                   return (
                     <li key={link.name}>
                       <Link onClick={onClose} to={link.href()}>
@@ -82,7 +84,7 @@ export default function Sidebar({ onClose, isOpen }: SideMenuProps) {
               </StyledNavLinks>
             </div>
           </StyledNavLinkWrapper>
-          {data?.data && (
+          {user && (
             <button type="button" onClick={() => mutate()}>
               <Logout />
               <span>로그아웃</span>

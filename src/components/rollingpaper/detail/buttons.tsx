@@ -1,12 +1,13 @@
 import styled from '@emotion/styled';
+import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Button } from '@/components/common/button/buttons';
 import DeleteModal from '@/components/modal/delete-modal';
+import { userQueries } from '@/lib/query-factory';
 import { token } from '@/lib/storage';
-import { useDeleteMessage } from '@/queries/message';
-import { useUserQuery } from '@/queries/users';
+import { useDeleteMessage } from '@/mutations/message';
 import routes from '@/routes';
 import theme from '@/styles/theme';
 import { Message } from '@/types/message';
@@ -21,12 +22,10 @@ interface DetailMessageButtonsProps {
 function AuthButtons({ message, authorId, category }: AuthButtonsProps) {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { data: userData } = useUserQuery();
+  const { data: user } = useQuery(userQueries.detail());
   const { mutate } = useDeleteMessage({
-    paperId: message?.paperId,
     isDetailPaer: true,
   });
-  const user = userData?.data;
   return (
     <>
       {message?.user?.id === user?.id && (
@@ -71,7 +70,9 @@ export default function DetailPageBottomButtons({
           color: theme.colors.black,
           border: `1px solid ${theme.colors['gray-300']}`,
         }}
-        onClick={() => navigate(routes[category].list(message.paperId))}
+        onClick={() =>
+          navigate(routes[category].list(message.paperId), { replace: true })
+        }
       >
         닫기
       </Button>

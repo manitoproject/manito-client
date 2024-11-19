@@ -1,13 +1,14 @@
 import styled from '@emotion/styled';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
-import { useUserSuspenseQuery } from '@/queries/users';
+import { userQueries } from '@/lib/query-factory';
 import { getFontSizeAndWeight } from '@/styles/mixins';
 
 export default function Greeting() {
-  const { data } = useUserSuspenseQuery();
+  const { data: user } = useSuspenseQuery(userQueries.detail());
   return (
     <StyledGreeting>
-      {<p>{data.data?.nickname}님 안녕하세요!</p>}
+      {<p>{user?.nickname}님 안녕하세요!</p>}
       <StyledGreetingDescription>
         <strong>다양한 컨텐츠</strong>를 즐겨보세요.
       </StyledGreetingDescription>

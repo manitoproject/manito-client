@@ -1,35 +1,33 @@
+import { useQuery } from '@tanstack/react-query';
+
 import { kakaoProfile } from '@/assets/imgs';
 import { Button } from '@/components/common/button/buttons';
 import NameForm from '@/components/common/name-form';
 import ReactHelmet from '@/helmet';
 import useNameForm from '@/hooks/use-name-form';
 import useSetHeader from '@/hooks/use-set-header';
+import { userQueries } from '@/lib/query-factory';
+import { nicknameMaxLength } from '@/lib/regex-patterns';
+import { useNicknameChange, useProfileChange } from '@/mutations/users';
 import {
   StyledAvartarWrapper,
   StyledRenameWrapper,
-} from '@/pages/rename.style';
-import {
-  useNicknameChange,
-  useProfileChange,
-  useUserQuery,
-} from '@/queries/users';
-import { nicknameMaxLength } from '@/lib/regex-patterns';
+} from '@/pages/my/rename.style';
 
 export default function Rename() {
-  const { data } = useUserQuery();
+  const { data: user } = useQuery(userQueries.detail());
   useSetHeader({ title: '프로필 수정', rightBtn: false });
-  const { mutate, isPending } = useNicknameChange(true);
-  const { mutate: profileMutate } = useProfileChange();
+  const { mutate: changeNicknameMutate, isPending } = useNicknameChange(true);
+  const { mutate: changeProfileMutate } = useProfileChange();
   const { handleNameChange, handleNameReset, isError, name, nameRef } =
     useNameForm('nickname');
   const handleNicknameChange = () => {
-    mutate(name);
+    changeNicknameMutate(name);
   };
-  const user = data?.data;
 
   const handleProfileChange = () => {
     if (user?.isOriginProfile === 'N') return;
-    profileMutate();
+    changeProfileMutate();
   };
 
   return (

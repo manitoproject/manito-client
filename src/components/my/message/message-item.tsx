@@ -10,7 +10,7 @@ import {
   StyledTrashButton,
 } from '@/components/rollingpaper/list/item.style';
 import { findSvgByThemeName } from '@/lib/cake-decoration';
-import { useDeleteMessage } from '@/queries/message';
+import { useDeleteMessage } from '@/mutations/message';
 import routes from '@/routes';
 import theme from '@/styles/theme';
 import { Message } from '@/types/message';
@@ -24,9 +24,7 @@ export default function MyMessageItem({
   activeCagegory,
 }: MyMessageItemProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { mutate } = useDeleteMessage({
-    paperId: message.paperId,
-  });
+  const { mutate } = useDeleteMessage({});
   const navigate = useNavigate();
   const Svg = findSvgByThemeName(message.theme);
 

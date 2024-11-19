@@ -8,12 +8,12 @@ import useNameForm from '@/hooks/use-name-form';
 import useSetHeader from '@/hooks/use-set-header';
 import { titleMaxLength } from '@/lib/regex-patterns';
 import { ROLLINGPAPER_THEMES } from '@/lib/rolling-paper';
+import { useCreatePaper } from '@/mutations/paper';
 import {
   StyledHeading,
   StyledSectionWrapper,
   StyledWrapper,
 } from '@/pages/rollingpaper/setup.style';
-import { useCreatePaper } from '@/queries/paper';
 
 export default function RollingpaperSetup() {
   const { handleNameChange, handleNameReset, isError, name, nameRef } =

@@ -1,14 +1,16 @@
+import { useSuspenseQuery } from '@tanstack/react-query';
+
 import MyMessageItem from '@/components/my/message/message-item';
 import { StyledList } from '@/components/rollingpaper/list/message-list';
-import { useUserMessagesSuspenseQuery } from '@/queries/message';
+import { messageQueries } from '@/lib/query-factory';
 
 interface MyMessageListProps {
   activeCagegory: CategoryLowerCase;
 }
 
 export default function MyMessageList({ activeCagegory }: MyMessageListProps) {
-  const { data } = useUserMessagesSuspenseQuery();
-  const filteredList = data?.data?.filter((paper) => {
+  const { data } = useSuspenseQuery(messageQueries.user());
+  const filteredList = data?.filter((paper) => {
     if (activeCagegory === 'cake') {
       return (
         paper.theme.includes('White') ||

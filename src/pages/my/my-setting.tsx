@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import ReactHelmet from '@/helmet';
 import useSetHeader from '@/hooks/use-set-header';
-import { useLogout } from '@/queries/users';
+import { useLogout } from '@/mutations/users';
 import routes from '@/routes';
 import { getFontSizeAndWeight } from '@/styles/mixins';
 

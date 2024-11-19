@@ -1,30 +1,11 @@
-import {
-  useMutation,
-  useQuery,
-  useQueryClient,
-  useSuspenseQuery,
-} from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
-import queries from '@/queries/query-key-factory';
+import { messageQueries, userQueries } from '@/lib/query-factory';
+import { token } from '@/lib/storage';
 import routes from '@/routes';
 import { changeNickname, changeProfile, logout } from '@/services/users';
 import { useToastActions } from '@/stores/toast-store';
-import { token } from '@/lib/storage';
-
-export const useUserSuspenseQuery = () => {
-  return useSuspenseQuery({
-    ...queries.users.detail(),
-    staleTime: 1000 * 60 * 10,
-  });
-};
-
-export const useUserQuery = () => {
-  return useQuery({
-    ...queries.users.detail(),
-    staleTime: 1000 * 60 * 10,
-  });
-};
 
 export const useNicknameChange = (isMyPage = false) => {
   const queryClient = useQueryClient();
@@ -36,10 +17,10 @@ export const useNicknameChange = (isMyPage = false) => {
         if (isMyPage) navigate(routes.my.default);
         else navigate(-1);
         queryClient.invalidateQueries({
-          queryKey: queries.users._def,
+          queryKey: userQueries.detail().queryKey,
         });
         queryClient.invalidateQueries({
-          queryKey: queries.messages.paper._def,
+          queryKey: messageQueries.papers(),
         });
       }
     },
@@ -67,7 +48,7 @@ export const useProfileChange = () => {
     onSuccess: (data) => {
       if (data.result === 'Success') {
         queryClient.invalidateQueries({
-          queryKey: queries.users._def,
+          queryKey: userQueries.detail().queryKey,
         });
         toastActions.add('변경이 완료 되었습니다.');
       }

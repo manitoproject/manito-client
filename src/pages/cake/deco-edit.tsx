@@ -13,43 +13,45 @@ import BottomSheetheader from '@/components/rollingpaper/bottom-sheet/header';
 import ReactHelmet from '@/helmet';
 import useSetHeader from '@/hooks/use-set-header';
 import { findBgByPosition, findCakeThemeStyle } from '@/lib/cake-decoration';
+import { messageQueries } from '@/lib/query-factory';
+import { useEditMessage } from '@/mutations/message';
 import { StyledBackdrop } from '@/pages/rollingpaper/list.style';
 import {
   StyledCustomSheet,
   StyledSheetContentWrapper,
 } from '@/pages/rollingpaper/message.style';
-import { useEditMessage } from '@/queries/message';
-import queries from '@/queries/query-key-factory';
 import { StyledContentOverlay } from '@/styles/styled';
 import { FontNameWithoutAppleFont } from '@/styles/theme';
 
 export default function DecoEditPage() {
-  const params = useParams();
-  const location = useLocation();
-  const { data: messagesData } = useQuery(
-    queries.messages.paper(Number(params.id)),
+  const { id } = useParams();
+  const { state } = useLocation();
+  const { data: messages } = useQuery(messageQueries.paper(Number(id)));
+  const currentMessageIndex = messages?.findIndex(
+    (message) => message.id === state.id,
   );
-  const currentMessage = messagesData?.data?.find(
-    (message) => message.id === location.state.id,
-  );
-
+  const currentMessage = messages?.[currentMessageIndex ?? 0];
   const [content, setContent] = useState(currentMessage?.content ?? '');
   const [isFontSheetOpen, setIsFontSheetOpen] = useState(false);
   const [isButtonOpen, setIsButtonOpen] = useState(false);
   const [activeFont, setActiveFont] = useState<FontNameWithoutAppleFont>(
     currentMessage?.font ?? 'Cafe24Ssurround',
   );
-  const { mutate } = useEditMessage();
+  const { mutate } = useEditMessage({
+    content: 'cake',
+    messageId: state.id,
+    paperId: Number(id),
+  });
   const handleMessageSubmit = () => {
     mutate({
       content,
       font: activeFont,
       fontColor: 'gray-900',
-      id: location.state.id,
+      id: state.id,
     });
   };
 
-  const bg = findBgByPosition(currentMessage?.position ?? 0);
+  const bg = findBgByPosition((currentMessageIndex ?? 0) + 1);
 
   useSetHeader({
     rightBtn: false,

@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
+import { useQuery } from '@tanstack/react-query';
 import { useRef } from 'react';
-import { createSearchParams, useNavigate } from 'react-router-dom';
+import { createSearchParams, useNavigate, useParams } from 'react-router-dom';
 import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperType } from 'swiper/types';
@@ -8,7 +9,7 @@ import { Swiper as SwiperType } from 'swiper/types';
 import SwipeNavigation from '@/components/swipe/navigation';
 import useSwipeNavigation from '@/hooks/use-swipe-navigation';
 import { CAKE_THEME_PALETTES, findSvgByThemeName } from '@/lib/cake-decoration';
-import { usePaperMessagesQuery } from '@/queries/message';
+import { messageQueries } from '@/lib/query-factory';
 import routes from '@/routes';
 
 interface CakeSwipeProps {
@@ -22,7 +23,8 @@ export default function CakeSwipe({
 }: CakeSwipeProps) {
   const navigate = useNavigate();
   const swiperRef = useRef<SwiperType>();
-  const { data: messages } = usePaperMessagesQuery();
+  const params = useParams();
+  const { data: messages } = useQuery(messageQueries.paper(Number(params.id)));
   const { isBeginning, isEnd, updateSlideStatus } = useSwipeNavigation(
     activeIndex,
     CAKE_THEME_PALETTES.length,

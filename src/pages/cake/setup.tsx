@@ -3,12 +3,12 @@ import NameForm from '@/components/common/name-form';
 import useNameForm from '@/hooks/use-name-form';
 import useSetHeader from '@/hooks/use-set-header';
 import { titleMaxLength } from '@/lib/regex-patterns';
+import { useCreatePaper } from '@/mutations/paper';
 import {
   StyledHeading,
   StyledSectionWrapper,
   StyledWrapper,
 } from '@/pages/rollingpaper/setup.style';
-import { useCreatePaper } from '@/queries/paper';
 
 export default function CakeSetup() {
   const { handleNameChange, handleNameReset, isError, name, nameRef } =

@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 
 import { findCakeThemeStyle, findSvgByThemeName } from '@/lib/cake-decoration';
-import { ColorName, FontNameWithoutAppleFont } from '@/styles/theme';
 import { findFontByName } from '@/lib/common';
 import { Font } from '@/lib/fonts';
+import { ColorName, FontNameWithoutAppleFont } from '@/styles/theme';
 
 interface CakeTextareaProps {
   themeName: string;

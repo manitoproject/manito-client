@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 
 import { Modal } from '@/components/modal';
 import useNameForm from '@/hooks/use-name-form';
-import { useCreateMessage } from '@/queries/message';
+import { useCreateMessage } from '@/mutations/message';
 import { useModalIndex } from '@/stores/modal-store';
 import theme, { ColorName, FontNameWithoutAppleFont } from '@/styles/theme';
 

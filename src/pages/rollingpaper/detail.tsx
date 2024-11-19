@@ -8,20 +8,14 @@ import MessageSwipe from '@/components/swipe/message-swipe';
 import ReactHelmet, { TITLE } from '@/helmet';
 import useDetailIndex from '@/hooks/use-detail-index';
 import useSetHeader from '@/hooks/use-set-header';
+import { messageQueries, paperQueries } from '@/lib/query-factory';
 import { ROLLINGPAPER_BG_MAP } from '@/lib/rolling-paper';
 import { StyledBackdrop } from '@/pages/rollingpaper/list.style';
-import queries from '@/queries/query-key-factory';
 
 export default function RollingpaperDetail() {
   const params = useParams();
-  const { data: messages } = useQuery({
-    ...queries.messages.paper(Number(params.id)),
-    select: (data) => data?.data,
-  });
-  const { data: paper } = useQuery({
-    ...queries.papers.detail(Number(params.id)),
-    select: (data) => data?.data,
-  });
+  const { data: messages } = useQuery(messageQueries.paper(Number(params.id)));
+  const { data: paper } = useQuery(paperQueries.detail(Number(params.id)));
   const { activeIndex, setActiveIndex } = useDetailIndex(messages);
   useSetHeader({
     title: paper?.title,

@@ -1,26 +1,25 @@
 import styled from '@emotion/styled';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { kakaoProfile } from '@/assets/imgs';
-import { useUserSuspenseQuery } from '@/queries/users';
+import { userQueries } from '@/lib/query-factory';
 import { getFontSizeAndWeight } from '@/styles/mixins';
 
 export default function MyProfile() {
-  const { data } = useUserSuspenseQuery();
+  const { data } = useSuspenseQuery(userQueries.detail());
   return (
     <>
       <StyledAvatarWrapper>
         <img
           src={
-            data?.data?.isOriginProfile === 'N'
-              ? kakaoProfile
-              : data?.data?.profileImage
+            data?.isOriginProfile === 'N' ? kakaoProfile : data?.profileImage
           }
           alt="avatar"
         />
       </StyledAvatarWrapper>
       <StyledNicknameWrapper>
-        <p>{data?.data?.nickname}</p>
-        <p>{data?.data?.email}</p>
+        <p>{data?.nickname}</p>
+        <p>{data?.email}</p>
       </StyledNicknameWrapper>
     </>
   );

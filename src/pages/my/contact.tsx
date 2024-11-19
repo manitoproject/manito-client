@@ -1,22 +1,23 @@
 import styled from '@emotion/styled';
+import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 
 import { Button } from '@/components/common/button/buttons';
 import ReactHelmet from '@/helmet';
 import useSetHeader from '@/hooks/use-set-header';
-import { useSendFeedbackMessage } from '@/queries/contact';
-import { useUserQuery } from '@/queries/users';
+import { userQueries } from '@/lib/query-factory';
+import { useSendFeedbackMessage } from '@/mutations/contact';
 import { getFontSizeAndWeight } from '@/styles/mixins';
 
 export default function Contact() {
-  const { data } = useUserQuery();
+  const { data: user } = useQuery(userQueries.detail());
   const [message, setMessage] = useState('');
   const [isFocus, setIsFocus] = useState(false);
   const { mutate, isPending } = useSendFeedbackMessage(setMessage);
   useSetHeader({ title: '문의하기', rightBtn: false });
 
   const handleSendMessage = () => {
-    if (message.length) mutate({ content: message, user: data?.data });
+    if (message.length) mutate({ content: message, user });
   };
   return (
     <StyledWrapper>

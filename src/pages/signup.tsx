@@ -7,14 +7,15 @@ import SignupRadioButton from '@/components/common/button/signup-radio-button';
 import NameForm from '@/components/common/name-form';
 import useNameForm from '@/hooks/use-name-form';
 import useSetHeader from '@/hooks/use-set-header';
-import { useNicknameChange } from '@/queries/users';
+import { nicknameMaxLength } from '@/lib/regex-patterns';
+import { useNicknameChange } from '@/mutations/users';
 import routes from '@/routes';
 import { getFontSizeAndWeight } from '@/styles/mixins';
-import { nicknameMaxLength } from '@/lib/regex-patterns';
 
 export default function Signup() {
   const [activeRadioButtonIndex, setActiveRadioButtonIndex] = useState(0);
   const { mutate, isPending } = useNicknameChange();
+  const location = useLocation();
   useSetHeader({ title: '회원가입', rightBtn: false });
 
   const { handleNameChange, handleNameReset, isError, name, nameRef } =
@@ -25,7 +26,6 @@ export default function Signup() {
     e.preventDefault();
     mutate(name);
   };
-  const location = useLocation();
 
   if (location.state !== 'Y') Navigate({ to: routes.landing });
 
