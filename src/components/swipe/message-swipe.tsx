@@ -7,7 +7,7 @@ import { Swiper as SwiperType } from 'swiper/types';
 import CakeTextarea from '@/components/cake/textarea';
 import EmojiSkin from '@/components/rollingpaper/emoji-skin';
 import SwipeNavigation from '@/components/swipe/navigation';
-import useBoundaryIndex from '@/hooks/use-boundary-index';
+import useSwipeNavigation from '@/hooks/use-swipe-navigation';
 import { findSvgByThemeName } from '@/lib/cake-decoration';
 import { Message } from '@/types/message';
 
@@ -26,14 +26,14 @@ export default function MessageSwipe({
 }: DetailSwiperProps) {
   const swiperRef = useRef<SwiperType>();
 
-  const { isBeginning, isEnd, onBoundaryUpdate } = useBoundaryIndex(
+  const { isBeginning, isEnd, updateSlideStatus } = useSwipeNavigation(
     activeIndex,
     messages.length,
   );
 
   const handleSlideChange = (e: SwiperType) => {
     const { isBeginning, isEnd, activeIndex } = e;
-    onBoundaryUpdate(isBeginning, isEnd);
+    updateSlideStatus(isBeginning, isEnd);
     setActiveIndex(activeIndex);
   };
 

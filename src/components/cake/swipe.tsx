@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperType } from 'swiper/types';
 
 import SwipeNavigation from '@/components/swipe/navigation';
-import useBoundaryIndex from '@/hooks/use-boundary-index';
+import useSwipeNavigation from '@/hooks/use-swipe-navigation';
 import { CAKE_THEME_PALETTES, findSvgByThemeName } from '@/lib/cake-decoration';
 import { usePaperMessagesQuery } from '@/queries/message';
 import routes from '@/routes';
@@ -23,14 +23,13 @@ export default function CakeSwipe({
   const navigate = useNavigate();
   const swiperRef = useRef<SwiperType>();
   const { data: messages } = usePaperMessagesQuery();
-  const { isBeginning, isEnd, onBoundaryUpdate } = useBoundaryIndex(
+  const { isBeginning, isEnd, updateSlideStatus } = useSwipeNavigation(
     activeIndex,
     CAKE_THEME_PALETTES.length,
   );
   const handleSlideChange = (e: SwiperType) => {
-    const { isBeginning, isEnd, activeIndex } = e;
-    onBoundaryUpdate(isBeginning, isEnd);
-    setActiveIndex(activeIndex);
+    updateSlideStatus(e.isBeginning, e.isEnd);
+    setActiveIndex(e.activeIndex);
   };
 
   const handleViewItemDetail = (pageId: number, itemId: number) => {
