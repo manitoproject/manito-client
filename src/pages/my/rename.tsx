@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
 import { kakaoProfile } from '@/assets/imgs';
-import { Button } from '@/components/common/button/buttons';
+import { Button } from '@/components/common/buttons/buttons';
 import NameForm from '@/components/common/name-form';
 import ReactHelmet from '@/helmet';
 import useNameForm from '@/hooks/use-name-form';

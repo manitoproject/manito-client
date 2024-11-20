@@ -1,4 +1,4 @@
-import { Button } from '@/components/common/button/buttons';
+import { Button } from '@/components/common/buttons/buttons';
 import NameForm from '@/components/common/name-form';
 import useNameForm from '@/hooks/use-name-form';
 import useSetHeader from '@/hooks/use-set-header';

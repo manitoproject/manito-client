@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 
 import makeCakeBg from '@/assets/imgs/intro/make-a-cake-bgx4@4x-100.webp';
 import rollingBg from '@/assets/imgs/intro/rollring-paper-B@4x-1004.webp';
-import { LinkButton } from '@/components/common/button/buttons';
+import { LinkButton } from '@/components/common/buttons/buttons';
 import ReactHelmet from '@/helmet';
 import useSetHeader from '@/hooks/use-set-header';
 import { messageQueries } from '@/lib/query-factory';

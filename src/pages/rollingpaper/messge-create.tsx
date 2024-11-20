@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Sheet } from 'react-modal-sheet';
 import { useLocation, useParams } from 'react-router-dom';
 
-import { Button } from '@/components/common/button/buttons';
+import { Button } from '@/components/common/buttons/buttons';
 import CreateMessageModal from '@/components/modal/create-message-modal';
 import BottomSheetButton from '@/components/rollingpaper/bottom-sheet/button';
 import EmojiSheet from '@/components/rollingpaper/bottom-sheet/emoji-sheet/emoji-sheet';
@@ -33,17 +33,11 @@ export default function MessageCreatePage() {
   const [isEmojiSelectionPage, setisEmojiSelectionPage] = useState(true);
   const [isEmojiSheetOpen, setIsEmojiSheetOpen] = useState(false);
   const [isFontSheetOpen, setIsFontSheetOpen] = useState(false);
-  const [isButtonOpen, setIsButtonOpen] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
+  const [isCreateMessageModalOpen, setIsCreateMessageModal] = useState(false);
   const [activeMenuIndex, setActiveMenuIndex] = useState(0);
   const { form, handleChangeForm } = useMessageForm();
   const Svg = findSvgByThemeName(form.emoji);
-
-  useSetHeader({
-    title: isEmojiSelectionPage ? '편지 선택' : '편지 작성',
-    bg: ROLLINGPAPER_BG_MAP[paper?.theme ?? 'animal'].bgColor,
-    color: paper?.theme === 'animal' ? undefined : 'white',
-  });
 
   const handleMessageSubmit = () => {
     if (isEmojiSelectionPage) {
@@ -51,7 +45,7 @@ export default function MessageCreatePage() {
       setIsEmojiSheetOpen(false);
       setIsFontSheetOpen(true);
     } else {
-      setIsModalOpen(true);
+      setIsCreateMessageModal(true);
     }
   };
 
@@ -62,6 +56,12 @@ export default function MessageCreatePage() {
       setIsFontSheetOpen(true);
     }
   };
+
+  useSetHeader({
+    title: isEmojiSelectionPage ? '편지 선택' : '편지 작성',
+    bg: ROLLINGPAPER_BG_MAP[paper?.theme ?? 'animal'].bgColor,
+    color: paper?.theme === 'animal' ? undefined : 'white',
+  });
 
   useEffect(() => {
     if (isEmojiSelectionPage) {
@@ -92,11 +92,11 @@ export default function MessageCreatePage() {
         </EmojiSkin>
       </StyledRollingFormEmojiWrapper>
       <StyledCustomSheet
-        onCloseEnd={() => setIsButtonOpen(true)}
+        onCloseEnd={() => setIsBottomSheetOpen(true)}
         detent="content-height"
         isOpen={isFontSheetOpen}
         onClose={() => setIsFontSheetOpen(false)}
-        onOpenEnd={() => setIsButtonOpen(false)}
+        onOpenEnd={() => setIsBottomSheetOpen(false)}
       >
         <Sheet.Container>
           <Sheet.Header>
@@ -133,8 +133,8 @@ export default function MessageCreatePage() {
       </StyledCustomSheet>
 
       <StyledCustomSheet
-        onOpenEnd={() => setIsButtonOpen(false)}
-        onCloseEnd={() => setIsButtonOpen(true)}
+        onOpenEnd={() => setIsBottomSheetOpen(false)}
+        onCloseEnd={() => setIsBottomSheetOpen(true)}
         isOpen={isEmojiSheetOpen}
         onClose={() => setIsEmojiSheetOpen(false)}
         detent="content-height"
@@ -158,16 +158,16 @@ export default function MessageCreatePage() {
         </Sheet.Container>
       </StyledCustomSheet>
 
-      {isModalOpen && (
+      {isCreateMessageModalOpen && (
         <CreateMessageModal
           position={location.state.position}
           contentType="rollingpaper"
           form={form}
-          onCloseModal={() => setIsModalOpen(false)}
+          onCloseModal={() => setIsCreateMessageModal(false)}
         />
       )}
       <BottomSheetButton
-        isOpen={isButtonOpen}
+        isOpen={isBottomSheetOpen}
         onOpen={handleOpenSheet}
         disabled={isEmojiSelectionPage ? !form.fontColor : !form.content}
         onClick={handleMessageSubmit}

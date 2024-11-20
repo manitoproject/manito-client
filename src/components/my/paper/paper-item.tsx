@@ -40,8 +40,8 @@ export default function MyPaperItem({ paper }: MyPaperItemProps) {
       </Link>
       {isModalOpen && (
         <DeleteModal
-          isMessageDelete={false}
-          handler={() => mutate(paper.id)}
+          message="컨텐츠"
+          onDelete={() => mutate(paper.id)}
           setIsOpen={setIsModalOpen}
         />
       )}

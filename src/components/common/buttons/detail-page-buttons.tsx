@@ -3,65 +3,33 @@ import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { Button } from '@/components/common/button/buttons';
+import { Button } from '@/components/common/buttons/buttons';
 import DeleteModal from '@/components/modal/delete-modal';
 import { userQueries } from '@/lib/query-factory';
-import { token } from '@/lib/storage';
 import { useDeleteMessage } from '@/mutations/message';
 import routes from '@/routes';
 import theme from '@/styles/theme';
 import { Message } from '@/types/message';
 
-interface AuthButtonsProps extends DetailMessageButtonsProps {}
 interface DetailMessageButtonsProps {
   message: Message<UserIdAndNickname>;
-  authorId?: number;
   category: CategoryLowerCase;
-}
-
-function AuthButtons({ message, authorId, category }: AuthButtonsProps) {
-  const navigate = useNavigate();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const { data: user } = useQuery(userQueries.detail());
-  const { mutate } = useDeleteMessage({
-    isDetailPaer: true,
-  });
-  return (
-    <>
-      {message?.user?.id === user?.id && (
-        <Button
-          css={{ background: theme.colors['powderBlue-900'] }}
-          onClick={() =>
-            navigate(routes[category].messageEdit(message?.paperId), {
-              state: { id: message.id },
-            })
-          }
-        >
-          수정
-        </Button>
-      )}
-      {(message?.user?.id === user?.id || user?.id === authorId) && (
-        <Button css={{}} onClick={() => setIsModalOpen(true)}>
-          삭제
-        </Button>
-      )}
-      {isModalOpen && (
-        <DeleteModal
-          isMessageDelete
-          setIsOpen={setIsModalOpen}
-          handler={() => mutate(message?.id)}
-        />
-      )}
-    </>
-  );
+  paperAuthorId: number | undefined;
 }
 
 export default function DetailPageBottomButtons({
   message,
-  authorId,
   category,
+  paperAuthorId,
 }: DetailMessageButtonsProps) {
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { data: user } = useQuery(userQueries.detail());
+  const { mutate } = useDeleteMessage();
+
+  const isPaperAuthor = user && user?.id === paperAuthorId;
+  const isMessageAuthor = user && message.user?.id === user?.id;
+
   return (
     <StyledDetailMessageButtons>
       <Button
@@ -76,12 +44,28 @@ export default function DetailPageBottomButtons({
       >
         닫기
       </Button>
-
-      {token.getAccessToken() && (
-        <AuthButtons
-          category={category}
-          message={message}
-          authorId={authorId}
+      {isMessageAuthor && (
+        <Button
+          css={{ background: theme.colors['powderBlue-900'] }}
+          onClick={() =>
+            navigate(routes[category].messageEdit(message?.paperId), {
+              state: { id: message.id },
+            })
+          }
+        >
+          수정
+        </Button>
+      )}
+      {(isMessageAuthor || isPaperAuthor) && (
+        <Button css={{}} onClick={() => setIsModalOpen(true)}>
+          삭제
+        </Button>
+      )}
+      {isModalOpen && (
+        <DeleteModal
+          message="편지"
+          setIsOpen={setIsModalOpen}
+          onDelete={() => mutate(message?.id)}
         />
       )}
     </StyledDetailMessageButtons>

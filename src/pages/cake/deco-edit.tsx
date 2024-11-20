@@ -6,7 +6,7 @@ import { useLocation, useParams } from 'react-router-dom';
 
 import CakeTextarea from '@/components/cake/textarea';
 import TopNotice from '@/components/cake/top-notice';
-import { Button } from '@/components/common/button/buttons';
+import { Button } from '@/components/common/buttons/buttons';
 import BottomSheetButton from '@/components/rollingpaper/bottom-sheet/button';
 import FontList from '@/components/rollingpaper/bottom-sheet/font-sheet/font-list';
 import BottomSheetheader from '@/components/rollingpaper/bottom-sheet/header';

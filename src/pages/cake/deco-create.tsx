@@ -6,7 +6,7 @@ import { useLocation, useParams } from 'react-router-dom';
 
 import CakeTextarea from '@/components/cake/textarea';
 import TopNotice from '@/components/cake/top-notice';
-import { Button } from '@/components/common/button/buttons';
+import { Button } from '@/components/common/buttons/buttons';
 import MessageCreateModal from '@/components/modal/create-message-modal';
 import BottomSheetButton from '@/components/rollingpaper/bottom-sheet/button';
 import FontList from '@/components/rollingpaper/bottom-sheet/font-sheet/font-list';
@@ -32,9 +32,9 @@ export default function DecoCreatePage() {
     theme: location.state.theme,
     fontColor: 'gray-900',
   });
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isCreateMessageModalOpen, setIsCreateMessageModal] = useState(false);
   const [isFontSheetOpen, setIsFontSheetOpen] = useState(false);
-  const [isButtonOpen, setIsButtonOpen] = useState(false);
+  const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
 
   const bg = findBgByPosition(position + 1);
   const topNoticeBgColor = findCakeThemeStyle(form.emoji)?.bgColor;
@@ -58,11 +58,11 @@ export default function DecoCreatePage() {
         fontName={form.font}
       />
       <StyledCustomSheet
-        onCloseEnd={() => setIsButtonOpen(true)}
+        onCloseEnd={() => setIsBottomSheetOpen(true)}
         detent="content-height"
         isOpen={isFontSheetOpen}
         onClose={() => setIsFontSheetOpen(false)}
-        onOpenEnd={() => setIsButtonOpen(false)}
+        onOpenEnd={() => setIsBottomSheetOpen(false)}
       >
         <Sheet.Container>
           <Sheet.Header>
@@ -75,7 +75,7 @@ export default function DecoCreatePage() {
                 onChangeFont={handleChangeForm}
               />
               <Button
-                onClick={() => setIsModalOpen(true)}
+                onClick={() => setIsCreateMessageModal(true)}
                 disabled={!form.content.length}
               >
                 작성완료
@@ -85,18 +85,18 @@ export default function DecoCreatePage() {
         </Sheet.Container>
       </StyledCustomSheet>
       <BottomSheetButton
-        isOpen={isButtonOpen}
+        isOpen={isBottomSheetOpen}
         onOpen={() => setIsFontSheetOpen(true)}
         disabled={!form.content.length}
-        onClick={() => setIsModalOpen(true)}
+        onClick={() => setIsCreateMessageModal(true)}
       >
         작성완료
       </BottomSheetButton>
-      {isModalOpen && (
+      {isCreateMessageModalOpen && (
         <MessageCreateModal
           position={Date.now() / 1000}
           form={form}
-          onCloseModal={() => setIsModalOpen(false)}
+          onCloseModal={() => setIsCreateMessageModal(false)}
           contentType="cake"
         />
       )}

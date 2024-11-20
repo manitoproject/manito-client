@@ -5,7 +5,7 @@ import {
   StyledButton,
   StyledKakaoButton,
   StyledLinkButton,
-} from '@/components/common/button/buttons.style';
+} from '@/components/common/buttons/buttons.style';
 import { ColorName } from '@/styles/theme';
 
 export interface CommonButtonProps {

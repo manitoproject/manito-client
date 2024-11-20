@@ -24,7 +24,7 @@ export default function MyMessageItem({
   activeCagegory,
 }: MyMessageItemProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { mutate } = useDeleteMessage({});
+  const { mutate } = useDeleteMessage();
   const navigate = useNavigate();
   const Svg = findSvgByThemeName(message.theme);
 
@@ -62,9 +62,9 @@ export default function MyMessageItem({
       </EmojiSkin>
       {isModalOpen && (
         <DeleteModal
-          isMessageDelete
+          message="편지"
           setIsOpen={setIsModalOpen}
-          handler={() => mutate(message.id)}
+          onDelete={() => mutate(message.id)}
         />
       )}
     </StyledMessageItem>

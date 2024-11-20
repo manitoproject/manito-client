@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import RadioButton from '@/components/common/button/radio-button';
+import RadioButton from '@/components/common/buttons/radio-button';
 
 interface RadioButtonsProps {
   activeRadioButtonIndex: number;

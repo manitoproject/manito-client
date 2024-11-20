@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { Content } from '@/components/modal/create-message-modal';
 import { messageQueries } from '@/lib/query-factory';
@@ -29,19 +29,16 @@ export const useCreateMessage = (paperId: number, content: Content) => {
   });
 };
 
-export const useDeleteMessage = ({
-  isDetailPaer = false,
-}: {
-  isDetailPaer?: boolean;
-}) => {
+export const useDeleteMessage = () => {
   const queryClient = useQueryClient();
   const toastActions = useToastActions();
+  const location = useLocation();
   const navigate = useNavigate();
   return useMutation({
     mutationFn: deleteMessage,
     onSuccess: (data) => {
       if (data.result === 'Success') {
-        if (isDetailPaer) navigate(-1);
+        if (!location.pathname.includes('my')) navigate(-1);
         toastActions.add('편지가 삭제 되었습니다.');
         queryClient.invalidateQueries({
           queryKey: messageQueries.all(),

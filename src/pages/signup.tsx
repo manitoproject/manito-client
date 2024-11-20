@@ -2,8 +2,8 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 
-import { Button } from '@/components/common/button/buttons';
-import SignupRadioButton from '@/components/common/button/signup-radio-button';
+import { Button } from '@/components/common/buttons/buttons';
+import SignupRadioButton from '@/components/common/buttons/signup-radio-button';
 import NameForm from '@/components/common/name-form';
 import useNameForm from '@/hooks/use-name-form';
 import useSetHeader from '@/hooks/use-set-header';

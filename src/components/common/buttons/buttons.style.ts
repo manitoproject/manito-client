@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import {
   CommonButtonProps,
   LinkButtonProps,
-} from '@/components/common/button/buttons';
+} from '@/components/common/buttons/buttons';
 import { getFontSizeAndWeight } from '@/styles/mixins';
 import { ThemeType } from '@/styles/theme';
 

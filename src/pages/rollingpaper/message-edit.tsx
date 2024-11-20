@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Sheet } from 'react-modal-sheet';
 import { useLocation, useParams } from 'react-router-dom';
 
-import { Button } from '@/components/common/button/buttons';
+import { Button } from '@/components/common/buttons/buttons';
 import BottomSheetButton from '@/components/rollingpaper/bottom-sheet/button';
 import ColorList from '@/components/rollingpaper/bottom-sheet/font-sheet/color-list';
 import FontList from '@/components/rollingpaper/bottom-sheet/font-sheet/font-list';
@@ -39,12 +39,6 @@ export default function MessageEditPage() {
   const { form, handleChangeForm } = useMessageForm(currentMessage);
   const Svg = findSvgByThemeName(currentMessage?.theme ?? '');
 
-  useSetHeader({
-    title: '수정하기',
-    bg: ROLLINGPAPER_BG_MAP[paper?.theme ?? 'animal'].bgColor,
-    color: paper?.theme === 'animal' ? undefined : 'white',
-  });
-
   const { mutate } = useEditMessage({
     content: 'rollingpaper',
     messageId: currentMessage?.id,
@@ -56,6 +50,12 @@ export default function MessageEditPage() {
       id: location.state.id,
     });
   };
+
+  useSetHeader({
+    title: '수정하기',
+    bg: ROLLINGPAPER_BG_MAP[paper?.theme ?? 'animal'].bgColor,
+    color: paper?.theme === 'animal' ? undefined : 'white',
+  });
 
   useEffect(() => {
     setIsFontSheetOpen(true);

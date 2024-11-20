@@ -2,8 +2,8 @@ import styled from '@emotion/styled';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 
+import DetailPageBottomButtons from '@/components/common/buttons/detail-page-buttons';
 import AuthorInfo from '@/components/rollingpaper/detail/author-info';
-import DetailPageBottomButtons from '@/components/rollingpaper/detail/buttons';
 import MessageSwipe from '@/components/swipe/message-swipe';
 import ReactHelmet, { TITLE } from '@/helmet';
 import useDetailIndex from '@/hooks/use-detail-index';
@@ -43,7 +43,7 @@ export default function RollingpaperDetail() {
       </div>
       <DetailPageBottomButtons
         category="rollingpaper"
-        authorId={paper?.userId}
+        paperAuthorId={paper?.userId}
         message={currentMessage}
       />
       <ReactHelmet title={`${paper?.title} - ${TITLE}`} />

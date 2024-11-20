@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Button } from '@/components/common/button/buttons';
+import { Button } from '@/components/common/buttons/buttons';
 import NameForm from '@/components/common/name-form';
 import ThemeCarousel from '@/components/rollingpaper/setup/theme-carousel';
 import ReactHelmet from '@/helmet';

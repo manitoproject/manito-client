@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { useRef } from 'react';
 
-import { Button } from '@/components/common/button/buttons';
+import { Button } from '@/components/common/buttons/buttons';
 import BottomSheetheader from '@/components/rollingpaper/bottom-sheet/header';
 
 interface BottomSheetButton {

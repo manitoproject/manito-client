@@ -3,23 +3,21 @@ import theme from '@/styles/theme';
 
 interface DeleteModalProps {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  handler: () => void;
-  isMessageDelete: boolean;
+  onDelete: () => void;
+  message: '편지' | '컨텐츠'; // 메시지 삭제일경우 편지
 }
 
 export default function DeleteModal({
   setIsOpen,
-  handler,
-  isMessageDelete,
+  onDelete,
+  message,
 }: DeleteModalProps) {
-  const type = isMessageDelete ? '편지' : '컨텐츠';
-
   return (
     <Modal onClick={() => setIsOpen((prev) => !prev)}>
       <Modal.TitleWrapper>
-        <Modal.Title>작성된 {type}를 삭제하시겠습니까?</Modal.Title>
+        <Modal.Title>작성된 {message}를 삭제하시겠습니까?</Modal.Title>
         <Modal.Description>
-          삭제한 {type}는 되돌릴 수 없습니다.
+          삭제한 {message}는 되돌릴 수 없습니다.
         </Modal.Description>
       </Modal.TitleWrapper>
       <Modal.Buttons>
@@ -34,7 +32,7 @@ export default function DeleteModal({
             background: theme.colors['black'],
             color: theme.colors.white,
           }}
-          onClick={handler}
+          onClick={onDelete}
         >
           삭제하기
         </Modal.Button>
