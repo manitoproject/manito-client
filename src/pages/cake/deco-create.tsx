@@ -32,7 +32,7 @@ export default function DecoCreatePage() {
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
 
   const bg = findBgByPosition(position + 1);
-  const topNoticeBgColor = findCakeThemeStyle(form.emoji)?.bgColor;
+  const topNoticeBgColor = findCakeThemeStyle(form.theme)?.bgColor;
 
   useSetHeader({
     rightBtn: false,
@@ -47,7 +47,7 @@ export default function DecoCreatePage() {
     <StyledWrapper>
       <TopNotice bgColor={topNoticeBgColor} />
       <CakeTextarea
-        themeName={form.emoji}
+        themeName={form.theme}
         content={form.content}
         onChangeContent={handleChangeForm}
         fontName={form.font}

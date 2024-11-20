@@ -4,7 +4,7 @@ import { ColorName, FontNameWithoutAppleFont } from '@/styles/theme';
 import { Message } from '@/types/message';
 
 export interface MessageForm {
-  emoji: string;
+  theme: string;
   font: FontNameWithoutAppleFont;
   fontColor: ColorName;
   content: string;
@@ -17,7 +17,7 @@ export default function useMessageForm(
 ) {
   const [form, setForm] = useState<MessageForm>({
     content: currentMessage?.content ?? '',
-    emoji: currentMessage?.theme ?? '',
+    theme: currentMessage?.theme ?? '',
     font: currentMessage?.font ?? 'Cafe24Ssurround',
     fontColor: currentMessage?.fontColor ?? 'white',
   });

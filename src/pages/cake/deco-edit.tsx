@@ -43,7 +43,7 @@ export default function DecoEditPage() {
   };
 
   const bg = findBgByPosition((currentMessageIndex ?? 0) + 1);
-  const topNoticeBgColor = findCakeThemeStyle(form.emoji)?.bgColor;
+  const topNoticeBgColor = findCakeThemeStyle(form.theme)?.bgColor;
 
   useSetHeader({
     rightBtn: false,
@@ -58,7 +58,7 @@ export default function DecoEditPage() {
     <StyledWrapper>
       <TopNotice bgColor={topNoticeBgColor} />
       <CakeTextarea
-        themeName={form.emoji}
+        themeName={form.theme}
         content={form.content}
         onChangeContent={handleChangeForm}
         fontName={form.font}

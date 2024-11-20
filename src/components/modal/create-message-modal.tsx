@@ -38,11 +38,8 @@ export default function CreateMessageModal({
 
   const handleMessageSubmit = () => {
     mutate({
-      font: form.font,
-      content: form.content,
-      fontColor: form.fontColor,
+      ...form,
       position,
-      theme: form.emoji,
       isPublic: activeModalIndex === 0 ? 'Y' : 'N',
       paperId: Number(params.id),
       anonymous: activeModalIndex === 1 ? nickname : '',

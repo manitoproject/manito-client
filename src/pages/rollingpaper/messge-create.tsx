@@ -34,7 +34,7 @@ export default function MessageCreatePage() {
   const [isCreateMessageModalOpen, setIsCreateMessageModal] = useState(false);
   const [activeMenuIndex, setActiveMenuIndex] = useState(0);
   const { form, handleChangeForm } = useMessageForm();
-  const Svg = findSvgByThemeName(form.emoji);
+  const Svg = findSvgByThemeName(form.theme);
 
   const handleMessageSubmit = () => {
     if (isEmojiSelectionPage) {
@@ -78,7 +78,7 @@ export default function MessageCreatePage() {
       >
         <EmojiSkin message={form}>
           {Svg && <Svg />}
-          {form.emoji && (
+          {form.theme && (
             <textarea
               name="content"
               disabled={isEmojiSelectionPage}
@@ -117,11 +117,11 @@ export default function MessageCreatePage() {
         onClose={() => setIsEmojiSheetOpen(false)}
       >
         <EmojiSheet
-          activeEmoji={form.emoji}
+          activeEmoji={form.theme}
           handleChangeEmoji={handleChangeForm}
           theme={paper?.theme ?? 'animal'}
         />
-        <Button onClick={handleMessageSubmit} disabled={!form.emoji}>
+        <Button onClick={handleMessageSubmit} disabled={!form.theme}>
           편지 선택하기
         </Button>
       </BottomSheet>
