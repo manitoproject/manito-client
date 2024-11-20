@@ -13,6 +13,7 @@ import FontSheet from '@/components/rollingpaper/bottom-sheet/font-sheet/font-sh
 import BottomSheetheader from '@/components/rollingpaper/bottom-sheet/header';
 import EmojiSkin from '@/components/rollingpaper/emoji-skin';
 import ReactHelmet from '@/helmet';
+import useMessageForm from '@/hooks/use-message-form';
 import useSetHeader from '@/hooks/use-set-header';
 import { findSvgByThemeName } from '@/lib/cake-decoration';
 import { paperQueries } from '@/lib/query-factory';
@@ -24,7 +25,6 @@ import {
   StyledRollingFormWrapper,
   StyledSheetContentWrapper,
 } from '@/pages/rollingpaper/message.style';
-import { ColorName, FontNameWithoutAppleFont } from '@/styles/theme';
 
 export default function MessageCreatePage() {
   const params = useParams();
@@ -33,15 +33,11 @@ export default function MessageCreatePage() {
   const [isEmojiSelectionPage, setisEmojiSelectionPage] = useState(true);
   const [isEmojiSheetOpen, setIsEmojiSheetOpen] = useState(false);
   const [isFontSheetOpen, setIsFontSheetOpen] = useState(false);
-  const [activeEmoji, setActiveEmoji] = useState('');
   const [isButtonOpen, setIsButtonOpen] = useState(false);
-  const [activeMenuIndex, setActiveMenuIndex] = useState(0);
-  const Svg = findSvgByThemeName(activeEmoji);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [activeFont, setActiveFont] =
-    useState<FontNameWithoutAppleFont>('Cafe24Ssurround');
-  const [activeColor, setActiveColor] = useState<ColorName>('white');
-  const [content, setContent] = useState('');
+  const [activeMenuIndex, setActiveMenuIndex] = useState(0);
+  const { form, handleChangeForm } = useMessageForm();
+  const Svg = findSvgByThemeName(form.emoji);
 
   useSetHeader({
     title: isEmojiSelectionPage ? '편지 선택' : '편지 작성',
@@ -83,19 +79,14 @@ export default function MessageCreatePage() {
       <StyledRollingFormEmojiWrapper
         isEmojiSelectionPage={isEmojiSelectionPage}
       >
-        <EmojiSkin
-          message={{
-            font: activeFont,
-            fontColor: activeColor,
-            theme: activeEmoji,
-          }}
-        >
+        <EmojiSkin message={form}>
           {Svg && <Svg />}
-          {activeEmoji && (
+          {form.emoji && (
             <textarea
+              name="content"
               disabled={isEmojiSelectionPage}
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
+              value={form.content}
+              onChange={handleChangeForm}
             />
           )}
         </EmojiSkin>
@@ -119,18 +110,21 @@ export default function MessageCreatePage() {
               >
                 {activeMenuIndex === 0 ? (
                   <FontList
-                    activeFont={activeFont}
-                    setActiveFont={setActiveFont}
+                    activeFont={form.font}
+                    onChangeFont={handleChangeForm}
                   />
                 ) : (
                   <ColorList
                     theme={paper?.theme ?? 'animal'}
-                    activeColor={activeColor}
-                    setActiveColor={setActiveColor}
+                    activeColor={form.fontColor}
+                    onChangeColor={handleChangeForm}
                   />
                 )}
               </FontSheet>
-              <Button onClick={handleMessageSubmit} disabled={!content.length}>
+              <Button
+                onClick={handleMessageSubmit}
+                disabled={!form.content.length}
+              >
                 작성완료
               </Button>
             </StyledSheetContentWrapper>
@@ -152,11 +146,11 @@ export default function MessageCreatePage() {
           <Sheet.Content>
             <StyledSheetContentWrapper>
               <EmojiSheet
-                activeEmoji={activeEmoji}
-                setActiveEmoji={setActiveEmoji}
+                activeEmoji={form.emoji}
+                handleChangeEmoji={handleChangeForm}
                 theme={paper?.theme ?? 'animal'}
               />
-              <Button onClick={handleMessageSubmit} disabled={!activeEmoji}>
+              <Button onClick={handleMessageSubmit} disabled={!form.emoji}>
                 편지 선택하기
               </Button>
             </StyledSheetContentWrapper>
@@ -167,18 +161,15 @@ export default function MessageCreatePage() {
       {isModalOpen && (
         <CreateMessageModal
           position={location.state.position}
-          emoji={activeEmoji}
-          color={activeColor}
-          font={activeFont}
           contentType="rollingpaper"
-          content={content}
+          form={form}
           onCloseModal={() => setIsModalOpen(false)}
         />
       )}
       <BottomSheetButton
         isOpen={isButtonOpen}
         onOpen={handleOpenSheet}
-        disabled={isEmojiSelectionPage ? !activeColor : !content}
+        disabled={isEmojiSelectionPage ? !form.fontColor : !form.content}
         onClick={handleMessageSubmit}
       >
         {isEmojiSelectionPage ? '편지 선택하기' : '작성 완료'}

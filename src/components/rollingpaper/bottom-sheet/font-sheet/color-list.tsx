@@ -2,26 +2,28 @@ import {
   StyledColorItem,
   StyledColorList,
 } from '@/components/rollingpaper/bottom-sheet/font-sheet/color-list.style';
-import { ColorName } from '@/styles/theme';
 import { colors } from '@/lib/fonts';
+import { ColorName } from '@/styles/theme';
 
 export interface ColorListProps {
   activeColor: ColorName;
-  setActiveColor: React.Dispatch<React.SetStateAction<ColorName>>;
+  onChangeColor: (e: React.MouseEvent<HTMLButtonElement>) => void;
   theme: RollingThemeName;
 }
 
 export default function ColorList({
   activeColor,
-  setActiveColor,
   theme,
+  onChangeColor,
 }: ColorListProps) {
   return (
     <StyledColorList>
       {colors[theme].map((color) => (
         <StyledColorItem
+          name="fontColor"
+          value={color}
           isActive={activeColor === color}
-          onClick={() => setActiveColor(color)}
+          onClick={onChangeColor}
           key={color}
           color={color}
         >

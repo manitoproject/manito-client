@@ -11,6 +11,7 @@ import FontSheet from '@/components/rollingpaper/bottom-sheet/font-sheet/font-sh
 import BottomSheetheader from '@/components/rollingpaper/bottom-sheet/header';
 import EmojiSkin from '@/components/rollingpaper/emoji-skin';
 import ReactHelmet from '@/helmet';
+import useMessageForm from '@/hooks/use-message-form';
 import useSetHeader from '@/hooks/use-set-header';
 import { findSvgByThemeName } from '@/lib/cake-decoration';
 import { messageQueries, paperQueries } from '@/lib/query-factory';
@@ -23,7 +24,6 @@ import {
   StyledRollingFormWrapper,
   StyledSheetContentWrapper,
 } from '@/pages/rollingpaper/message.style';
-import { ColorName, FontNameWithoutAppleFont } from '@/styles/theme';
 
 export default function MessageEditPage() {
   const params = useParams();
@@ -36,14 +36,8 @@ export default function MessageEditPage() {
   const [isFontSheetOpen, setIsFontSheetOpen] = useState(false);
   const [isButtonOpen, setIsButtonOpen] = useState(false);
   const [activeMenuIndex, setActiveMenuIndex] = useState(0);
+  const { form, handleChangeForm } = useMessageForm(currentMessage);
   const Svg = findSvgByThemeName(currentMessage?.theme ?? '');
-  const [activeFont, setActiveFont] = useState<FontNameWithoutAppleFont>(
-    currentMessage?.font ?? 'Cafe24Ssurround',
-  );
-  const [activeColor, setActiveColor] = useState<ColorName>(
-    currentMessage?.fontColor ?? 'white',
-  );
-  const [content, setContent] = useState(currentMessage?.content ?? '');
 
   useSetHeader({
     title: '수정하기',
@@ -58,9 +52,7 @@ export default function MessageEditPage() {
   });
   const handleMessageSubmit = () => {
     mutate({
-      content,
-      font: activeFont,
-      fontColor: activeColor,
+      ...form,
       id: location.state.id,
     });
   };
@@ -75,17 +67,12 @@ export default function MessageEditPage() {
         bg={ROLLINGPAPER_BG_MAP[paper?.theme ?? 'animal'].bgUrl}
       />
       <StyledRollingFormEmojiWrapper>
-        <EmojiSkin
-          message={{
-            font: activeFont,
-            fontColor: activeColor,
-            theme: currentMessage?.theme,
-          }}
-        >
+        <EmojiSkin message={form}>
           {Svg && <Svg />}
           <textarea
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
+            name="content"
+            value={form.content}
+            onChange={handleChangeForm}
           />
         </EmojiSkin>
       </StyledRollingFormEmojiWrapper>
@@ -108,18 +95,21 @@ export default function MessageEditPage() {
               >
                 {activeMenuIndex === 0 ? (
                   <FontList
-                    activeFont={activeFont}
-                    setActiveFont={setActiveFont}
+                    activeFont={form.font}
+                    onChangeFont={handleChangeForm}
                   />
                 ) : (
                   <ColorList
                     theme={paper?.theme ?? 'animal'}
-                    activeColor={activeColor}
-                    setActiveColor={setActiveColor}
+                    activeColor={form.fontColor}
+                    onChangeColor={handleChangeForm}
                   />
                 )}
               </FontSheet>
-              <Button onClick={handleMessageSubmit} disabled={!content.length}>
+              <Button
+                onClick={handleMessageSubmit}
+                disabled={!form.content.length}
+              >
                 작성완료
               </Button>
             </StyledSheetContentWrapper>
@@ -130,7 +120,7 @@ export default function MessageEditPage() {
       <BottomSheetButton
         isOpen={isButtonOpen}
         onOpen={() => setIsFontSheetOpen(true)}
-        disabled={!content.length}
+        disabled={!form.content.length}
         onClick={handleMessageSubmit}
       >
         작성 완료

@@ -8,14 +8,14 @@ import { ColorName, FontNameWithoutAppleFont } from '@/styles/theme';
 interface CakeTextareaProps {
   themeName: string;
   content: string;
-  setContent?: React.Dispatch<React.SetStateAction<string>>;
+  onChangeContent?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   fontName: FontNameWithoutAppleFont;
 }
 
 export default function CakeTextarea({
   themeName,
   content,
-  setContent,
+  onChangeContent,
   fontName,
 }: CakeTextareaProps) {
   const font = findFontByName(fontName);
@@ -30,8 +30,9 @@ export default function CakeTextarea({
       {Svg && <Svg width={96} height={96} />}
       <textarea
         value={content}
-        disabled={!setContent}
-        onChange={(e) => setContent && setContent(e.target.value)}
+        name="content"
+        disabled={!onChangeContent}
+        onChange={onChangeContent}
       />
     </StyledTextareaWarpper>
   );

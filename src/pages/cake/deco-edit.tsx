@@ -11,6 +11,7 @@ import BottomSheetButton from '@/components/rollingpaper/bottom-sheet/button';
 import FontList from '@/components/rollingpaper/bottom-sheet/font-sheet/font-list';
 import BottomSheetheader from '@/components/rollingpaper/bottom-sheet/header';
 import ReactHelmet from '@/helmet';
+import useMessageForm from '@/hooks/use-message-form';
 import useSetHeader from '@/hooks/use-set-header';
 import { findBgByPosition, findCakeThemeStyle } from '@/lib/cake-decoration';
 import { messageQueries } from '@/lib/query-factory';
@@ -21,7 +22,6 @@ import {
   StyledSheetContentWrapper,
 } from '@/pages/rollingpaper/message.style';
 import { StyledContentOverlay } from '@/styles/styled';
-import { FontNameWithoutAppleFont } from '@/styles/theme';
 
 export default function DecoEditPage() {
   const { id } = useParams();
@@ -31,12 +31,10 @@ export default function DecoEditPage() {
     (message) => message.id === state.id,
   );
   const currentMessage = messages?.[currentMessageIndex ?? 0];
-  const [content, setContent] = useState(currentMessage?.content ?? '');
+  const { form, handleChangeForm } = useMessageForm(currentMessage);
   const [isFontSheetOpen, setIsFontSheetOpen] = useState(false);
   const [isButtonOpen, setIsButtonOpen] = useState(false);
-  const [activeFont, setActiveFont] = useState<FontNameWithoutAppleFont>(
-    currentMessage?.font ?? 'Cafe24Ssurround',
-  );
+
   const { mutate } = useEditMessage({
     content: 'cake',
     messageId: state.id,
@@ -44,20 +42,18 @@ export default function DecoEditPage() {
   });
   const handleMessageSubmit = () => {
     mutate({
-      content,
-      font: activeFont,
-      fontColor: 'gray-900',
+      ...form,
       id: state.id,
     });
   };
 
   const bg = findBgByPosition((currentMessageIndex ?? 0) + 1);
+  const topNoticeBgColor = findCakeThemeStyle(form.emoji)?.bgColor;
 
   useSetHeader({
     rightBtn: false,
     title: '메시지 수정',
   });
-  const style = findCakeThemeStyle(currentMessage?.theme ?? '');
 
   useEffect(() => {
     setIsFontSheetOpen(true);
@@ -65,12 +61,12 @@ export default function DecoEditPage() {
 
   return (
     <StyledWrapper>
-      <TopNotice bgColor={style?.bgColor} />
+      <TopNotice bgColor={topNoticeBgColor} />
       <CakeTextarea
-        themeName={currentMessage?.theme ?? ''}
-        content={content}
-        setContent={setContent}
-        fontName={activeFont}
+        themeName={form.emoji}
+        content={form.content}
+        onChangeContent={handleChangeForm}
+        fontName={form.font}
       />
       <StyledCustomSheet
         onCloseEnd={() => setIsButtonOpen(true)}
@@ -85,8 +81,14 @@ export default function DecoEditPage() {
           </Sheet.Header>
           <Sheet.Content>
             <StyledSheetContentWrapper>
-              <FontList activeFont={activeFont} setActiveFont={setActiveFont} />
-              <Button onClick={handleMessageSubmit} disabled={!content.length}>
+              <FontList
+                activeFont={form.font}
+                onChangeFont={handleChangeForm}
+              />
+              <Button
+                onClick={handleMessageSubmit}
+                disabled={!form.content.length}
+              >
                 수정완료
               </Button>
             </StyledSheetContentWrapper>
@@ -96,7 +98,7 @@ export default function DecoEditPage() {
       <BottomSheetButton
         isOpen={isButtonOpen}
         onOpen={() => setIsFontSheetOpen(true)}
-        disabled={!content.length}
+        disabled={!form.content.length}
         onClick={handleMessageSubmit}
       >
         수정완료

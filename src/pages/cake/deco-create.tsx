@@ -12,6 +12,7 @@ import BottomSheetButton from '@/components/rollingpaper/bottom-sheet/button';
 import FontList from '@/components/rollingpaper/bottom-sheet/font-sheet/font-list';
 import BottomSheetheader from '@/components/rollingpaper/bottom-sheet/header';
 import ReactHelmet from '@/helmet';
+import useMessageForm from '@/hooks/use-message-form';
 import useSetHeader from '@/hooks/use-set-header';
 import { findBgByPosition, findCakeThemeStyle } from '@/lib/cake-decoration';
 import { messageQueries } from '@/lib/query-factory';
@@ -21,37 +22,40 @@ import {
   StyledSheetContentWrapper,
 } from '@/pages/rollingpaper/message.style';
 import { StyledContentOverlay } from '@/styles/styled';
-import { FontNameWithoutAppleFont } from '@/styles/theme';
 
 export default function DecoCreatePage() {
   const params = useParams();
   const location = useLocation();
   const { data: messages } = useQuery(messageQueries.paper(Number(params.id)));
   const position = messages?.length ?? 0;
-  const activeTheme = location.state.theme;
+  const { form, handleChangeForm } = useMessageForm({
+    theme: location.state.theme,
+    fontColor: 'gray-900',
+  });
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [content, setContent] = useState('');
   const [isFontSheetOpen, setIsFontSheetOpen] = useState(false);
   const [isButtonOpen, setIsButtonOpen] = useState(false);
-  const [activeFont, setActiveFont] =
-    useState<FontNameWithoutAppleFont>('Cafe24Ssurround');
+
   const bg = findBgByPosition(position + 1);
+  const topNoticeBgColor = findCakeThemeStyle(form.emoji)?.bgColor;
+
   useSetHeader({
     rightBtn: false,
     title: '메시지 작성',
   });
-  const style = findCakeThemeStyle(activeTheme);
+
   useEffect(() => {
     setIsFontSheetOpen(true);
   }, []);
+
   return (
     <StyledWrapper>
-      <TopNotice bgColor={style?.bgColor} />
+      <TopNotice bgColor={topNoticeBgColor} />
       <CakeTextarea
-        themeName={activeTheme}
-        content={content}
-        setContent={setContent}
-        fontName={activeFont}
+        themeName={form.emoji}
+        content={form.content}
+        onChangeContent={handleChangeForm}
+        fontName={form.font}
       />
       <StyledCustomSheet
         onCloseEnd={() => setIsButtonOpen(true)}
@@ -66,10 +70,13 @@ export default function DecoCreatePage() {
           </Sheet.Header>
           <Sheet.Content>
             <StyledSheetContentWrapper>
-              <FontList activeFont={activeFont} setActiveFont={setActiveFont} />
+              <FontList
+                activeFont={form.font}
+                onChangeFont={handleChangeForm}
+              />
               <Button
                 onClick={() => setIsModalOpen(true)}
-                disabled={!content.length}
+                disabled={!form.content.length}
               >
                 작성완료
               </Button>
@@ -80,7 +87,7 @@ export default function DecoCreatePage() {
       <BottomSheetButton
         isOpen={isButtonOpen}
         onOpen={() => setIsFontSheetOpen(true)}
-        disabled={!content.length}
+        disabled={!form.content.length}
         onClick={() => setIsModalOpen(true)}
       >
         작성완료
@@ -88,10 +95,7 @@ export default function DecoCreatePage() {
       {isModalOpen && (
         <MessageCreateModal
           position={Date.now() / 1000}
-          emoji={activeTheme}
-          color="gray-900"
-          font={activeFont}
-          content={content}
+          form={form}
           onCloseModal={() => setIsModalOpen(false)}
           contentType="cake"
         />

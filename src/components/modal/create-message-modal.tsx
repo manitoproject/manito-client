@@ -1,30 +1,25 @@
 import { useParams } from 'react-router-dom';
 
 import { Modal } from '@/components/modal';
+import { MessageForm } from '@/hooks/use-message-form';
 import useNameForm from '@/hooks/use-name-form';
 import { useCreateMessage } from '@/mutations/message';
 import { useModalIndex } from '@/stores/modal-store';
-import theme, { ColorName, FontNameWithoutAppleFont } from '@/styles/theme';
+import theme from '@/styles/theme';
 
 export type Content = 'cake' | 'rollingpaper';
 
 interface CreateMessageModalProps {
   onCloseModal: () => void;
-  content: string;
   contentType: Content;
-  font: FontNameWithoutAppleFont;
-  color: ColorName;
-  emoji: string;
+  form: MessageForm;
   position: number;
 }
 
 export default function CreateMessageModal({
   onCloseModal,
-  content,
   contentType,
-  color,
-  font,
-  emoji,
+  form,
   position,
 }: CreateMessageModalProps) {
   const params = useParams();
@@ -43,11 +38,11 @@ export default function CreateMessageModal({
 
   const handleMessageSubmit = () => {
     mutate({
-      font,
-      content: content,
-      fontColor: color,
+      font: form.font,
+      content: form.content,
+      fontColor: form.fontColor,
       position,
-      theme: emoji,
+      theme: form.emoji,
       isPublic: activeModalIndex === 0 ? 'Y' : 'N',
       paperId: Number(params.id),
       anonymous: activeModalIndex === 1 ? nickname : '',

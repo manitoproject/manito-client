@@ -6,25 +6,24 @@ import { ROLLINGPAPER_EMOJI_MAP } from '@/lib/rolling-paper';
 interface EmojiContentProps {
   theme: RollingThemeName;
   activeEmoji: string;
-  setActiveEmoji: React.Dispatch<React.SetStateAction<string>>;
+  handleChangeEmoji: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 export default function EmojiSheet({
   theme,
   activeEmoji,
-  setActiveEmoji,
+  handleChangeEmoji,
 }: EmojiContentProps) {
-  const handleClick = (name: string) => {
-    setActiveEmoji(name);
-  };
   return (
     <StyledWrapper>
       {ROLLINGPAPER_EMOJI_MAP[theme].map((emoji) => (
         <StyledItem
+          name="emoji"
+          value={emoji.name}
           isActive={activeEmoji === emoji.name}
           key={emoji.name}
           type="button"
-          onClick={() => handleClick(emoji.name)}
+          onClick={handleChangeEmoji}
         >
           <emoji.svg />
         </StyledItem>
