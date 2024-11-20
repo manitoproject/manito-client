@@ -4,10 +4,12 @@ import { useLocation, useParams } from 'react-router-dom';
 
 import BottomSheet from '@/components/bottom-sheet/bottom-sheet';
 import BottomSheetButton from '@/components/bottom-sheet/button';
-import EmojiSheet from '@/components/bottom-sheet/emoji-sheet/emoji-sheet';
-import ColorList from '@/components/bottom-sheet/font-sheet/color-list';
-import FontList from '@/components/bottom-sheet/font-sheet/font-list';
-import FontSheet from '@/components/bottom-sheet/font-sheet/font-sheet';
+import ColorList from '@/components/bottom-sheet/palette/color-list';
+import EmojiPalette from '@/components/bottom-sheet/palette/emoji-palette';
+import FontList from '@/components/bottom-sheet/palette/font-list';
+import FontPalette, {
+  FontMenu,
+} from '@/components/bottom-sheet/palette/font-palette';
 import { Button } from '@/components/common/buttons/buttons';
 import CreateMessageModal from '@/components/modal/create-message-modal';
 import EmojiSkin from '@/components/rollingpaper/emoji-skin';
@@ -32,7 +34,7 @@ export default function MessageCreatePage() {
   const [isFontSheetOpen, setIsFontSheetOpen] = useState(false);
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
   const [isCreateMessageModalOpen, setIsCreateMessageModal] = useState(false);
-  const [activeMenuIndex, setActiveMenuIndex] = useState(0);
+  const [activeMenu, setActiveMenu] = useState<FontMenu>('font');
   const { form, handleChangeForm } = useMessageForm();
   const Svg = findSvgByThemeName(form.theme);
 
@@ -62,7 +64,7 @@ export default function MessageCreatePage() {
 
   useEffect(() => {
     if (isEmojiSelectionPage) {
-      setActiveMenuIndex(0);
+      setActiveMenu('font');
       setIsEmojiSheetOpen(true);
       setIsFontSheetOpen(false);
     }
@@ -93,11 +95,11 @@ export default function MessageCreatePage() {
         isOpen={isFontSheetOpen}
         onClose={() => setIsFontSheetOpen(false)}
       >
-        <FontSheet
-          activeMenuIndex={activeMenuIndex}
-          setActiveMenuIndex={setActiveMenuIndex}
+        <FontPalette
+          activeMenu={activeMenu}
+          onChangeActiveMenu={(menu: FontMenu) => setActiveMenu(menu)}
         >
-          {activeMenuIndex === 0 ? (
+          {activeMenu === 'font' ? (
             <FontList activeFont={form.font} onChangeFont={handleChangeForm} />
           ) : (
             <ColorList
@@ -106,7 +108,7 @@ export default function MessageCreatePage() {
               onChangeColor={handleChangeForm}
             />
           )}
-        </FontSheet>
+        </FontPalette>
         <Button onClick={handleMessageSubmit} disabled={!form.content.length}>
           작성완료
         </Button>
@@ -116,9 +118,9 @@ export default function MessageCreatePage() {
         isOpen={isEmojiSheetOpen}
         onClose={() => setIsEmojiSheetOpen(false)}
       >
-        <EmojiSheet
+        <EmojiPalette
           activeEmoji={form.theme}
-          handleChangeEmoji={handleChangeForm}
+          onChangeEmoji={handleChangeForm}
           theme={paper?.theme ?? 'animal'}
         />
         <Button onClick={handleMessageSubmit} disabled={!form.theme}>

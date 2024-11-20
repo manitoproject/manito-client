@@ -3,29 +3,34 @@ import styled from '@emotion/styled';
 
 import { getFontSizeAndWeight } from '@/styles/mixins';
 
-const MENU = ['폰트 선택', '폰트색상선택'];
+export type FontMenu = 'font' | 'color';
 
-interface FontContentProps {
+const MENU: { id: FontMenu; label: string }[] = [
+  { id: 'font', label: '폰트 선택' },
+  { id: 'color', label: '폰트색상선택' },
+];
+
+interface FontPaletteProps {
   children: React.ReactNode;
-  activeMenuIndex: number;
-  setActiveMenuIndex: React.Dispatch<React.SetStateAction<number>>;
+  activeMenu: FontMenu;
+  onChangeActiveMenu: (menu: FontMenu) => void;
 }
 
-export default function FontSheet({
+export default function FontPalette({
   children,
-  activeMenuIndex,
-  setActiveMenuIndex,
-}: FontContentProps) {
+  activeMenu,
+  onChangeActiveMenu,
+}: FontPaletteProps) {
   return (
     <StyledWrapper>
       <StyledMenuList>
-        {MENU.map((menu, i) => (
+        {MENU.map((menu) => (
           <StyledMenuItem
-            onClick={() => setActiveMenuIndex(i)}
-            key={menu}
-            isActive={activeMenuIndex === i}
+            onClick={() => onChangeActiveMenu(menu.id)}
+            key={menu.id}
+            isActive={activeMenu === menu.id}
           >
-            {menu}
+            {menu.label}
           </StyledMenuItem>
         ))}
       </StyledMenuList>

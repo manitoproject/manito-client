@@ -4,9 +4,11 @@ import { useLocation, useParams } from 'react-router-dom';
 
 import BottomSheet from '@/components/bottom-sheet/bottom-sheet';
 import BottomSheetButton from '@/components/bottom-sheet/button';
-import ColorList from '@/components/bottom-sheet/font-sheet/color-list';
-import FontList from '@/components/bottom-sheet/font-sheet/font-list';
-import FontSheet from '@/components/bottom-sheet/font-sheet/font-sheet';
+import ColorList from '@/components/bottom-sheet/palette/color-list';
+import FontList from '@/components/bottom-sheet/palette/font-list';
+import FontPalette, {
+  FontMenu,
+} from '@/components/bottom-sheet/palette/font-palette';
 import { Button } from '@/components/common/buttons/buttons';
 import EmojiSkin from '@/components/rollingpaper/emoji-skin';
 import ReactHelmet from '@/helmet';
@@ -32,7 +34,7 @@ export default function MessageEditPage() {
   );
   const [isFontSheetOpen, setIsFontSheetOpen] = useState(false);
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
-  const [activeMenuIndex, setActiveMenuIndex] = useState(0);
+  const [activeMenu, setActiveMenu] = useState<FontMenu>('font');
   const { form, handleChangeForm } = useMessageForm(currentMessage);
   const Svg = findSvgByThemeName(currentMessage?.theme ?? '');
 
@@ -78,11 +80,11 @@ export default function MessageEditPage() {
         isOpen={isFontSheetOpen}
         onClose={() => setIsFontSheetOpen(false)}
       >
-        <FontSheet
-          activeMenuIndex={activeMenuIndex}
-          setActiveMenuIndex={setActiveMenuIndex}
+        <FontPalette
+          activeMenu={activeMenu}
+          onChangeActiveMenu={(menu: FontMenu) => setActiveMenu(menu)}
         >
-          {activeMenuIndex === 0 ? (
+          {activeMenu === 'font' ? (
             <FontList activeFont={form.font} onChangeFont={handleChangeForm} />
           ) : (
             <ColorList
@@ -91,7 +93,7 @@ export default function MessageEditPage() {
               onChangeColor={handleChangeForm}
             />
           )}
-        </FontSheet>
+        </FontPalette>
         <Button onClick={handleMessageSubmit} disabled={!form.content.length}>
           작성완료
         </Button>
