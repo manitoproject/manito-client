@@ -1,26 +1,21 @@
 import styled from '@emotion/styled';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
-import { Sheet } from 'react-modal-sheet';
 import { useLocation, useParams } from 'react-router-dom';
 
+import BottomSheet from '@/components/bottom-sheet/bottom-sheet';
+import BottomSheetButton from '@/components/bottom-sheet/button';
+import FontList from '@/components/bottom-sheet/font-sheet/font-list';
 import CakeTextarea from '@/components/cake/textarea';
 import TopNotice from '@/components/cake/top-notice';
 import { Button } from '@/components/common/buttons/buttons';
 import MessageCreateModal from '@/components/modal/create-message-modal';
-import BottomSheetButton from '@/components/rollingpaper/bottom-sheet/button';
-import FontList from '@/components/rollingpaper/bottom-sheet/font-sheet/font-list';
-import BottomSheetheader from '@/components/rollingpaper/bottom-sheet/header';
 import ReactHelmet from '@/helmet';
 import useMessageForm from '@/hooks/use-message-form';
 import useSetHeader from '@/hooks/use-set-header';
 import { findBgByPosition, findCakeThemeStyle } from '@/lib/cake-decoration';
 import { messageQueries } from '@/lib/query-factory';
 import { StyledBackdrop } from '@/pages/rollingpaper/list.style';
-import {
-  StyledCustomSheet,
-  StyledSheetContentWrapper,
-} from '@/pages/rollingpaper/message.style';
 import { StyledContentOverlay } from '@/styles/styled';
 
 export default function DecoCreatePage() {
@@ -57,33 +52,19 @@ export default function DecoCreatePage() {
         onChangeContent={handleChangeForm}
         fontName={form.font}
       />
-      <StyledCustomSheet
-        onCloseEnd={() => setIsBottomSheetOpen(true)}
-        detent="content-height"
+      <BottomSheet
         isOpen={isFontSheetOpen}
+        setIsBottomSheetOpen={setIsBottomSheetOpen}
         onClose={() => setIsFontSheetOpen(false)}
-        onOpenEnd={() => setIsBottomSheetOpen(false)}
       >
-        <Sheet.Container>
-          <Sheet.Header>
-            <BottomSheetheader />
-          </Sheet.Header>
-          <Sheet.Content>
-            <StyledSheetContentWrapper>
-              <FontList
-                activeFont={form.font}
-                onChangeFont={handleChangeForm}
-              />
-              <Button
-                onClick={() => setIsCreateMessageModal(true)}
-                disabled={!form.content.length}
-              >
-                작성완료
-              </Button>
-            </StyledSheetContentWrapper>
-          </Sheet.Content>
-        </Sheet.Container>
-      </StyledCustomSheet>
+        <FontList activeFont={form.font} onChangeFont={handleChangeForm} />
+        <Button
+          onClick={() => setIsCreateMessageModal(true)}
+          disabled={!form.content.length}
+        >
+          작성완료
+        </Button>
+      </BottomSheet>
       <BottomSheetButton
         isOpen={isBottomSheetOpen}
         onOpen={() => setIsFontSheetOpen(true)}

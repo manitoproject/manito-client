@@ -1,15 +1,14 @@
 import styled from '@emotion/styled';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
-import { Sheet } from 'react-modal-sheet';
 import { useLocation, useParams } from 'react-router-dom';
 
+import CustomSheet from '@/components/bottom-sheet/bottom-sheet';
+import BottomSheetButton from '@/components/bottom-sheet/button';
+import FontList from '@/components/bottom-sheet/font-sheet/font-list';
 import CakeTextarea from '@/components/cake/textarea';
 import TopNotice from '@/components/cake/top-notice';
 import { Button } from '@/components/common/buttons/buttons';
-import BottomSheetButton from '@/components/rollingpaper/bottom-sheet/button';
-import FontList from '@/components/rollingpaper/bottom-sheet/font-sheet/font-list';
-import BottomSheetheader from '@/components/rollingpaper/bottom-sheet/header';
 import ReactHelmet from '@/helmet';
 import useMessageForm from '@/hooks/use-message-form';
 import useSetHeader from '@/hooks/use-set-header';
@@ -17,10 +16,6 @@ import { findBgByPosition, findCakeThemeStyle } from '@/lib/cake-decoration';
 import { messageQueries } from '@/lib/query-factory';
 import { useEditMessage } from '@/mutations/message';
 import { StyledBackdrop } from '@/pages/rollingpaper/list.style';
-import {
-  StyledCustomSheet,
-  StyledSheetContentWrapper,
-} from '@/pages/rollingpaper/message.style';
 import { StyledContentOverlay } from '@/styles/styled';
 
 export default function DecoEditPage() {
@@ -33,7 +28,7 @@ export default function DecoEditPage() {
   const currentMessage = messages?.[currentMessageIndex ?? 0];
   const { form, handleChangeForm } = useMessageForm(currentMessage);
   const [isFontSheetOpen, setIsFontSheetOpen] = useState(false);
-  const [isButtonOpen, setIsButtonOpen] = useState(false);
+  const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
 
   const { mutate } = useEditMessage({
     content: 'cake',
@@ -68,35 +63,18 @@ export default function DecoEditPage() {
         onChangeContent={handleChangeForm}
         fontName={form.font}
       />
-      <StyledCustomSheet
-        onCloseEnd={() => setIsButtonOpen(true)}
-        detent="content-height"
+      <CustomSheet
         isOpen={isFontSheetOpen}
+        setIsBottomSheetOpen={setIsBottomSheetOpen}
         onClose={() => setIsFontSheetOpen(false)}
-        onOpenEnd={() => setIsButtonOpen(false)}
       >
-        <Sheet.Container>
-          <Sheet.Header>
-            <BottomSheetheader />
-          </Sheet.Header>
-          <Sheet.Content>
-            <StyledSheetContentWrapper>
-              <FontList
-                activeFont={form.font}
-                onChangeFont={handleChangeForm}
-              />
-              <Button
-                onClick={handleMessageSubmit}
-                disabled={!form.content.length}
-              >
-                수정완료
-              </Button>
-            </StyledSheetContentWrapper>
-          </Sheet.Content>
-        </Sheet.Container>
-      </StyledCustomSheet>
+        <FontList activeFont={form.font} onChangeFont={handleChangeForm} />
+        <Button onClick={handleMessageSubmit} disabled={!form.content.length}>
+          수정완료
+        </Button>
+      </CustomSheet>
       <BottomSheetButton
-        isOpen={isButtonOpen}
+        isOpen={isBottomSheetOpen}
         onOpen={() => setIsFontSheetOpen(true)}
         disabled={!form.content.length}
         onClick={handleMessageSubmit}

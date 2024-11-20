@@ -1,14 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
-import { Sheet } from 'react-modal-sheet';
 import { useLocation, useParams } from 'react-router-dom';
 
+import BottomSheet from '@/components/bottom-sheet/bottom-sheet';
+import BottomSheetButton from '@/components/bottom-sheet/button';
+import ColorList from '@/components/bottom-sheet/font-sheet/color-list';
+import FontList from '@/components/bottom-sheet/font-sheet/font-list';
+import FontSheet from '@/components/bottom-sheet/font-sheet/font-sheet';
 import { Button } from '@/components/common/buttons/buttons';
-import BottomSheetButton from '@/components/rollingpaper/bottom-sheet/button';
-import ColorList from '@/components/rollingpaper/bottom-sheet/font-sheet/color-list';
-import FontList from '@/components/rollingpaper/bottom-sheet/font-sheet/font-list';
-import FontSheet from '@/components/rollingpaper/bottom-sheet/font-sheet/font-sheet';
-import BottomSheetheader from '@/components/rollingpaper/bottom-sheet/header';
 import EmojiSkin from '@/components/rollingpaper/emoji-skin';
 import ReactHelmet from '@/helmet';
 import useMessageForm from '@/hooks/use-message-form';
@@ -19,10 +18,8 @@ import { ROLLINGPAPER_BG_MAP } from '@/lib/rolling-paper';
 import { useEditMessage } from '@/mutations/message';
 import { StyledBackdrop } from '@/pages/rollingpaper/list.style';
 import {
-  StyledCustomSheet,
   StyledRollingFormEmojiWrapper,
   StyledRollingFormWrapper,
-  StyledSheetContentWrapper,
 } from '@/pages/rollingpaper/message.style';
 
 export default function MessageEditPage() {
@@ -34,7 +31,7 @@ export default function MessageEditPage() {
     (message) => message.id === location.state.id,
   );
   const [isFontSheetOpen, setIsFontSheetOpen] = useState(false);
-  const [isButtonOpen, setIsButtonOpen] = useState(false);
+  const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
   const [activeMenuIndex, setActiveMenuIndex] = useState(0);
   const { form, handleChangeForm } = useMessageForm(currentMessage);
   const Svg = findSvgByThemeName(currentMessage?.theme ?? '');
@@ -76,49 +73,31 @@ export default function MessageEditPage() {
           />
         </EmojiSkin>
       </StyledRollingFormEmojiWrapper>
-      <StyledCustomSheet
-        onCloseEnd={() => setIsButtonOpen(true)}
-        detent="content-height"
+      <BottomSheet
+        setIsBottomSheetOpen={setIsBottomSheetOpen}
         isOpen={isFontSheetOpen}
         onClose={() => setIsFontSheetOpen(false)}
-        onOpenEnd={() => setIsButtonOpen(false)}
       >
-        <Sheet.Container>
-          <Sheet.Header>
-            <BottomSheetheader />
-          </Sheet.Header>
-          <Sheet.Content>
-            <StyledSheetContentWrapper>
-              <FontSheet
-                activeMenuIndex={activeMenuIndex}
-                setActiveMenuIndex={setActiveMenuIndex}
-              >
-                {activeMenuIndex === 0 ? (
-                  <FontList
-                    activeFont={form.font}
-                    onChangeFont={handleChangeForm}
-                  />
-                ) : (
-                  <ColorList
-                    theme={paper?.theme ?? 'animal'}
-                    activeColor={form.fontColor}
-                    onChangeColor={handleChangeForm}
-                  />
-                )}
-              </FontSheet>
-              <Button
-                onClick={handleMessageSubmit}
-                disabled={!form.content.length}
-              >
-                작성완료
-              </Button>
-            </StyledSheetContentWrapper>
-          </Sheet.Content>
-        </Sheet.Container>
-      </StyledCustomSheet>
-
+        <FontSheet
+          activeMenuIndex={activeMenuIndex}
+          setActiveMenuIndex={setActiveMenuIndex}
+        >
+          {activeMenuIndex === 0 ? (
+            <FontList activeFont={form.font} onChangeFont={handleChangeForm} />
+          ) : (
+            <ColorList
+              theme={paper?.theme ?? 'animal'}
+              activeColor={form.fontColor}
+              onChangeColor={handleChangeForm}
+            />
+          )}
+        </FontSheet>
+        <Button onClick={handleMessageSubmit} disabled={!form.content.length}>
+          작성완료
+        </Button>
+      </BottomSheet>
       <BottomSheetButton
-        isOpen={isButtonOpen}
+        isOpen={isBottomSheetOpen}
         onOpen={() => setIsFontSheetOpen(true)}
         disabled={!form.content.length}
         onClick={handleMessageSubmit}

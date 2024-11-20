@@ -1,16 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
-import { Sheet } from 'react-modal-sheet';
 import { useLocation, useParams } from 'react-router-dom';
 
+import BottomSheet from '@/components/bottom-sheet/bottom-sheet';
+import BottomSheetButton from '@/components/bottom-sheet/button';
+import EmojiSheet from '@/components/bottom-sheet/emoji-sheet/emoji-sheet';
+import ColorList from '@/components/bottom-sheet/font-sheet/color-list';
+import FontList from '@/components/bottom-sheet/font-sheet/font-list';
+import FontSheet from '@/components/bottom-sheet/font-sheet/font-sheet';
 import { Button } from '@/components/common/buttons/buttons';
 import CreateMessageModal from '@/components/modal/create-message-modal';
-import BottomSheetButton from '@/components/rollingpaper/bottom-sheet/button';
-import EmojiSheet from '@/components/rollingpaper/bottom-sheet/emoji-sheet/emoji-sheet';
-import ColorList from '@/components/rollingpaper/bottom-sheet/font-sheet/color-list';
-import FontList from '@/components/rollingpaper/bottom-sheet/font-sheet/font-list';
-import FontSheet from '@/components/rollingpaper/bottom-sheet/font-sheet/font-sheet';
-import BottomSheetheader from '@/components/rollingpaper/bottom-sheet/header';
 import EmojiSkin from '@/components/rollingpaper/emoji-skin';
 import ReactHelmet from '@/helmet';
 import useMessageForm from '@/hooks/use-message-form';
@@ -20,10 +19,8 @@ import { paperQueries } from '@/lib/query-factory';
 import { ROLLINGPAPER_BG_MAP } from '@/lib/rolling-paper';
 import { StyledBackdrop } from '@/pages/rollingpaper/list.style';
 import {
-  StyledCustomSheet,
   StyledRollingFormEmojiWrapper,
   StyledRollingFormWrapper,
-  StyledSheetContentWrapper,
 } from '@/pages/rollingpaper/message.style';
 
 export default function MessageCreatePage() {
@@ -91,73 +88,43 @@ export default function MessageCreatePage() {
           )}
         </EmojiSkin>
       </StyledRollingFormEmojiWrapper>
-      <StyledCustomSheet
-        onCloseEnd={() => setIsBottomSheetOpen(true)}
-        detent="content-height"
+      <BottomSheet
+        setIsBottomSheetOpen={setIsBottomSheetOpen}
         isOpen={isFontSheetOpen}
         onClose={() => setIsFontSheetOpen(false)}
-        onOpenEnd={() => setIsBottomSheetOpen(false)}
       >
-        <Sheet.Container>
-          <Sheet.Header>
-            <BottomSheetheader />
-          </Sheet.Header>
-          <Sheet.Content>
-            <StyledSheetContentWrapper>
-              <FontSheet
-                activeMenuIndex={activeMenuIndex}
-                setActiveMenuIndex={setActiveMenuIndex}
-              >
-                {activeMenuIndex === 0 ? (
-                  <FontList
-                    activeFont={form.font}
-                    onChangeFont={handleChangeForm}
-                  />
-                ) : (
-                  <ColorList
-                    theme={paper?.theme ?? 'animal'}
-                    activeColor={form.fontColor}
-                    onChangeColor={handleChangeForm}
-                  />
-                )}
-              </FontSheet>
-              <Button
-                onClick={handleMessageSubmit}
-                disabled={!form.content.length}
-              >
-                작성완료
-              </Button>
-            </StyledSheetContentWrapper>
-          </Sheet.Content>
-        </Sheet.Container>
-      </StyledCustomSheet>
-
-      <StyledCustomSheet
-        onOpenEnd={() => setIsBottomSheetOpen(false)}
-        onCloseEnd={() => setIsBottomSheetOpen(true)}
+        <FontSheet
+          activeMenuIndex={activeMenuIndex}
+          setActiveMenuIndex={setActiveMenuIndex}
+        >
+          {activeMenuIndex === 0 ? (
+            <FontList activeFont={form.font} onChangeFont={handleChangeForm} />
+          ) : (
+            <ColorList
+              theme={paper?.theme ?? 'animal'}
+              activeColor={form.fontColor}
+              onChangeColor={handleChangeForm}
+            />
+          )}
+        </FontSheet>
+        <Button onClick={handleMessageSubmit} disabled={!form.content.length}>
+          작성완료
+        </Button>
+      </BottomSheet>
+      <BottomSheet
+        setIsBottomSheetOpen={setIsBottomSheetOpen}
         isOpen={isEmojiSheetOpen}
         onClose={() => setIsEmojiSheetOpen(false)}
-        detent="content-height"
       >
-        <Sheet.Container>
-          <Sheet.Header>
-            <BottomSheetheader />
-          </Sheet.Header>
-          <Sheet.Content>
-            <StyledSheetContentWrapper>
-              <EmojiSheet
-                activeEmoji={form.emoji}
-                handleChangeEmoji={handleChangeForm}
-                theme={paper?.theme ?? 'animal'}
-              />
-              <Button onClick={handleMessageSubmit} disabled={!form.emoji}>
-                편지 선택하기
-              </Button>
-            </StyledSheetContentWrapper>
-          </Sheet.Content>
-        </Sheet.Container>
-      </StyledCustomSheet>
-
+        <EmojiSheet
+          activeEmoji={form.emoji}
+          handleChangeEmoji={handleChangeForm}
+          theme={paper?.theme ?? 'animal'}
+        />
+        <Button onClick={handleMessageSubmit} disabled={!form.emoji}>
+          편지 선택하기
+        </Button>
+      </BottomSheet>
       {isCreateMessageModalOpen && (
         <CreateMessageModal
           position={location.state.position}

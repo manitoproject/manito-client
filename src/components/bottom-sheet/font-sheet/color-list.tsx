@@ -1,7 +1,7 @@
 import {
   StyledColorItem,
   StyledColorList,
-} from '@/components/rollingpaper/bottom-sheet/font-sheet/color-list.style';
+} from '@/components/bottom-sheet/font-sheet/color-list.style';
 import { colors } from '@/lib/fonts';
 import { ColorName } from '@/styles/theme';
 

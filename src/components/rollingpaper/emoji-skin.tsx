@@ -1,11 +1,11 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
+import { findFontByName } from '@/lib/common';
+import { Font } from '@/lib/fonts';
 import { getTextareaSize } from '@/styles/mixins';
 import { ColorName } from '@/styles/theme';
 import { Message } from '@/types/message';
-import { findFontByName } from '@/lib/common';
-import { Font } from '@/lib/fonts';
 
 interface EmojiItemProps {
   children: React.ReactNode;
@@ -38,7 +38,6 @@ export default function EmojiSkin({
     if (EMOJI_TYPE.length - 1 === i) return true;
     return message.theme?.includes(type);
   });
-
   return (
     <StyledEmojiWrapper
       onClick={onClick}

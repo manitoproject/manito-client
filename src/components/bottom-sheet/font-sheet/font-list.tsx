@@ -1,7 +1,7 @@
 import {
   StyledFontItem,
   StyledFontList,
-} from '@/components/rollingpaper/bottom-sheet/font-sheet/font-list.style';
+} from '@/components/bottom-sheet/font-sheet/font-list.style';
 import { fonts } from '@/lib/fonts';
 import { FontNameWithoutAppleFont } from '@/styles/theme';
 
