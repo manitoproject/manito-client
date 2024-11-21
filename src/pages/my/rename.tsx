@@ -16,11 +16,11 @@ import {
 
 export default function Rename() {
   const { data: user } = useQuery(userQueries.detail());
-  useSetHeader({ title: '프로필 수정', rightBtn: false });
   const { mutate: changeNicknameMutate, isPending } = useNicknameChange(true);
   const { mutate: changeProfileMutate } = useProfileChange();
   const { handleNameChange, handleNameReset, isError, name, nameRef } =
     useNameForm('nickname');
+
   const handleNicknameChange = () => {
     changeNicknameMutate(name);
   };
@@ -29,6 +29,8 @@ export default function Rename() {
     if (user?.isOriginProfile === 'N') return;
     changeProfileMutate();
   };
+
+  useSetHeader({ title: '프로필 수정', rightBtn: false });
 
   return (
     <StyledRenameWrapper>

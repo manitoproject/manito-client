@@ -8,13 +8,13 @@ import { ROLLINGPAPER_THEMES } from '@/lib/rolling-paper';
 import { getFontSizeAndWeight } from '@/styles/mixins';
 
 interface ThemeCarouselProps {
-  activeIndex: number;
-  onActiveIndexChange: (i: number) => void;
+  activeTheme: RollingpaperThemeName;
+  onChangeActiveTheme: (label: RollingpaperThemeName) => void;
 }
 
 export default function ThemeCarousel({
-  activeIndex,
-  onActiveIndexChange,
+  activeTheme,
+  onChangeActiveTheme,
 }: ThemeCarouselProps) {
   return (
     <StyledWrapper>
@@ -25,13 +25,13 @@ export default function ThemeCarousel({
           slidesPerView="auto"
           slideToClickedSlide
         >
-          {ROLLINGPAPER_THEMES.map(({ themeKor, img }, i) => (
-            <SwiperSlide key={themeKor}>
+          {ROLLINGPAPER_THEMES.map(({ id, img, label }) => (
+            <SwiperSlide key={id}>
               <ThemeItem
-                onClick={() => onActiveIndexChange(i)}
-                isActive={i === activeIndex}
+                onChangeActiveTheme={() => onChangeActiveTheme(id)}
+                isActive={activeTheme === id}
                 img={img}
-                theme={themeKor}
+                theme={label}
               />
             </SwiperSlide>
           ))}

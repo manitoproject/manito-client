@@ -14,11 +14,13 @@ export default function Contact() {
   const [message, setMessage] = useState('');
   const [isFocus, setIsFocus] = useState(false);
   const { mutate, isPending } = useSendFeedbackMessage(setMessage);
-  useSetHeader({ title: '문의하기', rightBtn: false });
 
   const handleSendMessage = () => {
     if (message.length) mutate({ content: message, user });
   };
+
+  useSetHeader({ title: '문의하기', rightBtn: false });
+
   return (
     <StyledWrapper>
       <div>

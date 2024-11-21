@@ -6,7 +6,7 @@ import { ColorName } from '@/styles/theme';
 export interface ColorListProps {
   activeColor: ColorName;
   onChangeColor: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  theme: RollingThemeName;
+  theme: RollingpaperThemeName;
 }
 
 export default function ColorList({

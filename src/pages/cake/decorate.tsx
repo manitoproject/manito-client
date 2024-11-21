@@ -19,12 +19,13 @@ export default function CakeDecorate() {
   const [activeDeco, setActiveDeco] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
-  useSetHeader({ rightBtn: false, title: '장식선택' });
   const handleNextStep = () => {
     navigate(routes.cake.messageCreate(location.state?.id), {
       state: { theme: activeDeco },
     });
   };
+
+  useSetHeader({ rightBtn: false, title: '장식선택' });
 
   return (
     <StyledWrapper>
@@ -33,12 +34,10 @@ export default function CakeDecorate() {
         {CAKE_THEME_STYLES.map((deco) => (
           <StyledList
             deco={deco}
-            isActive={deco.labelEng === activeTab}
-            key={deco.labelKor}
+            isActive={deco.id === activeTab}
+            key={deco.id}
           >
-            <button onClick={() => setActiveTab(deco.labelEng)}>
-              {deco.labelKor}
-            </button>
+            <button onClick={() => setActiveTab(deco.id)}>{deco.label}</button>
           </StyledList>
         ))}
       </ul>

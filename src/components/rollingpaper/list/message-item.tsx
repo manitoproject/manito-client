@@ -26,7 +26,7 @@ export default function MessageItem({ message, position }: MessageItemProps) {
   const { data: paper } = useQuery(paperQueries.detail(Number(params.id)));
   const { data: user } = useQuery(userQueries.detail());
   const EmojiSvg = ROLLINGPAPER_EMOJI_MAP[
-    paper?.theme as RollingThemeName
+    paper?.theme as RollingpaperThemeName
   ]?.find((item) => item.name === message?.theme)?.svg;
 
   const handleCreateMessage = () => {
@@ -63,7 +63,6 @@ export default function MessageItem({ message, position }: MessageItemProps) {
         <StyledItem isOwner={false}>
           <button type="button" onClick={handleCreateMessage}>
             <AddCircle />
-            {/* {!isOwner && <AddCircle />} */}
           </button>
         </StyledItem>
       )}

@@ -25,7 +25,7 @@ import {
   StyledRollingFormWrapper,
 } from '@/pages/rollingpaper/message.style';
 
-export default function MessageCreatePage() {
+export default function RollingpaperMessageCreatePage() {
   const params = useParams();
   const location = useLocation();
   const { data: paper } = useQuery(paperQueries.detail(Number(params.id)));
@@ -69,7 +69,6 @@ export default function MessageCreatePage() {
       setIsFontSheetOpen(false);
     }
   }, [isEmojiSelectionPage]);
-
   return (
     <StyledRollingFormWrapper>
       <StyledBackdrop
@@ -92,6 +91,20 @@ export default function MessageCreatePage() {
       </StyledRollingFormEmojiWrapper>
       <BottomSheet
         setIsBottomSheetOpen={setIsBottomSheetOpen}
+        isOpen={isEmojiSheetOpen}
+        onClose={() => setIsEmojiSheetOpen(false)}
+      >
+        <EmojiPalette
+          activeEmoji={form.theme}
+          onChangeEmoji={handleChangeForm}
+          theme={paper?.theme ?? 'animal'}
+        />
+        <Button onClick={handleMessageSubmit} disabled={!form.theme}>
+          편지 선택하기
+        </Button>
+      </BottomSheet>
+      <BottomSheet
+        setIsBottomSheetOpen={setIsBottomSheetOpen}
         isOpen={isFontSheetOpen}
         onClose={() => setIsFontSheetOpen(false)}
       >
@@ -111,20 +124,6 @@ export default function MessageCreatePage() {
         </FontPalette>
         <Button onClick={handleMessageSubmit} disabled={!form.content.length}>
           작성완료
-        </Button>
-      </BottomSheet>
-      <BottomSheet
-        setIsBottomSheetOpen={setIsBottomSheetOpen}
-        isOpen={isEmojiSheetOpen}
-        onClose={() => setIsEmojiSheetOpen(false)}
-      >
-        <EmojiPalette
-          activeEmoji={form.theme}
-          onChangeEmoji={handleChangeForm}
-          theme={paper?.theme ?? 'animal'}
-        />
-        <Button onClick={handleMessageSubmit} disabled={!form.theme}>
-          편지 선택하기
         </Button>
       </BottomSheet>
       {isCreateMessageModalOpen && (

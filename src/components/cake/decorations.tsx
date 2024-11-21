@@ -19,7 +19,7 @@ export default function Decorations({
   activeDeco,
 }: DecorationsProps) {
   const theme = CAKE_THEME_STYLES.find(
-    (cakeTheme) => cakeTheme.labelEng === activeTab,
+    (cakeTheme) => cakeTheme.id === activeTab,
   );
 
   if (!theme) return null;

@@ -24,7 +24,7 @@ import {
   StyledRollingFormWrapper,
 } from '@/pages/rollingpaper/message.style';
 
-export default function MessageEditPage() {
+export default function RollingpaperMessageEditPage() {
   const params = useParams();
   const location = useLocation();
   const { data: paper } = useQuery(paperQueries.detail(Number(params.id)));
@@ -43,6 +43,7 @@ export default function MessageEditPage() {
     messageId: currentMessage?.id,
     paperId: Number(params.id),
   });
+
   const handleMessageSubmit = () => {
     mutate({
       ...form,

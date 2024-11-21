@@ -8,17 +8,17 @@ export interface ThemeItemProps {
   isActive: boolean;
   theme: string;
   img: string;
-  onClick: () => void;
+  onChangeActiveTheme: () => void;
 }
 
 export default function ThemeItem({
   isActive,
   img,
   theme,
-  onClick,
+  onChangeActiveTheme,
 }: ThemeItemProps) {
   return (
-    <StyledThemeItem onClick={onClick} isActive={isActive}>
+    <StyledThemeItem onClick={onChangeActiveTheme} isActive={isActive}>
       <div>{isActive ? <RadioButtonActive /> : <RadioButton />}</div>
       <StyledTitle isActive={isActive}>{theme}</StyledTitle>
       <div>

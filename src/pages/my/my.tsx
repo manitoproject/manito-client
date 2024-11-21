@@ -21,7 +21,9 @@ export default function My() {
   const [activeCategoryTabIndex, setActiveCategoryTabIndex] = useState(0);
   const activeCagegory: CategoryLowerCase =
     CATEGORY_MAP[categoryList[activeCategoryTabIndex]];
+
   useSetHeader({ title: '마이 페이지' });
+
   return (
     <StyledWrapper>
       <MyInfo />

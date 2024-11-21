@@ -18,16 +18,19 @@ import {
 export default function RollingpaperSetup() {
   const { handleNameChange, handleNameReset, isError, name, nameRef } =
     useNameForm('title');
-  const [activeThemeIndex, setActiveThemeIndex] = useState(0);
-  useSetHeader({ title: '롤링페이퍼 테마선택', rightBtn: false });
+  const [activeTheme, setActiveTheme] =
+    useState<RollingpaperThemeName>('space');
   const { mutate, isPending } = useCreatePaper('rollingpaper');
+
   const handleSubmit = () => {
     mutate({
       category: 'ROLLING_PAPER',
-      theme: ROLLINGPAPER_THEMES[activeThemeIndex].themeEng,
+      theme: ROLLINGPAPER_THEMES.find((theme) => theme.id === activeTheme)!.id,
       title: name,
     });
   };
+
+  useSetHeader({ title: '롤링페이퍼 테마선택', rightBtn: false });
 
   return (
     <StyledWrapper>
@@ -48,8 +51,10 @@ export default function RollingpaperSetup() {
           </StyledHeading>
         </NameForm>
         <ThemeCarousel
-          onActiveIndexChange={(i) => setActiveThemeIndex(i)}
-          activeIndex={activeThemeIndex}
+          activeTheme={activeTheme}
+          onChangeActiveTheme={(theme: RollingpaperThemeName) =>
+            setActiveTheme(theme)
+          }
         />
       </StyledSectionWrapper>
       <Button

@@ -4,11 +4,11 @@ import {
   Route,
 } from 'react-router-dom';
 
-import CakeDecoCreate from '@/pages/cake/deco-create';
-import CakeDecoEdit from '@/pages/cake/deco-edit';
 import CakeDecorate from '@/pages/cake/decorate';
 import CakeDetail from '@/pages/cake/detail';
 import CakeListPage from '@/pages/cake/list';
+import CakeMessageCreate from '@/pages/cake/message-create';
+import CakeMessageEdit from '@/pages/cake/message-edit';
 import CakeSetup from '@/pages/cake/setup';
 import ErrorPage from '@/pages/error-page';
 import Home from '@/pages/home';
@@ -21,8 +21,8 @@ import MySetting from '@/pages/my/my-setting';
 import Rename from '@/pages/my/rename';
 import RollingpaperDetail from '@/pages/rollingpaper/detail';
 import RollingpaperList from '@/pages/rollingpaper/list';
-import MessageEdit from '@/pages/rollingpaper/message-edit';
-import MessageCreate from '@/pages/rollingpaper/messge-create';
+import RollingpaperMessageCreate from '@/pages/rollingpaper/message-create';
+import RollingpaperMessageEdit from '@/pages/rollingpaper/message-edit';
 import RollingpaperSetup from '@/pages/rollingpaper/setup';
 import SetupIntro from '@/pages/setup-intro';
 import Signup from '@/pages/signup';
@@ -56,20 +56,23 @@ const router = () =>
           />
           <Route
             path={routes.rollingpaper.messageEdit()}
-            element={<MessageEdit />}
+            element={<RollingpaperMessageEdit />}
           />
           <Route
             path={routes.rollingpaper.messageCreate()}
-            element={<MessageCreate />}
+            element={<RollingpaperMessageCreate />}
           />
           <Route path={routes.cake.setup()} element={<CakeSetup />} />
           <Route path={routes.cake.list()} element={<CakeListPage />} />
           <Route path={routes.cake.decorate()} element={<CakeDecorate />} />
           <Route
             path={routes.cake.messageCreate()}
-            element={<CakeDecoCreate />}
+            element={<CakeMessageCreate />}
           />
-          <Route path={routes.cake.messageEdit()} element={<CakeDecoEdit />} />
+          <Route
+            path={routes.cake.messageEdit()}
+            element={<CakeMessageEdit />}
+          />
           <Route path={routes.cake.detail()} element={<CakeDetail />} />
         </Route>
       </Route>,

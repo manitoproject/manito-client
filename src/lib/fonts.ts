@@ -6,7 +6,7 @@ export type Font = {
   displayName: string;
 };
 
-const colors: Record<RollingThemeName, Array<ColorName>> = {
+const colors: Record<RollingpaperThemeName, Array<ColorName>> = {
   space: [
     'white',
     'powderBlue-800',

@@ -62,7 +62,9 @@ export const useEditMessage = ({
     mutationFn: editMessage,
     onSuccess: (data) => {
       if (data.result === 'Success') {
-        navigate(`${routes[content].detail(paperId)}?id=${messageId}`);
+        navigate(`${routes[content].detail(paperId)}?id=${messageId}`, {
+          replace: true,
+        });
         queryClient.invalidateQueries({
           queryKey: messageQueries.all(),
         });

@@ -49,7 +49,11 @@ import {
 import { ColorName } from '@/styles/theme';
 import { Message } from '@/types/message';
 
-const ROLLING_THEME_NAMES: RollingThemeName[] = ['nature', 'space', 'animal'];
+const ROLLING_THEME_NAMES: RollingpaperThemeName[] = [
+  'nature',
+  'space',
+  'animal',
+];
 
 export const CATEGORY_MAP: Record<Category, CategoryLowerCase> = {
   CAKE: 'cake',
@@ -58,7 +62,7 @@ export const CATEGORY_MAP: Record<Category, CategoryLowerCase> = {
 };
 
 export const ROLLINGPAPER_BG_MAP: Record<
-  RollingThemeName,
+  RollingpaperThemeName,
   { bgColor: ColorName; bgUrl: string }
 > = {
   animal: { bgColor: 'white', bgUrl: AnimalBgOriginal },
@@ -66,33 +70,33 @@ export const ROLLINGPAPER_BG_MAP: Record<
   nature: { bgColor: 'powderBlue-800', bgUrl: NatureBgOriginal },
 };
 
-export const getRollingThemeName = (
+export const getRollingpaperThemeName = (
   message: Message<unknown>,
-): RollingThemeName | undefined => {
+): RollingpaperThemeName | undefined => {
   const messageTheme = message.theme.toLowerCase();
   return ROLLING_THEME_NAMES.find((name) => messageTheme.includes(name));
 };
 
 export const ROLLINGPAPER_THEMES: Theme[] = [
   {
-    themeKor: '우주',
-    themeEng: 'space',
+    label: '우주',
+    id: 'space',
     img: SpaceBgThumbnail,
   },
   {
-    themeKor: '자연',
-    themeEng: 'nature',
+    label: '자연',
+    id: 'nature',
     img: NatureBgThumbnail,
   },
   {
-    themeKor: '멍냥',
-    themeEng: 'animal',
+    label: '멍냥',
+    id: 'animal',
     img: AnimalBgThumbnail,
   },
 ];
 
 export const ROLLINGPAPER_EMOJI_MAP: {
-  [key in RollingThemeName]: {
+  [key in RollingpaperThemeName]: {
     name: string;
     svg: FunctionComponent<SVGAttributes<SVGElement>>;
   }[];

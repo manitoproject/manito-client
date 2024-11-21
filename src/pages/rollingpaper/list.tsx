@@ -25,6 +25,7 @@ export default function RollingpaperList() {
     bg: ROLLINGPAPER_BG_MAP[paper?.theme ?? 'animal'].bgColor,
     color: paper?.theme === 'animal' ? undefined : 'white',
   });
+
   useEffect(() => {
     return () => messageActions.reset();
   }, [messageActions]);

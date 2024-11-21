@@ -17,6 +17,7 @@ export default function RollingpaperDetail() {
   const { data: messages } = useQuery(messageQueries.paper(Number(params.id)));
   const { data: paper } = useQuery(paperQueries.detail(Number(params.id)));
   const { activeIndex, setActiveIndex } = useDetailIndex(messages);
+
   useSetHeader({
     title: paper?.title,
     bg: ROLLINGPAPER_BG_MAP[paper?.theme ?? 'animal'].bgColor,

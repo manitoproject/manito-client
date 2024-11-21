@@ -9,6 +9,7 @@ import { getFontSizeAndWeight } from '@/styles/mixins';
 
 export default function MySetting() {
   const { mutate } = useLogout();
+
   useSetHeader({ title: '설정' });
 
   return (

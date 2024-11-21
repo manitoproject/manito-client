@@ -18,16 +18,16 @@ import routes from '@/routes';
 import { useToastActions } from '@/stores/toast-store';
 
 export default function CakeList() {
-  const params = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
-  const [activeIndex, setActiveIndex] = useState(0);
-  const { data: messages } = useQuery(messageQueries.paper(Number(params.id)));
-  const { data: paper } = useQuery(paperQueries.detail(Number(params.id)));
+  const [currnetPage, setCurrnetPage] = useState(0);
+  const { data: messages } = useQuery(messageQueries.paper(Number(id)));
+  const { data: paper } = useQuery(paperQueries.detail(Number(id)));
   const { add } = useToastActions();
 
   useSetHeader({
     title: paper?.title,
-    bg: CAKE_THEME_PALETTES[activeIndex].headerColor,
+    bg: CAKE_THEME_PALETTES[currnetPage].headerColor,
     color: 'white',
   });
 
@@ -42,10 +42,10 @@ export default function CakeList() {
       <StyledListWrapper>
         <DetailHeader paper={paper} content="cake" />
       </StyledListWrapper>
-      <CakeSwipe activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
+      <CakeSwipe activeIndex={currnetPage} setActiveIndex={setCurrnetPage} />
       <StyledWriteButton
         onClick={handleWrite}
-        bg={CAKE_THEME_PALETTES[activeIndex].btnColor}
+        bg={CAKE_THEME_PALETTES[currnetPage].btnColor}
       >
         <EditSquare width={40} height={40} fill="#fff" />
       </StyledWriteButton>

@@ -3,40 +3,51 @@ import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 
-import BottomSheet from '@/components/bottom-sheet/bottom-sheet';
+import CustomSheet from '@/components/bottom-sheet/bottom-sheet';
 import BottomSheetButton from '@/components/bottom-sheet/button';
 import FontList from '@/components/bottom-sheet/palette/font-list';
 import CakeTextarea from '@/components/cake/textarea';
 import TopNotice from '@/components/cake/top-notice';
 import { Button } from '@/components/common/buttons/buttons';
-import MessageCreateModal from '@/components/modal/create-message-modal';
 import ReactHelmet from '@/helmet';
 import useMessageForm from '@/hooks/use-message-form';
 import useSetHeader from '@/hooks/use-set-header';
 import { findBgByPosition, findCakeThemeStyle } from '@/lib/cake-decoration';
 import { messageQueries } from '@/lib/query-factory';
+import { useEditMessage } from '@/mutations/message';
 import { StyledBackdrop } from '@/pages/rollingpaper/list.style';
 import { StyledContentOverlay } from '@/styles/styled';
 
-export default function DecoCreatePage() {
-  const params = useParams();
-  const location = useLocation();
-  const { data: messages } = useQuery(messageQueries.paper(Number(params.id)));
-  const position = messages?.length ?? 0;
-  const { form, handleChangeForm } = useMessageForm({
-    theme: location.state.theme,
-    fontColor: 'gray-900',
-  });
-  const [isCreateMessageModalOpen, setIsCreateMessageModal] = useState(false);
+export default function CakeMessageEditPage() {
+  const { id } = useParams();
+  const { state } = useLocation();
+  const { data: messages } = useQuery(messageQueries.paper(Number(id)));
+  const currentMessageIndex = messages?.findIndex(
+    (message) => message.id === state.id,
+  );
+  const currentMessage = messages?.[currentMessageIndex ?? 0];
+  const { form, handleChangeForm } = useMessageForm(currentMessage);
   const [isFontSheetOpen, setIsFontSheetOpen] = useState(false);
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
 
-  const bg = findBgByPosition(position + 1);
+  const { mutate } = useEditMessage({
+    content: 'cake',
+    messageId: state.id,
+    paperId: Number(id),
+  });
+  const handleMessageSubmit = () => {
+    mutate({
+      ...form,
+      id: state.id,
+    });
+  };
+
+  const bg = findBgByPosition((currentMessageIndex ?? 0) + 1);
   const topNoticeBgColor = findCakeThemeStyle(form.theme)?.bgColor;
 
   useSetHeader({
     rightBtn: false,
-    title: '메시지 작성',
+    title: '메시지 수정',
   });
 
   useEffect(() => {
@@ -52,38 +63,27 @@ export default function DecoCreatePage() {
         onChangeContent={handleChangeForm}
         fontName={form.font}
       />
-      <BottomSheet
+      <CustomSheet
         isOpen={isFontSheetOpen}
         setIsBottomSheetOpen={setIsBottomSheetOpen}
         onClose={() => setIsFontSheetOpen(false)}
       >
         <FontList activeFont={form.font} onChangeFont={handleChangeForm} />
-        <Button
-          onClick={() => setIsCreateMessageModal(true)}
-          disabled={!form.content.length}
-        >
-          작성완료
+        <Button onClick={handleMessageSubmit} disabled={!form.content.length}>
+          수정완료
         </Button>
-      </BottomSheet>
+      </CustomSheet>
       <BottomSheetButton
         isOpen={isBottomSheetOpen}
         onOpen={() => setIsFontSheetOpen(true)}
         disabled={!form.content.length}
-        onClick={() => setIsCreateMessageModal(true)}
+        onClick={handleMessageSubmit}
       >
-        작성완료
+        수정완료
       </BottomSheetButton>
-      {isCreateMessageModalOpen && (
-        <MessageCreateModal
-          position={Date.now() / 1000}
-          form={form}
-          onCloseModal={() => setIsCreateMessageModal(false)}
-          contentType="cake"
-        />
-      )}
       <StyledContentOverlay opacity={20} />
       <StyledBackdrop bg={bg} />
-      <ReactHelmet title={'메시지 작성 - 마니또'} />
+      <ReactHelmet title={'메시지 수정 - 마니또'} />
     </StyledWrapper>
   );
 }

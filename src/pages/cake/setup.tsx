@@ -14,7 +14,7 @@ export default function CakeSetup() {
   const { handleNameChange, handleNameReset, isError, name, nameRef } =
     useNameForm('title');
   const { mutate, isPending } = useCreatePaper('cake');
-  useSetHeader({ title: '케이크 만들기', rightBtn: false });
+
   const handleSubmit = () => {
     mutate({
       category: 'CAKE',
@@ -22,6 +22,8 @@ export default function CakeSetup() {
       theme: 'animal',
     });
   };
+
+  useSetHeader({ title: '케이크 만들기', rightBtn: false });
 
   return (
     <StyledWrapper>

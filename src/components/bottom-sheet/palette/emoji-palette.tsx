@@ -4,7 +4,7 @@ import React from 'react';
 import { ROLLINGPAPER_EMOJI_MAP } from '@/lib/rolling-paper';
 
 interface EmojiPaletteProps {
-  theme: RollingThemeName;
+  theme: RollingpaperThemeName;
   activeEmoji: string;
   onChangeEmoji: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
@@ -18,7 +18,7 @@ export default function EmojiPalette({
     <StyledWrapper>
       {ROLLINGPAPER_EMOJI_MAP[theme].map((emoji) => (
         <StyledItem
-          name="emoji"
+          name="theme"
           value={emoji.name}
           isActive={activeEmoji === emoji.name}
           key={emoji.name}

@@ -60,8 +60,8 @@ import { ColorName } from '@/styles/theme';
 
 export type DecorationType = 'chocolate' | 'vanilla' | 'white' | 'strawberry';
 export type CakeTheme = {
-  labelKor: string;
-  labelEng: DecorationType;
+  id: DecorationType;
+  label: string;
   fontColor: ColorName;
   bgColor: ColorName;
 };
@@ -89,7 +89,7 @@ export const findBgByPosition = (position: number) => {
 
 export const findCakeThemeStyle = (thmeName: string) => {
   return CAKE_THEME_STYLES.find((theme) =>
-    thmeName.toLowerCase().includes(theme.labelEng),
+    thmeName.toLowerCase().includes(theme.id),
   );
 };
 export const CAKE_THEME_PALETTES: Array<{
@@ -108,26 +108,26 @@ export const CAKE_THEME_PALETTES: Array<{
 
 export const CAKE_THEME_STYLES: CakeTheme[] = [
   {
-    labelKor: '초코',
-    labelEng: 'chocolate',
+    id: 'chocolate',
+    label: '초코',
     fontColor: 'chocolate-300',
     bgColor: 'chocolate-100',
   },
   {
-    labelKor: '바닐라',
-    labelEng: 'vanilla',
+    id: 'vanilla',
+    label: '바닐라',
     fontColor: 'vanilla-300',
     bgColor: 'vanilla-100',
   },
   {
-    labelKor: '딸기',
-    labelEng: 'strawberry',
+    id: 'strawberry',
+    label: '딸기',
     fontColor: 'pink-300',
     bgColor: 'pink-100',
   },
   {
-    labelKor: '화이트',
-    labelEng: 'white',
+    id: 'white',
+    label: '화이트',
     fontColor: 'gray-800',
     bgColor: 'gray-100',
   },

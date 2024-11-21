@@ -18,6 +18,7 @@ export default function CakeDetail() {
   const { data: messages } = useQuery(messageQueries.paper(Number(params?.id)));
   const { activeIndex, setActiveIndex } = useDetailIndex(messages);
   const { data: paper } = useQuery(paperQueries.detail(Number(params.id)));
+
   useSetHeader({ title: '상세 보기' });
 
   if (!messages?.length) return null;
