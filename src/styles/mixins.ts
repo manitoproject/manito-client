@@ -1,18 +1,7 @@
 import { css } from '@emotion/react';
 
-import animalBg from '../assets/imgs/bg/animal-theme@4x-1001.webp';
-import natureBg from '../assets/imgs/bg/nature-theme@4x-1001.webp';
-import spaceBg from '../assets/imgs/bg/space-theme@4x-1001.webp';
-import { EmojiType } from '../components/rollingpaper/emoji-skin';
-import theme from './theme';
-
-export const getBackgroundImageFromThemeName = (
-  thmeName?: RollingThemeName,
-) => {
-  return [animalBg, natureBg, spaceBg].find((bg) =>
-    bg.includes(thmeName ?? ''),
-  );
-};
+import { EmojiType } from '@/components/rollingpaper/emoji-skin';
+import theme from '@/styles/theme';
 
 export const StyledFixedBackground = css`
   position: fixed;

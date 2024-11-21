@@ -1,15 +1,18 @@
+import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { createSearchParams, useNavigate, useParams } from 'react-router-dom';
 
-import { AddCircle } from '../../../assets/svg/icons';
-import emojis from '../../../constants/emojis';
-import { usePaperDetailQuery } from '../../../queries/paper';
-import routes from '../../../routes';
-import { Message } from '../../../types/message';
-import { token } from '../../../utils/storage';
-import LoginModal from '../../modal/login-modal';
-import EmojiSkin from '../emoji-skin';
-import { StyledEmptySvg, StyledItem } from './item.style';
+import { AddCircle } from '@/assets/svg/icons';
+import LoginModal from '@/components/modal/login-modal';
+import EmojiSkin from '@/components/rollingpaper/emoji-skin';
+import {
+  StyledEmptySvg,
+  StyledItem,
+} from '@/components/rollingpaper/list/item.style';
+import { paperQueries, userQueries } from '@/lib/query-factory';
+import { ROLLINGPAPER_EMOJI_MAP } from '@/lib/rolling-paper';
+import routes from '@/routes';
+import { Message } from '@/types/message';
 
 export interface MessageItemProps {
   message: Message<unknown> | null;
@@ -18,32 +21,41 @@ export interface MessageItemProps {
 
 export default function MessageItem({ message, position }: MessageItemProps) {
   const navigate = useNavigate();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const { data: PaperDetailData } = usePaperDetailQuery();
-  const paper = PaperDetailData?.data;
-  const EmojiSvg = emojis[paper?.theme as RollingThemeName]?.find(
-    (item) => item.name === message?.theme,
-  )?.svg;
+  const params = useParams();
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const { data: paper } = useQuery(paperQueries.detail(Number(params.id)));
+  const { data: user } = useQuery(userQueries.detail());
+  const EmojiSvg = ROLLINGPAPER_EMOJI_MAP[
+    paper?.theme as RollingpaperThemeName
+  ]?.find((item) => item.name === message?.theme)?.svg;
 
   const handleCreateMessage = () => {
-    if (token.getAccessToken()) {
-      return navigate(`${routes.rollingpaper.form('create', paper?.id)}`, {
-        state: { paperTheme: paper?.theme, position },
+    if (user) {
+      navigate(`${routes.rollingpaper.messageCreate(paper?.id)}`, {
+        state: { position },
       });
+    } else {
+      setIsLoginModalOpen(true);
     }
-    return setIsModalOpen(true);
   };
 
-  const handleClick = async () => {
-    navigate(routes.rollingpaper.detail(message?.paperId), {
-      state: message?.id,
+  const handleViewMessageItem = async (paperId: number, messageId: number) => {
+    navigate({
+      pathname: routes.rollingpaper.detail(paperId),
+      search: createSearchParams({
+        id: String(messageId),
+      }).toString(),
     });
   };
 
   return (
     <>
-      {PaperDetailData?.data && message ? (
-        <EmojiSkin onClick={handleClick} isSmall message={message}>
+      {paper && message ? (
+        <EmojiSkin
+          onClick={() => handleViewMessageItem(message.paperId, message.id)}
+          isSmall
+          message={message}
+        >
           {EmojiSvg ? <EmojiSvg /> : <StyledEmptySvg />}
           <p>{message.content}</p>
         </EmojiSkin>
@@ -51,14 +63,12 @@ export default function MessageItem({ message, position }: MessageItemProps) {
         <StyledItem isOwner={false}>
           <button type="button" onClick={handleCreateMessage}>
             <AddCircle />
-            {/* {!isOwner && <AddCircle />} */}
           </button>
         </StyledItem>
       )}
-      {isModalOpen && (
+      {isLoginModalOpen && (
         <LoginModal
-          isOpen={isModalOpen}
-          onToggleModal={() => setIsModalOpen((prev) => !prev)}
+          onToggleModal={() => setIsLoginModalOpen((prev) => !prev)}
         />
       )}
     </>

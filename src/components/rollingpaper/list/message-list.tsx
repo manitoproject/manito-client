@@ -1,21 +1,23 @@
 import styled from '@emotion/styled';
+import { useQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
-import { usePaperMessagesQuery } from '../../../queries/message';
+import MessageItem from '@/components/rollingpaper/list/message-item';
+import { MyMessageListSkeleton } from '@/components/skeletons/skeletons';
+import { messageQueries } from '@/lib/query-factory';
 import {
   useMessageActions,
   useMessageList,
-} from '../../../stores/message-store';
-import { MyMessageListSkeleton } from '../../skeletons/skeletons';
-import MessageItem from './message-item';
+} from '@/stores/message-index-store';
 
 export default function MessageList() {
-  const { data, isLoading } = usePaperMessagesQuery();
+  const params = useParams();
+  const { data, isLoading } = useQuery(messageQueries.paper(Number(params.id)));
   const messageList = useMessageList();
   const messageActions = useMessageActions();
-
   useEffect(() => {
-    messageActions.snycList(data?.data);
+    messageActions.snycList(data);
   }, [data, messageActions]);
 
   if (isLoading) return <MyMessageListSkeleton />;

@@ -1,8 +1,8 @@
 import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 
-import { getFontSizeAndWeight } from '../../styles/mixins';
-import { SideMenuProps } from './sidebar';
+import { SideMenuProps } from '@/components/header/sidebar';
+import { getFontSizeAndWeight } from '@/styles/mixins';
 
 const fadeIn = keyframes`
    0% {

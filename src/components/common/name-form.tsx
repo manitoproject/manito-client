@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { ForwardedRef, forwardRef } from 'react';
 
-import Input from './input';
+import Input from '@/components/common/input';
 
 interface NameFormProps {
   children?: React.ReactNode;

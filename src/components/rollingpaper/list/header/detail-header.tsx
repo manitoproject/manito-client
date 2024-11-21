@@ -1,45 +1,47 @@
+import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { Clip, KakaoFill } from '../../../../assets/svg/icons';
-import { useShare } from '../../../../hooks';
-import { usePaperMessagesQuery } from '../../../../queries/message';
-import { usePaperDetailQuery } from '../../../../queries/paper';
-import { useUserQuery } from '../../../../queries/users';
-import routes from '../../../../routes';
-import { useToastActions } from '../../../../stores/toast-store';
-import theme from '../../../../styles/theme';
-import { Modal } from '../../../modal';
-import LoginModal from '../../../modal/login-modal';
+import { Clip, KakaoFill } from '@/assets/svg/icons';
+import { Modal } from '@/components/modal';
+import { Content } from '@/components/modal/create-message-modal';
+import LoginModal from '@/components/modal/login-modal';
 import {
   StyledModalLink,
   StyledModalLinks,
   StyledRollingHeader,
-} from './detail-header.style';
-import DetailMessagelength from './message-length';
+} from '@/components/rollingpaper/list/header/detail-header.style';
+import useShare from '@/hooks/use-share';
+import { messageQueries, userQueries } from '@/lib/query-factory';
+import routes from '@/routes';
+import { useToastActions } from '@/stores/toast-store';
+import theme from '@/styles/theme';
 
 interface DetailHeaderProps {
-  paperId?: number;
+  paper?: Paper;
+  content: Content;
 }
 
-export default function DetailHeader({ paperId }: DetailHeaderProps) {
+export default function DetailHeader({ paper, content }: DetailHeaderProps) {
   const [isCopyModalOpen, setIsCopyModalOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-  const { data } = usePaperMessagesQuery();
-  const { data: PaperData } = usePaperDetailQuery();
-  const { data: userData } = useUserQuery();
+  const { data: messages } = useQuery(messageQueries.paper(paper?.id));
+  const { data: user } = useQuery(userQueries.detail());
   const toastActions = useToastActions();
   const { handleKakakoShare, handleUrlCopy } = useShare();
   const navigate = useNavigate();
+
   const handleShowDetailMessage = () => {
-    if (data?.data?.length)
-      return navigate(routes.rollingpaper.detail(paperId));
+    if (messages?.length) return navigate(routes[content].detail(paper?.id));
     toastActions.add('상세보기 내역이 없습니다.');
   };
 
   return (
     <StyledRollingHeader>
-      <DetailMessagelength />
+      <span>
+        <strong>{messages?.length}</strong>
+        개의 작성물
+      </span>
       <div>
         <button onClick={handleShowDetailMessage}>상세보기</button>
         <button onClick={() => setIsCopyModalOpen(true)}>
@@ -47,21 +49,13 @@ export default function DetailHeader({ paperId }: DetailHeaderProps) {
         </button>
       </div>
       {isCopyModalOpen && (
-        <Modal
-          isOpen={isCopyModalOpen}
-          onClick={() => setIsCopyModalOpen((prev) => !prev)}
-        >
+        <Modal onClick={() => setIsCopyModalOpen((prev) => !prev)}>
           <Modal.TitleWrapper>
             <Modal.Title>공유하기</Modal.Title>
           </Modal.TitleWrapper>
           <StyledModalLinks>
             <StyledModalLink
-              onClick={() =>
-                handleKakakoShare(
-                  userData?.data?.originName,
-                  PaperData?.data?.title,
-                )
-              }
+              onClick={() => handleKakakoShare(user?.originName, paper?.title)}
             >
               <KakaoFill />
               <span>카카오톡</span>
@@ -85,7 +79,6 @@ export default function DetailHeader({ paperId }: DetailHeaderProps) {
       )}
       {isLoginModalOpen && (
         <LoginModal
-          isOpen={isLoginModalOpen}
           onToggleModal={() => setIsLoginModalOpen((prev) => !prev)}
         />
       )}

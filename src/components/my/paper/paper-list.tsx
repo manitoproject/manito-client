@@ -1,19 +1,24 @@
 import styled from '@emotion/styled';
+import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 
-import { useUserPaperQuery } from '../../../queries/paper';
-import { useUserQuery } from '../../../queries/users';
-import { MyPaperListSkeleton } from '../../skeletons/skeletons';
-import MyPaperItem from './paper-item';
+import MyPaperItem from '@/components/my/paper/paper-item';
+import { paperQueries, userQueries } from '@/lib/query-factory';
 
-export default function MyPaperList() {
-  const { data: userData } = useUserQuery();
-  const { data, isLoading } = useUserPaperQuery(userData?.data?.id);
+interface MyPaperListProps {
+  activeCagegory: Category;
+}
 
-  if (isLoading) return <MyPaperListSkeleton />;
+export default function MyPaperList({ activeCagegory }: MyPaperListProps) {
+  const { data: user } = useQuery(userQueries.detail());
+  const { data: papers } = useSuspenseQuery(paperQueries.user(user?.id));
+
+  const filteredList = papers?.filter(
+    (paper) => paper.category === activeCagegory,
+  );
 
   return (
     <StyledList>
-      {data?.data?.map((item) => (
+      {filteredList?.map((item) => (
         <MyPaperItem paper={item} key={item.id} />
       ))}
     </StyledList>

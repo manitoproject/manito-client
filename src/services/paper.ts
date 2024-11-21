@@ -1,6 +1,6 @@
-import { apiRequester, apiRequesterWithoutToken } from '.';
+import { apiRequester, apiRequesterWithoutToken } from '@/services';
 
-export const createRollingpaper = async ({
+export const createPaper = async ({
   category,
   theme,
   title,
@@ -24,7 +24,7 @@ export const getPaperByUserId = async (userId?: number) => {
   return data;
 };
 
-export const getPerperDetail = async (paperId?: string) => {
+export const getPerperDetail = async (paperId?: number) => {
   if (!paperId) return null;
   const { data } = await apiRequesterWithoutToken.get<
     DeatultResponse<PaperDetail>

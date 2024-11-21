@@ -1,5 +1,5 @@
-import { CreateMessageApiParams, Message } from '../types/message';
-import { apiRequester, apiRequesterWithoutToken } from '.';
+import { apiRequester, apiRequesterWithoutToken } from '@/services';
+import { CreateMessageApiParams, Message } from '@/types/message';
 
 export const createMessage = async (messageInfo: CreateMessageApiParams) => {
   const { data } = await apiRequester.post<DeatultResponse<null>>(
@@ -42,6 +42,13 @@ export const editMessage = async (
   const { data } = await apiRequester.put<DeatultResponse<null>>(
     `/message`,
     message,
+  );
+  return data;
+};
+
+export const getMessageCounts = async (theme: CategoryLowerCase) => {
+  const { data } = await apiRequester<DeatultResponse<{ count: number }>>(
+    `/message/count/${theme}`,
   );
   return data;
 };

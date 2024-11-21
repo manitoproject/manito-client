@@ -1,4 +1,6 @@
 /// <reference types="vite/client" />
+/// <reference types="@emotion/react/types/css-prop" />
+
 interface ImportMetaEnv {
   readonly VITE_KAKAO_CLIENT_ID: string;
   readonly VITE_CLIENT_URL: string;

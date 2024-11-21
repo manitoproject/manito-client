@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_레이어_1" data-name="레이어_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 148 148">
+  <defs>
+    <style>
+      .choco-flowercookie-1 {
+        fill: #ff7d3f;
+      }
+
+      .choco-flowercookie-2 {
+        fill: #ffaa39;
+      }
+
+      .choco-flowercookie-3 {
+        fill: #fff;
+      }
+
+      .choco-flowercookie-4 {
+        fill: none;
+      }
+
+      .choco-flowercookie-5 {
+        fill: #fee58b;
+      }
+
+      .choco-flowercookie-6 {
+        fill: #ffd45c;
+      }
+
+      .choco-flowercookie-7 {
+        fill: #945745;
+      }
+
+      .choco-flowercookie-8 {
+        fill: #400f0a;
+      }
+
+      .choco-flowercookie-9 {
+        clip-path: url(#choco-flowercookie-clipboard);
+      }
+
+      .choco-flowercookie-10 {
+        fill: #fff2bb;
+      }
+    </style>
+    <clipPath id="choco-flowercookie-clipboard">
+      <path class="choco-flowercookie-4" d="M127.65,69.45c-.04-14.51-11.58-26.32-25.76-26.36-.76,0-1.48.16-2.21.22-1.68-12.89-12.37-22.91-25.41-22.96-13.07-.04-23.71,9.95-25.28,22.88-1.01-.13-2-.32-3.04-.32-14.18-.05-25.64,11.68-25.59,26.19.03,10.42,6.03,19.36,14.63,23.64-.89,2.66-1.47,5.48-1.46,8.45.04,14.51,11.57,26.32,25.76,26.36,5.67.02,10.85-1.9,15.09-5.07,4.25,3.2,9.46,5.15,15.12,5.17,14.18.05,25.64-11.68,25.59-26.19,0-3.05-.63-5.94-1.57-8.66,8.37-4.3,14.16-13.07,14.13-23.34Z"/>
+    </clipPath>
+  </defs>
+  <g>
+    <path class="choco-flowercookie-7" d="M138,68.57c-.05-17.31-13.82-31.39-30.73-31.45-.91,0-1.76.19-2.64.26-2.01-15.38-14.76-27.34-30.31-27.39-15.59-.05-28.28,11.87-30.16,27.29-1.2-.15-2.39-.38-3.63-.39-16.92-.05-30.59,13.94-30.53,31.25.04,12.43,7.19,23.09,17.46,28.2-1.06,3.18-1.75,6.53-1.74,10.08.05,17.31,13.81,31.39,30.73,31.45,6.76.02,12.95-2.27,18-6.05,5.08,3.81,11.28,6.14,18.04,6.17,16.92.05,30.59-13.94,30.53-31.25-.01-3.64-.75-7.08-1.87-10.33,9.99-5.12,16.89-15.6,16.85-27.85Z"/>
+    <g class="choco-flowercookie-9">
+      <path class="choco-flowercookie-8" d="M127.65,69.45c-.04-14.51-11.58-26.32-25.76-26.36-.76,0-1.48.16-2.21.22-1.68-12.89-12.37-22.91-25.41-22.96-13.07-.04-23.71,9.95-25.28,22.88-1.01-.13-2-.32-3.04-.32-14.18-.05-25.64,11.68-25.59,26.19.03,10.42,6.03,19.36,14.63,23.64-.89,2.66-1.47,5.48-1.46,8.45.04,14.51,11.57,26.32,25.76,26.36,5.67.02,10.85-1.9,15.09-5.07,4.25,3.2,9.46,5.15,15.12,5.17,14.18.05,25.64-11.68,25.59-26.19,0-3.05-.63-5.94-1.57-8.66,8.37-4.3,14.16-13.07,14.13-23.34Z"/>
+      <g>
+        <rect class="choco-flowercookie-1" x="6.35" y="15.54" width="1.91" height="12.03" rx=".96" ry=".96" transform="translate(22.92 5) rotate(62.05)"/>
+        <rect class="choco-flowercookie-1" x="37.89" y="19.57" width="1.91" height="6.46" rx=".96" ry=".96" transform="translate(82.13 10.33) rotate(133.5)"/>
+        <rect class="choco-flowercookie-1" x="123.92" y="30.59" width="1.91" height="6.46" rx=".96" ry=".96" transform="translate(178.44 151.59) rotate(-129.61)"/>
+        <rect class="choco-flowercookie-1" x="27.9" y="33.14" width="1.91" height="6.46" rx=".96" ry=".96" transform="translate(75.11 32.28) rotate(123.36)"/>
+        <path class="choco-flowercookie-2" d="M25.08,24.41h0c-.04,1.47-1.03,2.74-2.44,3.16h0c-1.41.41-2.93-.13-3.76-1.34h0c-.83-1.21-.78-2.82.12-3.99h0c.9-1.16,2.44-1.62,3.83-1.12h0c1.38.49,2.29,1.82,2.25,3.29Z"/>
+        <path class="choco-flowercookie-2" d="M49.04,32.9l-1.54,1.24c-.42.34-1.01.37-1.46.07l-1.65-1.08c-.45-.29-.66-.84-.52-1.36l.52-1.9c.14-.52.6-.89,1.14-.91l1.97-.1c.54-.03,1.03.3,1.22.8l.7,1.84c.19.5.04,1.07-.38,1.41Z"/>
+        <circle class="choco-flowercookie-5" cx="34.22" cy="29.84" r="1.44"/>
+        <rect class="choco-flowercookie-1" x="59.26" y="23.97" width="1.91" height="9.28" rx=".96" ry=".96" transform="translate(43.86 -36.02) rotate(50.39)"/>
+        <rect class="choco-flowercookie-1" x="101.61" y="28.56" width="1.91" height="10.26" rx=".96" ry=".96" transform="translate(203.03 73.21) rotate(-176.71)"/>
+        <rect class="choco-flowercookie-1" x="82.85" y="30.1" width="1.91" height="6.46" rx=".96" ry=".96" transform="translate(165.67 -4.51) rotate(133.5)"/>
+        <rect class="choco-flowercookie-1" x="143.67" y="30.06" width="1.91" height="8.87" rx=".96" ry=".96" transform="translate(269.21 -46.66) rotate(133.5)"/>
+        <path class="choco-flowercookie-2" d="M72.5,33.05l-1.15.28c-.64.16-1.31-.12-1.65-.68l-.62-1c-.35-.56-.29-1.28.13-1.78l.76-.9c.43-.5,1.13-.67,1.74-.43l1.09.45c.61.25.99.86.94,1.52l-.09,1.18c-.05.66-.51,1.21-1.15,1.36Z"/>
+        <path class="choco-flowercookie-2" d="M113.75,34.86h0c-1.39-.47-2.32-1.78-2.31-3.25h0c.02-1.47.98-2.76,2.38-3.2h0c1.4-.44,2.93.08,3.78,1.27h0c.85,1.2.83,2.81-.04,3.99h0c-.88,1.18-2.41,1.66-3.81,1.19Z"/>
+        <path class="choco-flowercookie-2" d="M94.19,33.07l-.36.29c-.42.34-1.01.37-1.46.07l-.38-.25c-.45-.29-.66-.84-.52-1.36l.12-.44c.14-.52.6-.89,1.14-.91l.46-.02c.54-.03,1.03.3,1.22.8l.16.43c.19.5.04,1.07-.38,1.41Z"/>
+        <circle class="choco-flowercookie-5" cx="148.02" cy="43.96" r="1.44"/>
+        <circle class="choco-flowercookie-5" cx="79.1" cy="25.85" r="1.93"/>
+        <circle class="choco-flowercookie-5" cx="135.07" cy="32.58" r="1.93"/>
+        <circle class="choco-flowercookie-5" cx="96.49" cy="41.52" r="2.41"/>
+      </g>
+      <g>
+        <rect class="choco-flowercookie-1" x="34.82" y="107.37" width="1.91" height="12.03" rx=".96" ry=".96" transform="translate(119.17 28.65) rotate(62.05)"/>
+        <rect class="choco-flowercookie-1" x="66.36" y="111.4" width="1.91" height="6.46" rx=".96" ry=".96" transform="translate(196.8 144.72) rotate(133.5)"/>
+        <rect class="choco-flowercookie-1" x="56.37" y="124.97" width="1.91" height="6.46" rx=".96" ry=".96" transform="translate(195.93 150.83) rotate(123.36)"/>
+        <path class="choco-flowercookie-2" d="M53.55,116.23h0c-.04,1.47-1.03,2.74-2.44,3.16h0c-1.41.41-2.93-.13-3.76-1.34h0c-.83-1.21-.78-2.82.12-3.99h0c.9-1.16,2.44-1.62,3.83-1.12h0c1.38.49,2.29,1.82,2.25,3.29Z"/>
+        <path class="choco-flowercookie-2" d="M77.51,124.73l-1.54,1.24c-.42.34-1.01.37-1.46.07l-1.65-1.08c-.45-.29-.66-.84-.52-1.36l.52-1.9c.14-.52.6-.89,1.14-.91l1.97-.1c.54-.03,1.03.3,1.22.8l.7,1.84c.19.5.04,1.07-.38,1.41Z"/>
+        <circle class="choco-flowercookie-5" cx="62.69" cy="121.67" r="1.44"/>
+        <circle class="choco-flowercookie-5" cx="26.64" cy="119.24" r="1.44"/>
+        <rect class="choco-flowercookie-1" x="87.73" y="115.8" width="1.91" height="9.28" rx=".96" ry=".96" transform="translate(124.92 -24.67) rotate(50.39)"/>
+        <rect class="choco-flowercookie-1" x="130.08" y="120.39" width="1.91" height="10.26" rx=".96" ry=".96" transform="translate(254.65 258.35) rotate(-176.71)"/>
+        <rect class="choco-flowercookie-1" x="111.32" y="121.93" width="1.91" height="6.46" rx=".96" ry=".96" transform="translate(280.35 129.88) rotate(133.5)"/>
+        <path class="choco-flowercookie-2" d="M100.97,124.88l-1.15.28c-.64.16-1.31-.12-1.65-.68l-.62-1c-.35-.56-.29-1.28.13-1.78l.76-.9c.43-.5,1.13-.67,1.74-.43l1.09.45c.61.25.99.86.94,1.52l-.09,1.18c-.05.66-.51,1.21-1.15,1.36Z"/>
+        <path class="choco-flowercookie-2" d="M142.22,126.69h0c-1.39-.47-2.32-1.78-2.31-3.25h0c.02-1.47.98-2.76,2.38-3.2h0c1.4-.44,2.93.08,3.78,1.27h0c.85,1.2.83,2.81-.04,3.99h0c-.88,1.18-2.41,1.66-3.81,1.19Z"/>
+        <path class="choco-flowercookie-2" d="M122.66,124.9l-.36.29c-.42.34-1.01.37-1.46.07l-.38-.25c-.45-.29-.66-.84-.52-1.36l.12-.44c.14-.52.6-.89,1.14-.91l.46-.02c.54-.03,1.03.3,1.22.8l.16.43c.19.5.04,1.07-.38,1.41Z"/>
+        <circle class="choco-flowercookie-5" cx="107.57" cy="117.68" r="1.93"/>
+        <circle class="choco-flowercookie-5" cx="124.96" cy="133.35" r="2.41"/>
+      </g>
+      <rect class="choco-flowercookie-1" x="23.63" y="49.83" width="1.91" height="6.46" rx=".96" ry=".96" transform="translate(80 71.76) rotate(133.5)"/>
+      <rect class="choco-flowercookie-1" x="112.01" y="55.96" width="1.91" height="6.46" rx=".96" ry=".96" transform="translate(139.39 183.95) rotate(-129.61)"/>
+      <rect class="choco-flowercookie-1" x="13.64" y="63.4" width="1.91" height="6.46" rx=".96" ry=".96" transform="translate(78.28 91.09) rotate(123.36)"/>
+      <path class="choco-flowercookie-2" d="M10.82,54.67h0c-.04,1.47-1.03,2.74-2.44,3.16h0c-1.41.41-2.93-.13-3.76-1.34h0c-.83-1.21-.78-2.82.12-3.99h0c.9-1.16,2.44-1.62,3.83-1.12h0c1.38.49,2.29,1.82,2.25,3.29Z"/>
+      <path class="choco-flowercookie-2" d="M34.78,63.16l-1.54,1.24c-.42.34-1.01.37-1.46.07l-1.65-1.08c-.45-.29-.66-.84-.52-1.36l.52-1.9c.14-.52.6-.89,1.14-.91l1.97-.1c.54-.03,1.03.3,1.22.8l.7,1.84c.19.5.04,1.07-.38,1.41Z"/>
+      <circle class="choco-flowercookie-5" cx="19.96" cy="60.1" r="1.44"/>
+      <rect class="choco-flowercookie-1" x="43.6" y="48.66" width="1.91" height="9.28" rx=".96" ry=".96" transform="translate(57.21 -15.01) rotate(50.39)"/>
+      <rect class="choco-flowercookie-1" x="87.7" y="57.25" width="1.91" height="10.26" rx=".96" ry=".96" transform="translate(62.81 167.66) rotate(-111.34)"/>
+      <rect class="choco-flowercookie-1" x="63.89" y="60.88" width="1.91" height="6.46" rx=".96" ry=".96" transform="translate(156 61.21) rotate(133.5)"/>
+      <rect class="choco-flowercookie-1" x="129.41" y="60.32" width="1.91" height="8.87" rx=".96" ry=".96" transform="translate(267.08 14.77) rotate(133.5)"/>
+      <path class="choco-flowercookie-2" d="M52.85,62.44l-1.15.28c-.64.16-1.31-.12-1.65-.68l-.62-1c-.35-.56-.29-1.28.13-1.78l.76-.9c.43-.5,1.13-.67,1.74-.43l1.09.45c.61.25.99.86.94,1.52l-.09,1.18c-.05.66-.51,1.21-1.15,1.36Z"/>
+      <path class="choco-flowercookie-2" d="M101.37,59.68l-.96-.32c-.53-.18-.89-.68-.89-1.25v-1.02c.02-.56.39-1.06.92-1.23l.97-.3c.54-.17,1.12.03,1.45.49l.59.83c.33.46.32,1.08-.02,1.53l-.61.82c-.34.45-.93.64-1.46.46Z"/>
+      <path class="choco-flowercookie-2" d="M142.68,65.52l-.85.86c-.5.5-1.26.63-1.89.31l-1.08-.54c-.63-.32-.99-1.01-.88-1.7l.18-1.19c.11-.7.65-1.25,1.35-1.36l1.19-.19c.7-.11,1.39.23,1.71.86l.55,1.07c.32.63.21,1.39-.29,1.89Z"/>
+      <path class="choco-flowercookie-2" d="M75.41,61.77l-.36.29c-.42.34-1.01.37-1.46.07l-.38-.25c-.45-.29-.66-.84-.52-1.36l.12-.44c.14-.52.6-.89,1.14-.91l.46-.02c.54-.03,1.03.3,1.22.8l.16.43c.19.5.04,1.07-.38,1.41Z"/>
+      <circle class="choco-flowercookie-5" cx="133.76" cy="74.22" r="1.44"/>
+      <circle class="choco-flowercookie-5" cx="62.76" cy="55.42" r="1.93"/>
+      <circle class="choco-flowercookie-5" cx="120.8" cy="63.76" r="1.93"/>
+      <circle class="choco-flowercookie-5" cx="143.62" cy="72.25" r="1.93"/>
+      <circle class="choco-flowercookie-5" cx="79.27" cy="69.87" r="2.41"/>
+      <g>
+        <rect class="choco-flowercookie-1" x="142.1" y="42.59" width="1.91" height="6.46" rx=".96" ry=".96" transform="translate(97.89 -97.44) rotate(54.74)"/>
+        <rect class="choco-flowercookie-1" x="55.37" y="41.16" width="1.91" height="6.46" rx=".96" ry=".96" transform="translate(-15.22 49.27) rotate(-42.14)"/>
+        <rect class="choco-flowercookie-1" x="14.49" y="39.12" width="1.91" height="6.46" rx=".96" ry=".96" transform="translate(-24.42 21.31) rotate(-42.14)"/>
+        <rect class="choco-flowercookie-1" x="150.03" y="57.45" width="1.91" height="6.46" rx=".96" ry=".96" transform="translate(141.83 -101.79) rotate(64.88)"/>
+        <path class="choco-flowercookie-2" d="M131.51,54.35l1.34,1.45c.37.39.94.51,1.43.28l1.79-.83c.49-.23.77-.74.71-1.27l-.24-1.96c-.06-.53-.47-.96-.99-1.07l-1.94-.38c-.53-.1-1.06.14-1.32.61l-.96,1.72c-.26.47-.19,1.05.18,1.45Z"/>
+        <circle class="choco-flowercookie-5" cx="146.62" cy="53.45" r="1.44"/>
+        <rect class="choco-flowercookie-1" x="120.12" y="43.86" width="1.91" height="9.28" rx=".96" ry=".96" transform="translate(243.39 3.22) rotate(137.86)"/>
+        <rect class="choco-flowercookie-1" x="77.47" y="42.33" width="1.91" height="10.26" rx=".96" ry=".96" transform="translate(4.39 -6.59) rotate(4.95)"/>
+        <rect class="choco-flowercookie-1" x="96.09" y="46.56" width="1.91" height="6.46" rx=".96" ry=".96" transform="translate(81.68 -58.19) rotate(54.74)"/>
+        <rect class="choco-flowercookie-1" x="35.73" y="37.79" width="1.91" height="8.87" rx=".96" ry=".96" transform="translate(49.99 -12.11) rotate(54.74)"/>
+        <path class="choco-flowercookie-2" d="M108.28,51.14l1.09.44c.61.25,1.31.07,1.73-.43l.76-.9c.42-.5.47-1.22.13-1.78l-.62-1c-.35-.56-1.02-.83-1.66-.67l-1.14.29c-.64.16-1.1.71-1.15,1.37l-.08,1.18c-.05.66.34,1.27.95,1.52Z"/>
+        <path class="choco-flowercookie-2" d="M67.19,47.01h0c1.45-.27,2.56-1.43,2.75-2.89h0c.19-1.46-.57-2.87-1.9-3.51h0c-1.33-.64-2.91-.34-3.92.72h0c-1.01,1.06-1.23,2.66-.53,3.95h0c.7,1.29,2.15,1.99,3.6,1.72Z"/>
+        <path class="choco-flowercookie-2" d="M24.39,41.22l.72.97c.42.57,1.16.8,1.83.58l1.15-.38c.67-.22,1.12-.85,1.11-1.56v-1.21c-.02-.71-.48-1.33-1.15-1.54l-1.15-.36c-.67-.21-1.41.03-1.82.61l-.7.98c-.41.58-.4,1.35.02,1.92Z"/>
+        <path class="choco-flowercookie-2" d="M86.81,48.05l.31.33c.37.39.94.51,1.43.28l.41-.19c.49-.23.77-.74.71-1.27l-.06-.45c-.06-.53-.47-.96-.99-1.07l-.45-.09c-.53-.1-1.06.14-1.32.61l-.22.4c-.26.47-.19,1.05.18,1.45Z"/>
+        <circle class="choco-flowercookie-5" cx="31.97" cy="51.11" r="1.44"/>
+        <circle class="choco-flowercookie-5" cx="102.77" cy="43.07" r="1.93"/>
+        <circle class="choco-flowercookie-5" cx="46.42" cy="41.7" r="1.93"/>
+        <circle class="choco-flowercookie-5" cx="22.5" cy="47.74" r="1.93"/>
+        <circle class="choco-flowercookie-5" cx="83.32" cy="56.08" r="2.41"/>
+        <circle class="choco-flowercookie-5" cx="8.26" cy="43.17" r="1.44"/>
+      </g>
+      <rect class="choco-flowercookie-1" x="121.83" y="66.21" width="1.91" height="6.46" rx=".96" ry=".96" transform="translate(93.97 -68.64) rotate(48.72)"/>
+      <rect class="choco-flowercookie-1" x="34.74" y="71.62" width="1.91" height="6.46" rx=".96" ry=".96" transform="translate(-43.89 51.52) rotate(-48.16)"/>
+      <rect class="choco-flowercookie-1" x="130.58" y="77.9" width="1.91" height="6.46" rx=".96" ry=".96" transform="translate(132.95 -73.41) rotate(58.86)"/>
+      <path class="choco-flowercookie-2" d="M135.78,69.32h0c-.01,1.47.92,2.78,2.31,3.25h0c1.39.47,2.93-.01,3.8-1.19h0c.88-1.18.89-2.79.04-3.99h0c-.85-1.2-2.38-1.71-3.78-1.27h0c-1.4.44-2.36,1.73-2.38,3.2Z"/>
+      <path class="choco-flowercookie-2" d="M111.5,76.88l1.49,1.3c.41.35.99.41,1.45.13l1.69-1.01c.46-.28.69-.82.57-1.34l-.44-1.92c-.12-.52-.56-.91-1.1-.96l-1.97-.17c-.54-.05-1.04.26-1.25.75l-.77,1.82c-.21.49-.08,1.07.33,1.42Z"/>
+      <circle class="choco-flowercookie-5" cx="126.43" cy="74.4" r="1.44"/>
+      <rect class="choco-flowercookie-1" x="99.55" y="67.52" width="1.91" height="9.28" rx=".96" ry=".96" transform="translate(221.31 45.4) rotate(131.84)"/>
+      <rect class="choco-flowercookie-1" x="57.03" y="70.46" width="1.91" height="10.26" rx=".96" ry=".96" transform="translate(-1.4 1.1) rotate(-1.07)"/>
+      <rect class="choco-flowercookie-1" x="75.79" y="72.73" width="1.91" height="6.46" rx=".96" ry=".96" transform="translate(83.2 -31.83) rotate(48.72)"/>
+      <rect class="choco-flowercookie-1" x="14.97" y="70.33" width="1.91" height="8.87" rx=".96" ry=".96" transform="translate(61.6 13.47) rotate(48.72)"/>
+      <path class="choco-flowercookie-2" d="M88.06,76.12l1.13.33c.63.18,1.31-.07,1.68-.61l.66-.98c.37-.55.34-1.27-.06-1.79l-.73-.93c-.41-.52-1.1-.72-1.72-.49l-1.11.4c-.62.23-1.02.82-1,1.48l.04,1.18c.02.66.47,1.23,1.1,1.41Z"/>
+      <path class="choco-flowercookie-2" d="M46.77,76.32h0c1.41-.42,2.39-1.69,2.43-3.16h0c.04-1.47-.87-2.8-2.25-3.29h0c-1.38-.49-2.93-.04-3.83,1.13h0c-.9,1.16-.94,2.77-.11,3.99h0c.83,1.21,2.35,1.75,3.76,1.34Z"/>
+      <path class="choco-flowercookie-2" d="M3.59,75.05l.82.89c.48.52,1.24.68,1.88.38l1.1-.5c.64-.29,1.02-.97.94-1.67l-.14-1.2c-.08-.7-.6-1.27-1.3-1.41l-1.18-.24c-.69-.14-1.4.18-1.74.8l-.59,1.05c-.35.61-.26,1.38.22,1.9Z"/>
+      <path class="choco-flowercookie-2" d="M66.39,75.3l.34.3c.41.35.99.41,1.45.13l.39-.24c.46-.28.69-.82.57-1.34l-.1-.45c-.12-.52-.56-.91-1.1-.96l-.46-.04c-.54-.05-1.04.26-1.25.75l-.18.42c-.21.49-.08,1.07.33,1.42Z"/>
+      <circle class="choco-flowercookie-5" cx="12.17" cy="84.09" r="1.44"/>
+      <circle class="choco-flowercookie-5" cx="25.56" cy="73.22" r="1.93"/>
+      <circle class="choco-flowercookie-5" cx="2.4" cy="81.74" r="1.93"/>
+      <circle class="choco-flowercookie-5" cx="63.76" cy="83.65" r="2.41"/>
+      <rect class="choco-flowercookie-1" x="134.21" y="94.74" width="1.91" height="6.46" rx=".96" ry=".96" transform="translate(119.62 -68.24) rotate(48.72)"/>
+      <rect class="choco-flowercookie-1" x="45.66" y="97.44" width="1.91" height="6.46" rx=".96" ry=".96" transform="translate(-59.48 68.25) rotate(-48.16)"/>
+      <rect class="choco-flowercookie-1" x="6.94" y="104.68" width="1.91" height="6.46" rx=".96" ry=".96" transform="translate(-77.77 41.82) rotate(-48.16)"/>
+      <rect class="choco-flowercookie-1" x="143.66" y="108.69" width="1.91" height="6.46" rx=".96" ry=".96" transform="translate(165.62 -69.73) rotate(58.86)"/>
+      <path class="choco-flowercookie-2" d="M124.58,107.67l1.49,1.3c.41.35.99.41,1.45.13l1.69-1.01c.46-.28.69-.82.57-1.34l-.44-1.92c-.12-.52-.56-.91-1.1-.96l-1.97-.17c-.54-.05-1.04.26-1.25.75l-.77,1.82c-.21.49-.08,1.07.33,1.42Z"/>
+      <circle class="choco-flowercookie-5" cx="139.51" cy="105.19" r="1.44"/>
+      <rect class="choco-flowercookie-1" x="114.23" y="92.8" width="1.91" height="9.28" rx=".96" ry=".96" transform="translate(264.62 76.6) rotate(131.84)"/>
+      <rect class="choco-flowercookie-1" x="69.82" y="99.67" width="1.91" height="10.26" rx=".96" ry=".96" transform="translate(-53.58 127.78) rotate(-66.44)"/>
+      <rect class="choco-flowercookie-1" x="93.54" y="104.22" width="1.91" height="6.46" rx=".96" ry=".96" transform="translate(112.91 -34.45) rotate(48.72)"/>
+      <rect class="choco-flowercookie-1" x="28.05" y="101.12" width="1.91" height="8.87" rx=".96" ry=".96" transform="translate(89.19 14.12) rotate(48.72)"/>
+      <path class="choco-flowercookie-2" d="M106.56,106.25l1.13.33c.63.18,1.31-.07,1.68-.61l.66-.98c.37-.55.34-1.27-.06-1.79l-.73-.93c-.41-.52-1.1-.72-1.72-.49l-1.11.4c-.62.23-1.02.82-1,1.48l.04,1.18c.02.66.47,1.23,1.1,1.41Z"/>
+      <path class="choco-flowercookie-2" d="M58.18,101.6l.98-.29c.54-.16.92-.65.93-1.21l.03-1.02c.02-.56-.33-1.07-.86-1.26l-.96-.34c-.53-.19-1.12-.01-1.47.43l-.62.81c-.34.45-.36,1.06-.04,1.53l.57.84c.32.47.9.67,1.44.51Z"/>
+      <path class="choco-flowercookie-2" d="M16.67,105.84l.82.89c.48.52,1.24.68,1.88.38l1.1-.5c.64-.29,1.02-.97.94-1.67l-.14-1.2c-.08-.7-.6-1.27-1.3-1.41l-1.18-.24c-.69-.14-1.4.18-1.74.8l-.59,1.05c-.35.61-.26,1.38.22,1.9Z"/>
+      <path class="choco-flowercookie-2" d="M84.04,104.7l.34.3c.41.35.99.41,1.45.13l.39-.24c.46-.28.69-.82.57-1.34l-.1-.45c-.12-.52-.56-.91-1.1-.96l-.46-.04c-.54-.05-1.04.26-1.25.75l-.18.42c-.21.49-.08,1.07.33,1.42Z"/>
+      <circle class="choco-flowercookie-5" cx="25.25" cy="114.88" r="1.44"/>
+      <circle class="choco-flowercookie-5" cx="96.93" cy="98.85" r="1.93"/>
+      <circle class="choco-flowercookie-5" cx="38.6" cy="104.93" r="1.93"/>
+      <circle class="choco-flowercookie-5" cx="15.47" cy="112.53" r="1.93"/>
+      <circle class="choco-flowercookie-5" cx="79.86" cy="112.65" r="2.41"/>
+      <circle class="choco-flowercookie-5" cx=".83" cy="109.48" r="1.44"/>
+      <rect class="choco-flowercookie-1" x="16.11" y="82.91" width="1.91" height="6.46" rx=".96" ry=".96" transform="translate(95.8 125.02) rotate(127.48)"/>
+      <rect class="choco-flowercookie-1" x="102.82" y="84.84" width="1.91" height="6.46" rx=".96" ry=".96" transform="translate(116.38 223.6) rotate(-135.63)"/>
+      <rect class="choco-flowercookie-1" x="143.75" y="84.39" width="1.91" height="6.46" rx=".96" ry=".96" transform="translate(186.89 251.45) rotate(-135.63)"/>
+      <rect class="choco-flowercookie-1" x="7.6" y="97.45" width="1.91" height="6.46" rx=".96" ry=".96" transform="translate(101.92 139.33) rotate(117.34)"/>
+      <path class="choco-flowercookie-2" d="M3.54,89.18h0c.11,1.47-.73,2.84-2.09,3.4h0c-1.36.56-2.92.18-3.88-.94h0c-.95-1.12-1.07-2.72-.3-3.98h0c.77-1.25,2.26-1.86,3.69-1.52h0c1.43.35,2.47,1.57,2.58,3.04Z"/>
+      <path class="choco-flowercookie-2" d="M28.27,95.12l-1.4,1.39c-.38.38-.96.47-1.44.22l-1.76-.9c-.48-.25-.74-.77-.66-1.3l.31-1.95c.09-.53.5-.95,1.03-1.03l1.95-.3c.53-.08,1.06.19,1.3.67l.89,1.76c.24.48.15,1.06-.23,1.44Z"/>
+      <circle class="choco-flowercookie-5" cx="13.21" cy="93.63" r="1.44"/>
+      <rect class="choco-flowercookie-1" x="37.97" y="85.03" width="1.91" height="9.28" rx=".96" ry=".96" transform="translate(73.8 -1.65) rotate(44.37)"/>
+      <rect class="choco-flowercookie-1" x="80.62" y="85.15" width="1.91" height="10.26" rx=".96" ry=".96" transform="translate(167.36 176.58) rotate(177.27)"/>
+      <rect class="choco-flowercookie-1" x="61.92" y="88.67" width="1.91" height="6.46" rx=".96" ry=".96" transform="translate(174.07 97.92) rotate(127.48)"/>
+      <rect class="choco-flowercookie-1" x="122.53" y="82.24" width="1.91" height="8.87" rx=".96" ry=".96" transform="translate(267.42 41.42) rotate(127.48)"/>
+      <path class="choco-flowercookie-2" d="M50.56,87.41l-1.11.4c-.62.22-1.31.02-1.72-.5l-.72-.93c-.4-.52-.43-1.24-.06-1.79l.66-.98c.37-.54,1.05-.79,1.68-.61l1.13.33c.63.18,1.07.75,1.09,1.41l.04,1.18c.02.66-.38,1.25-1,1.48Z"/>
+      <path class="choco-flowercookie-2" d="M92.82,90.27h0c-1.43-.32-2.5-1.53-2.64-2.99h0c-.14-1.46.68-2.85,2.03-3.43h0c1.35-.58,2.92-.23,3.89.87h0c.97,1.1,1.12,2.71.37,3.97h0c-.75,1.26-2.23,1.9-3.66,1.58Z"/>
+      <path class="choco-flowercookie-2" d="M135.82,86.14l-.76.94c-.44.55-1.19.76-1.85.51l-1.13-.43c-.66-.25-1.09-.9-1.05-1.6l.06-1.21c.03-.71.52-1.31,1.2-1.5l1.16-.32c.68-.19,1.41.09,1.79.68l.66,1.01c.39.59.35,1.36-.09,1.91Z"/>
+      <path class="choco-flowercookie-2" d="M73.18,90.55l-.32.32c-.38.38-.96.47-1.44.22l-.41-.21c-.48-.25-.74-.77-.66-1.3l.07-.45c.09-.53.5-.95,1.03-1.03l.45-.07c.53-.08,1.06.19,1.3.67l.21.41c.24.48.15,1.06-.23,1.44Z"/>
+      <circle class="choco-flowercookie-5" cx="127.86" cy="95.73" r="1.44"/>
+      <circle class="choco-flowercookie-5" cx="113.78" cy="85.77" r="1.93"/>
+      <circle class="choco-flowercookie-5" cx="137.46" cy="92.74" r="1.93"/>
+      <circle class="choco-flowercookie-5" cx="76.36" cy="98.71" r="2.41"/>
+    </g>
+  </g>
+  <g>
+    <g>
+      <path class="choco-flowercookie-6" d="M78.58,93.21c-10.28,2.66-20.66-3.79-23.19-14.4-2.53-10.61,3.75-21.37,14.02-24.03,10.28-2.66,20.66,3.79,23.19,14.4,2.53,10.61-3.75,21.37-14.02,24.03Z"/>
+      <path class="choco-flowercookie-10" d="M80.62,80.07c-5.48,1.42-11.01-2.02-12.36-7.68-1.35-5.66,2-11.39,7.47-12.81,5.48-1.42,11.01,2.02,12.36,7.68,1.35,5.66-2,11.39-7.47,12.81Z"/>
+      <path class="choco-flowercookie-3" d="M82.33,74.02c-3.6.93-7.25-1.33-8.14-5.05-.89-3.72,1.31-7.5,4.92-8.43,3.6-.93,7.25,1.33,8.14,5.05.89,3.72-1.31,7.5-4.92,8.43Z"/>
+      <polygon class="choco-flowercookie-3" points="83.98 58.24 86.46 61.54 90.58 61.81 87.28 64.29 87.01 68.41 84.53 65.1 80.41 64.84 83.72 62.36 83.98 58.24"/>
+      <circle class="choco-flowercookie-3" cx="87.11" cy="82.5" r="2.09"/>
+    </g>
+    <path class="choco-flowercookie-3" d="M61.29,85.26c6.65,5.08,15.23,6.14,21.57.03,1.48-1.44,3.52.92,1.85,2.16-.85.53-1.9,1.4-2.79,1.81-2.41,1.33-5.23,2.08-7.99,2.02-4.86-.14-9.44-2.42-12.95-5.67-.21-.2.09-.55.32-.34h0Z"/>
+  </g>
+</svg>

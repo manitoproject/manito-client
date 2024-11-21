@@ -23,10 +23,6 @@ export const StyledTrashButton = styled.button`
   top: 0;
   right: 0;
   background-color: ${({ theme }) => theme.colors.white};
-
-  svg path {
-    fill: ${({ theme }) => theme.colors['gray-700']};
-  }
 `;
 export const StyledEditButton = styled.button`
   left: 0;

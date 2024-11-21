@@ -1,21 +1,23 @@
 import styled from '@emotion/styled';
 
-import { getFontSizeAndWeight } from '../../../styles/mixins';
+import { getFontSizeAndWeight } from '@/styles/mixins';
 
 interface AuthorInfoProps {
   totalIndex?: number;
   nickname?: string;
   activeIndex: number;
+  isNicknameWhite?: boolean;
 }
 
 export default function AuthorInfo({
   totalIndex,
   nickname,
   activeIndex,
+  isNicknameWhite,
 }: AuthorInfoProps) {
   return (
     <StyledWrapper>
-      <StyledNicknameBox>
+      <StyledNicknameBox isNicknameWhite={isNicknameWhite}>
         <div>From</div>
         <div>{nickname}</div>
       </StyledNicknameBox>
@@ -40,12 +42,13 @@ const StyledWrapper = styled.div`
   z-index: 50;
   justify-content: center;
 `;
-const StyledNicknameBox = styled.div`
+const StyledNicknameBox = styled.div<{ isNicknameWhite?: boolean }>`
   display: flex;
   width: 100%;
   gap: 4px;
   div {
-    color: ${({ theme }) => theme.colors['gray-900']};
+    color: ${({ theme, isNicknameWhite }) =>
+      isNicknameWhite ? theme.colors.white : theme.colors['gray-900']};
     ${getFontSizeAndWeight('heading3', 'medium')};
   }
   div:nth-of-type(1) {
@@ -54,7 +57,10 @@ const StyledNicknameBox = styled.div`
   div:nth-of-type(2) {
     padding: 8px 0;
     text-align: right;
-    border-bottom: ${({ theme }) => `1px dashed ${theme.colors['gray-800']}`};
+    border-bottom: ${({ theme, isNicknameWhite }) =>
+      `1px dashed ${
+        isNicknameWhite ? theme.colors.white : theme.colors['gray-800']
+      }`};
     flex: 1;
   }
   align-items: center;

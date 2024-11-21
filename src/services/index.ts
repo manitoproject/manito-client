@@ -1,6 +1,6 @@
 import axios, { CreateAxiosDefaults, isAxiosError } from 'axios';
 
-import { token } from '../utils/storage';
+import { token } from '@/lib/storage';
 
 const defaultConfig: CreateAxiosDefaults = {
   baseURL: import.meta.env.VITE_BASE_URL,
@@ -16,7 +16,7 @@ export const apiRequesterWithoutToken = axios.create({
 });
 
 export const discordRequester = axios.create({
-  timeout: 5000,
+  ...defaultConfig,
   baseURL: import.meta.env.VITE_DISCORD_WEBHOOK,
 });
 

@@ -1,7 +1,7 @@
 import { ForwardedRef, forwardRef, useEffect } from 'react';
 
-import { Close } from '../../assets/svg/icons';
-import { StyledWrapper } from './input.style';
+import { Close } from '@/assets/svg/icons';
+import { StyledInputWrapper } from '@/components/common/input.style';
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -19,7 +19,7 @@ export default forwardRef(function Input(
   }, [ref]);
 
   return (
-    <StyledWrapper isError={isError}>
+    <StyledInputWrapper isError={isError}>
       <div>
         <input ref={ref} {...props} />
         <button
@@ -31,6 +31,6 @@ export default forwardRef(function Input(
         </button>
       </div>
       {children}
-    </StyledWrapper>
+    </StyledInputWrapper>
   );
 });

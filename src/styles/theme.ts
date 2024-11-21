@@ -71,6 +71,15 @@ const theme = {
     black: '#000000',
     kakao: '#FEE500',
     error: '#F04747',
+    'chocolate-100': '#F4EAE7',
+    'chocolate-200': '#EFC9C0',
+    'chocolate-300': '#400F0A',
+    'vanilla-100': '#FFFADE',
+    'vanilla-200': '#FFF5B4',
+    'vanilla-300': '#FF7D3F',
+    'pink-100': '#FFF4F7',
+    'pink-200': '#FEDEE6',
+    'pink-300': '#FF8DA8',
   },
 };
 export type FontName = keyof ThemeType['fontFamily'];

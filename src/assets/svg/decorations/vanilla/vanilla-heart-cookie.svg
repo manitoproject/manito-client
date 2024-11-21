@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_레이어_1" data-name="레이어_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 148 148">
+  <defs>
+    <style>
+      .vanilla-heart-cookie-1 {
+        fill: #ffbf73;
+      }
+
+      .vanilla-heart-cookie-2 {
+        fill: #fff;
+      }
+
+      .vanilla-heart-cookie-3, .vanilla-heart-cookie-4 {
+        fill: none;
+      }
+
+      .vanilla-heart-cookie-5 {
+        fill: url(#vanilla-heart-cookie-gradient_14);
+      }
+
+      .vanilla-heart-cookie-6 {
+        fill: #ffa124;
+      }
+
+      .vanilla-heart-cookie-7 {
+        fill: #88a8f8;
+      }
+
+      .vanilla-heart-cookie-8 {
+        fill: #d7e3fd;
+      }
+
+      .vanilla-heart-cookie-4 {
+        stroke: #ffa124;
+        stroke-miterlimit: 10;
+      }
+
+      .vanilla-heart-cookie-9 {
+        fill: #ff8da8;
+      }
+
+      .vanilla-heart-cookie-10 {
+        fill: #74342a;
+      }
+
+      .vanilla-heart-cookie-11 {
+        fill: #ff9210;
+      }
+
+      .vanilla-heart-cookie-12 {
+        clip-path: url(#clippath);
+      }
+
+      .vanilla-heart-cookie-13 {
+        fill: #fff2bb;
+      }
+    </style>
+    <clipPath id="clippath">
+      <circle class="vanilla-heart-cookie-3" cx="74" cy="74" r="64"/>
+    </clipPath>
+    <radialGradient id="vanilla-heart-cookie-gradient_14" data-name="무제 그라디언트 14" cx="74" cy="80.96" fx="74" fy="80.96" r="46.22" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fee58b"/>
+      <stop offset=".65" stop-color="#fee58b"/>
+      <stop offset="1" stop-color="#efab59"/>
+    </radialGradient>
+  </defs>
+  <circle class="vanilla-heart-cookie-2" cx="85.1" cy="129.8" r="1.48"/>
+  <g>
+    <g>
+      <circle class="vanilla-heart-cookie-13" cx="74" cy="74" r="64"/>
+      <g class="vanilla-heart-cookie-12">
+        <path class="vanilla-heart-cookie-4" d="M-19.65,58.09S135.83-2.43,134.26-2.43-17.57,83.13-17.57,83.13L155.13,19.48-6.09,100.87l173.74-57.39L9.57,119.13l144.52-43.83-127.83,60.52,127.83-35.48-115.83,50.09"/>
+        <circle class="vanilla-heart-cookie-3" cx="74" cy="74" r="64"/>
+      </g>
+    </g>
+    <path class="vanilla-heart-cookie-5" d="M117.01,48.45c-18.62-25.99-43.44,2.38-43.62,2.58-.22-.21-27.12-26.56-43.69.77-16.63,27.44,15.73,59.93,46.5,72.62l-.09-2.49.1,2.49c29.71-15.01,59.49-49.89,40.81-75.97Z"/>
+    <g>
+      <g>
+        <path class="vanilla-heart-cookie-6" d="M73.64,63.02s0,0,0,0c-.13-.12-15.62-15.3-25.17.44-9.58,15.81,9.06,34.52,26.79,41.84l-.05-1.43-1.57-40.84Z"/>
+        <path class="vanilla-heart-cookie-6" d="M75.21,103.86l.06,1.43c17.11-8.65,34.27-28.74,23.51-43.76-10.73-14.97-25.03,1.37-25.13,1.49,0,0,0,0,0,0l1.56,40.84Z"/>
+        <polygon class="vanilla-heart-cookie-6" points="75.21 103.86 73.65 63.02 73.65 63.02 73.64 63.02 75.21 103.86"/>
+      </g>
+      <path class="vanilla-heart-cookie-11" d="M60.61,80.82c0-8.22,3.37-15.66,8.8-21-5.26-3.47-14.65-7.29-21.22,3.55-8.91,14.7,6.6,31.92,23.08,40.14-6.51-5.41-10.65-13.56-10.65-22.68Z"/>
+      <g>
+        <circle class="vanilla-heart-cookie-1" cx="90.78" cy="68.18" r="8.52"/>
+        <circle class="vanilla-heart-cookie-13" cx="92.5" cy="66.59" r="6.17"/>
+        <polygon class="vanilla-heart-cookie-2" points="98.73 57.67 98.81 62.21 102.32 65.11 97.77 65.19 94.88 68.69 94.79 64.15 91.29 61.25 95.84 61.17 98.73 57.67"/>
+      </g>
+      <circle class="vanilla-heart-cookie-1" cx="87.48" cy="82.25" r="3.04"/>
+    </g>
+    <rect class="vanilla-heart-cookie-9" x="49.5" y="30.08" width="11.83" height="4.52" rx="2.26" ry="2.26" transform="translate(94.76 83.02) rotate(-158.1)"/>
+    <rect class="vanilla-heart-cookie-9" x="19.76" y="43.65" width="11.83" height="4.52" rx="2.26" ry="2.26" transform="translate(62.22 83.74) rotate(165.19)"/>
+    <rect class="vanilla-heart-cookie-9" x="124.06" y="51.7" width="6.69" height="4.52" rx="2.26" ry="2.26" transform="translate(250.79 -8.64) rotate(130.14)"/>
+    <rect class="vanilla-heart-cookie-9" x="97.67" y="29.21" width="11.83" height="4.52" rx="2.26" ry="2.26" transform="translate(189.28 97.62) rotate(-159.24)"/>
+    <rect class="vanilla-heart-cookie-7" x="32.05" y="109.76" width="11.83" height="4.52" rx="2.26" ry="2.26" transform="translate(-63.42 51.1) rotate(-40.28)"/>
+    <rect class="vanilla-heart-cookie-10" x="68.75" y="38.54" width="7.91" height="4.52" rx="2.26" ry="2.26" transform="translate(71.69 -42.57) rotate(60)"/>
+    <rect class="vanilla-heart-cookie-10" x="49.32" y="120.74" width="7.91" height="4.52" rx="2.26" ry="2.26" transform="translate(42.85 -10.64) rotate(18.96)"/>
+    <rect class="vanilla-heart-cookie-9" x="104.36" y="109.19" width="11.83" height="4.52" rx="2.26" ry="2.26" transform="translate(210.65 231.89) rotate(-175.11)"/>
+    <rect class="vanilla-heart-cookie-9" x="21.49" y="97.67" width="11.83" height="4.52" rx="2.26" ry="2.26" transform="translate(-6.43 197.86) rotate(-145.61)"/>
+    <rect class="vanilla-heart-cookie-10" x="13.56" y="61.67" width="7.99" height="4.52" rx="2.26" ry="2.26" transform="translate(-46.59 47.17) rotate(-60)"/>
+    <rect class="vanilla-heart-cookie-8" x="61.91" y="20.45" width="7.99" height="4.52" rx="2.26" ry="2.26" transform="translate(31.59 83.39) rotate(-79.52)"/>
+    <rect class="vanilla-heart-cookie-8" x="114.39" y="38.1" width="12.7" height="4.52" rx="2.26" ry="2.26" transform="translate(130.92 167.26) rotate(-113.07)"/>
+    <rect class="vanilla-heart-cookie-10" x="121.92" y="84.32" width="11.83" height="4.52" rx="2.26" ry="2.26" transform="translate(-21.95 124.01) rotate(-48.14)"/>
+    <rect class="vanilla-heart-cookie-7" x="33.58" y="28.71" width="7.91" height="4.52" rx="2.26" ry="2.26" transform="translate(-8.06 47.99) rotate(-60)"/>
+    <rect class="vanilla-heart-cookie-7" x="125.76" y="67.86" width="11.06" height="4.52" rx="2.26" ry="2.26" transform="translate(224.2 186.39) rotate(-156.73)"/>
+    <rect class="vanilla-heart-cookie-7" x="76.46" y="25.64" width="14.3" height="4.52" rx="2.26" ry="2.26" transform="translate(-.65 53.77) rotate(-35.52)"/>
+    <rect class="vanilla-heart-cookie-7" x="89.33" y="121.99" width="14.3" height="4.52" rx="2.26" ry="2.26" transform="translate(-54.66 167.85) rotate(-68.26)"/>
+    <rect class="vanilla-heart-cookie-8" x="16.01" y="79.15" width="7.91" height="4.52" rx="2.26" ry="2.26" transform="translate(-15.5 157.36) rotate(-141.19)"/>
+    <rect class="vanilla-heart-cookie-9" x="66.71" y="128.83" width="11.65" height="4.52" rx="2.26" ry="2.26" transform="translate(187.21 227.48) rotate(159)"/>
+    <rect class="vanilla-heart-cookie-8" x="116.62" y="96.16" width="9.08" height="4.52" rx="2.26" ry="2.26" transform="translate(205.02 230.07) rotate(-161.59)"/>
+    <circle class="vanilla-heart-cookie-2" cx="29.15" cy="89.43" r="1.48"/>
+    <circle class="vanilla-heart-cookie-2" cx="26.32" cy="110.87" r="1.48"/>
+    <circle class="vanilla-heart-cookie-2" cx="47.89" cy="112.61" r="1.48"/>
+    <circle class="vanilla-heart-cookie-2" cx="45.37" cy="126.58" r="1.48"/>
+    <circle class="vanilla-heart-cookie-2" cx="65.02" cy="125.37" r="1.48"/>
+    <circle class="vanilla-heart-cookie-2" cx="107.93" cy="120.02" r="1.48"/>
+    <circle class="vanilla-heart-cookie-2" cx="116.41" cy="104.76" r="1.48"/>
+    <circle class="vanilla-heart-cookie-2" cx="129.14" cy="95" r="1.48"/>
+    <circle class="vanilla-heart-cookie-2" cx="126.76" cy="77.71" r="1.48"/>
+    <circle class="vanilla-heart-cookie-2" cx="134.32" cy="62.24" r="1.48"/>
+    <circle class="vanilla-heart-cookie-2" cx="86.06" cy="35.45" r="1.48"/>
+    <circle class="vanilla-heart-cookie-2" cx="67.54" cy="30.24" r="1.48"/>
+    <circle class="vanilla-heart-cookie-2" cx="20.45" cy="54.37" r="1.48"/>
+    <circle class="vanilla-heart-cookie-2" cx="43.67" cy="36.63" r="1.48"/>
+    <circle class="vanilla-heart-cookie-2" cx="100.8" cy="22.93" r="1.48"/>
+    <circle class="vanilla-heart-cookie-2" cx="54.15" cy="20.59" r="1.48"/>
+  </g>
+</svg>

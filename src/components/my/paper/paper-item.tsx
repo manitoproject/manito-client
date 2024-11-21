@@ -3,11 +3,13 @@ import dayjs from 'dayjs';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Trash } from '../../../assets/svg/icons';
-import { useDeletePaper } from '../../../queries/paper';
-import routes from '../../../routes';
-import { getFontSizeAndWeight } from '../../../styles/mixins';
-import DeleteModal from '../../modal/delete-modal';
+import { Trash } from '@/assets/svg/icons';
+import DeleteModal from '@/components/modal/delete-modal';
+import { CATEGORY_MAP } from '@/lib/rolling-paper';
+import { useDeletePaper } from '@/mutations/paper';
+import routes from '@/routes';
+import { getFontSizeAndWeight } from '@/styles/mixins';
+import theme from '@/styles/theme';
 
 interface MyPaperItemProps {
   paper: Paper;
@@ -24,21 +26,23 @@ export default function MyPaperItem({ paper }: MyPaperItemProps) {
 
   return (
     <StyledItem>
-      <Link to={routes.rollingpaper.list(paper.id)} state={routes.my.default}>
+      <Link
+        to={routes[CATEGORY_MAP[paper.category]].list(paper.id)}
+        state={routes.my.default}
+      >
         <span>{paper.title}</span>
         <div>
           <span>{dayjs(paper.regDateTime).format('YYYY.MM.DD')}</span>
           <button type="button" onClick={handleButtonClick}>
-            <Trash />
+            <Trash width={24} height={24} fill={theme.colors['gray-700']} />
           </button>
         </div>
       </Link>
       {isModalOpen && (
         <DeleteModal
-          isMessageDelete={false}
-          handler={() => mutate(paper.id)}
+          message="컨텐츠"
+          onDelete={() => mutate(paper.id)}
           setIsOpen={setIsModalOpen}
-          isOpen={isModalOpen}
         />
       )}
     </StyledItem>
@@ -73,13 +77,6 @@ export const StyledItem = styled.li`
         ${getFontSizeAndWeight('body1', 'regular')};
       }
       button {
-        svg {
-          width: 24px;
-          height: 24px;
-        }
-        path {
-          fill: ${({ theme }) => theme.colors['gray-700']};
-        }
         padding: 4px;
         box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
         background-color: ${({ theme }) => theme.colors.white};
