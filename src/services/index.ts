@@ -16,7 +16,7 @@ export const apiRequesterWithoutToken = axios.create({
 });
 
 export const discordRequester = axios.create({
-  timeout: 5000,
+  ...defaultConfig,
   baseURL: import.meta.env.VITE_DISCORD_WEBHOOK,
 });
 
