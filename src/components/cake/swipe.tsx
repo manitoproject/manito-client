@@ -114,20 +114,48 @@ const StyledSlide = styled(SwiperSlide)`
 
 const StyledDecoList = styled.div`
   position: absolute;
-  top: 20vh;
+  top: 18vh;
   width: 100%;
   display: flex;
-  gap: 9vh;
+  gap: 12vh;
   flex-direction: column;
+  align-items: center;
   padding: ${({ theme }) => `0 ${theme.sizes.padding}`};
   z-index: 1;
+  div:nth-child(1) {
+    width: 80%;
+    gap: 5vw;
+  }
+  div:nth-child(2) {
+    width: 90%;
+    gap: 8vw;
+  }
+  div:nth-child(3) {
+    gap: 4vw;
+  }
   div {
-    justify-content: space-around;
+    width: 100%;
     display: flex;
   }
   button {
+    /* width: 20%; */
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  @media (max-width: 480px) {
+    top: 22vh;
+    gap: 8vh;
+    div:nth-child(1) {
+      width: 80%;
+      gap: 1vw;
+    }
+    div:nth-child(2) {
+      width: 90%;
+      gap: 4vw;
+    }
+    div:nth-child(3) {
+      gap: 1vw;
+    }
   }
 `;
