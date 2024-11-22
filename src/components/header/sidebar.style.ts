@@ -41,7 +41,7 @@ export const StyledInnerNav = styled.div<Pick<SideMenuProps, 'isOpen'>>`
   gap: 12px;
   width: 240px;
   position: fixed;
-  height: 100vh;
+  height: 100dvh;
   padding: 46px 24px;
   button {
     padding: 8px 0;

@@ -46,7 +46,7 @@ const StyledBackdrop = styled.div`
   left: ${({ theme }) => `-${theme.sizes.padding}`};
   top: ${({ theme }) => `-${theme.sizes.header}`};
   width: ${({ theme }) => theme.sizes.mobile};
-  height: 100vh;
+  height: 100dvh;
   background-color: ${({ theme }) => theme.colors['powderBlue-100']};
 `;
 

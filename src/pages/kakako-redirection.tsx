@@ -46,7 +46,7 @@ const StyledWrapper = styled.div`
   padding: ${(props) => `0 ${props.theme.sizes.padding}`};
   flex-direction: column;
   display: flex;
-  min-height: 100vh;
+  min-height: 100dvh;
   justify-content: center;
   align-items: center;
 `;

@@ -91,7 +91,7 @@ export default function CakeSwipe({
 const StyledSwiper = styled(Swiper)`
   position: absolute;
   top: ${({ theme }) => `-${theme.sizes.paddingTop}`};
-  height: ${({ theme }) => `calc(100vh - ${theme.sizes.header})`};
+  height: ${({ theme }) => `calc(100dvh - ${theme.sizes.header})`};
   transform: ${({ theme }) => `translateX(-${theme.sizes.padding})`};
   width: ${({ theme }) => theme.sizes.mobile};
   @media (max-width: 480px) {

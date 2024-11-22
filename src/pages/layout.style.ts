@@ -18,7 +18,7 @@ export const StyledMain = styled.main`
   padding-bottom: ${({ theme }) => theme.sizes.paddingBottom};
   background-color: ${(props) => props.theme.colors.white};
   display: flex;
-  min-height: 100vh;
+  min-height: 100dvh;
   flex-direction: column;
   & > div:nth-of-type(1) {
     height: ${({ theme }) => theme.sizes.header};
@@ -33,7 +33,7 @@ export const StyledMain = styled.main`
 export const StyledBrowserBackdrop = styled.div`
   background-color: ${(props) => props.theme.colors['gray-100']};
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   left: 0;
   z-index: -1;
   position: fixed;

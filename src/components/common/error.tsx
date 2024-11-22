@@ -20,7 +20,7 @@ export default function ErrorComponent({ children }: ErrorProps) {
 
 const StyledErrorWrapper = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 100dvh;
   display: flex;
   background-color: ${({ theme }) => theme.colors['gray-100']};
   align-items: center;
