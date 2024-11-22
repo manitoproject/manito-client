@@ -5,21 +5,30 @@ import MyPaperItem from '@/components/my/paper/paper-item';
 import { paperQueries, userQueries } from '@/lib/query-factory';
 
 interface MyPaperListProps {
-  activeCagegory: Category;
+  activeCagegory: RouteContentType;
 }
+const categoryMap: Record<RouteContentType, Category> = {
+  rollingpaper: 'ROLLING_PAPER',
+  makecake: 'CAKE',
+  treasurebox: 'TREASURE',
+};
 
 export default function MyPaperList({ activeCagegory }: MyPaperListProps) {
   const { data: user } = useQuery(userQueries.detail());
   const { data: papers } = useSuspenseQuery(paperQueries.user(user?.id));
 
   const filteredList = papers?.filter(
-    (paper) => paper.category === activeCagegory,
+    (paper) => paper.category === categoryMap[activeCagegory],
   );
 
   return (
     <StyledList>
       {filteredList?.map((item) => (
-        <MyPaperItem paper={item} key={item.id} />
+        <MyPaperItem
+          activeCagegory={activeCagegory}
+          paper={item}
+          key={item.id}
+        />
       ))}
     </StyledList>
   );

@@ -4,7 +4,7 @@ import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperType } from 'swiper/types';
 
-import CakeTextarea from '@/components/cake/textarea';
+import CakeTextarea from '@/components/makecake/textarea';
 import EmojiSkin from '@/components/rollingpaper/emoji-skin';
 import SwipeNavigation from '@/components/swipe/navigation';
 import useSwipeNavigation from '@/hooks/use-swipe-navigation';

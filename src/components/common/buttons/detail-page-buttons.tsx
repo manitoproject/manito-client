@@ -13,7 +13,7 @@ import { Message } from '@/types/message';
 
 interface DetailMessageButtonsProps {
   message: Message<UserIdAndNickname>;
-  category: CategoryLowerCase;
+  category: RouteContentType;
   paperAuthorId: number | undefined;
 }
 

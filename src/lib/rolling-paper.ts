@@ -55,12 +55,6 @@ const ROLLING_THEME_NAMES: RollingpaperThemeName[] = [
   'animal',
 ];
 
-export const CATEGORY_MAP: Record<Category, CategoryLowerCase> = {
-  CAKE: 'cake',
-  ROLLING_PAPER: 'rollingpaper',
-  TREASURE: 'treasure',
-};
-
 export const ROLLINGPAPER_BG_MAP: Record<
   RollingpaperThemeName,
   { bgColor: ColorName; bgUrl: string }

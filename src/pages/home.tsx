@@ -24,7 +24,7 @@ const CONTENTS = [
   {
     name: '케이크 만들기',
     isActive: true,
-    href: () => routes.setupIntro('cake'),
+    href: () => routes.setupIntro('makecake'),
     badge: MakeCakeBadge,
   },
   {

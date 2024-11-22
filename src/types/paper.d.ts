@@ -3,10 +3,9 @@ interface PaperCreateType {
   title: string;
   theme: RollingpaperThemeName;
 }
-
+type RouteContentType = 'rollingpaper' | 'makecake' | 'treasurebox';
 type RollingpaperThemeName = 'space' | 'nature' | 'animal';
 type Category = 'ROLLING_PAPER' | 'CAKE' | 'TREASURE';
-type CategoryKor = '페이퍼' | '보물' | '케이크';
 type CategoryLowerCase = 'rollingpaper' | 'cake' | 'treasure';
 
 interface Theme {

@@ -6,9 +6,9 @@ import { useLocation, useParams } from 'react-router-dom';
 import CustomSheet from '@/components/bottom-sheet/bottom-sheet';
 import BottomSheetButton from '@/components/bottom-sheet/button';
 import FontList from '@/components/bottom-sheet/palette/font-list';
-import CakeTextarea from '@/components/cake/textarea';
-import TopNotice from '@/components/cake/top-notice';
 import { Button } from '@/components/common/buttons/buttons';
+import CakeTextarea from '@/components/makecake/textarea';
+import TopNotice from '@/components/makecake/top-notice';
 import ReactHelmet from '@/helmet';
 import useMessageForm from '@/hooks/use-message-form';
 import useSetHeader from '@/hooks/use-set-header';
@@ -31,7 +31,7 @@ export default function CakeMessageEditPage() {
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
 
   const { mutate } = useEditMessage({
-    content: 'cake',
+    content: 'makecake',
     messageId: state.id,
     paperId: Number(id),
   });

@@ -36,7 +36,7 @@ export default function CakeSwipe({
 
   const handleViewItemDetail = (pageId: number, itemId: number) => {
     navigate({
-      pathname: routes.cake.detail(pageId),
+      pathname: routes.makecake.detail(pageId),
       search: createSearchParams({ id: String(itemId) }).toString(),
     });
   };

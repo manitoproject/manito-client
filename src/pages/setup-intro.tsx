@@ -13,29 +13,43 @@ import { getFontSizeAndWeight, StyledFixedBackground } from '@/styles/mixins';
 import { ColorName } from '@/styles/theme';
 
 const CONTENTS: Record<
-  CategoryLowerCase,
-  { bgUrl: string; path: string; title: string; bgColor: ColorName }
+  RouteContentType,
+  {
+    bgUrl: string;
+    category: CategoryLowerCase;
+    path: string;
+    title: string;
+    bgColor: ColorName;
+  }
 > = {
   rollingpaper: {
     bgUrl: rollingBg,
     path: routes.rollingpaper.setup(),
     title: 'Rollring paper',
     bgColor: 'white',
+    category: 'rollingpaper',
   },
-  cake: {
+  makecake: {
     bgUrl: makeCakeBg,
-    path: routes.cake.setup(),
+    path: routes.makecake.setup(),
     title: '케이크 만들기',
     bgColor: 'pink-300',
+    category: 'cake',
   },
-  treasure: { bgUrl: '', path: '', title: '보물상자', bgColor: 'pink-300' },
+  treasurebox: {
+    bgUrl: '',
+    path: '',
+    title: '보물상자',
+    bgColor: 'pink-300',
+    category: 'treasure',
+  },
 };
 
 export default function SetupIntro() {
-  const { content } = useParams<{ content: CategoryLowerCase }>();
+  const { content } = useParams<{ content: RouteContentType }>();
 
   if (!content) throw new Error('invalid parameter');
-  const { data } = useQuery(messageQueries.count(content));
+  const { data } = useQuery(messageQueries.count(CONTENTS[content].category));
   const currentTheme = CONTENTS[content];
   useSetHeader({
     title: currentTheme.title,

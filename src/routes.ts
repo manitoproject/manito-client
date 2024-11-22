@@ -3,7 +3,7 @@ const routes = {
   signup: '/signup',
   home: '/home',
   kakakoRedirection: '/login/oauth/kakao/callback',
-  setupIntro: (content?: 'cake' | 'rollingpaper') =>
+  setupIntro: (content?: 'makecake' | 'rollingpaper' | 'treasurebox') =>
     `/intro/${content ?? ':content'}`,
   my: {
     default: '/my',
@@ -22,29 +22,31 @@ const routes = {
     messageEdit: (id?: number) =>
       `${routes.rollingpaper.default}/${id ?? ':id'}/edit`,
   },
-  cake: {
-    default: '/cake',
-    setup: () => `${routes.cake.default}/setup`,
-    list: (id?: number) => `${routes.cake.default}/${id ?? ':id'}`,
-    decorate: () => `${routes.cake.default}/decorate`,
+  makecake: {
+    default: '/makecake',
+    setup: () => `${routes.makecake.default}/setup`,
+    list: (id?: number) => `${routes.makecake.default}/${id ?? ':id'}`,
+    decorate: () => `${routes.makecake.default}/decorate`,
     form: (type?: 'create' | 'edit', id?: number) =>
-      `${routes.cake.default}/${id || ':id'}/${type || ':type'}`,
+      `${routes.makecake.default}/${id || ':id'}/${type || ':type'}`,
     messageCreate: (id?: number) =>
-      `${routes.cake.default}/${id ?? ':id'}/create`,
-    messageEdit: (id?: number) => `${routes.cake.default}/${id ?? ':id'}/edit`,
-    detail: (id?: number) => `${routes.cake.default}/${id ?? ':id'}/detail`,
-  },
-  treasure: {
-    default: '/treasure',
-    setup: () => `${routes.treasure.default}/setup`,
-    list: (id?: number) => `${routes.treasure.default}/${id ?? ':id'}`,
-    detail: (id?: number) => `${routes.treasure.default}/${id ?? ':id'}/detail`,
-    form: (type?: 'create' | 'edit', id?: number) =>
-      `${routes.cake.default}/${id || ':id'}/${type || ':type'}`,
-    messageCreate: (id?: number) =>
-      `${routes.rollingpaper.default}/${id ?? ':id'}/create`,
+      `${routes.makecake.default}/${id ?? ':id'}/create`,
     messageEdit: (id?: number) =>
-      `${routes.rollingpaper.default}/${id ?? ':id'}/edit`,
+      `${routes.makecake.default}/${id ?? ':id'}/edit`,
+    detail: (id?: number) => `${routes.makecake.default}/${id ?? ':id'}/detail`,
+  },
+  treasurebox: {
+    default: '/treasurebox',
+    setup: () => `${routes.treasurebox.default}/setup`,
+    list: (id?: number) => `${routes.treasurebox.default}/${id ?? ':id'}`,
+    detail: (id?: number) =>
+      `${routes.treasurebox.default}/${id ?? ':id'}/detail`,
+    form: (type?: 'create' | 'edit', id?: number) =>
+      `${routes.treasurebox.default}/${id || ':id'}/${type || ':type'}`,
+    messageCreate: (id?: number) =>
+      `${routes.treasurebox.default}/${id ?? ':id'}/create`,
+    messageEdit: (id?: number) =>
+      `${routes.treasurebox.default}/${id ?? ':id'}/edit`,
   },
 };
 

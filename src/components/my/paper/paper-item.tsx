@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 
 import { Trash } from '@/assets/svg/icons';
 import DeleteModal from '@/components/modal/delete-modal';
-import { CATEGORY_MAP } from '@/lib/rolling-paper';
 import { useDeletePaper } from '@/mutations/paper';
 import routes from '@/routes';
 import { getFontSizeAndWeight } from '@/styles/mixins';
@@ -13,9 +12,13 @@ import theme from '@/styles/theme';
 
 interface MyPaperItemProps {
   paper: Paper;
+  activeCagegory: RouteContentType;
 }
 
-export default function MyPaperItem({ paper }: MyPaperItemProps) {
+export default function MyPaperItem({
+  paper,
+  activeCagegory,
+}: MyPaperItemProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { mutate } = useDeletePaper();
 
@@ -27,7 +30,7 @@ export default function MyPaperItem({ paper }: MyPaperItemProps) {
   return (
     <StyledItem>
       <Link
-        to={routes[CATEGORY_MAP[paper.category]].list(paper.id)}
+        to={routes[activeCagegory].list(paper.id)}
         state={routes.my.default}
       >
         <span>{paper.title}</span>

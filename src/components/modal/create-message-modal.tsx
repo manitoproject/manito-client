@@ -7,11 +7,9 @@ import { useCreateMessage } from '@/mutations/message';
 import { useModalIndex } from '@/stores/modal-store';
 import theme from '@/styles/theme';
 
-export type Content = 'cake' | 'rollingpaper';
-
 interface CreateMessageModalProps {
   onCloseModal: () => void;
-  contentType: Content;
+  contentType: RouteContentType;
   form: MessageForm;
   position: number;
 }

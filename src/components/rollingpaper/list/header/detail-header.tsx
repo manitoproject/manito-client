@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 
 import { Clip, KakaoFill } from '@/assets/svg/icons';
 import { Modal } from '@/components/modal';
-import { Content } from '@/components/modal/create-message-modal';
 import LoginModal from '@/components/modal/login-modal';
 import {
   StyledModalLink,
@@ -19,7 +18,7 @@ import theme from '@/styles/theme';
 
 interface DetailHeaderProps {
   paper?: Paper;
-  content: Content;
+  content: RouteContentType;
 }
 
 export default function DetailHeader({ paper, content }: DetailHeaderProps) {

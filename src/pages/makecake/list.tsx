@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { EditSquare } from '@/assets/svg/icons';
-import CakeSwipe from '@/components/cake/swipe';
+import CakeSwipe from '@/components/makecake/swipe';
 import DetailHeader from '@/components/rollingpaper/list/header/detail-header';
 import ReactHelmet, { TITLE } from '@/helmet';
 import useSetHeader from '@/hooks/use-set-header';
@@ -35,12 +35,12 @@ export default function CakeList() {
     if (messages && messages?.length === 39) {
       return add('작성할 수 있는 공간이 없습니다.');
     }
-    navigate(routes.cake.decorate(), { state: { id: paper?.id } });
+    navigate(routes.makecake.decorate(), { state: { id: paper?.id } });
   };
   return (
     <StyledRollingList>
       <StyledListWrapper>
-        <DetailHeader paper={paper} content="cake" />
+        <DetailHeader paper={paper} content="makecake" />
       </StyledListWrapper>
       <CakeSwipe activeIndex={currnetPage} setActiveIndex={setCurrnetPage} />
       <StyledWriteButton

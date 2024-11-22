@@ -17,7 +17,7 @@ import { Message } from '@/types/message';
 
 interface MyMessageItemProps {
   message: Message<User>;
-  activeCagegory: CategoryLowerCase;
+  activeCagegory: RouteContentType;
 }
 export default function MyMessageItem({
   message,

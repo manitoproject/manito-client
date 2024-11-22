@@ -2,9 +2,9 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import DecorationList from '@/components/cake/decoration-list';
-import DecorationMenu from '@/components/cake/decoration-menu';
 import { Button } from '@/components/common/buttons/buttons';
+import DecorationList from '@/components/makecake/decoration-list';
+import DecorationMenu from '@/components/makecake/decoration-menu';
 import ReactHelmet from '@/helmet';
 import useSetHeader from '@/hooks/use-set-header';
 import { DecorationType } from '@/lib/cake-decoration';
@@ -17,7 +17,7 @@ export default function CakeDecorate() {
   const navigate = useNavigate();
   const location = useLocation();
   const handleNextStep = () => {
-    navigate(routes.cake.messageCreate(location.state?.id), {
+    navigate(routes.makecake.messageCreate(location.state?.id), {
       state: { theme: activeDeco },
     });
   };

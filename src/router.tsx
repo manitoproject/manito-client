@@ -4,17 +4,17 @@ import {
   Route,
 } from 'react-router-dom';
 
-import CakeDecorate from '@/pages/cake/decorate';
-import CakeDetail from '@/pages/cake/detail';
-import CakeListPage from '@/pages/cake/list';
-import CakeMessageCreate from '@/pages/cake/message-create';
-import CakeMessageEdit from '@/pages/cake/message-edit';
-import CakeSetup from '@/pages/cake/setup';
 import ErrorPage from '@/pages/error-page';
 import Home from '@/pages/home';
 import KakaoRedirection from '@/pages/kakako-redirection';
 import Landing from '@/pages/landing';
 import Layout from '@/pages/layout';
+import CakeDecorate from '@/pages/makecake/decorate';
+import CakeDetail from '@/pages/makecake/detail';
+import CakeListPage from '@/pages/makecake/list';
+import CakeMessageCreate from '@/pages/makecake/message-create';
+import CakeMessageEdit from '@/pages/makecake/message-edit';
+import CakeSetup from '@/pages/makecake/setup';
 import Contact from '@/pages/my/contact';
 import My from '@/pages/my/my';
 import MySetting from '@/pages/my/my-setting';
@@ -62,18 +62,18 @@ const router = () =>
             path={routes.rollingpaper.messageCreate()}
             element={<RollingpaperMessageCreate />}
           />
-          <Route path={routes.cake.setup()} element={<CakeSetup />} />
-          <Route path={routes.cake.list()} element={<CakeListPage />} />
-          <Route path={routes.cake.decorate()} element={<CakeDecorate />} />
+          <Route path={routes.makecake.setup()} element={<CakeSetup />} />
+          <Route path={routes.makecake.list()} element={<CakeListPage />} />
+          <Route path={routes.makecake.decorate()} element={<CakeDecorate />} />
           <Route
-            path={routes.cake.messageCreate()}
+            path={routes.makecake.messageCreate()}
             element={<CakeMessageCreate />}
           />
           <Route
-            path={routes.cake.messageEdit()}
+            path={routes.makecake.messageEdit()}
             element={<CakeMessageEdit />}
           />
-          <Route path={routes.cake.detail()} element={<CakeDetail />} />
+          <Route path={routes.makecake.detail()} element={<CakeDetail />} />
         </Route>
       </Route>,
     ),

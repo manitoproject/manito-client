@@ -5,13 +5,13 @@ import { StyledList } from '@/components/rollingpaper/list/message-list';
 import { messageQueries } from '@/lib/query-factory';
 
 interface MyMessageListProps {
-  activeCagegory: CategoryLowerCase;
+  activeCagegory: RouteContentType;
 }
 
 export default function MyMessageList({ activeCagegory }: MyMessageListProps) {
   const { data } = useSuspenseQuery(messageQueries.user());
   const filteredList = data?.filter((paper) => {
-    if (activeCagegory === 'cake') {
+    if (activeCagegory === 'makecake') {
       return (
         paper.theme.includes('White') ||
         paper.theme.includes('Vanilla') ||

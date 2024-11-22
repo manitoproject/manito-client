@@ -13,7 +13,7 @@ import {
 export default function CakeSetup() {
   const { handleNameChange, handleNameReset, isError, name, nameRef } =
     useNameForm('title');
-  const { mutate, isPending } = useCreatePaper('cake');
+  const { mutate, isPending } = useCreatePaper('makecake');
 
   const handleSubmit = () => {
     mutate({

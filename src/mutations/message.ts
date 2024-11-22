@@ -1,13 +1,15 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { Content } from '@/components/modal/create-message-modal';
 import { messageQueries } from '@/lib/query-factory';
 import routes from '@/routes';
 import { createMessage, deleteMessage, editMessage } from '@/services/message';
 import { useToastActions } from '@/stores/toast-store';
 
-export const useCreateMessage = (paperId: number, content: Content) => {
+export const useCreateMessage = (
+  paperId: number,
+  content: RouteContentType,
+) => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const toastActions = useToastActions();
@@ -52,7 +54,7 @@ export const useEditMessage = ({
   messageId,
   paperId,
 }: {
-  content: Content;
+  content: RouteContentType;
   paperId: number;
   messageId?: number;
 }) => {

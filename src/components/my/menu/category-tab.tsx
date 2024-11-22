@@ -4,32 +4,29 @@ import styled from '@emotion/styled';
 import { getFontSizeAndWeight } from '@/styles/mixins';
 
 interface CategoryTabProps {
-  setActiveIndex: React.Dispatch<React.SetStateAction<number>>;
-  activeIndex: number;
+  onChangeActiveTab: (tab: RouteContentType) => void;
+  activeTab: RouteContentType;
 }
 
-const contents: { name: CategoryKor }[] = [
-  {
-    name: '페이퍼',
-  },
-  {
-    name: '케이크',
-  },
+const contents: { id: RouteContentType; label: string }[] = [
+  { id: 'rollingpaper', label: '페이퍼' },
+  { id: 'makecake', label: '케이크' },
+  { id: 'treasurebox', label: '보물' },
 ];
 
 export default function CategoryTab({
-  activeIndex,
-  setActiveIndex,
+  activeTab,
+  onChangeActiveTab,
 }: CategoryTabProps) {
   return (
     <StyledWrapper>
-      {contents.map((content, i) => (
+      {contents.map((content) => (
         <StyledButton
-          onClick={() => setActiveIndex(i)}
-          isActive={activeIndex === i}
-          key={content.name}
+          onClick={() => onChangeActiveTab(content.id)}
+          isActive={activeTab === content.id}
+          key={content.id}
         >
-          {content.name}
+          {content.label}
         </StyledButton>
       ))}
     </StyledWrapper>

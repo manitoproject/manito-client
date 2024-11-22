@@ -6,7 +6,7 @@ import routes from '@/routes';
 import { createPaper, deletePaper } from '@/services/paper';
 import { useToastActions } from '@/stores/toast-store';
 
-export const useCreatePaper = (content: CategoryLowerCase) => {
+export const useCreatePaper = (content: RouteContentType) => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   return useMutation({

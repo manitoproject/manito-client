@@ -48,7 +48,7 @@ export default function CakeDetail() {
         />
       </StyledContentWrapper>
       <DetailPageBottomButtons
-        category="cake"
+        category="makecake"
         paperAuthorId={paper?.userId}
         message={currentMessage}
       />
