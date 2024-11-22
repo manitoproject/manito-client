@@ -2,15 +2,12 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import Decorations from '@/components/cake/decorations';
+import DecorationList from '@/components/cake/decoration-list';
+import DecorationMenu from '@/components/cake/decoration-menu';
 import { Button } from '@/components/common/buttons/buttons';
 import ReactHelmet from '@/helmet';
 import useSetHeader from '@/hooks/use-set-header';
-import {
-  CAKE_THEME_STYLES,
-  CakeTheme,
-  DecorationType,
-} from '@/lib/cake-decoration';
+import { DecorationType } from '@/lib/cake-decoration';
 import routes from '@/routes';
 import { getFontSizeAndWeight } from '@/styles/mixins';
 
@@ -30,18 +27,11 @@ export default function CakeDecorate() {
   return (
     <StyledWrapper>
       <h2>케이크 장식을 선택해주세요.</h2>
-      <ul>
-        {CAKE_THEME_STYLES.map((deco) => (
-          <StyledList
-            deco={deco}
-            isActive={deco.id === activeTab}
-            key={deco.id}
-          >
-            <button onClick={() => setActiveTab(deco.id)}>{deco.label}</button>
-          </StyledList>
-        ))}
-      </ul>
-      <Decorations
+      <DecorationMenu
+        activeTab={activeTab}
+        onChangeActiveTab={(tab: DecorationType) => setActiveTab(tab)}
+      />
+      <DecorationList
         activeDeco={activeDeco}
         setActiveDeco={setActiveDeco}
         activeTab={activeTab}
@@ -67,21 +57,6 @@ const StyledWrapper = styled.div`
   ul {
     display: flex;
     width: 100%;
-  }
-`;
-const StyledList = styled.li<{ isActive: boolean; deco: CakeTheme }>`
-  width: 100%;
-  button {
-    text-align: center;
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
-    padding: 16px;
-    width: 100%;
-    background-color: ${({ theme, isActive, deco }) =>
-      isActive ? theme.colors[deco.bgColor] : theme.colors.white};
-    color: ${({ theme, isActive, deco }) =>
-      isActive ? theme.colors[deco.fontColor] : theme.colors['gray-500']};
-    ${getFontSizeAndWeight('heading4', 'medium')}
   }
 `;
 

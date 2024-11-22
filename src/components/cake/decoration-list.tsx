@@ -13,7 +13,7 @@ interface DecorationsProps {
   activeDeco: string;
 }
 
-export default function Decorations({
+export default function DecorationList({
   activeTab,
   setActiveDeco,
   activeDeco,
@@ -24,9 +24,9 @@ export default function Decorations({
 
   if (!theme) return null;
   return (
-    <StyledDecoItem>
+    <StyledList>
       {CAKE_DECORATIONS[activeTab].map((deco) => (
-        <StyledButton
+        <StyledItemButton
           isActive={activeDeco === deco.name}
           bg={theme.bgColor}
           border={theme.fontColor}
@@ -35,18 +35,18 @@ export default function Decorations({
           onClick={() => setActiveDeco(deco.name)}
         >
           <deco.svg />
-        </StyledButton>
+        </StyledItemButton>
       ))}
-    </StyledDecoItem>
+    </StyledList>
   );
 }
 
-const StyledDecoItem = styled.div`
+const StyledList = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
 `;
-const StyledButton = styled.button<{
+const StyledItemButton = styled.button<{
   isActive: boolean;
   bg: ColorName;
   border: ColorName;
