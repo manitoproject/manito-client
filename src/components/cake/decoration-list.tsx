@@ -43,6 +43,7 @@ export default function DecorationList({
 
 const StyledList = styled.div`
   display: grid;
+  width: 100%;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
 `;
@@ -51,6 +52,10 @@ const StyledItemButton = styled.button<{
   bg: ColorName;
   border: ColorName;
 }>`
+  svg {
+    width: 100%;
+    height: 100%;
+  }
   background-color: ${({ theme, bg }) => theme.colors[bg]};
   display: flex;
   outline: ${({ isActive, theme, border }) =>
@@ -58,8 +63,4 @@ const StyledItemButton = styled.button<{
   justify-content: center;
   align-items: center;
   border-radius: 4px;
-  max-width: 96px;
-  width: 100%;
-  height: 100%;
-  max-height: 96px;
 `;
