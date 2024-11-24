@@ -1,6 +1,7 @@
 import { css } from '@emotion/react';
 
 import {
+  Cafe24Ohsquare,
   Cafe24Simplehae,
   Cafe24Ssurround,
   Galmuri11Bold,
@@ -40,6 +41,11 @@ const fonts = css`
     font-family: ${theme.fontFamily.Cafe24Ssurround};
     font-weight: 700;
     src: local('Cafe24Ssurround'), url(${Cafe24Ssurround}) format('woff2');
+  }
+  @font-face {
+    font-family: ${theme.fontFamily.Cafe24Ohsquare};
+    font-weight: 400;
+    src: local('Cafe24Ohsquare'), url(${Cafe24Ohsquare}) format('woff2');
   }
   @font-face {
     font-family: ${theme.fontFamily.Galmuri11};

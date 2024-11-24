@@ -1,3 +1,4 @@
+export { default as Cafe24Ohsquare } from './cafe24-ohsquare/Cafe24Ohsquare-v2.0.woff2';
 export { default as Cafe24Simplehae } from './cafe24-simplehae/Cafe24Simplehae-v2.0.woff2';
 export { default as Cafe24Ssurround } from './cafe24-ssurround/Cafe24Ssurround-v2.0.woff2';
 export { default as Galmuri11Bold } from './galmuri11/Galmuri11-Bold.woff2';

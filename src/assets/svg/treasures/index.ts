@@ -1,0 +1,12 @@
+export { default as TreasureBead } from './bead.svg';
+export { default as TreasureBook } from './book.svg';
+export { default as TreasureClover } from './clover.svg';
+export { default as TreasureDoll } from './doll.svg';
+export { default as TreasureFlower } from './flower.svg';
+export { default as TreasureKey } from './key.svg';
+export { default as TreasureLetter } from './letter.svg';
+export { default as TreasureMirror } from './mirror.svg';
+export { default as TreasureNecklace } from './necklace.svg';
+export { default as TreasurePotion } from './potion.svg';
+export { default as TreasureRibbon } from './ribbon.svg';
+export { default as TreasureSword } from './sword.svg';
