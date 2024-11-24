@@ -3,8 +3,7 @@ import { create } from 'zustand';
 import { ColorName, FontNameWithoutAppleFont } from '@/styles/theme';
 
 export type SetHeaderStore = Partial<HeaderStore['title']>;
-
-interface HeaderStore {
+export interface HeaderStore {
   title: {
     title: string;
     leftBtn: boolean;

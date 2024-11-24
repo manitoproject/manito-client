@@ -2,18 +2,12 @@ import styled from '@emotion/styled';
 
 import { getFontSizeAndWeight } from '@/styles/mixins';
 
-export const StyledRollingHeader = styled.div`
+export const StyledListHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  span {
-    color: ${(props) => props.theme.colors['gray-800']};
-    ${getFontSizeAndWeight('heading3', 'regular')};
-    strong {
-      font-weight: 700;
-      color: ${(props) => props.theme.colors['gray-900']};
-    }
-  }
+  z-index: 50;
+  position: relative;
   div {
     display: flex;
     align-items: center;
@@ -33,11 +27,12 @@ export const StyledRollingHeader = styled.div`
   }
 `;
 
-export const StyledModalLinks = styled.div`
+export const StyledShareModal = styled.div`
   display: flex;
   gap: 20px;
 `;
-export const StyledModalLink = styled.button`
+
+export const StyledShareLinkBtn = styled.button`
   padding: 0 16px;
   align-items: center;
   div {

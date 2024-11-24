@@ -6,10 +6,11 @@ import {
   StyledKakaoButton,
   StyledLinkButton,
 } from '@/components/common/buttons/buttons.style';
-import { ColorName } from '@/styles/theme';
+import { ColorName, FontNameWithoutAppleFont } from '@/styles/theme';
 
 export interface CommonButtonProps {
   backgroundColor?: ColorName;
+  font?: FontNameWithoutAppleFont;
 }
 
 interface ButtonProps

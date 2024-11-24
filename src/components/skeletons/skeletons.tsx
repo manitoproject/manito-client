@@ -1,6 +1,6 @@
 import { StyledGreetingDescription } from '@/components/home/greeting';
 import { SkeletonItem } from '@/components/skeletons/skeletons.style';
-import { StyledHeading } from '@/pages/rollingpaper/setup.style';
+import { StyledSetupHeading } from '@/styles/styled';
 
 export function MyProfileSkeleton() {
   return (
@@ -27,14 +27,14 @@ export function MyProfileSkeleton() {
 
 export function GreetingSkeleton() {
   return (
-    <StyledHeading>
+    <StyledSetupHeading>
       <SkeletonItem
         css={{ height: '25px', width: '160px', display: 'inline-block' }}
       />
       <StyledGreetingDescription>
         <strong>다양한 컨텐츠</strong>를 즐겨보세요.
       </StyledGreetingDescription>
-    </StyledHeading>
+    </StyledSetupHeading>
   );
 }
 

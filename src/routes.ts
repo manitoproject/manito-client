@@ -27,8 +27,6 @@ const routes = {
     setup: () => `${routes.makecake.default}/setup`,
     list: (id?: number) => `${routes.makecake.default}/${id ?? ':id'}`,
     decorate: () => `${routes.makecake.default}/decorate`,
-    form: (type?: 'create' | 'edit', id?: number) =>
-      `${routes.makecake.default}/${id || ':id'}/${type || ':type'}`,
     messageCreate: (id?: number) =>
       `${routes.makecake.default}/${id ?? ':id'}/create`,
     messageEdit: (id?: number) =>
@@ -41,8 +39,6 @@ const routes = {
     list: (id?: number) => `${routes.treasurebox.default}/${id ?? ':id'}`,
     detail: (id?: number) =>
       `${routes.treasurebox.default}/${id ?? ':id'}/detail`,
-    form: (type?: 'create' | 'edit', id?: number) =>
-      `${routes.treasurebox.default}/${id || ':id'}/${type || ':type'}`,
     messageCreate: (id?: number) =>
       `${routes.treasurebox.default}/${id ?? ':id'}/create`,
     messageEdit: (id?: number) =>

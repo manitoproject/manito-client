@@ -1,9 +1,9 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-import { StyledFixedBackground } from '@/styles/mixins';
+import { getFontSizeAndWeight, StyledFixedBackground } from '@/styles/mixins';
 
-export const StyledRollingList = styled.div`
+export const StyledListWrapper = styled.div`
   width: 100%;
   position: relative;
 `;
@@ -15,11 +15,11 @@ export const StyledBackdrop = styled.div<{ bg: string }>`
   `}
 `;
 
-export const StyledListWrapper = styled.div`
-  width: 100%;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-  z-index: 50;
+export const StyledMessageTotal = styled.p`
+  ${getFontSizeAndWeight('heading4', 'medium')}
+  color: ${({ theme }) => theme.colors['gray-800']};
+  span {
+    color: ${({ theme }) => theme.colors['gray-900']};
+    ${getFontSizeAndWeight('heading4', 'bold')}
+  }
 `;

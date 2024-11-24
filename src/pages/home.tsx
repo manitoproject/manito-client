@@ -29,8 +29,8 @@ const CONTENTS = [
   },
   {
     name: '추억의 보물상자',
-    isActive: false,
-    href: () => '',
+    isActive: true,
+    href: () => routes.setupIntro('treasurebox'),
     badge: TreasureBadge,
   },
 ];

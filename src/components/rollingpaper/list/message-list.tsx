@@ -32,6 +32,9 @@ export default function MessageList() {
 }
 
 export const StyledList = styled.ul`
+  z-index: 1;
+  position: relative;
+  margin-top: 20px;
   display: grid;
   gap: 16px;
   grid-template-columns: repeat(2, 1fr);

@@ -10,10 +10,10 @@ import { titleMaxLength } from '@/lib/regex-patterns';
 import { ROLLINGPAPER_THEMES } from '@/lib/rolling-paper';
 import { useCreatePaper } from '@/mutations/paper';
 import {
-  StyledHeading,
-  StyledSectionWrapper,
-  StyledWrapper,
-} from '@/pages/rollingpaper/setup.style';
+  StyledSetupHeading,
+  StyledSetupNameFormWrapper,
+  StyledSetupWrapper,
+} from '@/styles/styled';
 
 export default function RollingpaperSetup() {
   const { handleNameChange, handleNameReset, isError, name, nameRef } =
@@ -33,9 +33,10 @@ export default function RollingpaperSetup() {
   useSetHeader({ title: '롤링페이퍼 테마선택', rightBtn: false });
 
   return (
-    <StyledWrapper>
-      <StyledSectionWrapper>
+    <StyledSetupWrapper>
+      <StyledSetupNameFormWrapper>
         <NameForm
+          placeholder="제목을 입력해주세요."
           ref={nameRef}
           onChange={handleNameChange}
           value={name}
@@ -43,12 +44,12 @@ export default function RollingpaperSetup() {
           maxLength={titleMaxLength}
           onClick={handleNameReset}
         >
-          <StyledHeading>
+          <StyledSetupHeading>
             <h2>롤링페이퍼</h2>
             <h3>
               <strong>제목</strong>을 입력해주세요.
             </h3>
-          </StyledHeading>
+          </StyledSetupHeading>
         </NameForm>
         <ThemeCarousel
           activeTheme={activeTheme}
@@ -56,7 +57,7 @@ export default function RollingpaperSetup() {
             setActiveTheme(theme)
           }
         />
-      </StyledSectionWrapper>
+      </StyledSetupNameFormWrapper>
       <Button
         disabled={!name.length || isError || isPending}
         onClick={handleSubmit}
@@ -64,6 +65,6 @@ export default function RollingpaperSetup() {
         시작하기
       </Button>
       <ReactHelmet title={`롤링페이퍼 테마선택 - 마니또`} />
-    </StyledWrapper>
+    </StyledSetupWrapper>
   );
 }

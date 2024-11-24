@@ -1,21 +1,21 @@
-import styled from '@emotion/styled';
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { EditSquare } from '@/assets/svg/icons';
+import ListHeader from '@/components/list/header';
 import CakeSwipe from '@/components/makecake/swipe';
-import DetailHeader from '@/components/rollingpaper/list/header/detail-header';
 import ReactHelmet, { TITLE } from '@/helmet';
 import useSetHeader from '@/hooks/use-set-header';
 import { CAKE_THEME_PALETTES } from '@/lib/cake-decoration';
 import { messageQueries, paperQueries } from '@/lib/query-factory';
 import {
   StyledListWrapper,
-  StyledRollingList,
+  StyledMessageTotal,
 } from '@/pages/rollingpaper/list.style';
 import routes from '@/routes';
 import { useToastActions } from '@/stores/toast-store';
+import { StyledWriteButton } from '@/styles/styled';
 
 export default function CakeList() {
   const { id } = useParams();
@@ -38,29 +38,21 @@ export default function CakeList() {
     navigate(routes.makecake.decorate(), { state: { id: paper?.id } });
   };
   return (
-    <StyledRollingList>
-      <StyledListWrapper>
-        <DetailHeader paper={paper} content="makecake" />
-      </StyledListWrapper>
+    <StyledListWrapper>
+      <ListHeader messageLength={messages?.length} content="makecake">
+        <StyledMessageTotal>
+          <span>{messages?.length}</span>
+          개의 작성물
+        </StyledMessageTotal>
+      </ListHeader>
       <CakeSwipe activeIndex={currnetPage} setActiveIndex={setCurrnetPage} />
       <StyledWriteButton
         onClick={handleWrite}
-        bg={CAKE_THEME_PALETTES[currnetPage].btnColor}
+        bgColor={CAKE_THEME_PALETTES[currnetPage].btnColor}
       >
         <EditSquare width={40} height={40} fill="#fff" />
       </StyledWriteButton>
       <ReactHelmet title={`${paper?.title} - ${TITLE}`} />
-    </StyledRollingList>
+    </StyledListWrapper>
   );
 }
-
-const StyledWriteButton = styled.button<{ bg: string }>`
-  z-index: 50;
-  padding: 10px;
-  border-radius: 8px;
-  background-color: ${({ bg }) => bg};
-  width: fit-content;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-`;

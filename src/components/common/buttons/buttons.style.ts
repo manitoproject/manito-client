@@ -12,6 +12,7 @@ import { ThemeType } from '@/styles/theme';
 const commonButtonStyle = ({
   backgroundColor,
   theme,
+  font = 'SpoqaHanSansNeo',
 }: CommonButtonProps & { theme: ThemeType }) => css`
   border-radius: 4px;
   display: flex;
@@ -21,6 +22,7 @@ const commonButtonStyle = ({
   line-height: 24px;
   justify-content: center;
   width: 100%;
+  font-family: ${font};
   color: ${theme.colors.white};
   background-color: ${backgroundColor
     ? theme['colors'][backgroundColor]
@@ -33,10 +35,11 @@ const commonButtonStyle = ({
 `;
 
 export const StyledButton = styled.button<CommonButtonProps>`
-  ${({ backgroundColor, theme }) =>
+  ${({ backgroundColor, theme, font }) =>
     commonButtonStyle({
       backgroundColor,
       theme,
+      font,
     })};
 `;
 
@@ -47,10 +50,11 @@ export const StyledKakaoButton = styled(StyledButton)`
 `;
 
 export const StyledLinkButton = styled(Link)<LinkButtonProps>`
-  ${({ backgroundColor, theme }) =>
+  ${({ backgroundColor, theme, font }) =>
     commonButtonStyle({
       backgroundColor,
       theme,
+      font,
     })};
   ${({ disabled, theme, backgroundColor }) =>
     css`

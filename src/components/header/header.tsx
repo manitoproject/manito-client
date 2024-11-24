@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { HamburgerMenu, LeftChevron } from '@/assets/svg/icons';
 import routes from '@/routes';
-import { useHeader } from '@/stores/header-store';
+import { HeaderStore, useHeader } from '@/stores/header-store';
 import { getFontSizeAndWeight } from '@/styles/mixins';
 import { ColorName } from '@/styles/theme';
 
@@ -20,9 +20,8 @@ export default function Header({ onSidebarOpen }: HeaderProps) {
     if (isHomePage) return navigate(routes.landing);
     return navigate(-1);
   };
-
   return (
-    <StyledHeader bg={header.bg} color={header.color}>
+    <StyledHeader header={header}>
       <div>
         {header.leftBtn && (
           <StyledLeftButton color={header.color} onClick={handleNavigation}>
@@ -41,18 +40,18 @@ export default function Header({ onSidebarOpen }: HeaderProps) {
 }
 
 export const StyledHeader = styled.header<{
-  bg: ColorName;
-  color: ColorName;
+  header: HeaderStore['title'];
 }>`
   max-width: ${(props) => props.theme.sizes.mobile};
   width: 100%;
   z-index: 51;
   position: fixed;
-  background-color: ${({ bg, theme }) => theme.colors[bg]};
-  border-bottom: ${({ bg, theme }) =>
-    bg === 'white' ? `1px solid ${theme.colors['gray-300']}` : 'none'};
+  background-color: ${({ header, theme }) => theme.colors[header.bg]};
+  border-bottom: ${({ header, theme }) =>
+    header.bg === 'white' ? `1px solid ${theme.colors['gray-300']}` : 'none'};
   & > div {
     h1 {
+      font-family: ${({ header, theme }) => theme.fontFamily[header.font]};
       ${getFontSizeAndWeight('heading2', 'medium')}
       left: 50%;
       transform: translateX(-50%);
@@ -61,7 +60,7 @@ export const StyledHeader = styled.header<{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: ${({ color, theme }) => theme.colors[color]};
+    color: ${({ header, theme }) => theme.colors[header.color]};
     padding: ${(props) => `0 ${props.theme.sizes.padding}`};
     padding-top: 16px;
     padding-bottom: 16px;

@@ -26,6 +26,9 @@ import RollingpaperMessageEdit from '@/pages/rollingpaper/message-edit';
 import RollingpaperSetup from '@/pages/rollingpaper/setup';
 import SetupIntro from '@/pages/setup-intro';
 import Signup from '@/pages/signup';
+import TreasureBoxlist from '@/pages/treasurebox/list';
+import TreasureBoxMessageCreate from '@/pages/treasurebox/message-create';
+import TreasureBoxSetup from '@/pages/treasurebox/setup';
 import routes from '@/routes';
 
 const router = () =>
@@ -74,6 +77,18 @@ const router = () =>
             element={<CakeMessageEdit />}
           />
           <Route path={routes.makecake.detail()} element={<CakeDetail />} />
+          <Route
+            path={routes.treasurebox.setup()}
+            element={<TreasureBoxSetup />}
+          />
+          <Route
+            path={routes.treasurebox.list()}
+            element={<TreasureBoxlist />}
+          />
+          <Route
+            path={routes.treasurebox.messageCreate()}
+            element={<TreasureBoxMessageCreate />}
+          />
         </Route>
       </Route>,
     ),
