@@ -22,6 +22,7 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'react/no-unknown-property': ['error', { ignore: ['css'] }],
     '@typescript-eslint/ban-types': 'warn',
+    '@typescript-eslint/no-explicit-any': 'warn',
   },
   parserOptions: {
     sourceType: 'module',
