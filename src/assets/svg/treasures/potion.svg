@@ -59,10 +59,10 @@
       }
 
       .treasure-posion-15 {
-        fill: url(#linear-gradient);
+        fill: url(#potion-linear-gradient);
       }
     </style>
-    <linearGradient id="linear-gradient" x1="998.09" y1="124.23" x2="1065.88" y2="124.23" gradientTransform="translate(-852.43 248.45) scale(1 -1)" gradientUnits="userSpaceOnUse">
+    <linearGradient id="potion-linear-gradient" x1="998.09" y1="124.23" x2="1065.88" y2="124.23" gradientTransform="translate(-852.43 248.45) scale(1 -1)" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#ffebaf"/>
       <stop offset="0" stop-color="#ceae67"/>
       <stop offset=".23" stop-color="#ffffba"/>
