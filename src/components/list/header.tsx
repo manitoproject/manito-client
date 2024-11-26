@@ -33,7 +33,7 @@ export default function ListHeader({
   const { data: user } = useQuery(userQueries.detail());
   const { data: paper } = useQuery(paperQueries.detail(Number(params.id)));
   const toastActions = useToastActions();
-  const { handleKakakoShare, handleUrlCopy } = useShare();
+  const { handleKakakoShare, handleUrlCopy } = useShare(content);
   const navigate = useNavigate();
 
   const handleShowDetailMessage = () => {
