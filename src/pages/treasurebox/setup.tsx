@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 import { Button } from '@/components/common/buttons/buttons';
 import NameForm from '@/components/common/name-form';
+import ReactHelmet from '@/helmet';
 import useNameForm from '@/hooks/use-name-form';
 import useSetHeader from '@/hooks/use-set-header';
 import { titleMaxLength } from '@/lib/regex-patterns';
@@ -61,6 +62,7 @@ export default function TreasureBoxSetup() {
         시작하기
       </Button>
       <StyledTreasureBackdrop bg="" />
+      <ReactHelmet title={`제목 입력 - 마니또`} />
     </StyledSetupWrapper>
   );
 }

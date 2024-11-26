@@ -2,9 +2,9 @@ import styled from '@emotion/styled';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 
-import DetailPageBottomButtons from '@/components/common/buttons/detail-page-buttons';
-import AuthorInfo from '@/components/rollingpaper/detail/author-info';
-import MessageSwipe from '@/components/swipe/message-swipe';
+import AuthorInfo from '@/components/detail/author-info';
+import DetailActionButtons from '@/components/detail/detail-action-buttons';
+import MessageSwiper from '@/components/swipe/message-swiper';
 import ReactHelmet, { TITLE } from '@/helmet';
 import useDetailIndex from '@/hooks/use-detail-index';
 import useSetHeader from '@/hooks/use-set-header';
@@ -34,20 +34,30 @@ export default function CakeDetail() {
       />
       <StyledContentOverlay opacity={20} />
       <StyledContentWrapper>
-        <MessageSwipe
+        <MessageSwiper
           category="cake"
           messages={messages}
           activeIndex={activeIndex}
           setActiveIndex={setActiveIndex}
         />
-        <AuthorInfo
-          isNicknameWhite={activeIndex + 1 > 13 && activeIndex + 1 < 27}
-          activeIndex={activeIndex}
-          nickname={currentMessage?.anonymous || currentMessage?.user?.nickname}
-          totalIndex={messages?.length}
-        />
+        <AuthorInfo>
+          <AuthorInfo.Nickname
+            color={
+              activeIndex + 1 > 13 && activeIndex + 1 < 27
+                ? 'white'
+                : 'gray-900'
+            }
+            nickname={
+              currentMessage?.anonymous || currentMessage?.user?.nickname
+            }
+          />
+          <AuthorInfo.PageLength
+            currentIndex={activeIndex}
+            totalIndex={messages?.length}
+          />
+        </AuthorInfo>
       </StyledContentWrapper>
-      <DetailPageBottomButtons
+      <DetailActionButtons
         category="makecake"
         paperAuthorId={paper?.userId}
         message={currentMessage}

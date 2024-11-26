@@ -56,6 +56,7 @@ import {
   WhiteMacaroon,
 } from '@/assets/svg/decorations';
 import { ROLLINGPAPER_EMOJI_MAP } from '@/lib/rolling-paper';
+import { TREASURES } from '@/lib/treasure-box';
 import { ColorName } from '@/styles/theme';
 
 export type DecorationType = 'chocolate' | 'vanilla' | 'white' | 'strawberry';
@@ -74,6 +75,7 @@ export const findSvgByThemeName = (name: string) => {
     ...ROLLINGPAPER_EMOJI_MAP.animal,
     ...ROLLINGPAPER_EMOJI_MAP.nature,
     ...ROLLINGPAPER_EMOJI_MAP.space,
+    ...TREASURES,
   ];
   return all.find((item) => item.name === name)?.svg;
 };

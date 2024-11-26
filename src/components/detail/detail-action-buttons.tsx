@@ -17,7 +17,7 @@ interface DetailMessageButtonsProps {
   paperAuthorId: number | undefined;
 }
 
-export default function DetailPageBottomButtons({
+export default function DetailActionButtons({
   message,
   category,
   paperAuthorId,
@@ -31,7 +31,7 @@ export default function DetailPageBottomButtons({
   const isMessageAuthor = user && message.user?.id === user?.id;
 
   return (
-    <StyledDetailMessageButtons>
+    <StyledDetailMessageButtons category={category}>
       <Button
         css={{
           background: theme.colors.white,
@@ -46,7 +46,12 @@ export default function DetailPageBottomButtons({
       </Button>
       {isMessageAuthor && (
         <Button
-          css={{ background: theme.colors['powderBlue-900'] }}
+          css={{
+            background:
+              category === 'treasurebox'
+                ? theme.colors['treasure-teal-500']
+                : theme.colors['powderBlue-900'],
+          }}
           onClick={() =>
             navigate(routes[category].messageEdit(message?.paperId), {
               state: { id: message.id },
@@ -72,9 +77,16 @@ export default function DetailPageBottomButtons({
   );
 }
 
-const StyledDetailMessageButtons = styled.div`
+const StyledDetailMessageButtons = styled.div<{ category: RouteContentType }>`
   display: flex;
   position: relative;
   z-index: 50;
   gap: 8px;
+
+  button {
+    font-family: ${({ category, theme }) =>
+      category === 'treasurebox'
+        ? theme.fontFamily.Cafe24Ohsquare
+        : theme.fontFamily.SpoqaHanSansNeo};
+  }
 `;

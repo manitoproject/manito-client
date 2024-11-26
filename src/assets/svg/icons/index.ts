@@ -21,3 +21,4 @@ export { default as RightChevron } from './right-chevron.svg?react';
 export { default as Setting } from './setting.svg?react';
 export { default as SmsEdit } from './sms-edit.svg?react';
 export { default as Trash } from './trash.svg?react';
+export { default as TreasureLetter } from './treasure-letter.svg?react';

@@ -9,7 +9,7 @@ import FontList from '@/components/bottom-sheet/palette/font-list';
 import { Button } from '@/components/common/buttons/buttons';
 import CakeTextarea from '@/components/makecake/textarea';
 import TopNotice from '@/components/makecake/top-notice';
-import MessageCreateModal from '@/components/modal/create-message-modal';
+import CreateMessageModal from '@/components/modal/create-message-modal';
 import ReactHelmet from '@/helmet';
 import useMessageForm from '@/hooks/use-message-form';
 import useSetHeader from '@/hooks/use-set-header';
@@ -74,7 +74,7 @@ export default function CakeMessageCreatePage() {
         작성완료
       </BottomSheetButton>
       {isCreateMessageModalOpen && (
-        <MessageCreateModal
+        <CreateMessageModal
           position={Date.now() / 1000}
           form={form}
           onCloseModal={() => setIsCreateMessageModal(false)}

@@ -11,7 +11,15 @@ interface MyMessageListProps {
 export default function MyMessageList({ activeCagegory }: MyMessageListProps) {
   const { data } = useSuspenseQuery(messageQueries.user());
   const filteredList = data?.filter((paper) => {
-    if (activeCagegory === 'makecake') {
+    if (activeCagegory === 'treasurebox') {
+      return paper.theme.includes('Treasure');
+    } else if (activeCagegory === 'rollingpaper') {
+      return (
+        paper.theme.includes('Space') ||
+        paper.theme.includes('Nature') ||
+        paper.theme.includes('Animal')
+      );
+    } else {
       return (
         paper.theme.includes('White') ||
         paper.theme.includes('Vanilla') ||
@@ -19,11 +27,6 @@ export default function MyMessageList({ activeCagegory }: MyMessageListProps) {
         paper.theme.includes('Strawberry')
       );
     }
-    return (
-      paper.theme.includes('Space') ||
-      paper.theme.includes('Nature') ||
-      paper.theme.includes('Animal')
-    );
   });
   return (
     <StyledList>

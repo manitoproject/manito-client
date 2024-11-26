@@ -2,42 +2,46 @@ import styled from '@emotion/styled';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 
+import { TreasureStartBg } from '@/assets/imgs';
 import AuthorInfo from '@/components/detail/author-info';
 import DetailActionButtons from '@/components/detail/detail-action-buttons';
 import MessageSwiper from '@/components/swipe/message-swiper';
-import ReactHelmet, { TITLE } from '@/helmet';
+import ReactHelmet from '@/helmet';
 import useDetailIndex from '@/hooks/use-detail-index';
 import useSetHeader from '@/hooks/use-set-header';
 import { messageQueries, paperQueries } from '@/lib/query-factory';
-import { ROLLINGPAPER_BG_MAP } from '@/lib/rolling-paper';
 import { StyledBackdrop } from '@/pages/rollingpaper/list.style';
+import { StyledContentOverlay } from '@/styles/styled';
 
-export default function RollingpaperDetail() {
+export default function TreasureBoxDetail() {
   const params = useParams();
-  const { data: messages } = useQuery(messageQueries.paper(Number(params.id)));
+  const { data: messages } = useQuery(messageQueries.paper(Number(params?.id)));
   const { data: paper } = useQuery(paperQueries.detail(Number(params.id)));
   const { activeIndex, setActiveIndex } = useDetailIndex(messages);
 
   useSetHeader({
-    title: paper?.title,
-    bg: ROLLINGPAPER_BG_MAP[paper?.theme ?? 'animal'].bgColor,
-    color: paper?.theme === 'animal' ? undefined : 'white',
+    title: '상세보기',
+    bg: 'treasure-teal-700',
+    color: 'white',
+    font: 'Cafe24Ohsquare',
+    rightBtn: false,
   });
 
   if (!messages?.length) return null;
   const currentMessage = messages[activeIndex];
-
   return (
-    <StyledWrapper>
-      <div>
+    <StyledMessageCreateWrapper>
+      <StyledContentOverlay opacity={40} />
+      <StyledContentWrapper>
         <MessageSwiper
-          category="rollingpaper"
-          messages={messages}
-          activeIndex={activeIndex}
           setActiveIndex={setActiveIndex}
+          messages={messages}
+          category="treasure"
+          activeIndex={activeIndex}
         />
-        <AuthorInfo hasPadding>
+        <AuthorInfo>
           <AuthorInfo.Nickname
+            color="white"
             nickname={
               currentMessage?.anonymous || currentMessage?.user?.nickname
             }
@@ -47,29 +51,31 @@ export default function RollingpaperDetail() {
             totalIndex={messages?.length}
           />
         </AuthorInfo>
-      </div>
+      </StyledContentWrapper>
       <DetailActionButtons
-        category="rollingpaper"
+        category="treasurebox"
         paperAuthorId={paper?.userId}
         message={currentMessage}
       />
-      <ReactHelmet title={`${paper?.title} - ${TITLE}`} />
-      <StyledBackdrop
-        bg={ROLLINGPAPER_BG_MAP[paper?.theme ?? 'animal'].bgUrl}
-      />
-    </StyledWrapper>
+      <StyledBackdrop bg={TreasureStartBg} />
+      <ReactHelmet title={`${paper?.title} - 마니또`} />
+    </StyledMessageCreateWrapper>
   );
 }
-const StyledWrapper = styled.div`
+
+const StyledMessageCreateWrapper = styled.div`
   width: 100%;
+  position: relative;
+  display: flex;
+  z-index: 50;
+  flex-direction: column;
+`;
+const StyledContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  & > div:nth-of-type(1) {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-bottom: ${({ theme }) => theme.sizes.paddingTop};
-  }
+  justify-content: center;
+  height: 100%;
+  gap: 12px;
+  position: relative;
+  margin-bottom: 58px;
 `;

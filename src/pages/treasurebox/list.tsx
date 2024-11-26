@@ -7,6 +7,7 @@ import { TreasureStartBg, TreasureTutorialBg } from '@/assets/imgs/index';
 import { EditSquare } from '@/assets/svg/icons';
 import ListHeader from '@/components/list/header';
 import TreasureBoxTutorial from '@/components/treasurebox/tutorial';
+import ReactHelmet from '@/helmet';
 import useSetHeader from '@/hooks/use-set-header';
 import { messageQueries, paperQueries } from '@/lib/query-factory';
 import {
@@ -58,6 +59,7 @@ export default function TreasureBoxlist() {
       <StyledBackdrop
         bg={isTutorialVisible ? TreasureTutorialBg : TreasureStartBg}
       />
+      <ReactHelmet title={`${paper?.title} - 마니또`} />
     </StyledListWrapper>
   );
 }

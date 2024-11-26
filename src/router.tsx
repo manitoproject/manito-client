@@ -26,8 +26,10 @@ import RollingpaperMessageEdit from '@/pages/rollingpaper/message-edit';
 import RollingpaperSetup from '@/pages/rollingpaper/setup';
 import SetupIntro from '@/pages/setup-intro';
 import Signup from '@/pages/signup';
+import TreasureBoxDetail from '@/pages/treasurebox/detail';
 import TreasureBoxlist from '@/pages/treasurebox/list';
 import TreasureBoxMessageCreate from '@/pages/treasurebox/message-create';
+import TreasureBoxMessageEdit from '@/pages/treasurebox/message-edit';
 import TreasureBoxSetup from '@/pages/treasurebox/setup';
 import routes from '@/routes';
 
@@ -88,6 +90,14 @@ const router = () =>
           <Route
             path={routes.treasurebox.messageCreate()}
             element={<TreasureBoxMessageCreate />}
+          />
+          <Route
+            path={routes.treasurebox.messageEdit()}
+            element={<TreasureBoxMessageEdit />}
+          />
+          <Route
+            path={routes.treasurebox.detail()}
+            element={<TreasureBoxDetail />}
           />
         </Route>
       </Route>,

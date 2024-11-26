@@ -1,5 +1,6 @@
 import { Button } from '@/components/common/buttons/buttons';
 import NameForm from '@/components/common/name-form';
+import ReactHelmet from '@/helmet';
 import useNameForm from '@/hooks/use-name-form';
 import useSetHeader from '@/hooks/use-set-header';
 import { titleMaxLength } from '@/lib/regex-patterns';
@@ -51,6 +52,7 @@ export default function CakeSetup() {
       >
         시작하기
       </Button>
+      <ReactHelmet title={`케이크 만들기 - 마니또`} />
     </StyledSetupWrapper>
   );
 }
