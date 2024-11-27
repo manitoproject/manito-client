@@ -25,7 +25,7 @@ export default function DetailActionButtons({
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { data: user } = useQuery(userQueries.detail());
-  const { mutate } = useDeleteMessage();
+  const { mutate } = useDeleteMessage(category);
 
   const isPaperAuthor = user && user?.id === paperAuthorId;
   const isMessageAuthor = user && message.user?.id === user?.id;
