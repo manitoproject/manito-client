@@ -72,6 +72,23 @@ export type CakeTheme = {
   fontColor: ColorName;
   bgColor: ColorName;
 };
+
+export const decoPositions: { x: number; y: number }[] = [
+  { x: 35, y: 50 },
+  { x: 106.33, y: 50 },
+  { x: 177.66, y: 50 },
+  { x: 248.99, y: 50 },
+  { x: 16.5, y: 198 },
+  { x: 100.17, y: 198 },
+  { x: 183.84, y: 198 },
+  { x: 267.51, y: 198 },
+  { x: 0, y: 340 },
+  { x: 71, y: 340 },
+  { x: 142, y: 340 },
+  { x: 213, y: 340 },
+  { x: 284, y: 340 },
+];
+
 export const findSvgByThemeName = (name: string) => {
   const all = [
     ...CAKE_DECORATIONS.chocolate,

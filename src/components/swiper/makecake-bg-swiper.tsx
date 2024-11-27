@@ -8,7 +8,11 @@ import { Swiper as SwiperType } from 'swiper/types';
 
 import SwiperNavigation from '@/components/swiper/navigation';
 import useSwipeNavigation from '@/hooks/use-swipe-navigation';
-import { CAKE_THEME_PALETTES, findSvgByThemeName } from '@/lib/cake-decoration';
+import {
+  CAKE_THEME_PALETTES,
+  decoPositions,
+  findSvgByThemeName,
+} from '@/lib/cake-decoration';
 import { messageQueries } from '@/lib/query-factory';
 import routes from '@/routes';
 
@@ -46,10 +50,11 @@ export default function MakeCakeBgSwiper({
   const endIndex =
     currnetPageIndex === 0 ? 13 : currnetPageIndex === 1 ? 26 : 39;
 
-  const buttons = messages?.slice(startIndex, endIndex).map((deco) => {
+  const buttons = messages?.slice(startIndex, endIndex).map((deco, i) => {
     const Svg = findSvgByThemeName(deco.theme);
     return (
       <button
+        style={{ left: decoPositions[i].x, top: decoPositions[i].y }}
         type="button"
         key={deco.id}
         onClick={() => handleViewItemDetail(deco.paperId, deco.id)}
@@ -73,11 +78,10 @@ export default function MakeCakeBgSwiper({
         {CAKE_THEME_PALETTES.map((theme) => (
           <StyledSlide key={theme.bgUrl}>
             <StyledDecoList>
-              <div>{buttons?.slice(0, 4)}</div>
-              <div>{buttons?.slice(4, 8)}</div>
-              <div>{buttons?.slice(8, 13)}</div>
+              {buttons?.slice(0, 13)}
+              <img src={theme.cakeUrl} alt={theme.cakeUrl} />
             </StyledDecoList>
-            <img src={theme.cakeUrl} alt={theme.cakeUrl} />
+
             <img src={theme.emptyBgUrl} alt={theme.emptyBgUrl} />
           </StyledSlide>
         ))}
@@ -91,6 +95,7 @@ export default function MakeCakeBgSwiper({
     </>
   );
 }
+
 const StyledSwiper = styled(Swiper)`
   position: absolute;
   top: ${({ theme }) => `-${theme.sizes.paddingTop}`};
@@ -103,70 +108,30 @@ const StyledSwiper = styled(Swiper)`
 `;
 
 const StyledSlide = styled(SwiperSlide)`
-  height: 100%;
-  width: 100%;
   position: relative;
-  img:nth-of-type(1) {
-    width: 300px;
-    z-index: 1;
-    left: 50%;
-    top: 100px;
-    transform: translateX(-50%);
+  & > img {
+    top: 0;
+    bottom: 0;
     position: absolute;
-  }
-  img:nth-of-type(2) {
-    position: relative;
     z-index: 0;
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
   }
 `;
 
 const StyledDecoList = styled.div`
-  position: absolute;
-  top: 18vh;
-  width: 100%;
-  display: flex;
-  gap: 12vh;
-  flex-direction: column;
-  align-items: center;
-  padding: ${({ theme }) => `0 ${theme.sizes.padding}`};
-  z-index: 1;
-  div:nth-child(1) {
-    width: 80%;
-    gap: 5vw;
-  }
-  div:nth-child(2) {
-    width: 90%;
-    gap: 8vw;
-  }
-  div:nth-child(3) {
-    gap: 4vw;
-  }
-  div {
-    width: 100%;
-    display: flex;
-  }
+  position: relative;
+  z-index: 50;
+  width: 350px;
+  left: 50%;
+  top: 120px;
+  transform: translateX(-50%);
+  height: 550px;
   button {
-    /* width: 20%; */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: absolute;
+    width: 50px;
+    height: 50px;
   }
-  @media (max-width: 480px) {
-    top: 22vh;
-    gap: 8vh;
-    div:nth-child(1) {
-      width: 80%;
-      gap: 1vw;
-    }
-    div:nth-child(2) {
-      width: 90%;
-      gap: 4vw;
-    }
-    div:nth-child(3) {
-      gap: 1vw;
-    }
+  img {
+    width: 100%;
+    height: 100%;
   }
 `;
