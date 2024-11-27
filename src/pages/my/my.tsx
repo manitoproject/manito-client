@@ -2,8 +2,8 @@ import styled from '@emotion/styled';
 import { Suspense, useState } from 'react';
 
 import MyInfo from '@/components/my/info';
-import ActivityTab from '@/components/my/menu/activity-tab';
-import CategoryTab from '@/components/my/menu/category-tab';
+import MyMenuActivityTab from '@/components/my/menu/activity-tab';
+import MyMenuCategoryTab from '@/components/my/menu/category-tab';
 import MyMessageList from '@/components/my/message/message-list';
 import MyPaperList from '@/components/my/paper/paper-list';
 import {
@@ -24,12 +24,12 @@ export default function My() {
     <StyledWrapper>
       <MyInfo />
       <StyledContentsWrapper>
-        <ActivityTab
+        <MyMenuActivityTab
           resetCategoryTab={() => setActiveCategoryTab('rollingpaper')}
           activeIndex={activeActivityTabIndex}
           setActiveIndex={setActiveActivityTabIndex}
         />
-        <CategoryTab
+        <MyMenuCategoryTab
           activeTab={activeCategoryTab}
           onChangeActiveTab={(tab: RouteContentType) =>
             setActiveCategoryTab(tab)

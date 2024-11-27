@@ -3,15 +3,15 @@ import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { Button } from '@/components/common/buttons/buttons';
-import DecorationList from '@/components/makecake/decoration-list';
-import DecorationMenu from '@/components/makecake/decoration-menu';
+import MakeCakeDecorationList from '@/components/makecake/decoration-list';
+import MakeCakeDecorationMenu from '@/components/makecake/decoration-menu';
 import ReactHelmet from '@/helmet';
 import useSetHeader from '@/hooks/use-set-header';
 import { DecorationType } from '@/lib/cake-decoration';
 import routes from '@/routes';
 import { getFontSizeAndWeight } from '@/styles/mixins';
 
-export default function CakeDecorate() {
+export default function MakeCakeDecorate() {
   const [activeTab, setActiveTab] = useState<DecorationType>('chocolate');
   const [activeDeco, setActiveDeco] = useState('');
   const navigate = useNavigate();
@@ -27,11 +27,11 @@ export default function CakeDecorate() {
   return (
     <StyledWrapper>
       <h2>케이크 장식을 선택해주세요.</h2>
-      <DecorationMenu
+      <MakeCakeDecorationMenu
         activeTab={activeTab}
         onChangeActiveTab={(tab: DecorationType) => setActiveTab(tab)}
       />
-      <DecorationList
+      <MakeCakeDecorationList
         activeDeco={activeDeco}
         setActiveDeco={setActiveDeco}
         activeTab={activeTab}

@@ -3,12 +3,15 @@ import styled from '@emotion/styled';
 import { fonts } from '@/lib/fonts';
 import { FontNameWithoutAppleFont } from '@/styles/theme';
 
-interface FontListProps {
+interface BottomSheetFontListProps {
   activeFont: FontNameWithoutAppleFont;
   onChangeFont: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-export default function FontList({ activeFont, onChangeFont }: FontListProps) {
+export default function BottomSheetFontList({
+  activeFont,
+  onChangeFont,
+}: BottomSheetFontListProps) {
   return (
     <StyledFontList>
       {fonts.map((font) => (

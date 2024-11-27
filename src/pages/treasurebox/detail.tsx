@@ -3,9 +3,9 @@ import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 
 import { TreasureStartBg } from '@/assets/imgs';
-import AuthorInfo from '@/components/detail/author-info';
-import DetailActionButtons from '@/components/detail/detail-action-buttons';
-import MessageSwiper from '@/components/swipe/message-swiper';
+import DetailActionButtons from '@/components/detail/action-buttons';
+import DetailAuthorInfo from '@/components/detail/author-info';
+import MessageSwiper from '@/components/swiper/message-swiper';
 import ReactHelmet from '@/helmet';
 import useDetailIndex from '@/hooks/use-detail-index';
 import useSetHeader from '@/hooks/use-set-header';
@@ -39,18 +39,18 @@ export default function TreasureBoxDetail() {
           category="treasure"
           activeIndex={activeIndex}
         />
-        <AuthorInfo>
-          <AuthorInfo.Nickname
+        <DetailAuthorInfo>
+          <DetailAuthorInfo.Nickname
             color="white"
             nickname={
               currentMessage?.anonymous || currentMessage?.user?.nickname
             }
           />
-          <AuthorInfo.PageLength
+          <DetailAuthorInfo.PageLength
             currentIndex={activeIndex}
             totalIndex={messages?.length}
           />
-        </AuthorInfo>
+        </DetailAuthorInfo>
       </StyledContentWrapper>
       <DetailActionButtons
         category="treasurebox"

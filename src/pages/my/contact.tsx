@@ -9,7 +9,7 @@ import { userQueries } from '@/lib/query-factory';
 import { useSendFeedbackMessage } from '@/mutations/contact';
 import { getFontSizeAndWeight } from '@/styles/mixins';
 
-export default function Contact() {
+export default function MyContact() {
   const { data: user } = useQuery(userQueries.detail());
   const [message, setMessage] = useState('');
   const [isFocus, setIsFocus] = useState(false);

@@ -3,19 +3,19 @@ import 'swiper/css';
 import styled from '@emotion/styled';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import ThemeItem from '@/components/rollingpaper/setup/theme-item';
+import RollingpaperSetupThemeItem from '@/components/rollingpaper/setup/theme-item';
 import { ROLLINGPAPER_THEMES } from '@/lib/rolling-paper';
 import { getFontSizeAndWeight } from '@/styles/mixins';
 
-interface ThemeCarouselProps {
+interface RollingpaperSetupThemeCarouselProps {
   activeTheme: RollingpaperThemeName;
   onChangeActiveTheme: (label: RollingpaperThemeName) => void;
 }
 
-export default function ThemeCarousel({
+export default function RollingpaperSetupThemeCarousel({
   activeTheme,
   onChangeActiveTheme,
-}: ThemeCarouselProps) {
+}: RollingpaperSetupThemeCarouselProps) {
   return (
     <StyledWrapper>
       <h2>원하는 테마를 선택해주세요.</h2>
@@ -27,7 +27,7 @@ export default function ThemeCarousel({
         >
           {ROLLINGPAPER_THEMES.map(({ id, img, label }) => (
             <SwiperSlide key={id}>
-              <ThemeItem
+              <RollingpaperSetupThemeItem
                 onChangeActiveTheme={() => onChangeActiveTheme(id)}
                 isActive={activeTheme === id}
                 img={img}

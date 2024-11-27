@@ -19,7 +19,7 @@ import { getFontSizeAndWeight } from '@/styles/mixins';
 import { StyledWriteButton } from '@/styles/styled';
 import theme from '@/styles/theme';
 
-export default function TreasureBoxlist() {
+export default function TreasureBoxList() {
   const [isTutorialVisible, setIsTutorialVisible] = useState(true);
   const params = useParams();
   const { data: paper } = useQuery(paperQueries.detail(Number(params.id)));

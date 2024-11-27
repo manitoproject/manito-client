@@ -6,7 +6,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import { TreasureStartBg } from '@/assets/imgs';
 import { Button } from '@/components/common/buttons/buttons';
 import TreasureBoxTextarea from '@/components/treasurebox/textarea';
-import TreasureTopDisplay from '@/components/treasurebox/top-title';
+import TreasureBoxTopTitle from '@/components/treasurebox/top-title';
 import ReactHelmet from '@/helmet';
 import useSetHeader from '@/hooks/use-set-header';
 import { messageQueries } from '@/lib/query-factory';
@@ -14,7 +14,7 @@ import { useEditMessage } from '@/mutations/message';
 import { StyledBackdrop } from '@/pages/rollingpaper/list.style';
 import { StyledContentOverlay } from '@/styles/styled';
 
-export default function TreasureBoxMessageEdit() {
+export default function TreasureBoxEditMessage() {
   const params = useParams();
   const location = useLocation();
   const { data: messages } = useQuery(messageQueries.paper(Number(params.id)));
@@ -37,7 +37,7 @@ export default function TreasureBoxMessageEdit() {
 
   return (
     <StyledMessageCreateWrapper>
-      <TreasureTopDisplay treasure={currentMessage?.theme} />
+      <TreasureBoxTopTitle treasure={currentMessage?.theme} />
       <StyledForm>
         <TreasureBoxTextarea
           value={value}

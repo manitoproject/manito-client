@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { Button } from '@/components/common/buttons/buttons';
 import NameForm from '@/components/common/name-form';
-import ThemeCarousel from '@/components/rollingpaper/setup/theme-carousel';
+import RollingpaperSetupThemeCarousel from '@/components/rollingpaper/setup/theme-carousel';
 import ReactHelmet from '@/helmet';
 import useNameForm from '@/hooks/use-name-form';
 import useSetHeader from '@/hooks/use-set-header';
@@ -51,7 +51,7 @@ export default function RollingpaperSetup() {
             </h3>
           </StyledSetupHeading>
         </NameForm>
-        <ThemeCarousel
+        <RollingpaperSetupThemeCarousel
           activeTheme={activeTheme}
           onChangeActiveTheme={(theme: RollingpaperThemeName) =>
             setActiveTheme(theme)

@@ -8,7 +8,7 @@ interface SwipeNavigationProps {
   onSlidePrev: () => void;
 }
 
-export default function SwipeNavigation({
+export default function SwiperNavigation({
   isBeginning,
   isEnd,
   onSlideNext,

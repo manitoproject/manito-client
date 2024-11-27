@@ -7,17 +7,17 @@ import {
 } from '@/lib/cake-decoration';
 import { ColorName } from '@/styles/theme';
 
-interface DecorationsProps {
+interface MakeCakeDecorationListProps {
   activeTab: DecorationType;
   setActiveDeco: React.Dispatch<React.SetStateAction<string>>;
   activeDeco: string;
 }
 
-export default function DecorationList({
+export default function MakeCakeDecorationList({
   activeTab,
   setActiveDeco,
   activeDeco,
-}: DecorationsProps) {
+}: MakeCakeDecorationListProps) {
   const theme = CAKE_THEME_STYLES.find(
     (cakeTheme) => cakeTheme.id === activeTab,
   );

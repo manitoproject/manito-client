@@ -4,11 +4,11 @@ import { SmsEdit } from '@/assets/svg/icons';
 import { getFontSizeAndWeight } from '@/styles/mixins';
 import { ColorName } from '@/styles/theme';
 
-interface TopNocieProps {
+interface MakeCakeTopNoticeProps {
   bgColor: ColorName | undefined;
 }
 
-export default function TopNotice({ bgColor }: TopNocieProps) {
+export default function MakeCakeTopNotice({ bgColor }: MakeCakeTopNoticeProps) {
   return (
     <StyledNotice bgColor={bgColor}>
       <div>

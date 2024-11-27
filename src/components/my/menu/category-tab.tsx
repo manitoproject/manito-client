@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 
 import { getFontSizeAndWeight } from '@/styles/mixins';
 
-interface CategoryTabProps {
+interface MyMenuCategoryTabProps {
   onChangeActiveTab: (tab: RouteContentType) => void;
   activeTab: RouteContentType;
 }
@@ -14,10 +14,10 @@ const contents: { id: RouteContentType; label: string }[] = [
   { id: 'treasurebox', label: '보물' },
 ];
 
-export default function CategoryTab({
+export default function MyMenuCategoryTab({
   activeTab,
   onChangeActiveTab,
-}: CategoryTabProps) {
+}: MyMenuCategoryTabProps) {
   return (
     <StyledWrapper>
       {contents.map((content) => (

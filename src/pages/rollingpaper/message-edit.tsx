@@ -4,13 +4,13 @@ import { useLocation, useParams } from 'react-router-dom';
 
 import BottomSheet from '@/components/bottom-sheet/bottom-sheet';
 import BottomSheetButton from '@/components/bottom-sheet/button';
-import ColorList from '@/components/bottom-sheet/palette/color-list';
-import FontList from '@/components/bottom-sheet/palette/font-list';
-import FontPalette, {
+import BottomSheetColorList from '@/components/bottom-sheet/palette/color-list';
+import BottomSheetFontList from '@/components/bottom-sheet/palette/font-list';
+import BottomSheetFontPalette, {
   FontMenu,
 } from '@/components/bottom-sheet/palette/font-palette';
 import { Button } from '@/components/common/buttons/buttons';
-import EmojiSkin from '@/components/rollingpaper/emoji-skin';
+import RollingpaperEmojiSkin from '@/components/rollingpaper/emoji-skin';
 import ReactHelmet from '@/helmet';
 import useMessageForm from '@/hooks/use-message-form';
 import useSetHeader from '@/hooks/use-set-header';
@@ -24,7 +24,7 @@ import {
   StyledRollingFormWrapper,
 } from '@/pages/rollingpaper/message.style';
 
-export default function RollingpaperMessageEditPage() {
+export default function RollingpaperEditMessage() {
   const params = useParams();
   const location = useLocation();
   const { data: paper } = useQuery(paperQueries.detail(Number(params.id)));
@@ -67,34 +67,37 @@ export default function RollingpaperMessageEditPage() {
         bg={ROLLINGPAPER_BG_MAP[paper?.theme ?? 'animal'].bgUrl}
       />
       <StyledRollingFormEmojiWrapper>
-        <EmojiSkin message={form}>
+        <RollingpaperEmojiSkin message={form}>
           {Svg && <Svg />}
           <textarea
             name="content"
             value={form.content}
             onChange={handleChangeForm}
           />
-        </EmojiSkin>
+        </RollingpaperEmojiSkin>
       </StyledRollingFormEmojiWrapper>
       <BottomSheet
         setIsBottomSheetOpen={setIsBottomSheetOpen}
         isOpen={isFontSheetOpen}
         onClose={() => setIsFontSheetOpen(false)}
       >
-        <FontPalette
+        <BottomSheetFontPalette
           activeMenu={activeMenu}
           onChangeActiveMenu={(menu: FontMenu) => setActiveMenu(menu)}
         >
           {activeMenu === 'font' ? (
-            <FontList activeFont={form.font} onChangeFont={handleChangeForm} />
+            <BottomSheetFontList
+              activeFont={form.font}
+              onChangeFont={handleChangeForm}
+            />
           ) : (
-            <ColorList
+            <BottomSheetColorList
               theme={paper?.theme ?? 'animal'}
               activeColor={form.fontColor}
               onChangeColor={handleChangeForm}
             />
           )}
-        </FontPalette>
+        </BottomSheetFontPalette>
         <Button onClick={handleMessageSubmit} disabled={!form.content.length}>
           작성완료
         </Button>

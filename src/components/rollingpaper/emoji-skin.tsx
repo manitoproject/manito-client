@@ -7,7 +7,7 @@ import { getTextareaSize } from '@/styles/mixins';
 import { ColorName } from '@/styles/theme';
 import { Message } from '@/types/message';
 
-interface EmojiItemProps {
+interface RollingpaperEmojiSkinProps {
   children: React.ReactNode;
   isSmall?: boolean;
   message: Pick<Message<unknown>, 'font' | 'fontColor'> &
@@ -27,12 +27,12 @@ const EMOJI_TYPE: EmojiType[] = [
   'Clover',
 ];
 
-export default function EmojiSkin({
+export default function RollingpaperEmojiSkin({
   children,
   isSmall = false,
   onClick,
   message,
-}: EmojiItemProps) {
+}: RollingpaperEmojiSkinProps) {
   const font = findFontByName(message.font);
   const emojiType = EMOJI_TYPE.find((type, i) => {
     if (EMOJI_TYPE.length - 1 === i) return true;

@@ -15,17 +15,17 @@ const tab = [
   },
 ];
 
-interface MyActivityTabProps {
+interface MyMenuActivityTabProps {
   setActiveIndex: React.Dispatch<React.SetStateAction<number>>;
   activeIndex: number;
   resetCategoryTab: () => void;
 }
 
-export default function MyActivityTab({
+export default function MyMenuActivityTab({
   activeIndex,
   setActiveIndex,
   resetCategoryTab,
-}: MyActivityTabProps) {
+}: MyMenuActivityTabProps) {
   return (
     <StyledMenuWrapper>
       {tab.map((tab, i) => (

@@ -11,7 +11,7 @@ import {
   StyledSetupWrapper,
 } from '@/styles/styled';
 
-export default function CakeSetup() {
+export default function MakeCakeSetup() {
   const { handleNameChange, handleNameReset, isError, name, nameRef } =
     useNameForm('title');
   const { mutate, isPending } = useCreatePaper('makecake');

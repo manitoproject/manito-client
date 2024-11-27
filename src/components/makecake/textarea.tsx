@@ -5,19 +5,19 @@ import { findFontByName } from '@/lib/common';
 import { Font } from '@/lib/fonts';
 import { ColorName, FontNameWithoutAppleFont } from '@/styles/theme';
 
-interface CakeTextareaProps {
+interface MakeCakeTextareaProps {
   themeName: string;
   content: string;
   onChangeContent?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   fontName: FontNameWithoutAppleFont;
 }
 
-export default function CakeTextarea({
+export default function MakeCakeTextarea({
   themeName,
   content,
   onChangeContent,
   fontName,
-}: CakeTextareaProps) {
+}: MakeCakeTextareaProps) {
   const font = findFontByName(fontName);
   const Svg = findSvgByThemeName(themeName);
   const theme = findCakeThemeStyle(themeName);

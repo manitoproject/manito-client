@@ -11,7 +11,7 @@ export interface ThemeItemProps {
   onChangeActiveTheme: () => void;
 }
 
-export default function ThemeItem({
+export default function RollingpaperSetupThemeItem({
   isActive,
   img,
   theme,

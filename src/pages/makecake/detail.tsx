@@ -2,9 +2,9 @@ import styled from '@emotion/styled';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 
-import AuthorInfo from '@/components/detail/author-info';
-import DetailActionButtons from '@/components/detail/detail-action-buttons';
-import MessageSwiper from '@/components/swipe/message-swiper';
+import DetailActionButtons from '@/components/detail/action-buttons';
+import DetailAuthorInfo from '@/components/detail/author-info';
+import MessageSwiper from '@/components/swiper/message-swiper';
 import ReactHelmet, { TITLE } from '@/helmet';
 import useDetailIndex from '@/hooks/use-detail-index';
 import useSetHeader from '@/hooks/use-set-header';
@@ -13,7 +13,7 @@ import { messageQueries, paperQueries } from '@/lib/query-factory';
 import { StyledBackdrop } from '@/pages/rollingpaper/list.style';
 import { StyledContentOverlay } from '@/styles/styled';
 
-export default function CakeDetail() {
+export default function MakeCakeDetail() {
   const params = useParams();
   const { data: messages } = useQuery(messageQueries.paper(Number(params?.id)));
   const { activeIndex, setActiveIndex } = useDetailIndex(messages);
@@ -40,8 +40,8 @@ export default function CakeDetail() {
           activeIndex={activeIndex}
           setActiveIndex={setActiveIndex}
         />
-        <AuthorInfo>
-          <AuthorInfo.Nickname
+        <DetailAuthorInfo>
+          <DetailAuthorInfo.Nickname
             color={
               activeIndex + 1 > 13 && activeIndex + 1 < 27
                 ? 'white'
@@ -51,11 +51,11 @@ export default function CakeDetail() {
               currentMessage?.anonymous || currentMessage?.user?.nickname
             }
           />
-          <AuthorInfo.PageLength
+          <DetailAuthorInfo.PageLength
             currentIndex={activeIndex}
             totalIndex={messages?.length}
           />
-        </AuthorInfo>
+        </DetailAuthorInfo>
       </StyledContentWrapper>
       <DetailActionButtons
         category="makecake"

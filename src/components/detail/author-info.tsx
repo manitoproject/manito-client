@@ -35,7 +35,7 @@ function AuthorInfoNickname({ nickname, color }: AuthorInfoNicknameProps) {
   );
 }
 
-export default function AuthorInfo({
+export default function DetailAuthorInfo({
   children,
   hasPadding,
 }: {
@@ -45,8 +45,8 @@ export default function AuthorInfo({
   return <StyledWrapper hasPadding={hasPadding}>{children}</StyledWrapper>;
 }
 
-AuthorInfo.Nickname = AuthorInfoNickname;
-AuthorInfo.PageLength = AuthorInfoPageLength;
+DetailAuthorInfo.Nickname = AuthorInfoNickname;
+DetailAuthorInfo.PageLength = AuthorInfoPageLength;
 
 const StyledWrapper = styled.div<{ hasPadding?: boolean }>`
   width: 100%;

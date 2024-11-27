@@ -3,7 +3,7 @@ import { Outlet, ScrollRestoration } from 'react-router-dom';
 
 import Toast from '@/components/common/toast';
 import Header from '@/components/header/header';
-import Sidebar from '@/components/header/sidebar';
+import HeaderSidebar from '@/components/header/sidebar';
 import LoginModal from '@/components/modal/login-modal';
 import { token } from '@/lib/storage';
 import {
@@ -29,7 +29,7 @@ export default function Layout() {
         <div>{<Outlet />}</div>
       </StyledMain>
       {isLoggedIn && (
-        <Sidebar
+        <HeaderSidebar
           isOpen={isSideMenuOpen}
           onClose={() => setIsSideMenuOpen(false)}
         />

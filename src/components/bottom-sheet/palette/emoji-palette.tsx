@@ -3,17 +3,17 @@ import React from 'react';
 
 import { ROLLINGPAPER_EMOJI_MAP } from '@/lib/rolling-paper';
 
-interface EmojiPaletteProps {
+interface BottomSheetEmojiPaletteProps {
   theme: RollingpaperThemeName;
   activeEmoji: string;
   onChangeEmoji: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-export default function EmojiPalette({
+export default function BottomSheetEmojiPalette({
   theme,
   activeEmoji,
   onChangeEmoji,
-}: EmojiPaletteProps) {
+}: BottomSheetEmojiPaletteProps) {
   return (
     <StyledWrapper>
       {ROLLINGPAPER_EMOJI_MAP[theme].map((emoji) => (

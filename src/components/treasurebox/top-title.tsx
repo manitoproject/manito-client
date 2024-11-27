@@ -3,13 +3,13 @@ import styled from '@emotion/styled';
 import { findTreasureByName } from '@/lib/treasure-box';
 import { getFontSizeAndWeight } from '@/styles/mixins';
 
-interface TreasureTopDisplayProps {
+interface TreasureBoxTopTitleProps {
   treasure: string | undefined;
 }
 
-export default function TreasureTopDisplay({
+export default function TreasureBoxTopTitle({
   treasure,
-}: TreasureTopDisplayProps) {
+}: TreasureBoxTopTitleProps) {
   const activeTreasure = findTreasureByName(treasure);
   return (
     <StyledTreasureDisplay>

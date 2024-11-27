@@ -1,19 +1,18 @@
 import styled from '@emotion/styled';
-import { SwiperSlide } from 'swiper/react';
 
 import TreasureBoxTextarea from '@/components/treasurebox/textarea';
 import { findTreasureByName } from '@/lib/treasure-box';
 import { getFontSizeAndWeight } from '@/styles/mixins';
 import { Message } from '@/types/message';
 
-interface TreasureSwiperProps {
+interface SwipeTreasureSlideProps {
   message: Message<UserIdAndNickname>;
 }
 
-export default function TreasureSlide({ message }: TreasureSwiperProps) {
+export default function TreasureBoxSlide({ message }: SwipeTreasureSlideProps) {
   const treasure = findTreasureByName(message.theme);
   return (
-    <SwiperSlide key={message.id}>
+    <>
       <StyledSvgWrapper>
         {treasure?.svg && <treasure.svg width={203} height={203} />}
         <StyledTitleWrapper>
@@ -24,7 +23,7 @@ export default function TreasureSlide({ message }: TreasureSwiperProps) {
         </StyledTitleWrapper>
       </StyledSvgWrapper>
       <TreasureBoxTextarea value={message.content} />
-    </SwiperSlide>
+    </>
   );
 }
 

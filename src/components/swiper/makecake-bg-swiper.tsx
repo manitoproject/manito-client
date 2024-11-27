@@ -6,32 +6,32 @@ import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperType } from 'swiper/types';
 
-import SwipeNavigation from '@/components/swipe/navigation';
+import SwiperNavigation from '@/components/swiper/navigation';
 import useSwipeNavigation from '@/hooks/use-swipe-navigation';
 import { CAKE_THEME_PALETTES, findSvgByThemeName } from '@/lib/cake-decoration';
 import { messageQueries } from '@/lib/query-factory';
 import routes from '@/routes';
 
-interface CakeSwipeProps {
-  activeIndex: number;
-  setActiveIndex: React.Dispatch<React.SetStateAction<number>>;
+interface MakeCakeSwipeProps {
+  currnetPageIndex: number;
+  setCurrnetPageIndex: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export default function CakeSwipe({
-  activeIndex,
-  setActiveIndex,
-}: CakeSwipeProps) {
+export default function MakeCakeBgSwiper({
+  currnetPageIndex,
+  setCurrnetPageIndex,
+}: MakeCakeSwipeProps) {
   const navigate = useNavigate();
   const swiperRef = useRef<SwiperType>();
   const params = useParams();
   const { data: messages } = useQuery(messageQueries.paper(Number(params.id)));
   const { isBeginning, isEnd, updateSlideStatus } = useSwipeNavigation(
-    activeIndex,
+    currnetPageIndex,
     CAKE_THEME_PALETTES.length,
   );
   const handleSlideChange = (e: SwiperType) => {
     updateSlideStatus(e.isBeginning, e.isEnd);
-    setActiveIndex(e.activeIndex);
+    setCurrnetPageIndex(e.activeIndex);
   };
 
   const handleViewItemDetail = (pageId: number, itemId: number) => {
@@ -41,8 +41,10 @@ export default function CakeSwipe({
     });
   };
 
-  const startIndex = activeIndex === 0 ? 0 : activeIndex === 1 ? 13 : 26;
-  const endIndex = activeIndex === 0 ? 13 : activeIndex === 1 ? 26 : 39;
+  const startIndex =
+    currnetPageIndex === 0 ? 0 : currnetPageIndex === 1 ? 13 : 26;
+  const endIndex =
+    currnetPageIndex === 0 ? 13 : currnetPageIndex === 1 ? 26 : 39;
 
   const buttons = messages?.slice(startIndex, endIndex).map((deco) => {
     const Svg = findSvgByThemeName(deco.theme);
@@ -60,7 +62,7 @@ export default function CakeSwipe({
   return (
     <>
       <StyledSwiper
-        initialSlide={activeIndex}
+        initialSlide={currnetPageIndex}
         onBeforeInit={(swiper) => {
           swiperRef.current = swiper;
         }}
@@ -75,11 +77,12 @@ export default function CakeSwipe({
               <div>{buttons?.slice(4, 8)}</div>
               <div>{buttons?.slice(8, 13)}</div>
             </StyledDecoList>
-            <img src={theme.bgUrl} alt={theme.bgUrl} />
+            <img src={theme.cakeUrl} alt={theme.cakeUrl} />
+            <img src={theme.emptyBgUrl} alt={theme.emptyBgUrl} />
           </StyledSlide>
         ))}
       </StyledSwiper>
-      <SwipeNavigation
+      <SwiperNavigation
         isBeginning={isBeginning}
         isEnd={isEnd}
         onSlideNext={() => swiperRef.current?.slideNext()}
@@ -103,7 +106,15 @@ const StyledSlide = styled(SwiperSlide)`
   height: 100%;
   width: 100%;
   position: relative;
-  img {
+  img:nth-of-type(1) {
+    width: 300px;
+    z-index: 1;
+    left: 50%;
+    top: 100px;
+    transform: translateX(-50%);
+    position: absolute;
+  }
+  img:nth-of-type(2) {
     position: relative;
     z-index: 0;
     height: 100%;

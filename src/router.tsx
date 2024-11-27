@@ -9,27 +9,27 @@ import Home from '@/pages/home';
 import KakaoRedirection from '@/pages/kakako-redirection';
 import Landing from '@/pages/landing';
 import Layout from '@/pages/layout';
-import CakeDecorate from '@/pages/makecake/decorate';
-import CakeDetail from '@/pages/makecake/detail';
-import CakeListPage from '@/pages/makecake/list';
-import CakeMessageCreate from '@/pages/makecake/message-create';
-import CakeMessageEdit from '@/pages/makecake/message-edit';
-import CakeSetup from '@/pages/makecake/setup';
-import Contact from '@/pages/my/contact';
+import MakeCakeDecorate from '@/pages/makecake/decorate';
+import MakeCakeDetail from '@/pages/makecake/detail';
+import MakeCakeList from '@/pages/makecake/list';
+import MakeCakeCreateMessage from '@/pages/makecake/message-create';
+import MakeCakeEditMessage from '@/pages/makecake/message-edit';
+import MakeCakeSetup from '@/pages/makecake/setup';
+import MyContact from '@/pages/my/contact';
 import My from '@/pages/my/my';
 import MySetting from '@/pages/my/my-setting';
-import Rename from '@/pages/my/rename';
+import MyRename from '@/pages/my/rename';
 import RollingpaperDetail from '@/pages/rollingpaper/detail';
 import RollingpaperList from '@/pages/rollingpaper/list';
-import RollingpaperMessageCreate from '@/pages/rollingpaper/message-create';
-import RollingpaperMessageEdit from '@/pages/rollingpaper/message-edit';
+import RollingpaperCreateMessage from '@/pages/rollingpaper/message-create';
+import RollingpaperEditMessage from '@/pages/rollingpaper/message-edit';
 import RollingpaperSetup from '@/pages/rollingpaper/setup';
 import SetupIntro from '@/pages/setup-intro';
 import Signup from '@/pages/signup';
 import TreasureBoxDetail from '@/pages/treasurebox/detail';
-import TreasureBoxlist from '@/pages/treasurebox/list';
-import TreasureBoxMessageCreate from '@/pages/treasurebox/message-create';
-import TreasureBoxMessageEdit from '@/pages/treasurebox/message-edit';
+import TreasureBoxList from '@/pages/treasurebox/list';
+import TreasureBoxCreateMessage from '@/pages/treasurebox/message-create';
+import TreasureBoxEditMessage from '@/pages/treasurebox/message-edit';
 import TreasureBoxSetup from '@/pages/treasurebox/setup';
 import routes from '@/routes';
 
@@ -44,8 +44,8 @@ const router = () =>
           <Route path={routes.home} element={<Home />} />
           <Route path={routes.my.default} element={<My />} />
           <Route path={routes.my.setting()} element={<MySetting />} />
-          <Route path={routes.my.contact()} element={<Contact />} />
-          <Route path={routes.my.rename()} element={<Rename />} />
+          <Route path={routes.my.contact()} element={<MyContact />} />
+          <Route path={routes.my.rename()} element={<MyRename />} />
           <Route path={routes.setupIntro()} element={<SetupIntro />} />
           <Route
             path={routes.rollingpaper.list()}
@@ -61,39 +61,42 @@ const router = () =>
           />
           <Route
             path={routes.rollingpaper.messageEdit()}
-            element={<RollingpaperMessageEdit />}
+            element={<RollingpaperEditMessage />}
           />
           <Route
             path={routes.rollingpaper.messageCreate()}
-            element={<RollingpaperMessageCreate />}
+            element={<RollingpaperCreateMessage />}
           />
-          <Route path={routes.makecake.setup()} element={<CakeSetup />} />
-          <Route path={routes.makecake.list()} element={<CakeListPage />} />
-          <Route path={routes.makecake.decorate()} element={<CakeDecorate />} />
+          <Route path={routes.makecake.setup()} element={<MakeCakeSetup />} />
+          <Route path={routes.makecake.list()} element={<MakeCakeList />} />
+          <Route
+            path={routes.makecake.decorate()}
+            element={<MakeCakeDecorate />}
+          />
           <Route
             path={routes.makecake.messageCreate()}
-            element={<CakeMessageCreate />}
+            element={<MakeCakeCreateMessage />}
           />
           <Route
             path={routes.makecake.messageEdit()}
-            element={<CakeMessageEdit />}
+            element={<MakeCakeEditMessage />}
           />
-          <Route path={routes.makecake.detail()} element={<CakeDetail />} />
+          <Route path={routes.makecake.detail()} element={<MakeCakeDetail />} />
           <Route
             path={routes.treasurebox.setup()}
             element={<TreasureBoxSetup />}
           />
           <Route
             path={routes.treasurebox.list()}
-            element={<TreasureBoxlist />}
+            element={<TreasureBoxList />}
           />
           <Route
             path={routes.treasurebox.messageCreate()}
-            element={<TreasureBoxMessageCreate />}
+            element={<TreasureBoxCreateMessage />}
           />
           <Route
             path={routes.treasurebox.messageEdit()}
-            element={<TreasureBoxMessageEdit />}
+            element={<TreasureBoxEditMessage />}
           />
           <Route
             path={routes.treasurebox.detail()}

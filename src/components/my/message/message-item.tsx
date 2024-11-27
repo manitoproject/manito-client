@@ -3,7 +3,7 @@ import { createSearchParams, useNavigate } from 'react-router-dom';
 
 import { EditSquare, Trash } from '@/assets/svg/icons';
 import DeleteModal from '@/components/modal/delete-modal';
-import EmojiSkin from '@/components/rollingpaper/emoji-skin';
+import RollingpaperEmojiSkin from '@/components/rollingpaper/emoji-skin';
 import {
   StyledEditButton,
   StyledMessageItem,
@@ -51,7 +51,7 @@ export default function MyMessageItem({
       <StyledTrashButton type="button" onClick={() => setIsModalOpen(true)}>
         <Trash width={24} height={24} fill={theme.colors['gray-700']} />
       </StyledTrashButton>
-      <EmojiSkin
+      <RollingpaperEmojiSkin
         onClick={handleViewDetailItem}
         paperId={message.paperId}
         isSmall
@@ -59,7 +59,7 @@ export default function MyMessageItem({
       >
         {Svg && <Svg />}
         <p>{activeCagegory === 'rollingpaper' && message.content}</p>
-      </EmojiSkin>
+      </RollingpaperEmojiSkin>
       {isModalOpen && (
         <DeleteModal
           message="편지"

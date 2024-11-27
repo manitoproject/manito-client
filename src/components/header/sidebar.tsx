@@ -16,7 +16,7 @@ import { userQueries } from '@/lib/query-factory';
 import { useLogout } from '@/mutations/users';
 import routes from '@/routes';
 
-export interface SideMenuProps {
+export interface HeaderSidebarProps {
   onClose: () => void;
   isOpen: boolean;
 }
@@ -39,7 +39,7 @@ const LINKS = [
   },
 ];
 
-export default function Sidebar({ onClose, isOpen }: SideMenuProps) {
+export default function HeaderSidebar({ onClose, isOpen }: HeaderSidebarProps) {
   const { data: user } = useQuery(userQueries.detail());
   const { mutate } = useLogout();
   const ref = useOutsideClick(() => onClose(), isOpen);

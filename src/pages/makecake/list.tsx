@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { EditSquare } from '@/assets/svg/icons';
 import ListHeader from '@/components/list/header';
-import CakeSwipe from '@/components/makecake/swipe';
+import MakeCakeBgSwiper from '@/components/swiper/makecake-bg-swiper';
 import ReactHelmet, { TITLE } from '@/helmet';
 import useSetHeader from '@/hooks/use-set-header';
 import { CAKE_THEME_PALETTES } from '@/lib/cake-decoration';
@@ -17,17 +17,17 @@ import routes from '@/routes';
 import { useToastActions } from '@/stores/toast-store';
 import { StyledWriteButton } from '@/styles/styled';
 
-export default function CakeList() {
+export default function MakeCakeList() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [currnetPage, setCurrnetPage] = useState(0);
+  const [currnetPageIndex, setCurrnetPageIndex] = useState(0);
   const { data: messages } = useQuery(messageQueries.paper(Number(id)));
   const { data: paper } = useQuery(paperQueries.detail(Number(id)));
   const { add } = useToastActions();
 
   useSetHeader({
     title: paper?.title,
-    bg: CAKE_THEME_PALETTES[currnetPage].headerColor,
+    bg: CAKE_THEME_PALETTES[currnetPageIndex].headerColor,
     color: 'white',
   });
 
@@ -45,10 +45,13 @@ export default function CakeList() {
           개의 작성물
         </StyledMessageTotal>
       </ListHeader>
-      <CakeSwipe activeIndex={currnetPage} setActiveIndex={setCurrnetPage} />
+      <MakeCakeBgSwiper
+        currnetPageIndex={currnetPageIndex}
+        setCurrnetPageIndex={setCurrnetPageIndex}
+      />
       <StyledWriteButton
         onClick={handleWrite}
-        bgColor={CAKE_THEME_PALETTES[currnetPage].btnColor}
+        bgColor={CAKE_THEME_PALETTES[currnetPageIndex].btnColor}
       >
         <EditSquare width={40} height={40} fill="#fff" />
       </StyledWriteButton>

@@ -10,17 +10,17 @@ const MENU: { id: FontMenu; label: string }[] = [
   { id: 'color', label: '폰트색상선택' },
 ];
 
-interface FontPaletteProps {
+interface BottomSheetFontPaletteProps {
   children: React.ReactNode;
   activeMenu: FontMenu;
   onChangeActiveMenu: (menu: FontMenu) => void;
 }
 
-export default function FontPalette({
+export default function BottomSheetFontPalette({
   children,
   activeMenu,
   onChangeActiveMenu,
-}: FontPaletteProps) {
+}: BottomSheetFontPaletteProps) {
   return (
     <StyledWrapper>
       <StyledMenuList>

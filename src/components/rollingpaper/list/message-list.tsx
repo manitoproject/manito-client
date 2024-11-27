@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-import MessageItem from '@/components/rollingpaper/list/message-item';
+import RollingpaperMessageItem from '@/components/rollingpaper/list/message-item';
 import { MyMessageListSkeleton } from '@/components/skeletons/skeletons';
 import { messageQueries } from '@/lib/query-factory';
 import {
@@ -11,7 +11,7 @@ import {
   useMessageList,
 } from '@/stores/message-index-store';
 
-export default function MessageList() {
+export default function RollingpaperMessageList() {
   const params = useParams();
   const { data, isLoading } = useQuery(messageQueries.paper(Number(params.id)));
   const messageList = useMessageList();
@@ -25,7 +25,7 @@ export default function MessageList() {
   return (
     <StyledList>
       {messageList.map((message, i) => (
-        <MessageItem position={i} key={i} message={message} />
+        <RollingpaperMessageItem position={i} key={i} message={message} />
       ))}
     </StyledList>
   );

@@ -6,7 +6,7 @@ import CreateMessageModal from '@/components/modal/create-message-modal';
 import TreasureBoxTextarea from '@/components/treasurebox/textarea';
 import { Treasure } from '@/lib/treasure-box';
 
-export default function TreasureMessageForm({
+export default function TreasureBoxMessageForm({
   selectedTreasureName,
 }: {
   selectedTreasureName: Treasure | undefined;

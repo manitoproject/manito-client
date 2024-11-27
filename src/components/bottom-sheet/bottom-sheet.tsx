@@ -6,7 +6,7 @@ import {
 } from '@/components/bottom-sheet/bottom-sheet.style';
 import BottomSheetheader from '@/components/bottom-sheet/header';
 
-interface CustomSheetProps {
+interface BottomSheetProps {
   children: React.ReactNode;
   isOpen: boolean;
   setIsBottomSheetOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -18,7 +18,7 @@ export default function BottomSheet({
   isOpen,
   onClose,
   setIsBottomSheetOpen,
-}: CustomSheetProps) {
+}: BottomSheetProps) {
   return (
     <StyledCustomSheet
       onCloseEnd={() => setIsBottomSheetOpen(true)}

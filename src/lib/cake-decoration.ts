@@ -1,8 +1,14 @@
 import { FunctionComponent, SVGAttributes } from 'react';
 
 import {
+  ChocolateBgCake,
+  ChocolateBgEmpty,
   ChocolateBgOriginal,
+  StrawberryBgCake,
+  StrawberryBgEmpty,
   StrawberryBgOriginal,
+  VanillaBgCake,
+  VanillaBgEmpty,
   VanillaBgOriginal,
 } from '@/assets/imgs';
 import {
@@ -97,15 +103,31 @@ export const findCakeThemeStyle = (thmeName: string) => {
 export const CAKE_THEME_PALETTES: Array<{
   btnColor: string;
   bgUrl: string;
+  cakeUrl: string;
+  emptyBgUrl: string;
   headerColor: ColorName;
 }> = [
-  { btnColor: '#F9BBC8', bgUrl: StrawberryBgOriginal, headerColor: 'pink-300' },
+  {
+    btnColor: '#F9BBC8',
+    bgUrl: StrawberryBgOriginal,
+    cakeUrl: StrawberryBgCake,
+    emptyBgUrl: StrawberryBgEmpty,
+    headerColor: 'pink-300',
+  },
   {
     btnColor: '#74342A',
     bgUrl: ChocolateBgOriginal,
+    cakeUrl: ChocolateBgCake,
+    emptyBgUrl: ChocolateBgEmpty,
     headerColor: 'chocolate-300',
   },
-  { btnColor: '#FE7D3F', bgUrl: VanillaBgOriginal, headerColor: 'vanilla-300' },
+  {
+    btnColor: '#FE7D3F',
+    bgUrl: VanillaBgOriginal,
+    cakeUrl: VanillaBgCake,
+    emptyBgUrl: VanillaBgEmpty,
+    headerColor: 'vanilla-300',
+  },
 ];
 
 export const CAKE_THEME_STYLES: CakeTheme[] = [

@@ -5,10 +5,10 @@ import { useLocation, useParams } from 'react-router-dom';
 
 import BottomSheet from '@/components/bottom-sheet/bottom-sheet';
 import BottomSheetButton from '@/components/bottom-sheet/button';
-import FontList from '@/components/bottom-sheet/palette/font-list';
+import BottomSheetFontList from '@/components/bottom-sheet/palette/font-list';
 import { Button } from '@/components/common/buttons/buttons';
-import CakeTextarea from '@/components/makecake/textarea';
-import TopNotice from '@/components/makecake/top-notice';
+import MakeCakeTextarea from '@/components/makecake/textarea';
+import MakeCakeTopNotice from '@/components/makecake/top-notice';
 import CreateMessageModal from '@/components/modal/create-message-modal';
 import ReactHelmet from '@/helmet';
 import useMessageForm from '@/hooks/use-message-form';
@@ -18,7 +18,7 @@ import { messageQueries } from '@/lib/query-factory';
 import { StyledBackdrop } from '@/pages/rollingpaper/list.style';
 import { StyledContentOverlay } from '@/styles/styled';
 
-export default function CakeMessageCreatePage() {
+export default function MakeCakeCreateMessage() {
   const params = useParams();
   const location = useLocation();
   const { data: messages } = useQuery(messageQueries.paper(Number(params.id)));
@@ -45,8 +45,8 @@ export default function CakeMessageCreatePage() {
 
   return (
     <StyledWrapper>
-      <TopNotice bgColor={topNoticeBgColor} />
-      <CakeTextarea
+      <MakeCakeTopNotice bgColor={topNoticeBgColor} />
+      <MakeCakeTextarea
         themeName={form.theme}
         content={form.content}
         onChangeContent={handleChangeForm}
@@ -57,7 +57,10 @@ export default function CakeMessageCreatePage() {
         setIsBottomSheetOpen={setIsBottomSheetOpen}
         onClose={() => setIsFontSheetOpen(false)}
       >
-        <FontList activeFont={form.font} onChangeFont={handleChangeForm} />
+        <BottomSheetFontList
+          activeFont={form.font}
+          onChangeFont={handleChangeForm}
+        />
         <Button
           onClick={() => setIsCreateMessageModal(true)}
           disabled={!form.content.length}

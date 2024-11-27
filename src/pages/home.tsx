@@ -8,7 +8,7 @@ import {
   RollingBadge,
   TreasureBadge,
 } from '@/assets/imgs';
-import Greeting from '@/components/home/greeting';
+import HomeGreeting from '@/components/home/greeting';
 import { GreetingSkeleton } from '@/components/skeletons/skeletons';
 import ReactHelmet from '@/helmet';
 import useSetHeader from '@/hooks/use-set-header';
@@ -28,7 +28,7 @@ const CONTENTS = [
     badge: MakeCakeBadge,
   },
   {
-    name: '추억의 보물상자',
+    name: '마음의 보물상자',
     isActive: true,
     href: () => routes.setupIntro('treasurebox'),
     badge: TreasureBadge,
@@ -42,7 +42,7 @@ export default function Home() {
     <StyledWrapper>
       <section>
         <Suspense fallback={<GreetingSkeleton />}>
-          <Greeting />
+          <HomeGreeting />
         </Suspense>
         <StyeldBanner>
           <img src={MainBanner} alt="메인 배너" />

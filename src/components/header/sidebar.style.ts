@@ -1,7 +1,7 @@
 import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 
-import { SideMenuProps } from '@/components/header/sidebar';
+import { HeaderSidebarProps } from '@/components/header/sidebar';
 import { getFontSizeAndWeight } from '@/styles/mixins';
 
 const fadeIn = keyframes`
@@ -18,7 +18,7 @@ const fadeIn = keyframes`
     }
 `;
 
-export const StyledOverlay = styled.div<Pick<SideMenuProps, 'isOpen'>>`
+export const StyledOverlay = styled.div<Pick<HeaderSidebarProps, 'isOpen'>>`
   display: ${(props) => (props.isOpen ? 'block' : 'none')};
   position: absolute;
   width: 100%;
@@ -35,7 +35,7 @@ export const StyledNavLinkWrapper = styled.div`
   flex: 1;
   justify-content: space-between;
 `;
-export const StyledInnerNav = styled.div<Pick<SideMenuProps, 'isOpen'>>`
+export const StyledInnerNav = styled.div<Pick<HeaderSidebarProps, 'isOpen'>>`
   display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
   flex-direction: column;
   gap: 12px;
@@ -52,7 +52,7 @@ export const StyledInnerNav = styled.div<Pick<SideMenuProps, 'isOpen'>>`
   }
   animation: ${fadeIn} 300ms ease-in;
 `;
-export const StyledNav = styled.nav<Pick<SideMenuProps, 'isOpen'>>`
+export const StyledNav = styled.nav<Pick<HeaderSidebarProps, 'isOpen'>>`
   width: 240px;
   height: 100%;
   background-color: ${(props) => props.theme.colors.white};

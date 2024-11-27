@@ -2,16 +2,16 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 
 import { TreasureStartBg } from '@/assets/imgs';
-import TreasureMessageForm from '@/components/treasurebox/message-form';
-import TreasureTopDisplay from '@/components/treasurebox/top-title';
-import TreasureList from '@/components/treasurebox/treasure-list';
+import TreasureBoxMessageForm from '@/components/treasurebox/message-form';
+import TreasureBoxTopTitle from '@/components/treasurebox/top-title';
+import TreasureBoxList from '@/components/treasurebox/treasure-list';
 import ReactHelmet from '@/helmet';
 import useSetHeader from '@/hooks/use-set-header';
 import { Treasure } from '@/lib/treasure-box';
 import { StyledBackdrop } from '@/pages/rollingpaper/list.style';
 import { StyledContentOverlay } from '@/styles/styled';
 
-export default function TreasureBoxMessageCreate() {
+export default function TreasureBoxCreateMessage() {
   const [selectedTreasureName, setSelectedTreasureName] = useState<Treasure>();
   const [activePage, setActivePage] = useState<'select' | 'write'>('select');
 
@@ -25,9 +25,9 @@ export default function TreasureBoxMessageCreate() {
 
   return (
     <StyledMessageCreateWrapper>
-      <TreasureTopDisplay treasure={selectedTreasureName} />
+      <TreasureBoxTopTitle treasure={selectedTreasureName} />
       {activePage === 'select' ? (
-        <TreasureList
+        <TreasureBoxList
           selectedTreasureName={selectedTreasureName}
           onChangePage={(page: 'select' | 'write') => setActivePage(page)}
           onTreauseClick={(treasureId: Treasure) =>
@@ -35,7 +35,7 @@ export default function TreasureBoxMessageCreate() {
           }
         />
       ) : (
-        <TreasureMessageForm selectedTreasureName={selectedTreasureName} />
+        <TreasureBoxMessageForm selectedTreasureName={selectedTreasureName} />
       )}
       <StyledBackdrop bg={TreasureStartBg} />
       <StyledContentOverlay opacity={40} />

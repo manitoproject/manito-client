@@ -4,17 +4,15 @@ import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperType } from 'swiper/types';
 
-import CakeTextarea from '@/components/makecake/textarea';
-import EmojiSkin from '@/components/rollingpaper/emoji-skin';
-import SwipeNavigation from '@/components/swipe/navigation';
-import TreasureBoxTextarea from '@/components/treasurebox/textarea';
+import MakeCakeTextarea from '@/components/makecake/textarea';
+import RollingpaperEmojiSkin from '@/components/rollingpaper/emoji-skin';
+import SwiperNavigation from '@/components/swiper/navigation';
+import TreasureBoxSlide from '@/components/swiper/treasurebox-slide';
 import useSwipeNavigation from '@/hooks/use-swipe-navigation';
 import { findSvgByThemeName } from '@/lib/cake-decoration';
-import { findTreasureByName } from '@/lib/treasure-box';
-import { getFontSizeAndWeight } from '@/styles/mixins';
 import { Message } from '@/types/message';
 
-interface DetailSwiperProps {
+interface SwipeMessageSwiperProps {
   messages: Message<UserIdAndNickname>[];
   activeIndex: number;
   setActiveIndex: React.Dispatch<React.SetStateAction<number>>;
@@ -26,7 +24,7 @@ export default function MessageSwiper({
   activeIndex,
   setActiveIndex,
   category,
-}: DetailSwiperProps) {
+}: SwipeMessageSwiperProps) {
   const swiperRef = useRef<SwiperType>();
   const { isBeginning, isEnd, updateSlideStatus } = useSwipeNavigation(
     activeIndex,
@@ -55,16 +53,16 @@ export default function MessageSwiper({
           const Svg = findSvgByThemeName(message.theme);
           return (
             <SwiperSlide key={message.id}>
-              <EmojiSkin message={message}>
+              <RollingpaperEmojiSkin message={message}>
                 {Svg && <Svg />}
                 <p>{message.content}</p>
-              </EmojiSkin>
+              </RollingpaperEmojiSkin>
             </SwiperSlide>
           );
         } else if (category === 'cake') {
           return (
             <StyledSlide key={message.id}>
-              <CakeTextarea
+              <MakeCakeTextarea
                 content={message.content}
                 fontName={message.font}
                 themeName={message.theme}
@@ -72,24 +70,14 @@ export default function MessageSwiper({
             </StyledSlide>
           );
         } else {
-          const treasure = findTreasureByName(message?.theme);
           return (
             <SwiperSlide key={message.id}>
-              <StyledSvgWrapper>
-                {treasure && <treasure.svg width={203} height={203} />}
-                <StyledTitleWrapper>
-                  <StyledTitle>{treasure?.title}</StyledTitle>
-                  <StyledDesc>
-                    진실된 내 모습을 마주보고 용기를 얻을 수 있어요.
-                  </StyledDesc>
-                </StyledTitleWrapper>
-              </StyledSvgWrapper>
-              <TreasureBoxTextarea value={message.content} />
+              <TreasureBoxSlide message={message} />
             </SwiperSlide>
           );
         }
       })}
-      <SwipeNavigation
+      <SwiperNavigation
         isBeginning={isBeginning}
         isEnd={isEnd}
         onSlidePrev={() => swiperRef.current?.slidePrev()}
@@ -102,36 +90,4 @@ export default function MessageSwiper({
 const StyledSlide = styled(SwiperSlide)`
   display: flex;
   align-items: end;
-`;
-const StyledSvgWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const StyledTitleWrapper = styled.div`
-  display: flex;
-  gap: 16px;
-  margin-top: 12px;
-  align-items: center;
-  flex-direction: column;
-`;
-
-const StyledTitle = styled.p`
-  border-radius: 99px;
-  padding: 8px 32px;
-  width: fit-content;
-  ${getFontSizeAndWeight('heading1', 'bold')};
-  font-family: ${({ theme }) => theme.fontFamily.Cafe24Ohsquare};
-  color: ${({ theme }) => theme.colors.white};
-  text-shadow: 0px 4px 4px #19807a;
-  border: 2px solid var(--color-teal-teal500, #19807a);
-  background: var(--color-teal-teal300, #7abaab);
-  box-shadow: 2px 2px 8px 0px #19807a inset;
-`;
-
-const StyledDesc = styled.p`
-  color: ${({ theme }) => theme.colors.white};
-  font-family: ${({ theme }) => theme.fontFamily.SpoqaHanSansNeo};
-  ${getFontSizeAndWeight('heading4', 'bold')};
 `;

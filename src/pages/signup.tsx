@@ -16,7 +16,6 @@ export default function Signup() {
   const [activeRadioButtonIndex, setActiveRadioButtonIndex] = useState(0);
   const { mutate, isPending } = useNicknameChange();
   const location = useLocation();
-  useSetHeader({ title: '회원가입', rightBtn: false });
 
   const { handleNameChange, handleNameReset, isError, name, nameRef } =
     useNameForm('nickname');
@@ -28,6 +27,8 @@ export default function Signup() {
   };
 
   if (location.state !== 'Y') Navigate({ to: routes.landing });
+
+  useSetHeader({ title: '회원가입', rightBtn: false });
 
   return (
     <StyledWrapper>

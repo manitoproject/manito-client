@@ -4,7 +4,7 @@ import { createSearchParams, useNavigate, useParams } from 'react-router-dom';
 
 import { AddCircle } from '@/assets/svg/icons';
 import LoginModal from '@/components/modal/login-modal';
-import EmojiSkin from '@/components/rollingpaper/emoji-skin';
+import RollingpaperEmojiSkin from '@/components/rollingpaper/emoji-skin';
 import {
   StyledEmptySvg,
   StyledItem,
@@ -14,12 +14,15 @@ import { ROLLINGPAPER_EMOJI_MAP } from '@/lib/rolling-paper';
 import routes from '@/routes';
 import { Message } from '@/types/message';
 
-export interface MessageItemProps {
+interface RollingpaperMessageItemProps {
   message: Message<unknown> | null;
   position: number;
 }
 
-export default function MessageItem({ message, position }: MessageItemProps) {
+export default function RollingpaperMessageItem({
+  message,
+  position,
+}: RollingpaperMessageItemProps) {
   const navigate = useNavigate();
   const params = useParams();
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
@@ -51,14 +54,14 @@ export default function MessageItem({ message, position }: MessageItemProps) {
   return (
     <>
       {paper && message ? (
-        <EmojiSkin
+        <RollingpaperEmojiSkin
           onClick={() => handleViewMessageItem(message.paperId, message.id)}
           isSmall
           message={message}
         >
           {EmojiSvg ? <EmojiSvg /> : <StyledEmptySvg />}
           <p>{message.content}</p>
-        </EmojiSkin>
+        </RollingpaperEmojiSkin>
       ) : (
         <StyledItem isOwner={false}>
           <button type="button" onClick={handleCreateMessage}>

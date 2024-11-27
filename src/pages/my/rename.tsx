@@ -14,7 +14,7 @@ import {
   StyledRenameWrapper,
 } from '@/pages/my/rename.style';
 
-export default function Rename() {
+export default function MyRename() {
   const { data: user } = useQuery(userQueries.detail());
   const { mutate: changeNicknameMutate, isPending } = useNicknameChange(true);
   const { mutate: changeProfileMutate } = useProfileChange();

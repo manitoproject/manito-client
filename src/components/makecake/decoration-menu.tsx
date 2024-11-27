@@ -7,15 +7,15 @@ import {
 } from '@/lib/cake-decoration';
 import { getFontSizeAndWeight } from '@/styles/mixins';
 
-interface DecorationMenuProps {
+interface MakeCakeDecorationMenuProps {
   activeTab: DecorationType;
   onChangeActiveTab: (tab: DecorationType) => void;
 }
 
-export default function DecorationMenu({
+export default function MakeCakeDecorationMenu({
   activeTab,
   onChangeActiveTab,
-}: DecorationMenuProps) {
+}: MakeCakeDecorationMenuProps) {
   return (
     <ul>
       {CAKE_THEME_STYLES.map((deco) => (

@@ -4,7 +4,7 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import { userQueries } from '@/lib/query-factory';
 import { getFontSizeAndWeight } from '@/styles/mixins';
 
-export default function Greeting() {
+export default function HomeGreeting() {
   const { data: user } = useSuspenseQuery(userQueries.detail());
   return (
     <StyledGreeting>

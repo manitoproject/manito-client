@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import ListHeader from '@/components/list/header';
-import MessageList from '@/components/rollingpaper/list/message-list';
+import RollingpaperMessageList from '@/components/rollingpaper/list/message-list';
 import ReactHelmet, { TITLE } from '@/helmet';
 import useSetHeader from '@/hooks/use-set-header';
 import { messageQueries, paperQueries } from '@/lib/query-factory';
@@ -38,7 +38,7 @@ export default function RollingpaperList() {
           <span>{messages?.length}</span>개의 작성물
         </StyledMessageTotal>
       </ListHeader>
-      <MessageList />
+      <RollingpaperMessageList />
       <StyledBackdrop
         bg={ROLLINGPAPER_BG_MAP[paper?.theme ?? 'animal'].bgUrl}
       />

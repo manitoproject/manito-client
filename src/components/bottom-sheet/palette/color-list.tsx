@@ -3,17 +3,17 @@ import styled from '@emotion/styled';
 import { colors } from '@/lib/fonts';
 import { ColorName } from '@/styles/theme';
 
-export interface ColorListProps {
+interface BottomSheetColorListProps {
   activeColor: ColorName;
   onChangeColor: (e: React.MouseEvent<HTMLButtonElement>) => void;
   theme: RollingpaperThemeName;
 }
 
-export default function ColorList({
+export default function BottomSheetColorList({
   activeColor,
   theme,
   onChangeColor,
-}: ColorListProps) {
+}: BottomSheetColorListProps) {
   return (
     <StyledColorList>
       {colors[theme].map((color) => (

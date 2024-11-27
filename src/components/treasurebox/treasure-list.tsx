@@ -4,17 +4,17 @@ import { Button } from '@/components/common/buttons/buttons';
 import { Treasure, TREASURES } from '@/lib/treasure-box';
 import { getFontSizeAndWeight } from '@/styles/mixins';
 
-interface TreasureListProps {
+interface TreasureBoxListProps {
   onTreauseClick: (treasureId: Treasure) => void;
   selectedTreasureName: Treasure | undefined;
   onChangePage: (page: 'select' | 'write') => void;
 }
 
-export default function TreasureList({
+export default function TreasureBoxList({
   selectedTreasureName,
   onTreauseClick,
   onChangePage,
-}: TreasureListProps) {
+}: TreasureBoxListProps) {
   return (
     <StyledWrapper>
       <div />

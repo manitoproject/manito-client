@@ -11,7 +11,7 @@ import routes from '@/routes';
 import theme from '@/styles/theme';
 import { Message } from '@/types/message';
 
-interface DetailMessageButtonsProps {
+interface DetailActionButtonsProps {
   message: Message<UserIdAndNickname>;
   category: RouteContentType;
   paperAuthorId: number | undefined;
@@ -21,7 +21,7 @@ export default function DetailActionButtons({
   message,
   category,
   paperAuthorId,
-}: DetailMessageButtonsProps) {
+}: DetailActionButtonsProps) {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { data: user } = useQuery(userQueries.detail());
