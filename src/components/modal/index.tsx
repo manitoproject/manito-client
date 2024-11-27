@@ -26,9 +26,8 @@ function NicknameVisibility({ children }: { children: React.ReactNode }) {
       <StyledRadioFormTitleWrapper>
         <h1>작성한 편지를 공개 하시겠어요?</h1>
         <p>
-          익명 선택시 임의의 이름을 작성해서 공개 하실 수 있으며,
-          <br />
-          공개 선택시엔 이름으로 공개됩니다.
+          익명 선택시 임의의 이름을 작성해서 공개 하실 수 있으며, 공개 선택시엔
+          이름으로 공개됩니다.
         </p>
       </StyledRadioFormTitleWrapper>
       {children}

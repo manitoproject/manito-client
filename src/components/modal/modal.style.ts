@@ -57,6 +57,7 @@ export const StyledRadioFormTitleWrapper = styled.div`
     ${getFontSizeAndWeight('heading2', 'bold')};
   }
   p {
+    width: 93%;
     color: ${({ theme }) => theme.colors['gray-500']};
     ${getFontSizeAndWeight('body1', 'medium')};
   }

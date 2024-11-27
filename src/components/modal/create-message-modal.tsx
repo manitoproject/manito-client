@@ -86,7 +86,7 @@ export default function CreateMessageModal({
           닫기
         </Modal.Button>
         <Modal.Button
-          disabled={isError || isPending}
+          disabled={(isError && !isPublic) || isPending}
           css={{
             backgroundColor: theme.colors['gray-900'],
             color: theme.colors.white,
