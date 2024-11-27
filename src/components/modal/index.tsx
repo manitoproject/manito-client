@@ -1,7 +1,3 @@
-import { ForwardedRef, forwardRef, useEffect } from 'react';
-
-import RadioButton from '@/components/common/buttons/radio-button';
-import Input from '@/components/common/input';
 import { Portal } from '@/components/common/portal';
 import {
   StyledButton,
@@ -11,23 +7,8 @@ import {
   StyledRadioFormWrapper,
   StyledTitleWrapper,
 } from '@/components/modal/modal.style';
-import ModalContext, {
-  useModal,
-  useModalContext,
-} from '@/components/modal/modal-context';
 import useDisableScroll from '@/hooks/common/use-disable-scroll';
 import useOutsideClick from '@/hooks/common/use-outside-click';
-import { nicknameMaxLength } from '@/lib/regex-patterns';
-import { useModalActions, useModalIndex } from '@/stores/modal-store';
-
-const LABELS = ['공개로 작성할래요.', '익명으로 작성할래요.'];
-
-interface RadioFormProps {
-  handleNameChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  isError: boolean;
-  nickname: string;
-  handleNameReset: () => void;
-}
 
 function TitleWrapper({ children }: { children: React.ReactNode }) {
   return <StyledTitleWrapper>{children}</StyledTitleWrapper>;
@@ -39,17 +20,7 @@ function Description({ children }: { children: React.ReactNode }) {
   return <p>{children}</p>;
 }
 
-function RadioForm(
-  { handleNameChange, isError, nickname, handleNameReset }: RadioFormProps,
-  ref: ForwardedRef<HTMLInputElement>,
-) {
-  const { activeIndex, setActiveIndex } = useModalContext();
-  const { setIsError } = useModalContext();
-
-  useEffect(() => {
-    setIsError(isError || !nickname.length);
-  }, [isError, nickname.length, setIsError]);
-
+function NicknameVisibility({ children }: { children: React.ReactNode }) {
   return (
     <StyledRadioFormWrapper>
       <StyledRadioFormTitleWrapper>
@@ -60,30 +31,7 @@ function RadioForm(
           공개 선택시엔 이름으로 공개됩니다.
         </p>
       </StyledRadioFormTitleWrapper>
-      <div>
-        {LABELS.map((item, i) => (
-          <RadioButton
-            key={item}
-            isActive={activeIndex === i}
-            onChangeIndex={() => setActiveIndex(i)}
-          >
-            <p>{item}</p>
-          </RadioButton>
-        ))}
-      </div>
-      {activeIndex === 1 && (
-        <Input
-          isError={isError}
-          ref={ref}
-          value={nickname}
-          onChange={handleNameChange}
-          onClick={handleNameReset}
-        >
-          <span>
-            {nickname.length} / {nicknameMaxLength}
-          </span>
-        </Input>
-      )}
+      {children}
     </StyledRadioFormWrapper>
   );
 }
@@ -91,23 +39,15 @@ function RadioForm(
 function Button({
   children,
   onClick,
-  isActionBtn,
-  isPending,
+  disabled,
   ...rest
 }: {
-  isPending?: boolean;
-  isActionBtn?: boolean;
+  disabled?: boolean;
   children: React.ReactNode;
   onClick: () => void;
 }) {
-  const { isError, activeIndex } = useModalContext();
   return (
-    <StyledButton
-      {...rest}
-      type="button"
-      disabled={(isActionBtn && isError && !!activeIndex) || isPending}
-      onClick={onClick}
-    >
+    <StyledButton {...rest} type="button" disabled={disabled} onClick={onClick}>
       {children}
     </StyledButton>
   );
@@ -119,31 +59,19 @@ function Buttons({ children }: { children: React.ReactNode }) {
 
 function ModalMain({
   children,
-  onClick,
+  onClose,
 }: {
   children: React.ReactNode;
-  onClick: () => void;
+  onClose: () => void;
 }) {
-  const { isError, setIsError } = useModal();
-
-  const activeIndex = useModalIndex();
-  const { setActiveIndex } = useModalActions();
-  const ref = useOutsideClick(onClick, true);
+  const ref = useOutsideClick(onClose, true);
   useDisableScroll();
-
-  useEffect(() => {
-    return () => setActiveIndex(0);
-  }, [setActiveIndex]);
 
   return (
     <Portal>
-      <ModalContext.Provider
-        value={{ isError, setIsError, activeIndex, setActiveIndex }}
-      >
-        <StyledModalMainWrapper>
-          <div ref={ref}>{children}</div>
-        </StyledModalMainWrapper>
-      </ModalContext.Provider>
+      <StyledModalMainWrapper>
+        <div ref={ref}>{children}</div>
+      </StyledModalMainWrapper>
     </Portal>
   );
 }
@@ -154,5 +82,5 @@ export const Modal = Object.assign(ModalMain, {
   TitleWrapper: TitleWrapper,
   Title: Title,
   Description: Description,
-  RadioForm: forwardRef(RadioForm),
+  NicknameVisibility: NicknameVisibility,
 });

@@ -10,19 +10,19 @@ import { getFontSizeAndWeight } from '@/styles/mixins';
 interface RadioButtonProps {
   children: React.ReactNode;
   isActive: boolean;
-  onChangeIndex: () => void;
+  onChangeActive: () => void;
 }
 
 export default function RadioButton({
   children,
   isActive,
-  onChangeIndex,
+  onChangeActive,
 }: RadioButtonProps) {
   return (
     <StyledRadioButton
       isActive={isActive}
       type="button"
-      onClick={onChangeIndex}
+      onClick={onChangeActive}
     >
       {isActive ? <RadioButtonActive /> : <RadioButtonSvg />}
       {children}

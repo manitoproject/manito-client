@@ -8,12 +8,13 @@ import MakeCakeBgSwiper from '@/components/swiper/makecake-bg-swiper';
 import ReactHelmet, { TITLE } from '@/helmet';
 import useSetHeader from '@/hooks/use-set-header';
 import { CAKE_THEME_PALETTES } from '@/lib/cake-decoration';
-import { messageQueries, paperQueries } from '@/lib/query-factory';
+import { messageQueries, paperQueries, userQueries } from '@/lib/query-factory';
 import {
   StyledListWrapper,
   StyledMessageTotal,
 } from '@/pages/rollingpaper/list.style';
 import routes from '@/routes';
+import { useLoginModalActions } from '@/stores/login-modal-store';
 import { useToastActions } from '@/stores/toast-store';
 import { StyledWriteButton } from '@/styles/styled';
 
@@ -23,7 +24,9 @@ export default function MakeCakeList() {
   const [currnetPageIndex, setCurrnetPageIndex] = useState(0);
   const { data: messages } = useQuery(messageQueries.paper(Number(id)));
   const { data: paper } = useQuery(paperQueries.detail(Number(id)));
-  const { add } = useToastActions();
+  const { data: user } = useQuery(userQueries.detail());
+  const toast = useToastActions();
+  const loginModal = useLoginModalActions();
 
   useSetHeader({
     title: paper?.title,
@@ -32,9 +35,9 @@ export default function MakeCakeList() {
   });
 
   const handleWrite = () => {
-    if (messages && messages?.length === 39) {
-      return add('작성할 수 있는 공간이 없습니다.');
-    }
+    if (!user) return loginModal.toggleOpen(true);
+    if (messages && messages?.length === 39)
+      return toast.add('작성할 수 있는 공간이 없습니다.');
     navigate(routes.makecake.decorate(), { state: { id: paper?.id } });
   };
   return (

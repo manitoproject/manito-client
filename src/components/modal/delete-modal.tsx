@@ -4,7 +4,7 @@ import theme from '@/styles/theme';
 interface DeleteModalProps {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   onDelete: () => void;
-  message: '편지' | '컨텐츠'; // 메시지 삭제일경우 편지
+  message: '편지' | '컨텐츠'; // 메시지 삭제일경우 = 편지
 }
 
 export default function DeleteModal({
@@ -13,7 +13,7 @@ export default function DeleteModal({
   message,
 }: DeleteModalProps) {
   return (
-    <Modal onClick={() => setIsOpen((prev) => !prev)}>
+    <Modal onClose={() => setIsOpen((prev) => !prev)}>
       <Modal.TitleWrapper>
         <Modal.Title>작성된 {message}를 삭제하시겠습니까?</Modal.Title>
         <Modal.Description>

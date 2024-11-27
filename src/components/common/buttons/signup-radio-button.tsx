@@ -15,7 +15,7 @@ export default function SignupRadioButton({
     <StyledRadioButtonWrapper>
       <RadioButton
         isActive={activeRadioButtonIndex === 0}
-        onChangeIndex={() => setActiveRadioButtonIndex(0)}
+        onChangeActive={() => setActiveRadioButtonIndex(0)}
       >
         <p>
           안할래요!
@@ -24,7 +24,7 @@ export default function SignupRadioButton({
       </RadioButton>
       <RadioButton
         isActive={activeRadioButtonIndex === 1}
-        onChangeIndex={() => setActiveRadioButtonIndex(1)}
+        onChangeActive={() => setActiveRadioButtonIndex(1)}
       >
         <p>직접 입력 할래요!</p>
       </RadioButton>

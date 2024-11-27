@@ -9,22 +9,25 @@ import ListHeader from '@/components/list/header';
 import TreasureBoxTutorial from '@/components/treasurebox/tutorial';
 import ReactHelmet from '@/helmet';
 import useSetHeader from '@/hooks/use-set-header';
-import { messageQueries, paperQueries } from '@/lib/query-factory';
+import { messageQueries, paperQueries, userQueries } from '@/lib/query-factory';
 import {
   StyledBackdrop,
   StyledListWrapper,
 } from '@/pages/rollingpaper/list.style';
 import routes from '@/routes';
+import { useLoginModalActions } from '@/stores/login-modal-store';
 import { getFontSizeAndWeight } from '@/styles/mixins';
 import { StyledWriteButton } from '@/styles/styled';
 import theme from '@/styles/theme';
 
 export default function TreasureBoxList() {
-  const [isTutorialVisible, setIsTutorialVisible] = useState(true);
   const params = useParams();
+  const navigate = useNavigate();
+  const [isTutorialVisible, setIsTutorialVisible] = useState(true);
   const { data: paper } = useQuery(paperQueries.detail(Number(params.id)));
   const { data: messages } = useQuery(messageQueries.paper(Number(params.id)));
-  const navigate = useNavigate();
+  const { data: user } = useQuery(userQueries.detail());
+  const loginModal = useLoginModalActions();
 
   useSetHeader({
     title: paper?.title,
@@ -33,6 +36,14 @@ export default function TreasureBoxList() {
     font: 'Cafe24Ohsquare',
     rightBtn: !isTutorialVisible,
   });
+
+  const handleWrite = () => {
+    if (!user) {
+      loginModal.toggleOpen(true);
+    } else {
+      navigate(routes.treasurebox.messageCreate(paper?.id));
+    }
+  };
 
   return (
     <StyledListWrapper>
@@ -47,9 +58,7 @@ export default function TreasureBoxList() {
             </StyledMessageTotal>
           </ListHeader>
           <StyledWriteButton
-            onClick={() =>
-              navigate(routes.treasurebox.messageCreate(paper?.id))
-            }
+            onClick={handleWrite}
             bgColor={theme.colors['treasure-teal-700']}
           >
             <EditSquare width={40} height={40} fill="#fff" />

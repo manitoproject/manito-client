@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
 import { RouterProvider } from 'react-router-dom';
 
+import ToastProvier from '@/components/common/toast';
 import ReactHelmet from '@/helmet';
 import { enableMocking } from '@/mocks/browser';
 import router from '@/router';
@@ -25,6 +26,7 @@ enableMocking().then(() => {
           <Global styles={global} />
           <QueryClientProvider client={queryClient}>
             <RouterProvider router={router()} />
+            <ToastProvier />
             <ReactQueryDevtools />
           </QueryClientProvider>
         </ThemeProvider>

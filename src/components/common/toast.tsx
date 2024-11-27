@@ -5,7 +5,7 @@ import { createPortal } from 'react-dom';
 import { useToast } from '@/stores/toast-store';
 import { getFontSizeAndWeight } from '@/styles/mixins';
 
-export default function Toast() {
+export default function ToastProvier() {
   const toast = useToast();
 
   return createPortal(

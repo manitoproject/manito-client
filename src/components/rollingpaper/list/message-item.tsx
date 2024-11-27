@@ -1,9 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import { useState } from 'react';
 import { createSearchParams, useNavigate, useParams } from 'react-router-dom';
 
 import { AddCircle } from '@/assets/svg/icons';
-import LoginModal from '@/components/modal/login-modal';
 import RollingpaperEmojiSkin from '@/components/rollingpaper/emoji-skin';
 import {
   StyledEmptySvg,
@@ -12,6 +10,7 @@ import {
 import { paperQueries, userQueries } from '@/lib/query-factory';
 import { ROLLINGPAPER_EMOJI_MAP } from '@/lib/rolling-paper';
 import routes from '@/routes';
+import { useLoginModalActions } from '@/stores/login-modal-store';
 import { Message } from '@/types/message';
 
 interface RollingpaperMessageItemProps {
@@ -24,8 +23,8 @@ export default function RollingpaperMessageItem({
   position,
 }: RollingpaperMessageItemProps) {
   const navigate = useNavigate();
+  const loginModal = useLoginModalActions();
   const params = useParams();
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const { data: paper } = useQuery(paperQueries.detail(Number(params.id)));
   const { data: user } = useQuery(userQueries.detail());
   const EmojiSvg = ROLLINGPAPER_EMOJI_MAP[
@@ -38,7 +37,7 @@ export default function RollingpaperMessageItem({
         state: { position },
       });
     } else {
-      setIsLoginModalOpen(true);
+      loginModal.toggleOpen(true);
     }
   };
 
@@ -68,11 +67,6 @@ export default function RollingpaperMessageItem({
             <AddCircle />
           </button>
         </StyledItem>
-      )}
-      {isLoginModalOpen && (
-        <LoginModal
-          onToggleModal={() => setIsLoginModalOpen((prev) => !prev)}
-        />
       )}
     </>
   );

@@ -1,41 +1,62 @@
 import styled from '@emotion/styled';
+import { useQuery } from '@tanstack/react-query';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { HamburgerMenu, LeftChevron } from '@/assets/svg/icons';
+import HeaderSidebar from '@/components/header/sidebar';
+import { userQueries } from '@/lib/query-factory';
 import routes from '@/routes';
 import { HeaderStore, useHeader } from '@/stores/header-store';
+import { useLoginModalActions } from '@/stores/login-modal-store';
 import { getFontSizeAndWeight } from '@/styles/mixins';
 import { ColorName } from '@/styles/theme';
 
-interface HeaderProps {
-  onSidebarOpen: () => void;
-}
-
-export default function Header({ onSidebarOpen }: HeaderProps) {
+export default function Header() {
   const header = useHeader();
   const navigate = useNavigate();
+  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
+  const { toggleOpen } = useLoginModalActions();
+  const { data: user } = useQuery(userQueries.detail());
 
   const handleNavigation = () => {
     const isHomePage = location.pathname === routes.home;
     if (isHomePage) return navigate(routes.landing);
     return navigate(-1);
   };
+
+  const handleSidebarOpen = () => {
+    if (!user) {
+      toggleOpen(true);
+    } else {
+      setIsSideMenuOpen(true);
+    }
+  };
+
   return (
-    <StyledHeader header={header}>
-      <div>
-        {header.leftBtn && (
-          <StyledLeftButton color={header.color} onClick={handleNavigation}>
-            <LeftChevron />
-          </StyledLeftButton>
-        )}
-        <h1>{header.title}</h1>
-        {header.rightBtn && (
-          <StyledMenuButton color={header.color} onClick={onSidebarOpen}>
-            <HamburgerMenu />
-          </StyledMenuButton>
-        )}
-      </div>
-    </StyledHeader>
+    <>
+      <StyledHeader header={header}>
+        <div>
+          {header.leftBtn && (
+            <StyledLeftButton color={header.color} onClick={handleNavigation}>
+              <LeftChevron />
+            </StyledLeftButton>
+          )}
+          <h1>{header.title}</h1>
+          {header.rightBtn && (
+            <StyledMenuButton color={header.color} onClick={handleSidebarOpen}>
+              <HamburgerMenu />
+            </StyledMenuButton>
+          )}
+        </div>
+      </StyledHeader>
+      {user && (
+        <HeaderSidebar
+          isOpen={isSideMenuOpen}
+          onClose={() => setIsSideMenuOpen(false)}
+        />
+      )}
+    </>
   );
 }
 

@@ -9,7 +9,6 @@ import {
   StyledShareModal,
 } from '@/components/list/header.style';
 import { Modal } from '@/components/modal';
-import LoginModal from '@/components/modal/login-modal';
 import useShare from '@/hooks/use-share';
 import { paperQueries, userQueries } from '@/lib/query-factory';
 import routes from '@/routes';
@@ -29,7 +28,6 @@ export default function ListHeader({
 }: DetailHeaderProps) {
   const params = useParams();
   const [isCopyModalOpen, setIsCopyModalOpen] = useState(false);
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const { data: user } = useQuery(userQueries.detail());
   const { data: paper } = useQuery(paperQueries.detail(Number(params.id)));
   const toastActions = useToastActions();
@@ -54,7 +52,7 @@ export default function ListHeader({
         </button>
       </div>
       {isCopyModalOpen && (
-        <Modal onClick={() => setIsCopyModalOpen((prev) => !prev)}>
+        <Modal onClose={() => setIsCopyModalOpen((prev) => !prev)}>
           <Modal.TitleWrapper>
             <Modal.Title>공유하기</Modal.Title>
           </Modal.TitleWrapper>
@@ -81,11 +79,6 @@ export default function ListHeader({
             </Modal.Button>
           </Modal.Buttons>
         </Modal>
-      )}
-      {isLoginModalOpen && (
-        <LoginModal
-          onToggleModal={() => setIsLoginModalOpen((prev) => !prev)}
-        />
       )}
     </StyledListHeader>
   );
