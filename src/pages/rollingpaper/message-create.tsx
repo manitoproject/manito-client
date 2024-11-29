@@ -16,7 +16,7 @@ import RollingpaperEmojiSkin from '@/components/rollingpaper/emoji-skin';
 import ReactHelmet from '@/helmet';
 import useMessageForm from '@/hooks/use-message-form';
 import useSetHeader from '@/hooks/use-set-header';
-import { findSvgByThemeName } from '@/lib/cake-decoration';
+import { findImgByThemeName } from '@/lib/common';
 import { paperQueries } from '@/lib/query-factory';
 import { ROLLINGPAPER_BG_MAP } from '@/lib/rolling-paper';
 import { StyledBackdrop } from '@/pages/rollingpaper/list.style';
@@ -36,7 +36,6 @@ export default function RollingpaperCreateMessage() {
   const [isCreateMessageModalOpen, setIsCreateMessageModal] = useState(false);
   const [activeMenu, setActiveMenu] = useState<FontMenu>('font');
   const { form, handleChangeForm } = useMessageForm();
-  const Svg = findSvgByThemeName(form.theme);
 
   const handleMessageSubmit = () => {
     if (isEmojiSelectionPage) {
@@ -69,6 +68,7 @@ export default function RollingpaperCreateMessage() {
       setIsFontSheetOpen(false);
     }
   }, [isEmojiSelectionPage]);
+  // 확인
   return (
     <StyledRollingFormWrapper>
       <StyledBackdrop
@@ -78,7 +78,8 @@ export default function RollingpaperCreateMessage() {
         isEmojiSelectionPage={isEmojiSelectionPage}
       >
         <RollingpaperEmojiSkin message={form}>
-          {Svg && <Svg />}
+          <img src={findImgByThemeName(form.theme)} alt={form.theme} />
+
           {form.theme && (
             <textarea
               name="content"

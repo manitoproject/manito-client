@@ -25,7 +25,7 @@ export default function BottomSheetEmojiPalette({
           type="button"
           onClick={onChangeEmoji}
         >
-          <emoji.svg />
+          <img src={emoji.imgUrl} alt={emoji.name} />
         </StyledItem>
       ))}
     </StyledWrapper>
@@ -42,7 +42,7 @@ const StyledItem = styled.button<{ isActive: boolean }>`
   outline: ${({ isActive, theme }) =>
     isActive ? `1px dashed ${theme.colors['powderBlue-900']}` : 'none'};
   padding: 0;
-  svg {
+  img {
     width: 100%;
     height: 100%;
   }

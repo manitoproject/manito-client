@@ -14,7 +14,7 @@ export default function TreasureBoxSlide({ message }: SwipeTreasureSlideProps) {
   return (
     <>
       <StyledSvgWrapper>
-        {treasure?.svg && <treasure.svg width={203} height={203} />}
+        <img src={treasure?.imgUrl} alt={treasure?.name} />
         <StyledTitleWrapper>
           <StyledTitle>{treasure?.title}</StyledTitle>
           <StyledDesc>
@@ -31,6 +31,10 @@ const StyledSvgWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  img {
+    width: 203px; // 확인
+    height: 203px;
+  }
 `;
 
 const StyledTitleWrapper = styled.div`

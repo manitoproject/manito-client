@@ -3,10 +3,7 @@ import { createSearchParams, useNavigate, useParams } from 'react-router-dom';
 
 import { AddCircle } from '@/assets/svg/icons';
 import RollingpaperEmojiSkin from '@/components/rollingpaper/emoji-skin';
-import {
-  StyledEmptySvg,
-  StyledItem,
-} from '@/components/rollingpaper/list/item.style';
+import { StyledItem } from '@/components/rollingpaper/list/item.style';
 import { paperQueries, userQueries } from '@/lib/query-factory';
 import { ROLLINGPAPER_EMOJI_MAP } from '@/lib/rolling-paper';
 import routes from '@/routes';
@@ -27,9 +24,9 @@ export default function RollingpaperMessageItem({
   const params = useParams();
   const { data: paper } = useQuery(paperQueries.detail(Number(params.id)));
   const { data: user } = useQuery(userQueries.detail());
-  const EmojiSvg = ROLLINGPAPER_EMOJI_MAP[
+  const img = ROLLINGPAPER_EMOJI_MAP[
     paper?.theme as RollingpaperThemeName
-  ]?.find((item) => item.name === message?.theme)?.svg;
+  ]?.find((item) => item.name === message?.theme)?.imgUrl;
 
   const handleCreateMessage = () => {
     if (user) {
@@ -57,8 +54,10 @@ export default function RollingpaperMessageItem({
           onClick={() => handleViewMessageItem(message.paperId, message.id)}
           isSmall
           message={message}
+          // 확인
         >
-          {EmojiSvg ? <EmojiSvg /> : <StyledEmptySvg />}
+          <img src={img} alt={message.theme} />
+          {/* {EmojiSvg ? <EmojiSvg /> : <StyledEmptySvg />} */}
           <p>{message.content}</p>
         </RollingpaperEmojiSkin>
       ) : (

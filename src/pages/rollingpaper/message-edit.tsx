@@ -14,7 +14,7 @@ import RollingpaperEmojiSkin from '@/components/rollingpaper/emoji-skin';
 import ReactHelmet from '@/helmet';
 import useMessageForm from '@/hooks/use-message-form';
 import useSetHeader from '@/hooks/use-set-header';
-import { findSvgByThemeName } from '@/lib/cake-decoration';
+import { findImgByThemeName } from '@/lib/common';
 import { messageQueries, paperQueries } from '@/lib/query-factory';
 import { ROLLINGPAPER_BG_MAP } from '@/lib/rolling-paper';
 import { useEditMessage } from '@/mutations/message';
@@ -36,7 +36,6 @@ export default function RollingpaperEditMessage() {
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState<FontMenu>('font');
   const { form, handleChangeForm } = useMessageForm(currentMessage);
-  const Svg = findSvgByThemeName(currentMessage?.theme ?? '');
 
   const { mutate } = useEditMessage({
     content: 'rollingpaper',
@@ -60,6 +59,7 @@ export default function RollingpaperEditMessage() {
   useEffect(() => {
     setIsFontSheetOpen(true);
   }, []);
+  //확인
 
   return (
     <StyledRollingFormWrapper>
@@ -68,7 +68,10 @@ export default function RollingpaperEditMessage() {
       />
       <StyledRollingFormEmojiWrapper>
         <RollingpaperEmojiSkin message={form}>
-          {Svg && <Svg />}
+          <img
+            src={findImgByThemeName(currentMessage?.theme ?? '')}
+            alt={currentMessage?.theme}
+          />
           <textarea
             name="content"
             value={form.content}

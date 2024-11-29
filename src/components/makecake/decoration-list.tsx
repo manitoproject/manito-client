@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 
 import {
-  CAKE_DECORATIONS,
   CAKE_THEME_STYLES,
   DecorationType,
+  MAKECAKE_EMOJI_MAP,
 } from '@/lib/cake-decoration';
 import { ColorName } from '@/styles/theme';
 
@@ -25,7 +25,7 @@ export default function MakeCakeDecorationList({
   if (!theme) return null;
   return (
     <StyledList>
-      {CAKE_DECORATIONS[activeTab].map((deco) => (
+      {MAKECAKE_EMOJI_MAP[activeTab].map((deco) => (
         <StyledItemButton
           isActive={activeDeco === deco.name}
           bg={theme.bgColor}
@@ -34,7 +34,7 @@ export default function MakeCakeDecorationList({
           type="button"
           onClick={() => setActiveDeco(deco.name)}
         >
-          <deco.svg />
+          <img src={deco.imgUrl} alt={deco.name} />
         </StyledItemButton>
       ))}
     </StyledList>
@@ -52,7 +52,7 @@ const StyledItemButton = styled.button<{
   bg: ColorName;
   border: ColorName;
 }>`
-  svg {
+  img {
     width: 100%;
     height: 100%;
   }

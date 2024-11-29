@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 import { Button } from '@/components/common/buttons/buttons';
-import { Treasure, TREASURES } from '@/lib/treasure-box';
+import { Treasure, TREASURESBOX_EMOJI_MAP } from '@/lib/treasure-box';
 import { getFontSizeAndWeight } from '@/styles/mixins';
 
 interface TreasureBoxListProps {
@@ -19,14 +19,14 @@ export default function TreasureBoxList({
     <StyledWrapper>
       <div />
       <StyledList>
-        {TREASURES.map((treasure) => {
+        {TREASURESBOX_EMOJI_MAP.map((treasure) => {
           return (
             <StyledItemBtn
               isActive={selectedTreasureName === treasure.name}
               onClick={() => onTreauseClick(treasure.name)}
               key={treasure.name}
             >
-              {<treasure.svg />}
+              <img src={treasure.imgUrl} alt={treasure.name} />
               <span>{treasure.title}</span>
             </StyledItemBtn>
           );
@@ -99,7 +99,7 @@ const StyledItemBtn = styled.button<{ isActive: boolean }>`
   border: ${({ isActive }) => `${isActive ? '3px solid transparent' : 'none'}`};
   box-shadow: 0px 0px 32px 0px var(--color-teal-teal700, #386663) inset;
   outline-offset: -2px;
-  svg {
+  img {
     width: 100%;
     height: 100%;
   }

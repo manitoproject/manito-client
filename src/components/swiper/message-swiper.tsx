@@ -9,7 +9,7 @@ import RollingpaperEmojiSkin from '@/components/rollingpaper/emoji-skin';
 import SwiperNavigation from '@/components/swiper/navigation';
 import TreasureBoxSlide from '@/components/swiper/treasurebox-slide';
 import useSwipeNavigation from '@/hooks/use-swipe-navigation';
-import { findSvgByThemeName } from '@/lib/cake-decoration';
+import { findImgByThemeName } from '@/lib/common';
 import { Message } from '@/types/message';
 
 interface SwipeMessageSwiperProps {
@@ -50,14 +50,17 @@ export default function MessageSwiper({
     >
       {messages?.map((message) => {
         if (category === 'rollingpaper') {
-          const Svg = findSvgByThemeName(message.theme);
           return (
             <SwiperSlide key={message.id}>
               <RollingpaperEmojiSkin message={message}>
-                {Svg && <Svg />}
+                <img
+                  src={findImgByThemeName(message.theme)}
+                  alt={message.theme}
+                />
                 <p>{message.content}</p>
               </RollingpaperEmojiSkin>
             </SwiperSlide>
+            // 확인
           );
         } else if (category === 'cake') {
           return (

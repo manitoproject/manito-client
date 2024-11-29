@@ -9,7 +9,7 @@ import {
   StyledMessageItem,
   StyledTrashButton,
 } from '@/components/rollingpaper/list/item.style';
-import { findSvgByThemeName } from '@/lib/cake-decoration';
+import { findImgByThemeName } from '@/lib/common';
 import { useDeleteMessage } from '@/mutations/message';
 import routes from '@/routes';
 import theme from '@/styles/theme';
@@ -23,10 +23,10 @@ export default function MyMessageItem({
   message,
   activeCagegory,
 }: MyMessageItemProps) {
+  console.log(message);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { mutate } = useDeleteMessage();
   const navigate = useNavigate();
-  const Svg = findSvgByThemeName(message.theme);
 
   const handleEditMessage = () => {
     navigate(routes[activeCagegory].messageEdit(message.paperId), {
@@ -57,7 +57,7 @@ export default function MyMessageItem({
         isSmall
         message={message}
       >
-        {Svg && <Svg />}
+        <img src={findImgByThemeName(message.theme)} alt={message.theme} />
         <p>{activeCagegory === 'rollingpaper' && message.content}</p>
       </RollingpaperEmojiSkin>
       {isModalOpen && (

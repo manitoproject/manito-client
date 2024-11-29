@@ -1,14 +1,6 @@
-import { FunctionComponent, SVGAttributes } from 'react';
-
 import {
   AnimalBgOriginal,
   AnimalBgThumbnail,
-  NatureBgOriginal,
-  NatureBgThumbnail,
-  SpaceBgOriginal,
-  SpaceBgThumbnail,
-} from '@/assets/imgs';
-import {
   AnimalCatPawsCircleLetter,
   AnimalCatPawsCloverLetter,
   AnimalCatPawsSquareLetter,
@@ -21,6 +13,8 @@ import {
   AnimalDogPawsCloverLetter,
   AnimalDogPawsSquareLetter,
   AnimalDogSquareLetter,
+  NatureBgOriginal,
+  NatureBgThumbnail,
   NatureCircle1,
   NatureCircle2,
   NatureCircle3,
@@ -33,6 +27,8 @@ import {
   NatureSquare2,
   NatureSquare3,
   NatureSquare4,
+  SpaceBgOriginal,
+  SpaceBgThumbnail,
   SpaceCircle,
   SpaceCircleMoon,
   SpacePlanetCircle,
@@ -45,7 +41,7 @@ import {
   SpaceStarBright,
   SpaceTableclothPolygon,
   SpaceTableclothPolygonBright,
-} from '@/assets/svg/emoji';
+} from '@/assets/imgs';
 import { ColorName } from '@/styles/theme';
 import { Message } from '@/types/message';
 
@@ -92,157 +88,157 @@ export const ROLLINGPAPER_THEMES: Theme[] = [
 export const ROLLINGPAPER_EMOJI_MAP: {
   [key in RollingpaperThemeName]: {
     name: string;
-    svg: FunctionComponent<SVGAttributes<SVGElement>>;
+    imgUrl: string;
   }[];
 } = {
   nature: [
     {
       name: 'NatureCircle1',
-      svg: NatureCircle1,
+      imgUrl: NatureCircle1,
     },
     {
       name: 'NatureCircle2',
-      svg: NatureCircle2,
+      imgUrl: NatureCircle2,
     },
     {
       name: 'NatureCircle3',
-      svg: NatureCircle3,
+      imgUrl: NatureCircle3,
     },
     {
       name: 'NatureCircle4',
-      svg: NatureCircle4,
+      imgUrl: NatureCircle4,
     },
     {
       name: 'NatureClover1',
-      svg: NatureClover1,
+      imgUrl: NatureClover1,
     },
     {
       name: 'NatureClover2',
-      svg: NatureClover2,
+      imgUrl: NatureClover2,
     },
     {
       name: 'NatureClover3',
-      svg: NatureClover3,
+      imgUrl: NatureClover3,
     },
     {
       name: 'NatureClover4',
-      svg: NatureClover4,
+      imgUrl: NatureClover4,
     },
     {
       name: 'NatureSquare1',
-      svg: NatureSquare1,
+      imgUrl: NatureSquare1,
     },
     {
       name: 'NatureSquare2',
-      svg: NatureSquare2,
+      imgUrl: NatureSquare2,
     },
     {
       name: 'NatureSquare3',
-      svg: NatureSquare3,
+      imgUrl: NatureSquare3,
     },
     {
       name: 'NatureSquare4',
-      svg: NatureSquare4,
+      imgUrl: NatureSquare4,
     },
   ],
   space: [
     {
       name: 'SpaceSquare',
-      svg: SpaceSquare,
+      imgUrl: SpaceSquare,
     },
     {
       name: 'SpacePlanetSquare',
-      svg: SpacePlanetSquare,
+      imgUrl: SpacePlanetSquare,
     },
     {
       name: 'SpacePlanetSquareMoon',
-      svg: SpacePlanetSquareMoon,
+      imgUrl: SpacePlanetSquareMoon,
     },
     {
       name: 'SpaceStarBright',
-      svg: SpaceStarBright,
+      imgUrl: SpaceStarBright,
     },
     {
       name: 'SpacePlanetCircle',
-      svg: SpacePlanetCircle,
+      imgUrl: SpacePlanetCircle,
     },
     {
       name: 'SpacePlanetCircleCloud',
-      svg: SpacePlanetCircleCloud,
+      imgUrl: SpacePlanetCircleCloud,
     },
     {
       name: 'SpaceCircle',
-      svg: SpaceCircle,
+      imgUrl: SpaceCircle,
     },
     {
       name: 'SpaceCircleMoon',
-      svg: SpaceCircleMoon,
+      imgUrl: SpaceCircleMoon,
     },
     {
       name: 'SpacePlanetStarRight',
-      svg: SpacePlanetStarRight,
+      imgUrl: SpacePlanetStarRight,
     },
     {
       name: 'SpacePlanetStar',
-      svg: SpacePlanetStar,
+      imgUrl: SpacePlanetStar,
     },
     {
       name: 'SpaceTableclothPolygon',
-      svg: SpaceTableclothPolygon,
+      imgUrl: SpaceTableclothPolygon,
     },
     {
       name: 'SpaceTableclothPolygonBright',
-      svg: SpaceTableclothPolygonBright,
+      imgUrl: SpaceTableclothPolygonBright,
     },
   ],
   animal: [
     {
       name: 'AnimalDogCircleLetter',
-      svg: AnimalDogCircleLetter,
+      imgUrl: AnimalDogCircleLetter,
     },
     {
       name: 'AnimalDogCatCircleLetter',
-      svg: AnimalDogCatCircleLetter,
+      imgUrl: AnimalDogCatCircleLetter,
     },
     {
       name: 'AnimalDogPawsCircleLetter',
-      svg: AnimalDogPawsCircleLetter,
+      imgUrl: AnimalDogPawsCircleLetter,
     },
     {
       name: 'AnimalCatPawsCircleLetter',
-      svg: AnimalCatPawsCircleLetter,
+      imgUrl: AnimalCatPawsCircleLetter,
     },
     {
       name: 'AnimalCatSquareLetter',
-      svg: AnimalCatSquareLetter,
+      imgUrl: AnimalCatSquareLetter,
     },
     {
       name: 'AnimalDogPawsSquareLetter',
-      svg: AnimalDogPawsSquareLetter,
+      imgUrl: AnimalDogPawsSquareLetter,
     },
     {
       name: 'AnimalDogSquareLetter',
-      svg: AnimalDogSquareLetter,
+      imgUrl: AnimalDogSquareLetter,
     },
     {
       name: 'AnimalCatPawsSquareLetter',
-      svg: AnimalCatPawsSquareLetter,
+      imgUrl: AnimalCatPawsSquareLetter,
     },
     {
       name: 'AnimalCatPawsCloverLetter',
-      svg: AnimalCatPawsCloverLetter,
+      imgUrl: AnimalCatPawsCloverLetter,
     },
     {
       name: 'AnimalDogPawsCloverLetter',
-      svg: AnimalDogPawsCloverLetter,
+      imgUrl: AnimalDogPawsCloverLetter,
     },
     {
       name: 'AnimalDogCatCloverLetter',
-      svg: AnimalDogCatCloverLetter,
+      imgUrl: AnimalDogCatCloverLetter,
     },
     {
       name: 'AnimalDogCatCloverTextLetter',
-      svg: AnimalDogCatCloverTextLetter,
+      imgUrl: AnimalDogCatCloverTextLetter,
     },
   ],
 };

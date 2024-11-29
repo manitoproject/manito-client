@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
-import { findCakeThemeStyle, findSvgByThemeName } from '@/lib/cake-decoration';
-import { findFontByName } from '@/lib/common';
+import { findCakeThemeStyle } from '@/lib/cake-decoration';
+import { findFontByName, findImgByThemeName } from '@/lib/common';
 import { Font } from '@/lib/fonts';
 import { ColorName, FontNameWithoutAppleFont } from '@/styles/theme';
 
@@ -19,15 +19,16 @@ export default function MakeCakeTextarea({
   fontName,
 }: MakeCakeTextareaProps) {
   const font = findFontByName(fontName);
-  const Svg = findSvgByThemeName(themeName);
+  const img = findImgByThemeName(themeName);
   const theme = findCakeThemeStyle(themeName);
+  console.log(themeName);
   return (
     <StyledTextareaWarpper
       bg={theme?.bgColor}
       border={theme?.fontColor}
       font={font}
     >
-      {Svg && <Svg width={96} height={96} />}
+      <img src={img} alt={themeName} />
       <textarea
         value={content}
         name="content"
@@ -50,7 +51,9 @@ const StyledTextareaWarpper = styled.div<{
   align-items: center;
   border-radius: 12px;
   background-color: ${({ bg, theme }) => bg && theme.colors[bg]};
-  svg {
+  img {
+    width: 96px;
+    height: 96px;
     position: absolute;
     bottom: 212px;
     z-index: 9999999999;

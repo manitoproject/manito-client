@@ -8,11 +8,8 @@ import { Swiper as SwiperType } from 'swiper/types';
 
 import SwiperNavigation from '@/components/swiper/navigation';
 import useSwipeNavigation from '@/hooks/use-swipe-navigation';
-import {
-  CAKE_THEME_PALETTES,
-  decoPositions,
-  findSvgByThemeName,
-} from '@/lib/cake-decoration';
+import { CAKE_THEME_PALETTES, decoPositions } from '@/lib/cake-decoration';
+import { findImgByThemeName } from '@/lib/common';
 import { messageQueries } from '@/lib/query-factory';
 import routes from '@/routes';
 
@@ -51,15 +48,16 @@ export default function MakeCakeBgSwiper({
     currnetPageIndex === 0 ? 13 : currnetPageIndex === 1 ? 26 : 39;
 
   const buttons = messages?.slice(startIndex, endIndex).map((deco, i) => {
-    const Svg = findSvgByThemeName(deco.theme);
     return (
       <button
         style={{ left: decoPositions[i].x, top: decoPositions[i].y }}
         type="button"
         key={deco.id}
         onClick={() => handleViewItemDetail(deco.paperId, deco.id)}
+        // 확인
       >
-        {Svg && <Svg width={66} height={66} />}
+        <img src={findImgByThemeName(deco.theme)} alt={deco.theme} />
+        {/* {Svg && <Svg width={66} height={66} />} */}
       </button>
     );
   });

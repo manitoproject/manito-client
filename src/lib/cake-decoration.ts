@@ -1,20 +1,10 @@
-import { FunctionComponent, SVGAttributes } from 'react';
-
-import {
-  ChocolateBgCake,
-  ChocolateBgEmpty,
-  ChocolateBgOriginal,
-  StrawberryBgCake,
-  StrawberryBgEmpty,
-  StrawberryBgOriginal,
-  VanillaBgCake,
-  VanillaBgEmpty,
-  VanillaBgOriginal,
-} from '@/assets/imgs';
 import {
   ChocolateBall,
   ChocolateBearChip,
   ChocolateBearCookie,
+  ChocolateBgCake,
+  ChocolateBgEmpty,
+  ChocolateBgOriginal,
   ChocolateCherryWhippedcream,
   ChocolateChipRollcake,
   ChocolateCircleCookie,
@@ -24,6 +14,9 @@ import {
   ChocolateCreameDount,
   ChocolateFlowerCookie,
   ChocolateMacaroon,
+  StrawberryBgCake,
+  StrawberryBgEmpty,
+  StrawberryBgOriginal,
   StrawberryCatChip,
   StrawberryCircleChocoball,
   StrawberryCoatingChocolate,
@@ -37,6 +30,9 @@ import {
   StrawberryRollcake,
   StrawberrySyrupIceCream,
   VanillaBakingCookie,
+  VanillaBgCake,
+  VanillaBgEmpty,
+  VanillaBgOriginal,
   VanillaBlueberryCream,
   VanillaChocoball,
   VanillaCoatingChocolate,
@@ -60,9 +56,7 @@ import {
   WhiteFruitCream,
   WhiteIceCream,
   WhiteMacaroon,
-} from '@/assets/svg/decorations';
-import { ROLLINGPAPER_EMOJI_MAP } from '@/lib/rolling-paper';
-import { TREASURES } from '@/lib/treasure-box';
+} from '@/assets/imgs';
 import { ColorName } from '@/styles/theme';
 
 export type DecorationType = 'chocolate' | 'vanilla' | 'white' | 'strawberry';
@@ -88,20 +82,6 @@ export const decoPositions: { x: number; y: number }[] = [
   { x: 213, y: 340 },
   { x: 284, y: 340 },
 ];
-
-export const findSvgByThemeName = (name: string) => {
-  const all = [
-    ...CAKE_DECORATIONS.chocolate,
-    ...CAKE_DECORATIONS.strawberry,
-    ...CAKE_DECORATIONS.vanilla,
-    ...CAKE_DECORATIONS.white,
-    ...ROLLINGPAPER_EMOJI_MAP.animal,
-    ...ROLLINGPAPER_EMOJI_MAP.nature,
-    ...ROLLINGPAPER_EMOJI_MAP.space,
-    ...TREASURES,
-  ];
-  return all.find((item) => item.name === name)?.svg;
-};
 
 export const findBgByPosition = (position: number) => {
   if (position <= 13) {
@@ -174,66 +154,69 @@ export const CAKE_THEME_STYLES: CakeTheme[] = [
   },
 ];
 
-export const CAKE_DECORATIONS: {
+export const MAKECAKE_EMOJI_MAP: {
   [key in DecorationType]: {
     name: string;
-    svg: FunctionComponent<SVGAttributes<SVGElement>>;
+    imgUrl: string;
   }[];
 } = {
   chocolate: [
-    { name: 'ChocolateCookie', svg: ChocolateCookie },
-    { name: 'ChocolateFlowerCookie', svg: ChocolateFlowerCookie },
-    { name: 'ChocolateCircleCookie', svg: ChocolateCircleCookie },
-    { name: 'ChocolateBearChip', svg: ChocolateBearChip },
-    { name: 'ChocolateBearCookie', svg: ChocolateBearCookie },
-    { name: 'ChocolateCreameDount', svg: ChocolateCreameDount },
-    { name: 'ChocolateCream', svg: ChocolateCream },
-    { name: 'ChocolateCherryWhippedcream', svg: ChocolateCherryWhippedcream },
-    { name: 'ChocolateBall', svg: ChocolateBall },
-    { name: 'ChocolateMacaroon', svg: ChocolateMacaroon },
-    { name: 'ChocolateChipRollcake', svg: ChocolateChipRollcake },
-    { name: 'ChocolateCoatingChocolate', svg: ChocolateCoatingChocolate },
+    { name: 'ChocolateCookie', imgUrl: ChocolateCookie },
+    { name: 'ChocolateFlowerCookie', imgUrl: ChocolateFlowerCookie },
+    { name: 'ChocolateCircleCookie', imgUrl: ChocolateCircleCookie },
+    { name: 'ChocolateBearChip', imgUrl: ChocolateBearChip },
+    { name: 'ChocolateBearCookie', imgUrl: ChocolateBearCookie },
+    { name: 'ChocolateCreameDount', imgUrl: ChocolateCreameDount },
+    { name: 'ChocolateCream', imgUrl: ChocolateCream },
+    {
+      name: 'ChocolateCherryWhippedcream',
+      imgUrl: ChocolateCherryWhippedcream,
+    },
+    { name: 'ChocolateBall', imgUrl: ChocolateBall },
+    { name: 'ChocolateMacaroon', imgUrl: ChocolateMacaroon },
+    { name: 'ChocolateChipRollcake', imgUrl: ChocolateChipRollcake },
+    { name: 'ChocolateCoatingChocolate', imgUrl: ChocolateCoatingChocolate },
   ],
   vanilla: [
-    { name: 'VanillaHeartCookie', svg: VanillaHeartCookie },
-    { name: 'VanillaFlowerCookie', svg: VanillaFlowerCookie },
-    { name: 'VanillaBakingCookie', svg: VanillaBakingCookie },
-    { name: 'VanillaRibbon', svg: VanillaRibbon },
-    { name: 'VanillaRabbitCookie', svg: VanillaRabbitCookie },
-    { name: 'VanillaCreamDount', svg: VanillaCreamDount },
-    { name: 'VanillaCream', svg: VanillaCream },
-    { name: 'VanillaBlueberryCream', svg: VanillaBlueberryCream },
-    { name: 'VanillaChocoball', svg: VanillaChocoball },
-    { name: 'VanillaMacaroon', svg: VanillaMacaroon },
-    { name: 'VanillaRollCake', svg: VanillaRollCake },
-    { name: 'VanillaCoatingChocolate', svg: VanillaCoatingChocolate },
+    { name: 'VanillaHeartCookie', imgUrl: VanillaHeartCookie },
+    { name: 'VanillaFlowerCookie', imgUrl: VanillaFlowerCookie },
+    { name: 'VanillaBakingCookie', imgUrl: VanillaBakingCookie },
+    { name: 'VanillaRibbon', imgUrl: VanillaRibbon },
+    { name: 'VanillaRabbitCookie', imgUrl: VanillaRabbitCookie },
+    { name: 'VanillaCreamDount', imgUrl: VanillaCreamDount },
+    { name: 'VanillaCream', imgUrl: VanillaCream },
+    { name: 'VanillaBlueberryCream', imgUrl: VanillaBlueberryCream },
+    { name: 'VanillaChocoball', imgUrl: VanillaChocoball },
+    { name: 'VanillaMacaroon', imgUrl: VanillaMacaroon },
+    { name: 'VanillaRollCake', imgUrl: VanillaRollCake },
+    { name: 'VanillaCoatingChocolate', imgUrl: VanillaCoatingChocolate },
   ],
   strawberry: [
-    { name: 'StrawberryHeartCookie', svg: StrawberryHeartCookie },
-    { name: 'StrawberryCookie', svg: StrawberryCookie },
-    { name: 'StrawberryCatChip', svg: StrawberryCatChip },
-    { name: 'StrawberrySyrupIceCream', svg: StrawberrySyrupIceCream },
-    { name: 'StrawberryRabbitCookie', svg: StrawberryRabbitCookie },
-    { name: 'StrawberryCreamDonut', svg: StrawberryCreamDonut },
-    { name: 'StrawberryCream', svg: StrawberryCream },
-    { name: 'StrawberryRibbonCream', svg: StrawberryRibbonCream },
-    { name: 'StrawberryCoatingChocolate', svg: StrawberryCoatingChocolate },
-    { name: 'StrawberryMacaroon', svg: StrawberryMacaroon },
-    { name: 'StrawberryRollcake', svg: StrawberryRollcake },
-    { name: 'StrawberryCircleChocoball', svg: StrawberryCircleChocoball },
+    { name: 'StrawberryHeartCookie', imgUrl: StrawberryHeartCookie },
+    { name: 'StrawberryCookie', imgUrl: StrawberryCookie },
+    { name: 'StrawberryCatChip', imgUrl: StrawberryCatChip },
+    { name: 'StrawberrySyrupIceCream', imgUrl: StrawberrySyrupIceCream },
+    { name: 'StrawberryRabbitCookie', imgUrl: StrawberryRabbitCookie },
+    { name: 'StrawberryCreamDonut', imgUrl: StrawberryCreamDonut },
+    { name: 'StrawberryCream', imgUrl: StrawberryCream },
+    { name: 'StrawberryRibbonCream', imgUrl: StrawberryRibbonCream },
+    { name: 'StrawberryCoatingChocolate', imgUrl: StrawberryCoatingChocolate },
+    { name: 'StrawberryMacaroon', imgUrl: StrawberryMacaroon },
+    { name: 'StrawberryRollcake', imgUrl: StrawberryRollcake },
+    { name: 'StrawberryCircleChocoball', imgUrl: StrawberryCircleChocoball },
   ],
   white: [
-    { name: 'WhiteCreamHeart', svg: WhiteCreamHeart },
-    { name: 'WhiteCake', svg: WhiteCake },
-    { name: 'WhiteCakeDecoration', svg: WhiteCakeDecoration },
-    { name: 'WhiteIceCream', svg: WhiteIceCream },
-    { name: 'WhiteBearCookie', svg: WhiteBearCookie },
-    { name: 'WhiteCreamDount', svg: WhiteCreamDount },
-    { name: 'WhiteCream', svg: WhiteCream },
-    { name: 'WhiteFruitCream', svg: WhiteFruitCream },
-    { name: 'WhiteChoco', svg: WhiteChoco },
-    { name: 'WhiteMacaroon', svg: WhiteMacaroon },
-    { name: 'WhiteCreamRollCake', svg: WhiteCreamRollCake },
-    { name: 'WhiteCoatingChocolate', svg: WhiteCoatingChocolate },
+    { name: 'WhiteCreamHeart', imgUrl: WhiteCreamHeart },
+    { name: 'WhiteCake', imgUrl: WhiteCake },
+    { name: 'WhiteCakeDecoration', imgUrl: WhiteCakeDecoration },
+    { name: 'WhiteIceCream', imgUrl: WhiteIceCream },
+    { name: 'WhiteBearCookie', imgUrl: WhiteBearCookie },
+    { name: 'WhiteCreamDount', imgUrl: WhiteCreamDount },
+    { name: 'WhiteCream', imgUrl: WhiteCream },
+    { name: 'WhiteFruitCream', imgUrl: WhiteFruitCream },
+    { name: 'WhiteChoco', imgUrl: WhiteChoco },
+    { name: 'WhiteMacaroon', imgUrl: WhiteMacaroon },
+    { name: 'WhiteCreamRollCake', imgUrl: WhiteCreamRollCake },
+    { name: 'WhiteCoatingChocolate', imgUrl: WhiteCoatingChocolate },
   ],
 };

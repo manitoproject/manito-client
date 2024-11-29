@@ -15,7 +15,7 @@ export default function TreasureBoxTopTitle({
     <StyledTreasureDisplay>
       {activeTreasure && (
         <>
-          <activeTreasure.svg />
+          <img src={activeTreasure.imgUrl} alt={activeTreasure.name} />
           <div>
             <h2>{activeTreasure.title}</h2>
             <p>{activeTreasure.desc}</p>
@@ -33,8 +33,9 @@ const StyledTreasureDisplay = styled.div`
   align-items: center;
   color: ${({ theme }) => theme.colors.white};
   gap: 24px;
-  svg {
-    width: 70%;
+  img {
+    width: 40%;
+    object-fit: cover;
   }
   div {
     width: 100%;
