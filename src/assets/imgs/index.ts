@@ -115,4 +115,4 @@ export { default as TreasureNecklace } from './emojis/treasuresbox/necklace.png'
 export { default as TreasurePotion } from './emojis/treasuresbox/potion.png';
 export { default as TreasureRibbon } from './emojis/treasuresbox/ribbon.png';
 export { default as TreasureSword } from './emojis/treasuresbox/sword.png';
-export { default as kakaoProfile } from './profile/kakao_profile.jpeg';
+export { default as kakaoProfile } from './profile/kakao_profile.webp';
