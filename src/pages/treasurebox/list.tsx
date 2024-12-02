@@ -20,6 +20,18 @@ import { getFontSizeAndWeight } from '@/styles/mixins';
 import { StyledWriteButton } from '@/styles/styled';
 import theme from '@/styles/theme';
 
+// export const loader =
+//   (queryClient: QueryClient) =>
+//   ({ params }: { params: { id?: string } }) => {
+//     const paperQuery = queryClient.ensureQueryData(
+//       paperQueries.detail(Number(params.id)),
+//     );
+//     const messageQuery = queryClient.ensureQueryData(
+//       messageQueries.paper(Number(params.id)),
+//     );
+//     return Promise.all([paperQuery, messageQuery]);
+//   };
+
 export default function TreasureBoxList() {
   const params = useParams();
   const navigate = useNavigate();

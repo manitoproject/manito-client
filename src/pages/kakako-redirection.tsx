@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { useQuery } from '@tanstack/react-query';
+import { QueryClient, useQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
@@ -7,6 +7,14 @@ import { authQueries } from '@/lib/query-factory';
 import { token } from '@/lib/storage';
 import { StyledBrowserBackdrop } from '@/pages/layout.style';
 import routes from '@/routes';
+
+export const loader =
+  (queryClient: QueryClient) =>
+  ({ request }: { request: Request }) => {
+    const searchParams = new URL(request.url).searchParams;
+    const code = searchParams.get('code');
+    return queryClient.ensureQueryData(authQueries.auth(code));
+  };
 
 export default function KakaoRedirection() {
   const [searchParams] = useSearchParams();
@@ -52,7 +60,6 @@ const StyledWrapper = styled.div`
 `;
 
 const StyledSpinner = styled.div`
-  /* margin: calc(50% - 25px) auto; */
   width: 100px;
   height: 100px;
   z-index: 1;

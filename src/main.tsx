@@ -13,7 +13,7 @@ import router from '@/router';
 import global from '@/styles/global';
 import theme from '@/styles/theme';
 
-const queryClient = new QueryClient({
+export const queryClient = new QueryClient({
   defaultOptions: { queries: { refetchOnWindowFocus: false, retry: 0 } },
 });
 

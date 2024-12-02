@@ -4,9 +4,12 @@ import {
   Route,
 } from 'react-router-dom';
 
+import { queryClient } from '@/main';
 import ErrorPage from '@/pages/error-page';
 import Home from '@/pages/home';
-import KakaoRedirection from '@/pages/kakako-redirection';
+import KakaoRedirection, {
+  loader as authLoader,
+} from '@/pages/kakako-redirection';
 import Landing from '@/pages/landing';
 import Layout from '@/pages/layout';
 import MakeCakeDecorate from '@/pages/makecake/decorate';
@@ -38,7 +41,11 @@ const router = () =>
     createRoutesFromElements(
       <Route errorElement={<ErrorPage />}>
         <Route path="/" element={<Landing />} />
-        <Route path={routes.kakakoRedirection} element={<KakaoRedirection />} />
+        <Route
+          path={routes.kakakoRedirection}
+          element={<KakaoRedirection />}
+          loader={authLoader(queryClient)}
+        />
         <Route element={<Layout />}>
           <Route path={routes.signup} element={<Signup />} />
           <Route path={routes.home} element={<Home />} />
