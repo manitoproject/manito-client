@@ -1,5 +1,6 @@
 import { queryOptions } from '@tanstack/react-query';
 
+import { token } from '@/lib/storage';
 import { getAccessToken } from '@/services/auth';
 import {
   getMessageCounts,
@@ -25,6 +26,7 @@ const userQueries = {
       queryKey: ['user'],
       staleTime: 1000 * 60 * 10,
       select: (data) => data.data,
+      enabled: !!token.getAccessToken(),
     }),
 };
 

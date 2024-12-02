@@ -22,10 +22,10 @@ export const discordRequester = axios.create({
 
 apiRequester.interceptors.request.use((config) => {
   const accessToken = token.getAccessToken();
-  if (!accessToken) {
-    window.location.href = '/';
-    return config;
-  }
+  // if (!accessToken) {
+  //   window.location.href = '/';
+  //   return config;
+  // }
   config.headers.Authorization = `Bearer ${accessToken}`;
   return config;
 });
