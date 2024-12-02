@@ -47,7 +47,7 @@ const StyledWrapper = styled.div`
   z-index: 50;
   position: relative;
   width: 100%;
-  div:first-child {
+  div:first-of-type {
     width: calc(100% + 48px);
     transform: ${({ theme }) =>
       `translate(-${theme.sizes.padding},${theme.sizes.paddingBottom})`};

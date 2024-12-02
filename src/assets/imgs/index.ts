@@ -17,7 +17,7 @@ export { default as SpaceBgOriginal } from './bg/space-theme-origin.webp';
 export { default as SpaceBgThumbnail } from './bg/space-theme-thumb.webp';
 export { default as StrawberryBgOriginal } from './bg/strawberry-theme-origin.webp';
 export { default as TreasureStartBg } from './bg/treasure-start-bg@4x-100.webp';
-export { default as TreasureTutorialBg } from './bg/treasure-tutorial-bg@4x-100.webp';
+export { default as TreasureTutorialBg } from './bg/treasure-tutorial-bg.png';
 export { default as VanillaBgOriginal } from './bg/vanilla-theme-origin.webp';
 export { default as ChocolateBall } from './emojis/makecake/chocolate/choco-ball.png';
 export { default as ChocolateBearChip } from './emojis/makecake/chocolate/choco-bear-chip.png';
