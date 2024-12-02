@@ -35,7 +35,7 @@ export default function RollingpaperEditMessage() {
   const [isFontSheetOpen, setIsFontSheetOpen] = useState(false);
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState<FontMenu>('font');
-  const { form, handleChangeForm } = useMessageForm(currentMessage);
+  const { form, handleFormChange } = useMessageForm(currentMessage);
 
   const { mutate } = useEditMessage({
     content: 'rollingpaper',
@@ -75,7 +75,7 @@ export default function RollingpaperEditMessage() {
           <textarea
             name="content"
             value={form.content}
-            onChange={handleChangeForm}
+            onChange={handleFormChange}
           />
         </RollingpaperEmojiSkin>
       </StyledRollingFormEmojiWrapper>
@@ -91,13 +91,13 @@ export default function RollingpaperEditMessage() {
           {activeMenu === 'font' ? (
             <BottomSheetFontList
               activeFont={form.font}
-              onChangeFont={handleChangeForm}
+              onChangeFont={handleFormChange}
             />
           ) : (
             <BottomSheetColorList
               theme={paper?.theme ?? 'animal'}
               activeColor={form.fontColor}
-              onChangeColor={handleChangeForm}
+              onChangeColor={handleFormChange}
             />
           )}
         </BottomSheetFontPalette>

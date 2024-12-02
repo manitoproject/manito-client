@@ -19,8 +19,8 @@ const useMessageIndexStore = create<MessageState>()(
     list: INIT_LIST,
     actions: {
       snycList: (serverData?: Message<unknown>[]) =>
-        set((state) => {
-          if (!serverData?.length) return { list: state.list };
+        set(() => {
+          if (!serverData?.length) return { list: INIT_LIST };
           const neededLength = Math.ceil(serverData.length / 8) * 8;
           let newList: Array<null | Message<unknown>> =
             Array(neededLength).fill(null);

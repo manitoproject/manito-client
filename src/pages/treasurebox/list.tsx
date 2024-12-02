@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { TreasureStartBg, TreasureTutorialBg } from '@/assets/imgs/index';
+import { TreasureStartBg } from '@/assets/imgs/index';
 import { EditSquare } from '@/assets/svg/icons';
 import ListHeader from '@/components/list/header';
 import TreasureBoxTutorial from '@/components/treasurebox/tutorial';
@@ -65,9 +65,7 @@ export default function TreasureBoxList() {
           </StyledWriteButton>
         </>
       )}
-      <StyledBackdrop
-        bg={isTutorialVisible ? TreasureTutorialBg : TreasureStartBg}
-      />
+      <StyledBackdrop bg={TreasureStartBg} />
       <ReactHelmet title={`${paper?.title} - 마니또`} />
     </StyledListWrapper>
   );

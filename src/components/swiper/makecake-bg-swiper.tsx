@@ -54,7 +54,6 @@ export default function MakeCakeBgSwiper({
         type="button"
         key={deco.id}
         onClick={() => handleViewItemDetail(deco.paperId, deco.id)}
-        // 확인
       >
         <img src={findImgByThemeName(deco.theme)} alt={deco.theme} />
         {/* {Svg && <Svg width={66} height={66} />} */}
@@ -125,8 +124,8 @@ const StyledDecoList = styled.div`
   height: 550px;
   button {
     position: absolute;
-    width: 50px;
-    height: 50px;
+    width: 66px;
+    height: 66px;
   }
   img {
     width: 100%;

@@ -32,7 +32,7 @@ const StyledSvgWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   img {
-    width: 203px; // 확인
+    width: 203px;
     height: 203px;
   }
 `;

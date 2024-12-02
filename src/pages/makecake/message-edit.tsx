@@ -26,7 +26,7 @@ export default function MakeCakeEditMessage() {
     (message) => message.id === state.id,
   );
   const currentMessage = messages?.[currentMessageIndex ?? 0];
-  const { form, handleChangeForm } = useMessageForm(currentMessage);
+  const { form, handleFormChange } = useMessageForm(currentMessage);
   const [isFontSheetOpen, setIsFontSheetOpen] = useState(false);
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
 
@@ -60,7 +60,7 @@ export default function MakeCakeEditMessage() {
       <MakeCakeTextarea
         themeName={form.theme}
         content={form.content}
-        onChangeContent={handleChangeForm}
+        onChangeContent={handleFormChange}
         fontName={form.font}
       />
       <CustomSheet
@@ -70,7 +70,7 @@ export default function MakeCakeEditMessage() {
       >
         <BottomSheetFontList
           activeFont={form.font}
-          onChangeFont={handleChangeForm}
+          onChangeFont={handleFormChange}
         />
         <Button onClick={handleMessageSubmit} disabled={!form.content.length}>
           수정완료

@@ -23,7 +23,6 @@ export default function MyMessageItem({
   message,
   activeCagegory,
 }: MyMessageItemProps) {
-  console.log(message);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { mutate } = useDeleteMessage();
   const navigate = useNavigate();
@@ -57,7 +56,12 @@ export default function MyMessageItem({
         isSmall
         message={message}
       >
-        <img src={findImgByThemeName(message.theme)} alt={message.theme} />
+        <img
+          width={200}
+          height={200}
+          src={findImgByThemeName(message.theme)}
+          alt={message.theme}
+        />
         <p>{activeCagegory === 'rollingpaper' && message.content}</p>
       </RollingpaperEmojiSkin>
       {isModalOpen && (

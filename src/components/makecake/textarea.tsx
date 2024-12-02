@@ -21,7 +21,6 @@ export default function MakeCakeTextarea({
   const font = findFontByName(fontName);
   const img = findImgByThemeName(themeName);
   const theme = findCakeThemeStyle(themeName);
-  console.log(themeName);
   return (
     <StyledTextareaWarpper
       bg={theme?.bgColor}

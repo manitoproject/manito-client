@@ -21,7 +21,6 @@ export default function RollingpaperMessageList() {
   }, [data, messageActions]);
 
   if (isLoading) return <MyMessageListSkeleton />;
-
   return (
     <StyledList>
       {messageList.map((message, i) => (

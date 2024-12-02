@@ -38,7 +38,7 @@ export default function RollingpaperMessageItem({
     }
   };
 
-  const handleViewMessageItem = async (paperId: number, messageId: number) => {
+  const handleViewMessageItem = (paperId: number, messageId: number) => {
     navigate({
       pathname: routes.rollingpaper.detail(paperId),
       search: createSearchParams({
@@ -54,10 +54,8 @@ export default function RollingpaperMessageItem({
           onClick={() => handleViewMessageItem(message.paperId, message.id)}
           isSmall
           message={message}
-          // 확인
         >
           <img src={img} alt={message.theme} />
-          {/* {EmojiSvg ? <EmojiSvg /> : <StyledEmptySvg />} */}
           <p>{message.content}</p>
         </RollingpaperEmojiSkin>
       ) : (

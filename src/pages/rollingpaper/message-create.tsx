@@ -35,7 +35,7 @@ export default function RollingpaperCreateMessage() {
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
   const [isCreateMessageModalOpen, setIsCreateMessageModal] = useState(false);
   const [activeMenu, setActiveMenu] = useState<FontMenu>('font');
-  const { form, handleChangeForm } = useMessageForm();
+  const { form, handleFormChange } = useMessageForm();
 
   const handleMessageSubmit = () => {
     if (isEmojiSelectionPage) {
@@ -47,7 +47,7 @@ export default function RollingpaperCreateMessage() {
     }
   };
 
-  const handleOpenSheet = () => {
+  const handleSheetOpen = () => {
     if (isEmojiSelectionPage) {
       setIsEmojiSheetOpen(true);
     } else {
@@ -68,7 +68,6 @@ export default function RollingpaperCreateMessage() {
       setIsFontSheetOpen(false);
     }
   }, [isEmojiSelectionPage]);
-  // 확인
   return (
     <StyledRollingFormWrapper>
       <StyledBackdrop
@@ -85,7 +84,7 @@ export default function RollingpaperCreateMessage() {
               name="content"
               disabled={isEmojiSelectionPage}
               value={form.content}
-              onChange={handleChangeForm}
+              onChange={handleFormChange}
             />
           )}
         </RollingpaperEmojiSkin>
@@ -97,7 +96,7 @@ export default function RollingpaperCreateMessage() {
       >
         <BottomSheetEmojiPalette
           activeEmoji={form.theme}
-          onChangeEmoji={handleChangeForm}
+          onChangeEmoji={handleFormChange}
           theme={paper?.theme ?? 'animal'}
         />
         <Button onClick={handleMessageSubmit} disabled={!form.theme}>
@@ -116,13 +115,13 @@ export default function RollingpaperCreateMessage() {
           {activeMenu === 'font' ? (
             <BottomSheetFontList
               activeFont={form.font}
-              onChangeFont={handleChangeForm}
+              onChangeFont={handleFormChange}
             />
           ) : (
             <BottomSheetColorList
               theme={paper?.theme ?? 'animal'}
               activeColor={form.fontColor}
-              onChangeColor={handleChangeForm}
+              onChangeColor={handleFormChange}
             />
           )}
         </BottomSheetFontPalette>
@@ -140,7 +139,7 @@ export default function RollingpaperCreateMessage() {
       )}
       <BottomSheetButton
         isOpen={isBottomSheetOpen}
-        onOpen={handleOpenSheet}
+        onOpen={handleSheetOpen}
         disabled={isEmojiSelectionPage ? !form.fontColor : !form.content}
         onClick={handleMessageSubmit}
       >

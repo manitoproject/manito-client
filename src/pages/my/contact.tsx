@@ -15,7 +15,7 @@ export default function MyContact() {
   const [isFocus, setIsFocus] = useState(false);
   const { mutate, isPending } = useSendFeedbackMessage(setMessage);
 
-  const handleSendMessage = () => {
+  const handleMessageSend = () => {
     if (message.length) mutate({ content: message, user });
   };
 
@@ -41,7 +41,7 @@ export default function MyContact() {
       <div>
         <Button
           disabled={!message.length || isPending}
-          onClick={handleSendMessage}
+          onClick={handleMessageSend}
         >
           문의하기
         </Button>

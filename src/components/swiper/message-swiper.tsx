@@ -60,7 +60,6 @@ export default function MessageSwiper({
                 <p>{message.content}</p>
               </RollingpaperEmojiSkin>
             </SwiperSlide>
-            // 확인
           );
         } else if (category === 'cake') {
           return (

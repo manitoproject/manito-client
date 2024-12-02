@@ -21,7 +21,7 @@ export default function useMessageForm(
     font: currentMessage?.font ?? 'Cafe24Ssurround',
     fontColor: currentMessage?.fontColor ?? 'white',
   });
-  const handleChangeForm = (
+  const handleFormChange = (
     e:
       | React.ChangeEvent<HTMLTextAreaElement>
       | React.MouseEvent<HTMLButtonElement>,
@@ -30,5 +30,5 @@ export default function useMessageForm(
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  return { form, handleChangeForm };
+  return { form, handleFormChange };
 }

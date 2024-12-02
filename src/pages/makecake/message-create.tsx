@@ -23,7 +23,7 @@ export default function MakeCakeCreateMessage() {
   const location = useLocation();
   const { data: messages } = useQuery(messageQueries.paper(Number(params.id)));
   const position = messages?.length ?? 0;
-  const { form, handleChangeForm } = useMessageForm({
+  const { form, handleFormChange } = useMessageForm({
     theme: location.state.theme,
     fontColor: 'gray-900',
   });
@@ -49,7 +49,7 @@ export default function MakeCakeCreateMessage() {
       <MakeCakeTextarea
         themeName={form.theme}
         content={form.content}
-        onChangeContent={handleChangeForm}
+        onChangeContent={handleFormChange}
         fontName={form.font}
       />
       <BottomSheet
@@ -59,7 +59,7 @@ export default function MakeCakeCreateMessage() {
       >
         <BottomSheetFontList
           activeFont={form.font}
-          onChangeFont={handleChangeForm}
+          onChangeFont={handleFormChange}
         />
         <Button
           onClick={() => setIsCreateMessageModal(true)}
