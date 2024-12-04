@@ -4,12 +4,15 @@ import {
   Route,
 } from 'react-router-dom';
 
+import {
+  authTokenLoader,
+  privateGuardLoader,
+  publicGuardLoader,
+} from '@/loaders/loader';
 import { queryClient } from '@/main';
 import ErrorPage from '@/pages/error-page';
 import Home from '@/pages/home';
-import KakaoRedirection, {
-  loader as authLoader,
-} from '@/pages/kakako-redirection';
+import KakaoRedirection from '@/pages/kakako-redirection';
 import Landing from '@/pages/landing';
 import Layout from '@/pages/layout';
 import MakeCakeDecorate from '@/pages/makecake/decorate';
@@ -44,24 +47,16 @@ const router = () =>
         <Route
           path={routes.kakakoRedirection}
           element={<KakaoRedirection />}
-          loader={authLoader(queryClient)}
+          loader={authTokenLoader(queryClient)}
         />
-        <Route element={<Layout />}>
-          <Route path={routes.signup} element={<Signup />} />
+
+        <Route element={<Layout />} loader={privateGuardLoader(queryClient)}>
           <Route path={routes.home} element={<Home />} />
           <Route path={routes.my.default} element={<My />} />
           <Route path={routes.my.setting()} element={<MySetting />} />
           <Route path={routes.my.contact()} element={<MyContact />} />
           <Route path={routes.my.rename()} element={<MyRename />} />
           <Route path={routes.setupIntro()} element={<SetupIntro />} />
-          <Route
-            path={routes.rollingpaper.list()}
-            element={<RollingpaperList />}
-          />
-          <Route
-            path={routes.rollingpaper.detail()}
-            element={<RollingpaperDetail />}
-          />
           <Route
             path={routes.rollingpaper.setup()}
             element={<RollingpaperSetup />}
@@ -75,7 +70,6 @@ const router = () =>
             element={<RollingpaperCreateMessage />}
           />
           <Route path={routes.makecake.setup()} element={<MakeCakeSetup />} />
-          <Route path={routes.makecake.list()} element={<MakeCakeList />} />
           <Route
             path={routes.makecake.decorate()}
             element={<MakeCakeDecorate />}
@@ -88,14 +82,9 @@ const router = () =>
             path={routes.makecake.messageEdit()}
             element={<MakeCakeEditMessage />}
           />
-          <Route path={routes.makecake.detail()} element={<MakeCakeDetail />} />
           <Route
             path={routes.treasurebox.setup()}
             element={<TreasureBoxSetup />}
-          />
-          <Route
-            path={routes.treasurebox.list()}
-            element={<TreasureBoxList />}
           />
           <Route
             path={routes.treasurebox.messageCreate()}
@@ -104,6 +93,27 @@ const router = () =>
           <Route
             path={routes.treasurebox.messageEdit()}
             element={<TreasureBoxEditMessage />}
+          />
+        </Route>
+        <Route element={<Layout />}>
+          <Route
+            path={routes.signup}
+            element={<Signup />}
+            loader={publicGuardLoader(queryClient)}
+          />
+          <Route
+            path={routes.rollingpaper.list()}
+            element={<RollingpaperList />}
+          />
+          <Route
+            path={routes.rollingpaper.detail()}
+            element={<RollingpaperDetail />}
+          />
+          <Route path={routes.makecake.list()} element={<MakeCakeList />} />
+          <Route path={routes.makecake.detail()} element={<MakeCakeDetail />} />
+          <Route
+            path={routes.treasurebox.list()}
+            element={<TreasureBoxList />}
           />
           <Route
             path={routes.treasurebox.detail()}
