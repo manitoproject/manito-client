@@ -1,23 +1,30 @@
 import styled from '@emotion/styled';
 import { useQuery } from '@tanstack/react-query';
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Navigation } from 'swiper/modules';
+import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react';
 
 import DetailActionButtons from '@/components/detail/action-buttons';
 import DetailAuthorInfo from '@/components/detail/author-info';
-import MessageSwiper from '@/components/swiper/message-swiper';
+import RollingpaperEmojiSkin from '@/components/rollingpaper/emoji-skin';
 import ReactHelmet, { TITLE } from '@/helmet';
-import useDetailIndex from '@/hooks/use-detail-index';
 import useSetHeader from '@/hooks/use-set-header';
+import useSwiperNavigation from '@/hooks/use-swiper-navigation';
+import { findImgByThemeName } from '@/lib/common';
 import { messageQueries, paperQueries } from '@/lib/query-factory';
 import { ROLLINGPAPER_BG_MAP } from '@/lib/rolling-paper';
 import { StyledBackdrop } from '@/pages/rollingpaper/list.style';
 
 export default function RollingpaperDetail() {
   const params = useParams();
+  const [swiper, setSwiper] = useState<SwiperClass>();
   const { data: messages } = useQuery(messageQueries.paper(Number(params.id)));
   const { data: paper } = useQuery(paperQueries.detail(Number(params.id)));
-  const { activeIndex, setActiveIndex } = useDetailIndex(messages);
-
+  const { activeIndex, onActiveIndexChange } = useSwiperNavigation(
+    swiper,
+    messages,
+  );
   useSetHeader({
     title: paper?.title,
     bg: ROLLINGPAPER_BG_MAP[paper?.theme ?? 'animal'].bgColor,
@@ -30,12 +37,24 @@ export default function RollingpaperDetail() {
   return (
     <StyledWrapper>
       <div>
-        <MessageSwiper
-          category="rollingpaper"
-          messages={messages}
-          activeIndex={activeIndex}
-          setActiveIndex={setActiveIndex}
-        />
+        <StyledSwiper
+          onSlideChange={(e) => onActiveIndexChange(e.activeIndex)}
+          spaceBetween={20}
+          onSwiper={setSwiper}
+          modules={[Navigation]}
+        >
+          {messages.map((message) => (
+            <SwiperSlide key={message.id}>
+              <RollingpaperEmojiSkin message={message}>
+                <img
+                  src={findImgByThemeName(message.theme)}
+                  alt={message.theme}
+                />
+                <p>{message.content}</p>
+              </RollingpaperEmojiSkin>
+            </SwiperSlide>
+          ))}
+        </StyledSwiper>
         <DetailAuthorInfo hasPadding>
           <DetailAuthorInfo.Nickname
             nickname={
@@ -72,4 +91,8 @@ const StyledWrapper = styled.div`
     justify-content: center;
     margin-bottom: ${({ theme }) => theme.sizes.paddingTop};
   }
+`;
+
+const StyledSwiper = styled(Swiper)`
+  margin: 0;
 `;

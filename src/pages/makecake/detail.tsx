@@ -1,13 +1,17 @@
 import styled from '@emotion/styled';
 import { useQuery } from '@tanstack/react-query';
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Navigation } from 'swiper/modules';
+import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react';
 
 import DetailActionButtons from '@/components/detail/action-buttons';
 import DetailAuthorInfo from '@/components/detail/author-info';
-import MessageSwiper from '@/components/swiper/message-swiper';
+import MakeCakeTextarea from '@/components/makecake/textarea';
+import SwiperNavigation from '@/components/swiper/navigation';
 import ReactHelmet, { TITLE } from '@/helmet';
-import useDetailIndex from '@/hooks/use-detail-index';
 import useSetHeader from '@/hooks/use-set-header';
+import useSwiperNavigation from '@/hooks/use-swiper-navigation';
 import { CAKE_THEME_PALETTES } from '@/lib/cake-decoration';
 import { messageQueries, paperQueries } from '@/lib/query-factory';
 import { StyledBackdrop } from '@/pages/rollingpaper/list.style';
@@ -15,14 +19,18 @@ import { StyledContentOverlay } from '@/styles/styled';
 
 export default function MakeCakeDetail() {
   const params = useParams();
+  const [swiper, setSwiper] = useState<SwiperClass>();
   const { data: messages } = useQuery(messageQueries.paper(Number(params?.id)));
-  const { activeIndex, setActiveIndex } = useDetailIndex(messages);
   const { data: paper } = useQuery(paperQueries.detail(Number(params.id)));
-
+  const { activeIndex, onActiveIndexChange } = useSwiperNavigation(
+    swiper,
+    messages,
+  );
   useSetHeader({ title: '상세 보기' });
 
   if (!messages?.length) return null;
   const currentMessage = messages[activeIndex];
+
   return (
     <StyledWrapper>
       <StyledBackdrop
@@ -34,12 +42,23 @@ export default function MakeCakeDetail() {
       />
       <StyledContentOverlay opacity={20} />
       <StyledContentWrapper>
-        <MessageSwiper
-          category="cake"
-          messages={messages}
-          activeIndex={activeIndex}
-          setActiveIndex={setActiveIndex}
-        />
+        <StyledSwiper
+          onSlideChange={(e) => onActiveIndexChange(e.activeIndex)}
+          spaceBetween={20}
+          onSwiper={setSwiper}
+          modules={[Navigation]}
+        >
+          {messages.map((message) => (
+            <StyledSlide key={message.id}>
+              <MakeCakeTextarea
+                content={message.content}
+                fontName={message.font}
+                themeName={message.theme}
+              />
+            </StyledSlide>
+          ))}
+          <SwiperNavigation />
+        </StyledSwiper>
         <DetailAuthorInfo>
           <DetailAuthorInfo.Nickname
             color={
@@ -88,4 +107,14 @@ const StyledContentWrapper = styled.div`
   gap: 12px;
   top: -10%;
   position: relative;
+`;
+
+const StyledSwiper = styled(Swiper)`
+  margin: 0;
+  height: 310px;
+`;
+
+const StyledSlide = styled(SwiperSlide)`
+  display: flex;
+  align-items: end;
 `;

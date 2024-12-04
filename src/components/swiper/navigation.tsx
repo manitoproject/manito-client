@@ -1,28 +1,19 @@
 import styled from '@emotion/styled';
+import { useSwiper } from 'swiper/react';
 
 import { RightChevron } from '@/assets/svg/icons';
-interface SwipeNavigationProps {
-  isBeginning: boolean;
-  isEnd: boolean;
-  onSlideNext: () => void;
-  onSlidePrev: () => void;
-}
 
-export default function SwiperNavigation({
-  isBeginning,
-  isEnd,
-  onSlideNext,
-  onSlidePrev,
-}: SwipeNavigationProps) {
+export default function SwiperNavigation() {
+  const swiper = useSwiper();
   return (
     <StyledNavigationWarpper>
-      {!isBeginning && (
-        <StyledPrevNavigation onClick={onSlidePrev}>
+      {!swiper.isBeginning && (
+        <StyledPrevNavigation onClick={() => swiper.slidePrev()}>
           <RightChevron />
         </StyledPrevNavigation>
       )}
-      {!isEnd && (
-        <StyledNextNavigation onClick={onSlideNext}>
+      {!swiper.isEnd && (
+        <StyledNextNavigation onClick={() => swiper.slideNext()}>
           <RightChevron />
         </StyledNextNavigation>
       )}
