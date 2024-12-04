@@ -17,9 +17,6 @@ export default function TreasureBoxSlide({ message }: SwipeTreasureSlideProps) {
         <img src={treasure?.imgUrl} alt={treasure?.name} />
         <StyledTitleWrapper>
           <StyledTitle>{treasure?.title}</StyledTitle>
-          <StyledDesc>
-            진실된 내 모습을 마주보고 용기를 얻을 수 있어요.
-          </StyledDesc>
         </StyledTitleWrapper>
       </StyledSvgWrapper>
       <TreasureBoxTextarea value={message.content} />
@@ -56,10 +53,4 @@ const StyledTitle = styled.p`
   border: 2px solid var(--color-teal-teal500, #19807a);
   background: var(--color-teal-teal300, #7abaab);
   box-shadow: 2px 2px 8px 0px #19807a inset;
-`;
-
-const StyledDesc = styled.p`
-  color: ${({ theme }) => theme.colors.white};
-  font-family: ${({ theme }) => theme.fontFamily.SpoqaHanSansNeo};
-  ${getFontSizeAndWeight('heading4', 'bold')};
 `;
