@@ -37,17 +37,24 @@ export default function Header() {
     <>
       <StyledHeader header={header}>
         <div>
-          {header.leftBtn && (
-            <StyledLeftButton color={header.color} onClick={handleNavigation}>
-              <LeftChevron />
-            </StyledLeftButton>
-          )}
+          <StyledBtnWrapper>
+            {header.leftBtn && (
+              <StyledLeftButton color={header.color} onClick={handleNavigation}>
+                <LeftChevron />
+              </StyledLeftButton>
+            )}
+          </StyledBtnWrapper>
           <h1>{header.title}</h1>
-          {header.rightBtn && (
-            <StyledMenuButton color={header.color} onClick={handleSidebarOpen}>
-              <HamburgerMenu />
-            </StyledMenuButton>
-          )}
+          <StyledBtnWrapper>
+            {header.rightBtn && (
+              <StyledMenuButton
+                color={header.color}
+                onClick={handleSidebarOpen}
+              >
+                <HamburgerMenu />
+              </StyledMenuButton>
+            )}
+          </StyledBtnWrapper>
         </div>
       </StyledHeader>
       {user && (
@@ -64,19 +71,26 @@ export const StyledHeader = styled.header<{
   header: HeaderStore['title'];
 }>`
   max-width: ${(props) => props.theme.sizes.mobile};
-  width: 100%;
   z-index: 51;
   position: fixed;
+  width: 100%;
+  display: flex;
   background-color: ${({ header, theme }) => theme.colors[header.bg]};
   border-bottom: ${({ header, theme }) =>
     header.bg === 'white' ? `1px solid ${theme.colors['gray-300']}` : 'none'};
   & > div {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
     h1 {
+      text-align: center;
+      flex: 1;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
       font-family: ${({ header, theme }) => theme.fontFamily[header.font]};
       ${getFontSizeAndWeight('heading2', 'medium')}
-      left: 50%;
-      transform: translateX(-50%);
-      position: absolute;
+      padding: 0 10px;
     }
     display: flex;
     justify-content: space-between;
@@ -103,4 +117,9 @@ const StyledMenuButton = styled.button<{ color: ColorName }>`
     stroke: ${({ color, theme }) =>
       color === 'gray-800' ? theme.colors['gray-500'] : theme.colors[color]};
   }
+`;
+
+const StyledBtnWrapper = styled.div`
+  width: 36px;
+  height: 36px;
 `;
