@@ -8,6 +8,7 @@ import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react';
 import DetailActionButtons from '@/components/detail/action-buttons';
 import DetailAuthorInfo from '@/components/detail/author-info';
 import RollingpaperEmojiSkin from '@/components/rollingpaper/emoji-skin';
+import SwiperNavigation from '@/components/swiper/navigation';
 import ReactHelmet, { TITLE } from '@/helmet';
 import useSetHeader from '@/hooks/use-set-header';
 import useSwiperNavigation from '@/hooks/use-swiper-navigation';
@@ -54,6 +55,7 @@ export default function RollingpaperDetail() {
               </RollingpaperEmojiSkin>
             </SwiperSlide>
           ))}
+          <SwiperNavigation />
         </StyledSwiper>
         <DetailAuthorInfo hasPadding>
           <DetailAuthorInfo.Nickname
